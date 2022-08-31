@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
 
-const peliculaSchema = mongoose.Schema({
+const movieSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     date: {
-        type: String,
+        type: Number,
         require: true
     },
     description: {
@@ -36,7 +37,19 @@ const peliculaSchema = mongoose.Schema({
     director: {
         type: String,
         require: true
+    },
+    trailer: {
+        type: String,
+        require: true
+    },
+    genres: {
+        type: Array,
+        require: true
     }
+    // genres: [{
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'Genre'
+    // }]
 })
 
-module.exports = mongoose.model('Pelicula', peliculaSchema)
+module.exports = mongoose.model('Movie', movieSchema)
