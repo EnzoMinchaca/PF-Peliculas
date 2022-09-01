@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const genreSchema = mongoose.Schema({
+const platformSchema = mongoose.Schema({
     name: {
         type: String,
         require: true,
@@ -8,4 +8,4 @@ const genreSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Genre', genreSchema)
+module.exports = mongoose.model('Platform', platformSchema)
