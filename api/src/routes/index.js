@@ -109,4 +109,27 @@ router.put("/movies/:id", async ( req, res )=> {
         console.error(error)
     }
 })
+
+router.delete("/movies/:id", async ( req, res ) => {
+
+    const { id } = req.params;
+
+    try {
+        if(!id)return res.send("No se encontro ninguna pelicula en la base de datos con ese id.")
+
+        await movieSchema.findByIdAndDelete(id, function (err, movie) {
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log("Deleted : ", movie);
+                res.status(200).send("Tu pelicula se borro con exito")
+            }
+        });
+    } catch (error) {
+        console.error(error)
+    }
+
+})
+
 module.exports = router
