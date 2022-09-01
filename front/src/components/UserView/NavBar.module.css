@@ -1,0 +1,19 @@
+.fondo{
+    background-color: red !important;
+}
+
+.margin{
+    margin: 1%;
+}
+.inputSearch{
+    border: solid 1px white;
+}
+
+.searchBtn{
+    color: white !important;
+}
+
+.linkBtn{
+    text-decoration: none;
+    color: white;
+}
