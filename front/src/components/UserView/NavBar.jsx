@@ -105,7 +105,7 @@ export default function NavBar() {
               textDecoration: 'none',
             }}
           >
-            Application Name
+            HMovies
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -161,7 +161,7 @@ export default function NavBar() {
               textDecoration: 'none',
             }}
           >
-            Aplication Name
+            HMovies
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -189,9 +189,21 @@ export default function NavBar() {
             </SearchIconWrapper>
             </Button>
             </Box>
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <IconButton sx={{ p: 0 }}>
+                    <Link to="/Create"   key={"Create"}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                        className={css.linkBtn}>
+                        Create Movie
+                    </Link>
+                </IconButton>
+            </Box>
+
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <IconButton sx={{ p: 0 }}>
-            <Link to="/Login"   key={"Car"}
+            <Link to="/Car"   key={"Car"}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 className={css.linkBtn}>
@@ -199,6 +211,7 @@ export default function NavBar() {
             </Link>
             </IconButton>
             </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
