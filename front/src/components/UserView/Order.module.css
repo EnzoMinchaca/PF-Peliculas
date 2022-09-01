@@ -1,0 +1,16 @@
+.content{
+    display: block;
+    background:red;
+}
+.rating{
+    margin: 3%;
+    background:red;
+}
+
+.year{
+    margin: 3%;
+    background:red;
+}
+.red{
+    background: red;
+}
