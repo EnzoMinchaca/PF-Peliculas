@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import css from "./Card.module.css";
+import { Link } from "react-router-dom";
 
 export default function CardIndividual(props){
     return(
@@ -32,6 +33,9 @@ export default function CardIndividual(props){
     //     </CardActionArea>
     //   </Card>
 
+
+//////////////////////////////////////////////////////////////////////////////
+    <Link to={`/Details/${props.id}`}>
     <div className={props.platform.toLowerCase()==="amazon" ? css.cardA :
                   props.platform.toLowerCase()==="netflix" ? css.cardN:
                   props.platform.toLowerCase()==="disney+" ? css.cardD:
@@ -47,6 +51,9 @@ export default function CardIndividual(props){
       })}
       </p>
     </div>
+    </Link>
+
+    //////////////////////////////////////////////////////////////////////////////
 
 //     <div className={props.platform.toLowerCase()==="amazon" ? css.cardA :
 //            props.platform.toLowerCase()==="netflix" ? css.cardN:

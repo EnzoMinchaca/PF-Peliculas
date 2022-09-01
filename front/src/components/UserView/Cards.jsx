@@ -24,7 +24,8 @@ export default function Cards(){
                     title={movie.title}
                     image={movie.image}
                     genres={movie.genres}
-                    platform={movie.platform}/>
+                    platform={movie.platform}
+                    id={movie._id}/>
                 </Grid>
               )
             })}
