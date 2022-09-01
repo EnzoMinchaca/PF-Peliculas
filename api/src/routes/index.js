@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const { getMovies } = require('../controllers/controller_getNameMovie.js')
 const movieSchema = require('../models/movie.js')
 // const genreSchema = require('../models/genre.js')
 const router = Router()
@@ -45,6 +46,28 @@ router.get('/movies', async(req, res) => {
 //     }
 // })
 
+router.get('/getMovies', async(req,res)=>{
+    let allMovies = await movieSchema.find();
+    const {nameMovie}= req.query;
+    console.log(nameMovie)
+    try {
+        let response = await getMovies(nameMovie,allMovies);
+        res.send(response);
+
+      } catch (error) {
+        console.log(error);
+    }
+});
+
+router.get('/movieDetails/:idMovie', async(req,res)=>{
+    const {idMovie}= req.params;
+    try {
+      let response = await movieSchema.findById(idMovie);
+      res.send(response);
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
 
 module.exports = router
