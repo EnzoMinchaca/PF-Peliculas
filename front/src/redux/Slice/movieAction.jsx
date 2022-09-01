@@ -10,7 +10,7 @@ import { getAllMovies,
 
 
 export const getMovies=()=>(dispatch)=>{
-    axios.get("http://localhost:3001/movies")
+    axios.get("http://localhost:3001/getMovies")
     .then(resp=>dispatch(getAllMovies(resp.data)))
     .catch((e) => {
         console.log(e);
@@ -37,7 +37,7 @@ export const getMovieById=(id)=>(dispatch)=>{
 }
 
 export const getSearch=(name)=>(dispatch)=>{
-    axios.get(`http://localhost:3001/movies?name=${name}`)
+    axios.get(`http://localhost:3001/getMovies?name=${name}`)
     .then(resp=>dispatch(getSearchMovie(resp.data)))
     .catch((e) => {
         console.log(e);
@@ -63,7 +63,7 @@ export const getGenres=()=>(dispatch)=>{
 }
 
 export const getPlatform=()=>(dispatch)=>{
-    axios.get(`http://localhost:3001/genres`)
+    axios.get(`http://localhost:3001/platform`)
     .then(resp=>dispatch(getByPlatform(resp.data)))
     .catch((e) => {
         console.log(e);

@@ -13,9 +13,7 @@ export const movieSlice = createSlice ({
     
     reducer: {
         getAllMovies: (state, action)=>{
-            state.movies = action.payload
-            state.filtered = action.payload
-
+            state.movies = action.payload        
         },
 
         getMoviesById: (state, action)=>{
