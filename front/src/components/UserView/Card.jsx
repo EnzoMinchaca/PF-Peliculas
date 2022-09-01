@@ -35,7 +35,7 @@ export default function CardIndividual(props){
     <div className={props.platform.toLowerCase()==="amazon" ? css.cardA :
                   props.platform.toLowerCase()==="netflix" ? css.cardN:
                   props.platform.toLowerCase()==="disney+" ? css.cardD:
-                  props.platform.toLowerCase()==="hbo" ? css.cardH: css.cardP}>
+                  props.platform.toLowerCase()==="hbomax" ? css.cardH: css.cardP}>
     <div className={css.blob}></div>
       <span className={css.image}><img src={props.image} className={css.img}/></span>
       <h2 className={css.title}><span>{props.title}</span></h2>
