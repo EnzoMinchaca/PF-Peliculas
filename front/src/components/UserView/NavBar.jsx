@@ -201,7 +201,7 @@ export default function NavBar() {
                 </IconButton>
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <IconButton sx={{ p: 0 }}>
             <Link to="/Car"   key={"Car"}
                 onClick={handleCloseNavMenu}
@@ -210,9 +210,9 @@ export default function NavBar() {
                 <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
             </Link>
             </IconButton>
-            </Box>
+            </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Link to="/Login"           
@@ -225,7 +225,7 @@ export default function NavBar() {
                 </Link>
               </IconButton>
             </Tooltip>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
