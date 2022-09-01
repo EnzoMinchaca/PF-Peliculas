@@ -1,0 +1,695 @@
+/* .image{
+    width: 90% !important;
+    margin: 0 auto !important;
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
+}
+.amazon{
+    background: url("../../img/amazon.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: white !important;
+}
+.netflix{
+
+    background-image: url("../../img/netflix.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: white !important;
+}
+.paramount{
+    background-image: url("../../img/paramount.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: white !important;
+}
+.disney{
+    background-image: url("../../img/disney.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important; 
+    color: white !important;
+}
+.hbo{
+    background-image: url("../../img/hbo.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color:white !important;
+} */
+
+/* From uiverse.io by @gagan-gv */
+.img{
+    width: 50%;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+}
+.title{
+}
+.cardA {
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    font-size: 100%;
+    background-image: url("../../img/amazon.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    border: solid 1px transparent;
+   }
+   
+   .cardA:hover {
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    background-color: #4bb8ff;
+   }
+   
+   .cardA .blob {
+    height: 10px;
+    width: 75%;
+    border-radius: 0 0 30px 30px;
+    margin: 0 auto;
+    background-color: #4bb8ff;
+    visibility: visible;
+    transition: all 0.3s;
+   }
+   
+   .cardA:hover .blob {
+    height: 0;
+   }
+   
+   .cardA .img {
+    display: flex;
+    margin: 30px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #4bb8ff;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+   }
+   
+   .cardA:hover .img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px 0 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    z-index: 99999;
+   }
+   
+   .cardA h2 {
+    padding: 15px 10px;
+    font-size: 25px;
+    transition: all 0.1s;
+    z-index: -99;
+    line-height: 17px;
+   }
+   
+   .cardA span {
+    font-size: 18px;
+   }
+   
+   .cardA:hover h2 {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s;
+   }
+   
+   .cardA>p {
+    opacity: 0;
+    transition: all 0.75s;
+   }
+   
+   .cardA>p>p {
+    padding: 5px;
+   }
+   
+   .cardA:hover>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   .cardA:hover>p>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+
+   /*///////////////////////////*/
+   .cardN {
+    width: 80%;
+    height: 100%;
+    color: white !important;
+    margin: 0 auto;
+    background-image: url("../../img/netflix.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    border: solid 1px transparent;
+   }
+   
+   .cardN:hover {
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    background-color: #4bb8ff;
+   }
+   
+   .cardN .blob {
+    height: 10px;
+    width: 75%;
+    border-radius: 0 0 30px 30px;
+    margin: 0 auto;
+    background-color: #4bb8ff;
+    visibility: visible;
+    transition: all 0.3s;
+   }
+   
+   .cardN:hover .blob {
+    height: 0;
+   }
+   
+   .cardN .img {
+    display: flex;
+    margin: 30px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #4bb8ff;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+   }
+   
+   .cardN:hover .img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px 0 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    z-index: 99999;
+   }
+   
+   .cardN h2 {
+    padding: 15px 10px;
+    font-size: 25px;
+    transition: all 0.1s;
+    z-index: -99;
+    line-height: 17px;
+   }
+   
+   .cardN span {
+    font-size: 18px;
+   }
+   
+   .cardN:hover h2 {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s;
+   }
+   
+   .cardN>p {
+    opacity: 0;
+    transition: all 0.75s;
+   }
+   
+   .cardN>p>p {
+    padding: 5px;
+   }
+   
+   .cardN:hover>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   .cardN:hover>p>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+
+   /*////////////////////*/
+
+   .cardD {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    background-image: url("../../img/disney.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    border: solid 1px transparent;
+   }
+   
+   .cardD:hover {
+
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    background-color: #4bb8ff;
+   }
+   
+   .cardD .blob {
+    height: 10px;
+    width: 75%;
+    border-radius: 0 0 30px 30px;
+    margin: 0 auto;
+    background-color: #4bb8ff;
+    visibility: visible;
+    transition: all 0.3s;
+   }
+   
+   .cardD:hover .blob {
+    height: 0;
+   }
+   
+   .cardD .img {
+    display: flex;
+    margin: 30px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #4bb8ff;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+   }
+   
+   .cardD:hover .img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px 0 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    z-index: 99999;
+   }
+   
+   .cardD h2 {
+    padding: 15px 10px;
+    font-size: 25px;
+    transition: all 0.1s;
+    z-index: -99;
+    line-height: 17px;
+   }
+   
+   .cardD span {
+    font-size: 18px;
+   }
+   
+   .cardD:hover h2 {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s;
+   }
+   
+   .cardD>p {
+    opacity: 0;
+    transition: all 0.75s;
+   }
+   
+   .cardD>p>p {
+    padding: 5px;
+   }
+   
+   .cardD:hover>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   .cardD:hover>p>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+
+   /*////////////////////////*/
+
+   .cardH {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    background-image: url("../../img/hbo.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    border: solid 1px transparent;
+   }
+   
+   .cardH:hover {
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    background-color: #4bb8ff;
+   }
+   
+   .cardH .blob {
+    height: 10px;
+    width: 75%;
+    border-radius: 0 0 30px 30px;
+    margin: 0 auto;
+    background-color: #4bb8ff;
+    visibility: visible;
+    transition: all 0.3s;
+   }
+   
+   .cardH:hover .blob {
+    height: 0;
+   }
+   
+   .cardH .img {
+    display: flex;
+    margin: 30px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #4bb8ff;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+   }
+   
+   .cardH:hover .img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px 0 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    z-index: 99999;
+   }
+   
+   .cardH h2 {
+    padding: 15px 10px;
+    font-size: 25px;
+    transition: all 0.1s;
+    z-index: -99;
+    line-height: 17px;
+   }
+   
+   .cardH span {
+    font-size: 18px;
+   }
+   
+   .cardH:hover h2 {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s;
+   }
+   
+   .cardH>p {
+    opacity: 0;
+    transition: all 0.75s;
+   }
+   
+   .cardH>p>p {
+    padding: 5px;
+   }
+   
+   .cardH:hover>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   .cardH:hover>p>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+ /*///////////////////////////////*/
+
+ .cardP {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    background-image: url("../../img/paramount.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.5s;
+    border: solid 1px transparent;
+   }
+   
+   .cardP:hover {
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    background-color: #4bb8ff;
+   }
+   
+   .cardP .blob {
+    height: 10px;
+    width: 75%;
+    border-radius: 0 0 30px 30px;
+    margin: 0 auto;
+    background-color: #4bb8ff;
+    visibility: visible;
+    transition: all 0.3s;
+   }
+   
+   .cardP:hover .blob {
+    height: 0;
+   }
+   
+   .cardP .img {
+    display: flex;
+    margin: 30px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #4bb8ff;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+   }
+   
+   .cardP:hover .img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px 0 0;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    z-index: 99999;
+   }
+   
+   .cardP h2 {
+    padding: 15px 10px;
+    font-size: 25px;
+    transition: all 0.1s;
+    z-index: -99;
+    line-height: 17px;
+   }
+   
+   .cardP span {
+    font-size: 18px;
+   }
+   
+   .cardP:hover h2 {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    transition: all 0.5s;
+   }
+   
+   .cardP>p {
+    opacity: 0;
+    transition: all 0.75s;
+   }
+   
+   .cardP>p>p {
+    padding: 5px;
+   }
+   
+   .cardP:hover>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   .cardP:hover>p>p {
+    height: 20%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+   }
+   /* From uiverse.io by @gagan-gv */
+
+   /* .image{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    z-index: 99;
+    background-color: transparent;
+   }
+.cardA {
+    width: 90%;
+    height: 100%;
+    background: url("../../img/amazon.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    font-family: inherit;
+    z-index: 1;
+    border: solid 1px transparent;
+   }
+   .cardA:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+   }
+   
+   .cardA:hover h1,
+   .cardA:hover p {
+    opacity: 1;
+   }
+   .img {
+    display: flex;
+    width: 10vw;
+    margin: 0 auto;
+    margin-top: 4%;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%;
+    font-size: 11px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    z-index: 99;
+    background-color: transparent;
+   }
+
+   .cardN {
+    width: 90%;
+    height: 100%;
+    background: url("../../img/netflix.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 5px;
+    text-align: center;
+    color: #f0f0f0;
+    font-family: inherit;
+    z-index: 1;
+    border: solid 1px transparent;
+   }
+   .cardN:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+   }
+   
+   .cardN:hover h1,
+   .cardN:hover p {
+    opacity: 1;
+   }
+   
+   p {
+    opacity: 0;
+    transition: all 0.5s;
+   }
+
+   .cardD{
+    width: 90%;
+    height: 100%;
+    background: url("../../img/disney.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    font-family: inherit;
+    z-index: 1;
+    border: solid 1px transparent;
+   }
+   .cardD:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+   }
+   
+   .cardD:hover h1,
+   .cardD:hover p {
+    opacity: 1;
+   }
+   
+   h1 {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 18px;
+   }
+
+   .cardH {
+    width: 90%;
+    height: 100%;
+    background: url("../../img/hbo.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 5px;
+    text-align: center;
+    color: #f0f0f0;
+    font-family: inherit;
+    z-index: 1;
+    border: solid 1px transparent;
+   }
+   .cardH:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+   }
+   
+   .cardH:hover h1,
+   .cardH:hover p {
+    opacity: 1;
+   }
+   
+   svg {
+    padding: 0 5px;
+    cursor: pointer;
+   }
+
+   .cardP {
+    width: 90%;
+    height: 100%;
+    background: url("../../img/paramount.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    font-family: inherit;
+    z-index: 1;
+    border: solid 1px transparent;
+   }
+   .cardP:hover .img {
+    transform: scale(1.1);
+    border: 1px solid #f0f0f0;
+   }
+   
+   .cardP:hover h1,
+   .cardP:hover p {
+    opacity: 1;
+   }
+    */
+
+   
