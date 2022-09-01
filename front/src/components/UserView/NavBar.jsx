@@ -15,6 +15,7 @@ import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link} from "react-router-dom"
 import css from "./NavBar.module.css"
 
@@ -187,6 +188,16 @@ export default function NavBar() {
               <SearchIcon />
             </SearchIconWrapper>
             </Button>
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <IconButton sx={{ p: 0 }}>
+            <Link to="/Login"   key={"Car"}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                className={css.linkBtn}>
+                <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+            </Link>
+            </IconButton>
             </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
