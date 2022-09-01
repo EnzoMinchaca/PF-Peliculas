@@ -14,17 +14,7 @@ router.post('/movies', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
-
-router.get('/movies', async(req, res) => {
-    try {
-        const movie = await movieSchema.find()
-        res.json(movie)
-    }
-    catch(error) {
-        console.log(error)
-    }
-})
+});
 
 router.post('/genres', async(req, res) => {
     try {
@@ -35,7 +25,7 @@ router.post('/genres', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 router.get('/genres', async(req, res) => {
     try {
@@ -45,7 +35,7 @@ router.get('/genres', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 router.post('/platform', async(req, res) => {
     try {
@@ -56,7 +46,7 @@ router.post('/platform', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 router.get('/getMovies', async(req,res)=>{
     let allMovies = await movieSchema.find();
@@ -79,7 +69,7 @@ router.get('/movieDetails/:idMovie', async(req,res)=>{
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 
 router.get('/platform', async(req, res) => {
     try {
@@ -89,7 +79,7 @@ router.get('/platform', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 
 router.put("/movies/:id", async ( req, res )=> {
@@ -133,5 +123,5 @@ router.put("/movies/:id", async ( req, res )=> {
     } catch (error) {
         console.error(error)
     }
-})
+});
 module.exports = router

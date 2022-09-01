@@ -1,5 +1,4 @@
 
-
 const getMovies = async(nameMovie,allMovies) =>{
 
     if(nameMovie){
