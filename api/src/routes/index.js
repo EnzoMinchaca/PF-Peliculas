@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const { getMovies } = require('../controllers/controller_getNameMovie.js')
 const movieSchema = require('../models/movie.js')
 const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
@@ -13,17 +14,7 @@ router.post('/movies', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
-
-router.get('/movies', async(req, res) => {
-    try {
-        const movie = await movieSchema.find()
-        res.json(movie)
-    }
-    catch(error) {
-        console.log(error)
-    }
-})
+});
 
 router.post('/genres', async(req, res) => {
     try {
@@ -34,7 +25,7 @@ router.post('/genres', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 router.get('/genres', async(req, res) => {
     try {
@@ -44,7 +35,7 @@ router.get('/genres', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
 
 router.post('/platform', async(req, res) => {
     try {
@@ -55,7 +46,30 @@ router.post('/platform', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
+
+router.get('/getMovies', async(req,res)=>{
+    let allMovies = await movieSchema.find();
+    const {nameMovie}= req.query;
+    console.log(nameMovie)
+    try {
+        let response = await getMovies(nameMovie,allMovies);
+        res.send(response);
+
+      } catch (error) {
+        console.log(error);
+    }
+});
+
+router.get('/movieDetails/:idMovie', async(req,res)=>{
+    const {idMovie}= req.params;
+    try {
+      let response = await movieSchema.findById(idMovie);
+      res.send(response);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
 router.get('/platform', async(req, res) => {
     try {
@@ -65,7 +79,8 @@ router.get('/platform', async(req, res) => {
     catch(error) {
         console.log(error)
     }
-})
+});
+
 
 router.put("/movies/:id", async ( req, res )=> {
     const { title, date, description, rating, platform, image, duration, cast, director, trailer, genres, price  } = req.body;
@@ -108,6 +123,7 @@ router.put("/movies/:id", async ( req, res )=> {
     } catch (error) {
         console.error(error)
     }
+
 })
 
 router.delete("/movies/:id", async ( req, res ) => {
@@ -131,5 +147,7 @@ router.delete("/movies/:id", async ( req, res ) => {
     }
 
 })
+
+});
 
 module.exports = router
