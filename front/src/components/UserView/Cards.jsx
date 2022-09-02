@@ -24,7 +24,6 @@ export default function Cards(){
     },[])
     return (
         <Box sx={{ flexGrow: 1 }}>
-          <p></p>
         <Grid container spacing={2}>
             {movies.length? movies.map((movie)=>{
                 return (
