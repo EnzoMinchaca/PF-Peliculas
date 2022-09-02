@@ -28,7 +28,8 @@ export default function Cards(){
         <Grid container spacing={2}>
             {movies.length? movies.map((movie)=>{
                 return (
-                <Grid item xs={3} md={4}>
+                <Grid item xs={12} md={4} sm={6} 
+                >
                     <CardIndividual
                     title={movie.title}
                     image={movie.image}
