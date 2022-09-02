@@ -47,23 +47,24 @@ export default function Order() {
 
   return (
     <div className={css.content}>
-    <List className={css.rating}
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-          Order by Rating
-        </ListSubheader>
-      }
-    >
-      <ListItemButton className={css.redH}>
-        <ListItemText primary="1-5" onClick={()=>handleAscRating()} />
-      </ListItemButton>
-      <ListItemButton className={css.redH}>
-        <ListItemText primary="5-1" onClick={()=>handleDesRating()} />
-      </ListItemButton>
-    </List>
+      <List className={css.rating}
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
+            Order by Rating
+          </ListSubheader>
+        }
+      >
+        <ListItemButton className={css.redH}>
+          <ListItemText primary="1-5" onClick={() => handleAscRating()} />
+        </ListItemButton>
+        <ListItemButton className={css.redH}>
+          <ListItemText primary="5-1" onClick={() => handleDesRating()} />
+        </ListItemButton>
+      </List>
+
 
 <List className={css.year}
 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -103,5 +104,6 @@ subheader={
   }
 </List>
 </div>
+
   );
 }

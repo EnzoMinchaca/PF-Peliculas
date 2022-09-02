@@ -1,42 +1,44 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
-export const movieSlice = createSlice ({
+export const movieSlice = createSlice({
     name: "movies",
+
     initialState:{
         allMovies:[],//estado que siempre va a almacenar todas las peliculas
         movies:[], //estado que se va a renderizar en los componentes
+
         movie: {},
         filtered: [],
         genres: [],
         platform: []
     },
+
     
     reducers: {
         getAllMovies: (state, action)=>{
             state.allMovies = action.payload    
             state.movies = action.payload        
+
         },
 
-        getMoviesById: (state, action)=>{
+        getMoviesById: (state, action) => {
             state.movie = action.payload
         },
 
-        getSearchMovie: (state, action)=>{
+        getSearchMovie: (state, action) => {
             state.movies = action.payload
         },
 
-       /* getPostMovie: (state)=>{
-            state
-        },*/
-
         getByGenres: (state, action)=>{
+
             state.genres = action.payload
         },
 
-        getByPlatform: (state, action)=>{
+        getByPlatform: (state, action) => {
             state.platform = action.payload
         },
+
         filterBygenre:(state, action)=>{
             let moviesFilter= [];
             state.allMovies.forEach(movie=> {
@@ -60,19 +62,72 @@ export const movieSlice = createSlice ({
                  }
            })
             state.movies = moviesFilter;
+
+
+        sortRating: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.rating - a.rating;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.rating - b.rating;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
+        },
+
+        sortYear: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.date - a.date;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.date - b.date;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
+
         }
+
+
+
     }
 
-})
+       
+    
 
-export const { 
-    getAllMovies, 
+
+}
+
+
+)
+
+export const {
+    getAllMovies,
     getMoviesById,
     getSearchMovie,
     getByGenres,
     getByPlatform,
     filterBygenre,
     filterByPlataform
+    sortRating,
+    sortYear
 } = movieSlice.actions
 
 export default movieSlice.reducer
