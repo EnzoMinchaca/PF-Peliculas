@@ -66,18 +66,19 @@ export const movieSlice = createSlice({
 
 
         sortRating: (state, action)=>{
-            if (action.payload === "asc") {
+            if (action.payload === "1-5") {
+                console.log()
                 return {
                   ...state,
-                  movies: state.filtered?.slice().sort((a, b) => {
-                    return b.rating - a.rating;
+                  movies: state.allMovies?.slice().sort((a, b) => {
+                    return a.rating - b.rating;
                   }),
                 };
-              } else if (action.payload === "desc") {
+              } else if (action.payload === "5-1") {
                 return {
                   ...state,
-                  movies: state.filtered?.slice().sort((a, b) => {
-                    return a.rating - b.rating;
+                  movies: state.allMovies?.slice().sort((a, b) => {
+                    return b.rating - a.rating;
                   }),
                 };
               } else {
@@ -86,18 +87,18 @@ export const movieSlice = createSlice({
         },
 
         sortYear: (state, action)=>{
-            if (action.payload === "asc") {
+            if (action.payload === "1900-2022") {
                 return {
                   ...state,
-                  movies: state.filtered?.slice().sort((a, b) => {
-                    return b.date - a.date;
+                  movies: state.allMovies?.slice().sort((a, b) => {
+                    return a.date - b.date;
                   }),
                 };
-              } else if (action.payload === "desc") {
+              } else if (action.payload === "2022-1900") {
                 return {
                   ...state,
-                  movies: state.filtered?.slice().sort((a, b) => {
-                    return a.date - b.date;
+                  movies: state.allMovies?.slice().sort((a, b) => {
+                    return b.date - a.date;
                   }),
                 };
               } else {
