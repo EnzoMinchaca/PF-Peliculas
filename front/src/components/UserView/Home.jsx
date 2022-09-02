@@ -8,20 +8,20 @@ import NavBar from "./NavBar";
 import Order from "./Order";
 import Cards from "./Cards";
 
-export default function Home(){
-    return(
-            <div>
-                <NavBar/>
-                <Box sx={{ flexGrow: 1 }}>
+export default function Home() {
+    return (
+        <div>
+            <NavBar />
+            <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                        <Grid item xs={12} md={3}>
-                            <Order/>
-                        </Grid>
-                        <Grid item xs={12} md={9}>
-                            <Cards/>
-                        </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Order />
+                    </Grid>
+                    <Grid item xs={12} md={9}>
+                        <Cards />
+                    </Grid>
                 </Grid>
-                </Box>
-            </div>
-            )
+            </Box>
+        </div>
+    )
 }
