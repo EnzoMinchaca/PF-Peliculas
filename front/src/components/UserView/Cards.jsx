@@ -19,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Cards(){
   const dispatch=useDispatch();
   const movies=useSelector(state=>state.movies.movies)
+
     React.useEffect(()=>{
       dispatch(getMovies())
     },[])
@@ -40,30 +41,3 @@ export default function Cards(){
         </Grid>
       </Box>
     )
-
-export default function Cards() {
-  const dispatch = useDispatch();
-  const movies = useSelector(state => state.movies)
-  React.useEffect(() => {
-    dispatch(getMovies())
-  }, [])
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <p>Cards</p>
-      <Grid container spacing={2}>
-        {movies.length ? movies.map((movie) => {
-          return (
-            <Grid item xs={3} md={4}>
-              <CardIndividual
-                title={movie.title}
-                image={movie.image}
-                genres={movie.genres}
-                platform={movie.platform}
-                id={movie._id} />
-            </Grid>
-          )
-        }) : null}
-      </Grid>
-    </Box>
-  )
-}

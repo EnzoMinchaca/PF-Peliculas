@@ -5,13 +5,14 @@ import { getAllMovies,
     getMoviesById,  
     getSearchMovie, 
     getByGenres,
-    getByPlatform,
+    getByPlatform,  
+    filterBygenre,
     sortRating,
-    sortYear
-  }from "./movieSlice";
+    sortYear,
+    filterByPlataform}from "./movieSlice";
 
 
-
+    
 
 export const getMovies=()=>(dispatch)=>{
     axios.get("http://localhost:3001/getMovies")
@@ -82,6 +83,14 @@ export const getPlatform=()=>(dispatch)=>{
       });      
 }
 
+export const filterGenre=(genre)=>(dispatch)=>{
+    dispatch(filterBygenre(genre))
+}
+export const filterPlataform=(plataform)=>(dispatch)=>{
+    dispatch(filterByPlataform(plataform))
+}
+
+
 
 export const sortRatings=()=>(dispatch)=>{
     dispatch(sortRating())
@@ -90,4 +99,5 @@ export const sortRatings=()=>(dispatch)=>{
 export const sortYears=()=>(dispatch)=>{
     dispatch(sortYear())
 }
+
 

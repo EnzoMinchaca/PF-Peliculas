@@ -18,7 +18,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
-import { useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
+import { filterPlataform } from '../../redux/Slice/movieAction';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -61,12 +64,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
-  const pages = ['All', 'Netflix', 'Disney+', 'Amazon', 'Paramount', 'HBO'];
-  const movies = useSelector(state => state.movies)
-  const moviesCopy = useSelector(state => state.allMovies)
+
+    const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount+','HBOMAX'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [searchValue, setSearchValue] = React.useState()
+  const [searchValue,setSearchValue]=React.useState()
+
+  const dispatch= useDispatch();
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -78,13 +83,11 @@ export default function NavBar() {
     setAnchorElNav(null);
   };
 
-  const handleOnClickNavMenu = (filter) => {
-    console.log(filter)
-    if (filter === "All") {
-      movies = moviesCopy
-    } else {
-      movies = moviesCopy.filter(e => e.platform === filter)
-    }
+
+  const handleOnClickNavMenu =(plataform)=>{
+    dispatch(filterPlataform(plataform.target.innerText))
+    console.log(plataform.target.innerText)
+
   }
   const handleOnChange = (text) => {
     setSearchValue(text.target.value)
@@ -175,7 +178,9 @@ export default function NavBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => handleOnClickNavMenu(page)}
+
+                onClick={(page)=>handleOnClickNavMenu(page)}
+
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}

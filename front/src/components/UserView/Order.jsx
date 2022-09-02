@@ -12,8 +12,18 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import css from "./Order.module.css";
+import {useDispatch, useSelector} from 'react-redux';
+import { useEffect } from "react";
+import { filterGenre, getGenres } from "../../redux/Slice/movieAction";
 
 export default function Order() {
+
+  const dispatch = useDispatch();
+  let allGenres= useSelector(state => state.movies.genres)
+  useEffect(()=>{
+    dispatch(getGenres());
+  },[dispatch]);
+  console.log(allGenres)
 
   const handleAscRating = () => {
     console.log("Rating Ascendent");
@@ -29,6 +39,10 @@ export default function Order() {
 
   const handleDesYear = () => {
     console.log("Year Descendent");
+  };
+  const handleGenre = (e) => {
+    dispatch(filterGenre(e.target.innerText))
+    console.log(e.target.innerText);
   };
 
   return (
@@ -51,23 +65,45 @@ export default function Order() {
         </ListItemButton>
       </List>
 
-      <List className={css.year}
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-            Order by Year
-          </ListSubheader>
-        }
-      >
-        <ListItemButton className={css.redH}>
-          <ListItemText primary="1900-2022" onClick={() => handleAscYear()} />
-        </ListItemButton>
-        <ListItemButton className={css.redH}>
-          <ListItemText primary="2022-1900" onClick={() => handleDesYear()} />
-        </ListItemButton>
-      </List>
-    </div>
+
+<List className={css.year}
+sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+component="nav"
+aria-labelledby="nested-list-subheader"
+subheader={
+  <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
+    Order by Year
+  </ListSubheader>
+}
+>
+<ListItemButton className={css.redH}>
+  <ListItemText primary="1900-2022" onClick={()=>handleAscYear()} />
+</ListItemButton>
+<ListItemButton className={css.redH}>
+  <ListItemText primary="2022-1900" onClick={()=>handleDesYear()}/>
+</ListItemButton>
+</List>
+
+<List className={css.year}
+sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+component="nav"
+aria-labelledby="nested-list-subheader"
+subheader={
+  <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
+    Order by genres
+  </ListSubheader>
+}>
+  {
+    allGenres.length>0?
+    allGenres.map(genre=>{
+      return <ListItemButton className={css.redH}>
+      <ListItemText primary={genre.name} onClick={(genre)=>handleGenre(genre)} />
+    </ListItemButton>
+    }):
+    <p>loading...</p>
+  }
+</List>
+</div>
+
   );
 }
