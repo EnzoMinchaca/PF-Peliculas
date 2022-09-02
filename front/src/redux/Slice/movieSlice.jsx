@@ -11,7 +11,7 @@ export const movieSlice = createSlice ({
         platform: []
     },
     
-    reducer: {
+    reducers: {
         getAllMovies: (state, action)=>{
             state.movies = action.payload        
         },

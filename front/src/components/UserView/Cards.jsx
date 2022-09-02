@@ -17,13 +17,13 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Cards(){
   const dispatch=useDispatch();
-  const movies=useSelector(state=>state.movies)
+  const movies=useSelector(state=>state.movies.movies)
     React.useEffect(()=>{
       dispatch(getMovies())
     },[])
     return (
         <Box sx={{ flexGrow: 1 }}>
-          <p>Cards</p>
+          <p></p>
         <Grid container spacing={2}>
             {movies.length? movies.map((movie)=>{
                 return (
