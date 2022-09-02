@@ -25,7 +25,6 @@ export const getMovies=()=>(dispatch)=>{
       });
 }
 
-
 export const getMovieById=(id)=>(dispatch)=>{
     axios.get(`http://localhost:3001/movieDetails/${id}`)
     .then(resp=>dispatch(getMoviesById(resp.data)))

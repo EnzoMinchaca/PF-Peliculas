@@ -24,8 +24,6 @@ export const movieSlice = createSlice ({
             state.movies = action.payload
         },
 
-    
-
         getByGenres: (state, action)=>{
             state.genres = action.payload
         },
