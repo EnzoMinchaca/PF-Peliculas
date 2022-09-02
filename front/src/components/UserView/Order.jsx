@@ -14,7 +14,7 @@ import StarBorder from '@mui/icons-material/StarBorder';
 import css from "./Order.module.css";
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
-import { filterGenre, getGenres } from "../../redux/Slice/movieAction";
+import { filterGenre, getGenres, sortRatings, sortYears } from "../../redux/Slice/movieAction";
 
 export default function Order() {
 
@@ -25,20 +25,20 @@ export default function Order() {
   },[dispatch]);
   console.log(allGenres)
 
-  const handleAscRating = () => {
-    console.log("Rating Ascendent");
+  const handleAscRating = (type) => {
+    dispatch(sortRatings(type));
   };
 
-  const handleDesRating = () => {
-    console.log("Rating Descendent");
+  const handleDesRating = (type) => {
+    dispatch(sortRatings(type));
   };
 
-  const handleAscYear = () => {
-    console.log("Year Ascendent");
+  const handleAscYear = (type) => {
+    dispatch(sortYears(type));
   };
 
-  const handleDesYear = () => {
-    console.log("Year Descendent");
+  const handleDesYear = (type) => {
+    dispatch(sortYears(type));
   };
   const handleGenre = (e) => {
     dispatch(filterGenre(e.target.innerText))
@@ -57,11 +57,11 @@ export default function Order() {
           </ListSubheader>
         }
       >
-        <ListItemButton className={css.redH}>
-          <ListItemText primary="1-5" onClick={() => handleAscRating()} />
+        <ListItemButton className={css.redH} onClick={() => handleAscRating("1-5")}>
+          <ListItemText primary="1-5" />
         </ListItemButton>
-        <ListItemButton className={css.redH}>
-          <ListItemText primary="5-1" onClick={() => handleDesRating()} />
+        <ListItemButton className={css.redH} onClick={() => handleDesRating("5-1")}>
+          <ListItemText primary="5-1"/>
         </ListItemButton>
       </List>
 
@@ -76,11 +76,11 @@ subheader={
   </ListSubheader>
 }
 >
-<ListItemButton className={css.redH}>
-  <ListItemText primary="1900-2022" onClick={()=>handleAscYear()} />
+<ListItemButton className={css.redH} onClick={()=>handleAscYear("1900-2022")}>
+  <ListItemText primary="1900-2022"  />
 </ListItemButton>
-<ListItemButton className={css.redH}>
-  <ListItemText primary="2022-1900" onClick={()=>handleDesYear()}/>
+<ListItemButton className={css.redH} onClick={()=>handleDesYear("2022-1900")}>
+  <ListItemText primary="2022-1900"/>
 </ListItemButton>
 </List>
 
@@ -96,8 +96,8 @@ subheader={
   {
     allGenres.length>0?
     allGenres.map(genre=>{
-      return <ListItemButton className={css.redH}>
-      <ListItemText primary={genre.name} onClick={(genre)=>handleGenre(genre)} />
+      return <ListItemButton className={css.redH} onClick={(genre)=>handleGenre(genre)}>
+      <ListItemText primary={genre.name}  />
     </ListItemButton>
     }):
     <p>loading...</p>

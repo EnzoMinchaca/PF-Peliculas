@@ -92,12 +92,12 @@ export const filterPlataform=(plataform)=>(dispatch)=>{
 
 
 
-export const sortRatings=()=>(dispatch)=>{
-    dispatch(sortRating())
+export const sortRatings=(type)=>(dispatch)=>{
+    dispatch(sortRating(type))
 }
 
-export const sortYears=()=>(dispatch)=>{
-    dispatch(sortYear())
+export const sortYears=(type)=>(dispatch)=>{
+    dispatch(sortYear(type))
 }
 
 
