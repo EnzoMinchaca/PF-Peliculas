@@ -12,11 +12,18 @@ export const movieSlice = createSlice({
         platform: []
     },
 
+    
+    reducers: {
+        getAllMovies: (state, action)=>{
+            state.movies = action.payload        
+
+
 
     reducer: {
         getAllMovies: (state, action) => {
             state.movies = action.payload
             state.allMovies = action.payload
+
         },
 
         getMoviesById: (state, action) => {

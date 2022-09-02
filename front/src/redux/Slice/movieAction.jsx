@@ -28,7 +28,7 @@ export const getMovies=()=>(dispatch)=>{
 
 
 export const getMovieById=(id)=>(dispatch)=>{
-    axios.get(`http://localhost:3001/movies/${id}`)
+    axios.get(`http://localhost:3001/movieDetails/${id}`)
     .then(resp=>dispatch(getMoviesById(resp.data)))
     .catch((e) => {
         console.log(e);
