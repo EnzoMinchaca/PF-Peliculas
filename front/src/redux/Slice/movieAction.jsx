@@ -5,13 +5,17 @@ import { getAllMovies,
     getMoviesById,  
     getSearchMovie, 
     getByGenres,
-    getByPlatform  }from "./movieSlice";
+    getByPlatform  } from "./movieSlice";
 
 
 
 export const getMovies=()=>(dispatch)=>{
     axios.get("http://localhost:3001/getMovies")
-    .then(resp=>dispatch(getAllMovies(resp.data)))
+    .then(resp=> {
+        return{
+            payload:dispatch(getAllMovies(resp.data))            
+        }})
+    
     .catch((e) => {
         console.log(e);
         return Swal.fire({
