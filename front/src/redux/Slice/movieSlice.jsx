@@ -1,34 +1,40 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
-export const movieSlice = createSlice ({
+export const movieSlice = createSlice({
     name: "movies",
-    initialState:{
-        movies:[],
+    initialState: {
+        allMovies: [],
+        movies: [],
         movie: {},
         filtered: [],
         genres: [],
         platform: []
     },
+
+
+    reducer: {
     
-    reducers: {
-        getAllMovies: (state, action)=>{
-            state.movies = action.payload        
+        getAllMovies: (state, action) => {
+            state.movies = action.payload
+            state.allMovies = action.payload
+
         },
 
-        getMoviesById: (state, action)=>{
+        getMoviesById: (state, action) => {
             state.movie = action.payload
         },
 
-        getSearchMovie: (state, action)=>{
+        getSearchMovie: (state, action) => {
             state.movies = action.payload
         },
 
         getByGenres: (state, action)=>{
+
             state.genres = action.payload
         },
 
-        getByPlatform: (state, action)=>{
+        getByPlatform: (state, action) => {
             state.platform = action.payload
         },
 
@@ -76,18 +82,26 @@ export const movieSlice = createSlice ({
 
     }
 
-})
+        FilterByGenres: (state, action) => {
+            state.allMovies.filter(e => e.genres.split(", ").includes(action.payload))
+        }
+    },
 
-export const { 
-    getAllMovies, 
+
+}
+
+
+)
+
+export const {
+    getAllMovies,
     getMoviesById,
     getSearchMovie,
     getByGenres,
     getByPlatform,
     sortRating,
     sortYear
-
-
+    filterByGenres,
 } = movieSlice.actions
 
 export default movieSlice.reducer
