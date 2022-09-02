@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import CardIndividual from './Card';
+import {useSelector,useDispatch} from "react-redux"
+import { getMovies } from '../../redux/Slice/movieAction';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -14,10 +16,16 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
 
 export default function Cards(){
+  const dispatch=useDispatch();
+  const movies=useSelector(state=>state.movies)
+    React.useEffect(()=>{
+      dispatch(getMovies())
+    },[])
     return (
         <Box sx={{ flexGrow: 1 }}>
+          <p>Cards</p>
         <Grid container spacing={2}>
-            {movies?.map((movie)=>{
+            {movies.length? movies.map((movie)=>{
                 return (
                 <Grid item xs={3} md={4}>
                     <CardIndividual
@@ -28,7 +36,7 @@ export default function Cards(){
                     id={movie._id}/>
                 </Grid>
               )
-            })}
+            }):null}
         </Grid>
       </Box>
     )

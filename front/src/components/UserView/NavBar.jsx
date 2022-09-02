@@ -60,7 +60,7 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 export default function NavBar() {
-    const pages = ['Netflix', 'Disney+', 'Amazon','Paramount','HBO'];
+    const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount','HBO'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [searchValue,setSearchValue]=React.useState()
