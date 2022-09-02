@@ -5,7 +5,10 @@ import { getAllMovies,
     getMoviesById,  
     getSearchMovie, 
     getByGenres,
-    getByPlatform  }from "./movieSlice";
+    getByPlatform,
+    sortRating,
+    sortYear
+  }from "./movieSlice";
 
 
 
@@ -74,3 +77,13 @@ export const getPlatform=()=>(dispatch)=>{
           });
       });      
 }
+
+
+export const sortRatings=()=>(dispatch)=>{
+    dispatch(sortRating())
+}
+
+export const sortYears=()=>(dispatch)=>{
+    dispatch(sortYear())
+}
+

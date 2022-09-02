@@ -24,9 +24,7 @@ export const movieSlice = createSlice ({
             state.movies = action.payload
         },
 
-       /* getPostMovie: (state)=>{
-            state
-        },*/
+    
 
         getByGenres: (state, action)=>{
             state.genres = action.payload
@@ -34,7 +32,50 @@ export const movieSlice = createSlice ({
 
         getByPlatform: (state, action)=>{
             state.platform = action.payload
+        },
+
+        sortRating: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.rating - a.rating;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.rating - b.rating;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
+        },
+
+        sortYear: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.date - a.date;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.date - b.date;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
         }
+
+
+
     }
 
 })
@@ -44,7 +85,11 @@ export const {
     getMoviesById,
     getSearchMovie,
     getByGenres,
-    getByPlatform
+    getByPlatform,
+    sortRating,
+    sortYear
+
+
 } = movieSlice.actions
 
 export default movieSlice.reducer
