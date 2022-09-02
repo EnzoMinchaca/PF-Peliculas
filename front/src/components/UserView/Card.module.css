@@ -36,6 +36,8 @@
     color:white !important;
 } */
 
+/*//////////////////////////////////////////////////////////////////////////////*/
+
 /* From uiverse.io by @gagan-gv */
 .img{
     width: 50%;
@@ -64,7 +66,7 @@
    
    .cardA:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff;
+    background-color: #4bb8ff !important;
    }
    
    .cardA .blob {
@@ -144,7 +146,6 @@
     justify-content: center;
    }
 
-   /*///////////////////////////*/
    .cardN {
     width: 80%;
     height: 100%;
@@ -161,7 +162,7 @@
    
    .cardN:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff;
+    background-color: #4bb8ff !important;
    }
    
    .cardN .blob {
@@ -259,7 +260,7 @@
    .cardD:hover {
 
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff;
+    background-color: #4bb8ff !important;
    }
    
    .cardD .blob {
@@ -356,7 +357,7 @@
    
    .cardH:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff;
+    background-color: #4bb8ff !important;
    }
    
    .cardH .blob {
@@ -452,7 +453,7 @@
    
    .cardP:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff;
+    background-color: #4bb8ff !important;
    }
    
    .cardP .blob {
@@ -531,6 +532,8 @@
     transition: all 0.1s;
     justify-content: center;
    }
+
+   /*//////////////////////////////////////////////////////////////////////////////*/
    /* From uiverse.io by @gagan-gv */
 
    /* .image{
