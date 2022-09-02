@@ -36,6 +36,7 @@ export default function CardIndividual(props) {
 
     //////////////////////////////////////////////////////////////////////////////
     <Link className={css.textDecoration} to={`/Details/${props.id}`}>
+
       <div className={props.platform.toLowerCase() === "amazon" ? css.cardA :
         props.platform.toLowerCase() === "netflix" ? css.cardN :
           props.platform.toLowerCase() === "disney+" ? css.cardD :

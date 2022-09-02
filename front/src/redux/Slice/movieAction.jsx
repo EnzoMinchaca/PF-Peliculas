@@ -5,13 +5,21 @@ import { getAllMovies,
     getMoviesById,  
     getSearchMovie, 
     getByGenres,
-    getByPlatform  }from "./movieSlice";
+    getByPlatform,
+    sortRating,
+    sortYear
+  }from "./movieSlice";
+
 
 
 
 export const getMovies=()=>(dispatch)=>{
     axios.get("http://localhost:3001/getMovies")
-    .then(resp=>dispatch(getAllMovies(resp.data)))
+    .then(resp=> {
+        return{
+            payload:dispatch(getAllMovies(resp.data))            
+        }})
+    
     .catch((e) => {
         console.log(e);
         return Swal.fire({
@@ -22,9 +30,8 @@ export const getMovies=()=>(dispatch)=>{
       });
 }
 
-
 export const getMovieById=(id)=>(dispatch)=>{
-    axios.get(`http://localhost:3001/movies/${id}`)
+    axios.get(`http://localhost:3001/movieDetails/${id}`)
     .then(resp=>dispatch(getMoviesById(resp.data)))
     .catch((e) => {
         console.log(e);
@@ -74,3 +81,13 @@ export const getPlatform=()=>(dispatch)=>{
           });
       });      
 }
+
+
+export const sortRatings=()=>(dispatch)=>{
+    dispatch(sortRating())
+}
+
+export const sortYears=()=>(dispatch)=>{
+    dispatch(sortYear())
+}
+
