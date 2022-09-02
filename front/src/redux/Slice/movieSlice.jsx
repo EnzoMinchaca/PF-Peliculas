@@ -12,14 +12,9 @@ export const movieSlice = createSlice({
         platform: []
     },
 
-    
-    reducers: {
-        getAllMovies: (state, action)=>{
-            state.movies = action.payload        
-
-
 
     reducer: {
+    
         getAllMovies: (state, action) => {
             state.movies = action.payload
             state.allMovies = action.payload
@@ -34,17 +29,59 @@ export const movieSlice = createSlice({
             state.movies = action.payload
         },
 
-        /* getPostMovie: (state)=>{
-             state
-         },*/
+        getByGenres: (state, action)=>{
 
-        getByGenres: (state, action) => {
             state.genres = action.payload
         },
 
         getByPlatform: (state, action) => {
             state.platform = action.payload
         },
+
+        sortRating: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.rating - a.rating;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.rating - b.rating;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
+        },
+
+        sortYear: (state, action)=>{
+            if (action.payload === "asc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return b.date - a.date;
+                  }),
+                };
+              } else if (action.payload === "desc") {
+                return {
+                  ...state,
+                  movies: state.filtered?.slice().sort((a, b) => {
+                    return a.date - b.date;
+                  }),
+                };
+              } else {
+                return { ...state, movies: state.filtered };
+              }
+        }
+
+
+
+    }
+
         FilterByGenres: (state, action) => {
             state.allMovies.filter(e => e.genres.split(", ").includes(action.payload))
         }
@@ -52,6 +89,7 @@ export const movieSlice = createSlice({
 
 
 }
+
 
 )
 
@@ -61,6 +99,8 @@ export const {
     getSearchMovie,
     getByGenres,
     getByPlatform,
+    sortRating,
+    sortYear
     filterByGenres,
 } = movieSlice.actions
 

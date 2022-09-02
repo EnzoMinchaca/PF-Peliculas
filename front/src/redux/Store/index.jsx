@@ -5,10 +5,5 @@ export default configureStore({
     reducer: {
         movies: movies,
     }
-    
-        //genres: genres,
-        //platform: platform,
-
-    
 
 })

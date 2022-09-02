@@ -5,7 +5,11 @@ import { getAllMovies,
     getMoviesById,  
     getSearchMovie, 
     getByGenres,
-    getByPlatform  } from "./movieSlice";
+    getByPlatform,
+    sortRating,
+    sortYear
+  }from "./movieSlice";
+
 
 
 
@@ -25,7 +29,6 @@ export const getMovies=()=>(dispatch)=>{
           });
       });
 }
-
 
 export const getMovieById=(id)=>(dispatch)=>{
     axios.get(`http://localhost:3001/movieDetails/${id}`)
@@ -78,3 +81,13 @@ export const getPlatform=()=>(dispatch)=>{
           });
       });      
 }
+
+
+export const sortRatings=()=>(dispatch)=>{
+    dispatch(sortRating())
+}
+
+export const sortYears=()=>(dispatch)=>{
+    dispatch(sortYear())
+}
+
