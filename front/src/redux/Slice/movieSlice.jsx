@@ -62,6 +62,7 @@ export const movieSlice = createSlice({
                  }
            })
             state.movies = moviesFilter;
+          },
 
 
         sortRating: (state, action)=>{
@@ -125,7 +126,7 @@ export const {
     getByGenres,
     getByPlatform,
     filterBygenre,
-    filterByPlataform
+    filterByPlataform,
     sortRating,
     sortYear
 } = movieSlice.actions
