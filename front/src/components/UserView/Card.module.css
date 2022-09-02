@@ -48,14 +48,22 @@
     flex-wrap: wrap;
     color: white;
 }
-.title{
+
+.textDecoration{
+    text-decoration: none !important;
 }
+
+/*.title{
+
+}*/
+
+
 .cardA {
     width: 80%;
     margin: 0 auto;
     height: 100%;
     font-size: 100%;
-    background-image: url("../../img/amazon.jpg") !important;
+    background-image: url("../../img/amazon.jpg") ;
     background-size: cover !important;
     background-position: center !important;
     border-radius: 10px;
@@ -67,6 +75,7 @@
    .cardA:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
     background-color: #4bb8ff !important;
+    background-image: none !important;
    }
    
    .cardA .blob {
@@ -98,7 +107,7 @@
    
    .cardA:hover .img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-radius: 10px 0 0;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -106,11 +115,8 @@
    }
    
    .cardA h2 {
-    padding: 15px 10px;
-    font-size: 25px;
-    transition: all 0.1s;
-    z-index: -99;
-    line-height: 17px;
+    opacity: 0;
+    transition: all 0.75s;
    }
    
    .cardA span {
@@ -118,19 +124,25 @@
    }
    
    .cardA:hover h2 {
-    opacity: 0;
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
     width: 100%;
-    position: absolute;
-    transition: all 0.5s;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardA>p {
     opacity: 0;
     transition: all 0.75s;
+    text-decoration: none !important;
    }
    
    .cardA>p>p {
     padding: 5px;
+    text-decoration: none !important;
    }
    
    .cardA:hover>p {
@@ -151,7 +163,7 @@
     height: 100%;
     color: white !important;
     margin: 0 auto;
-    background-image: url("../../img/netflix.png") !important;
+    background-image: url("../../img/netflix.png");
     background-size: cover !important;
     background-position: center !important;
     border-radius: 10px;
@@ -163,6 +175,7 @@
    .cardN:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
     background-color: #4bb8ff !important;
+    background-image: none !important;
    }
    
    .cardN .blob {
@@ -194,7 +207,7 @@
    
    .cardN:hover .img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-radius: 10px 0 0;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -202,11 +215,8 @@
    }
    
    .cardN h2 {
-    padding: 15px 10px;
-    font-size: 25px;
-    transition: all 0.1s;
-    z-index: -99;
-    line-height: 17px;
+    opacity: 0;
+    transition: all 0.75s;
    }
    
    .cardN span {
@@ -214,10 +224,14 @@
    }
    
    .cardN:hover h2 {
-    opacity: 0;
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
     width: 100%;
-    position: absolute;
-    transition: all 0.5s;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardN>p {
@@ -248,7 +262,7 @@
     width: 80%;
     height: 100%;
     margin: 0 auto;
-    background-image: url("../../img/disney.jpg") !important;
+    background-image: url("../../img/disney.jpg") ;
     background-size: cover !important;
     background-position: center !important;
     border-radius: 10px;
@@ -261,6 +275,7 @@
 
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
     background-color: #4bb8ff !important;
+    background-image: none !important;
    }
    
    .cardD .blob {
@@ -292,7 +307,7 @@
    
    .cardD:hover .img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-radius: 10px 0 0;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -300,11 +315,8 @@
    }
    
    .cardD h2 {
-    padding: 15px 10px;
-    font-size: 25px;
-    transition: all 0.1s;
-    z-index: -99;
-    line-height: 17px;
+    opacity: 0;
+    transition: all 0.75s;
    }
    
    .cardD span {
@@ -312,10 +324,14 @@
    }
    
    .cardD:hover h2 {
-    opacity: 0;
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
     width: 100%;
-    position: absolute;
-    transition: all 0.5s;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardD>p {
@@ -346,7 +362,7 @@
     width: 80%;
     height: 100%;
     margin: 0 auto;
-    background-image: url("../../img/hbo.png") !important;
+    background-image: url("../../img/hbo.png") ;
     background-size: cover !important;
     background-position: center !important;
     border-radius: 10px;
@@ -358,6 +374,7 @@
    .cardH:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
     background-color: #4bb8ff !important;
+    background-image: none !important;
    }
    
    .cardH .blob {
@@ -389,7 +406,7 @@
    
    .cardH:hover .img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-radius: 10px 0 0;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -397,11 +414,8 @@
    }
    
    .cardH h2 {
-    padding: 15px 10px;
-    font-size: 25px;
-    transition: all 0.1s;
-    z-index: -99;
-    line-height: 17px;
+    opacity: 0;
+    transition: all 0.75s;
    }
    
    .cardH span {
@@ -409,10 +423,14 @@
    }
    
    .cardH:hover h2 {
-    opacity: 0;
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
     width: 100%;
-    position: absolute;
-    transition: all 0.5s;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardH>p {
@@ -442,7 +460,7 @@
     width: 80%;
     height: 100%;
     margin: 0 auto;
-    background-image: url("../../img/paramount.png") !important;
+    background-image: url("../../img/paramount.png") ;
     background-size: cover !important;
     background-position: center !important;
     border-radius: 10px;
@@ -454,6 +472,7 @@
    .cardP:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
     background-color: #4bb8ff !important;
+    background-image: none !important;
    }
    
    .cardP .blob {
@@ -485,7 +504,7 @@
    
    .cardP:hover .img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     border-radius: 10px 0 0;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -493,11 +512,8 @@
    }
    
    .cardP h2 {
-    padding: 15px 10px;
-    font-size: 25px;
-    transition: all 0.1s;
-    z-index: -99;
-    line-height: 17px;
+    opacity: 0;
+    transition: all 0.75s;
    }
    
    .cardP span {
@@ -505,10 +521,14 @@
    }
    
    .cardP:hover h2 {
-    opacity: 0;
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
     width: 100%;
-    position: absolute;
-    transition: all 0.5s;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardP>p {
