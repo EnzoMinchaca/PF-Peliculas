@@ -1,16 +1,27 @@
 .content{
     display: block;
-    background:red;
+    background:red !important;
+    color: white !important;
 }
 .rating{
-    margin: 3%;
-    background:red;
+    background:red !important;
+    color: white !important;
 }
 
 .year{
-    margin: 3%;
-    background:red;
+    background:red !important;
+    color: white !important;
 }
 .red{
-    background: red;
+    background: red !important;
+    color: white !important;
+}
+.redH{
+    background: red !important;
+    color: white !important;
+}
+
+.redH:hover{
+    background: white !important;
+    color: black !important;
 }

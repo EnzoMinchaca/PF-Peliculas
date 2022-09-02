@@ -1,6 +1,6 @@
 
 import './App.css';
-import Home from "./components/AdmidView/Home"
+import Home from "./components/UserView/Home"
 import Details from "./components/AdmidView/Details"
 import Form from "./components/AdmidView/Form"
 import Car from "./components/UserView/Car"

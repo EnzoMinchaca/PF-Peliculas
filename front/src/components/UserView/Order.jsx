@@ -43,10 +43,10 @@ export default function Order() {
         </ListSubheader>
       }
     >
-      <ListItemButton className={css.red}>
+      <ListItemButton className={css.redH}>
         <ListItemText primary="1-5" onClick={()=>handleAscRating()} />
       </ListItemButton>
-      <ListItemButton className={css.red}>
+      <ListItemButton className={css.redH}>
         <ListItemText primary="5-1" onClick={()=>handleDesRating()} />
       </ListItemButton>
     </List>
@@ -61,10 +61,10 @@ subheader={
   </ListSubheader>
 }
 >
-<ListItemButton className={css.red}>
+<ListItemButton className={css.redH}>
   <ListItemText primary="1900-2022" onClick={()=>handleAscYear()} />
 </ListItemButton>
-<ListItemButton className={css.red}>
+<ListItemButton className={css.redH}>
   <ListItemText primary="2022-1900" onClick={()=>handleDesYear()}/>
 </ListItemButton>
 </List>
