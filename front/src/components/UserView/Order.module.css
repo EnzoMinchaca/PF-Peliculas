@@ -1,24 +1,26 @@
 .content{
     display: block;
-    background:red !important;
-    color: white !important;
+    background: #f8f8f9!important;
+    color: #0b132b !important;
 }
 .rating{
-    background:red !important;
-    color: white !important;
+    
+    background:#5aa01c!important;
+    color: white!important;
 }
 
 .year{
-    background:red !important;
+    background: #5aa01c!important;
     color: white !important;
+    
 }
 .red{
-    background: red !important;
+    background: #5aa01c!important;
     color: white !important;
 }
 .redH{
-    background: red !important;
-    color: white !important;
+    background: #f8f8f9!important;
+    color: #0b132b !important;
 }
 
 .redH:hover{
