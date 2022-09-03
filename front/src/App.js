@@ -1,6 +1,6 @@
 import './App.css';
 import Home from "./components/UserView/Home"
-import Details from "./components/AdmidView/Details"
+import Details from "./components/UserView/Details"
 import Form from "./components/AdmidView/Form"
 import Car from "./components/UserView/Car"
 import React from 'react';

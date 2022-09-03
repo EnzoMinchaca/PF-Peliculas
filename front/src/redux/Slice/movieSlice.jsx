@@ -84,7 +84,6 @@ export const movieSlice = createSlice({
                 return { ...state, movies: state.filtered };
               }
         },
-
         sortYear: (state, action)=>{
             if (action.payload === "asc") {
                 return {
