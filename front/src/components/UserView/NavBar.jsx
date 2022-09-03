@@ -20,7 +20,7 @@ import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
 
 import { useDispatch } from 'react-redux';
-import { filterPlataform } from '../../redux/Slice/movieAction';
+import { filterPlataform, getSearch } from '../../redux/Slice/movieAction';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -93,7 +93,7 @@ export default function NavBar() {
     setSearchValue(text.target.value)
   }
   const searchOnClick = () => {
-    console.log(searchValue)
+    dispatch(getSearch(searchValue));
   }
 
   return (
