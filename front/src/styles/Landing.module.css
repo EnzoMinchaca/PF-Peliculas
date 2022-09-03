@@ -1,0 +1,141 @@
+.background {
+    top: 0px;
+    background-color: #152146;
+    /*background-image: url("../img/fondo.jpg");*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  
+  .homeBtn {
+    background-image: url("../img/carrete.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 800px;
+    top: 150px;
+    transition: transform 0.7s ease-in-out;
+  }
+  
+  .home_span {
+    font-family: sans-serif;
+    position: absolute;
+    left: 190px;
+    top: 200px;
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+  
+  .homeBtn:hover {
+    transform: rotate(360deg) scale(1.5);
+  }
+
+  h1:before {
+    position: relative;
+	content: '';
+	animation: changingTxt 5s linear infinite;
+    color: white;
+    left: 120px;
+    top: 400px;
+    
+
+}
+
+@keyframes changingTxt {
+	0% {
+		content: 'Here you find the best movies of';
+	}
+	20% {
+		content: 'Prime Video';
+	}
+	40% {
+		content: 'Netflix';
+	}
+	60% {
+		content: 'Disney+';
+	}
+	80% {
+		content: 'HBOMax';
+	}
+	100% {
+		content: 'Here you find the best movies of';
+	}
+}
+
+.button{
+  background-color: #5aa01c;
+  width: 150px;
+  height: 8%;
+  border-radius: 10px;
+  border: 0px solid #5aa01c;
+  box-shadow: #5aa01c 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 10px 0.8em;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+  top: 300px;
+  left: 200px;
+  }
+
+  .button:hover,
+  .button:focus {
+    background-color: #4891D3;
+    color: white;
+  }
+  
+  .button:focus {
+    box-shadow: 0 0 0 1px #5aa01c;
+  }
+  
+  .btnClear:active {
+    background-color: #5aa01c;
+    box-shadow: none;
+    color: #5aa01c;
+  }
+  
+
+  .button:hover {
+	color: #fff;/* color de fuente hover */
+  }
+  .button::after {
+	content: "";
+	background: #4741d7; /* color de fondo hover */
+	position: absolute;
+	z-index: -1;
+	padding: 16px 20px;
+	display: block;
+	left: -20%;
+	right: -20%;
+	top: 0;
+	bottom: 0;
+	transform: skewX(45deg) scale(0, 1);
+	transition: all 0.3s ease;
+  }
+  .button::after {
+	transition: all 0.3s ease-out;
+	transform: skewX(45deg) scale(1, 1);
+  }

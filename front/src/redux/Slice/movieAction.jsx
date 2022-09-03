@@ -9,6 +9,7 @@ import { getAllMovies,
     filterBygenre,
     sortRating,
     sortYear,
+    postMovie,
     filterByPlataform}from "./movieSlice";
 
 
@@ -31,6 +32,12 @@ export const getMovies=()=>(dispatch)=>{
       });
 }
 
+export const postMovies=(movie)=>(dispatch)=>{
+    axios.post('http://localhost:3001/postMovies', movie)
+    .then(resp=>dispatch(postMovie(resp.data)))
+    .catch((e) => console.log(e))
+}
+
 export const getMovieById=(id)=>(dispatch)=>{
     axios.get(`http://localhost:3001/movieDetails/${id}`)
     .then(resp=>dispatch(getMoviesById(resp.data)))
@@ -45,7 +52,8 @@ export const getMovieById=(id)=>(dispatch)=>{
 }
 
 export const getSearch=(name)=>(dispatch)=>{
-    axios.get(`http://localhost:3001/getMovies?name=${name}`)
+    console.log("Entra"+name)
+    axios.get(`http://localhost:3001/getMovies?nameMovie=${name}`)
     .then(resp=>dispatch(getSearchMovie(resp.data)))
     .catch((e) => {
         console.log(e);

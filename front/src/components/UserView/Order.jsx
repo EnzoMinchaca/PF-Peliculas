@@ -48,7 +48,7 @@ export default function Order() {
   return (
     <div className={css.content}>
       <List className={css.rating}
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
@@ -67,7 +67,7 @@ export default function Order() {
 
 
 <List className={css.year}
-sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}
 component="nav"
 aria-labelledby="nested-list-subheader"
 subheader={
@@ -77,20 +77,20 @@ subheader={
 }
 >
 <ListItemButton className={css.redH} onClick={()=>handleAscYear("1900-2022")}>
-  <ListItemText primary="1900-2022"  />
+  <ListItemText primary="1900 - 2022"  />
 </ListItemButton>
 <ListItemButton className={css.redH} onClick={()=>handleDesYear("2022-1900")}>
-  <ListItemText primary="2022-1900"/>
+  <ListItemText primary="2022 - 1900"/>
 </ListItemButton>
 </List>
 
 <List className={css.year}
-sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}
 component="nav"
 aria-labelledby="nested-list-subheader"
 subheader={
   <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-    Order by genres
+    Order by Genres
   </ListSubheader>
 }>
   {

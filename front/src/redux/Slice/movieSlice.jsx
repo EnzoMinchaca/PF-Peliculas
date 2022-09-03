@@ -22,6 +22,10 @@ export const movieSlice = createSlice({
 
         },
 
+        postMovie: (state)=>{
+          return{state}
+      },
+
         getMoviesById: (state, action) => {
             state.movie = action.payload
         },
@@ -85,7 +89,6 @@ export const movieSlice = createSlice({
                 return { ...state, movies: state.filtered };
               }
         },
-
         sortYear: (state, action)=>{
             if (action.payload === "1900-2022") {
                 return {
@@ -129,7 +132,8 @@ export const {
     filterBygenre,
     filterByPlataform,
     sortRating,
-    sortYear
+    sortYear,
+    postMovie
 } = movieSlice.actions
 
 export default movieSlice.reducer

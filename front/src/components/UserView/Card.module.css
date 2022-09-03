@@ -40,7 +40,7 @@
 
 /* From uiverse.io by @gagan-gv */
 .img{
-    width: 50%;
+    width: 40%;
 }
 
 .flex{
@@ -58,14 +58,14 @@
 
 
 .cardA {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    height: 100%;
+    height: 70%;
     font-size: 100%;
-    background-image: url("../../img/amazon.jpg") ;
+    background-image: url("../../img/amazon.png") ;
     background-size: cover !important;
     background-position: center !important;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     transition: all 0.5s;
     border: solid 1px transparent;
@@ -73,7 +73,7 @@
    
    .cardA:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff !important;
+    background-color: #0b132b !important;
     background-image: none !important;
    }
    
@@ -82,7 +82,7 @@
     width: 75%;
     border-radius: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     visibility: visible;
     transition: all 0.3s;
    }
@@ -96,7 +96,7 @@
     margin: 30px auto 10px auto;
     width: 100px;
     height: 100px;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     border-radius: 50%;
     font-size: 11px;
     justify-content: center;
@@ -107,7 +107,7 @@
    .cardA:hover .img {
     width: 100%;
     height: 60%;
-    border-radius: 10px 0 0;
+    border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
     z-index: 99999;
@@ -158,8 +158,8 @@
    }
 
    .cardN {
-    width: 80%;
-    height: 100%;
+    width: 60%;
+    height: 70%;
     color: white !important;
     margin: 0 auto;
     background-image: url("../../img/netflix.png");
@@ -173,7 +173,7 @@
    
    .cardN:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff !important;
+    background-color: #0b132b !important;
     background-image: none !important;
    }
    
@@ -182,7 +182,7 @@
     width: 75%;
     border-radius: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     visibility: visible;
     transition: all 0.3s;
    }
@@ -196,7 +196,7 @@
     margin: 30px auto 10px auto;
     width: 100px;
     height: 100px;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     border-radius: 50%;
     font-size: 11px;
     justify-content: center;
@@ -207,7 +207,7 @@
    .cardN:hover .img {
     width: 100%;
     height: 60%;
-    border-radius: 10px 0 0;
+    border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
     z-index: 99999;
@@ -258,8 +258,8 @@
    /*////////////////////*/
 
    .cardD {
-    width: 80%;
-    height: 100%;
+    width: 60%;
+    height: 70%;
     margin: 0 auto;
     background-image: url("../../img/disney.jpg") ;
     background-size: cover !important;
@@ -273,7 +273,7 @@
    .cardD:hover {
 
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff !important;
+    background-color: #0b132b!important;
     background-image: none !important;
    }
    
@@ -282,7 +282,7 @@
     width: 75%;
     border-radius: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     visibility: visible;
     transition: all 0.3s;
    }
@@ -296,7 +296,7 @@
     margin: 30px auto 10px auto;
     width: 100px;
     height: 100px;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     border-radius: 50%;
     font-size: 11px;
     justify-content: center;
@@ -307,7 +307,7 @@
    .cardD:hover .img {
     width: 100%;
     height: 60%;
-    border-radius: 10px 0 0;
+    border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
     z-index: 99999;
@@ -358,8 +358,8 @@
    /*////////////////////////*/
 
    .cardH {
-    width: 80%;
-    height: 100%;
+    width: 60%;
+    height: 70%;
     margin: 0 auto;
     background-image: url("../../img/hbo.png") ;
     background-size: cover !important;
@@ -372,7 +372,7 @@
    
    .cardH:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff !important;
+    background-color: #0b132b!important;
     background-image: none !important;
    }
    
@@ -381,7 +381,7 @@
     width: 75%;
     border-radius: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     visibility: visible;
     transition: all 0.3s;
    }
@@ -395,7 +395,7 @@
     margin: 30px auto 10px auto;
     width: 100px;
     height: 100px;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     border-radius: 50%;
     font-size: 11px;
     justify-content: center;
@@ -406,7 +406,7 @@
    .cardH:hover .img {
     width: 100%;
     height: 60%;
-    border-radius: 10px 0 0;
+    border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
     z-index: 99999;
@@ -456,8 +456,8 @@
  /*///////////////////////////////*/
 
  .cardP {
-    width: 80%;
-    height: 100%;
+    width: 60%;
+    height: 70%;
     margin: 0 auto;
     background-image: url("../../img/paramount.png") ;
     background-size: cover !important;
@@ -470,7 +470,7 @@
    
    .cardP:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    background-color: #4bb8ff !important;
+    background-color: #0b132b !important;
     background-image: none !important;
    }
    
@@ -479,7 +479,7 @@
     width: 75%;
     border-radius: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     visibility: visible;
     transition: all 0.3s;
    }
@@ -493,7 +493,7 @@
     margin: 30px auto 10px auto;
     width: 100px;
     height: 100px;
-    background-color: #4bb8ff;
+    background-color: #0b132b;
     border-radius: 50%;
     font-size: 11px;
     justify-content: center;
@@ -504,7 +504,7 @@
    .cardP:hover .img {
     width: 100%;
     height: 60%;
-    border-radius: 10px 0 0;
+    border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
     z-index: 99999;
