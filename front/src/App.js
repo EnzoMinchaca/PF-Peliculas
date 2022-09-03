@@ -3,6 +3,7 @@ import Home from "./components/UserView/Home"
 import Details from "./components/AdmidView/Details"
 import Form from "./components/AdmidView/Form"
 import Car from "./components/UserView/Car"
+import Landing from "./components/Presentational/LandingPage"
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 //import Order from './components/UserView/Order';
@@ -12,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route exact path="/" element={<Home/>} />
+      <Route exact path="/" element={<Landing/>} />
         <Route exact path="/Home" element={<Home/>} />
         <Route exact path="/Details/:id" element={<Details/>}/>
         <Route exact path="/Form" element={<Form/>}/>
