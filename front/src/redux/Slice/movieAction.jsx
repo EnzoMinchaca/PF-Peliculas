@@ -9,6 +9,7 @@ import { getAllMovies,
     filterBygenre,
     sortRating,
     sortYear,
+    postMovie,
     filterByPlataform}from "./movieSlice";
 
 
@@ -29,6 +30,12 @@ export const getMovies=()=>(dispatch)=>{
             text: "Something went wrong! -- Getmovies",
           });
       });
+}
+
+export const postMovies=(movie)=>(dispatch)=>{
+    axios.post('http://localhost:3001/postMovies', movie)
+    .then(resp=>dispatch(postMovie(resp.data)))
+    .catch((e) => console.log(e))
 }
 
 export const getMovieById=(id)=>(dispatch)=>{
