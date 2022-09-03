@@ -5,7 +5,7 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const router = Router()
 
-router.post('/movies', async(req, res) => {
+router.post('/postMovies', async(req, res) => {
     try {
         const movie = movieSchema(req.body)
         const createMovie = await movie.save()

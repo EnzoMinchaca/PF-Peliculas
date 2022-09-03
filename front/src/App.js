@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/" element={<Home/>} />
         <Route exact path="/Home" element={<Home/>} />
         <Route exact path="/Details/:id" element={<Details/>}/>
-        <Route exact path="/Form" element={<Form/>}/>
+        <Route exact path="/Create" element={<Form/>}/>
         <Route exact path="/Car" element={<Car/>}/>
       </Routes>
     </BrowserRouter>
