@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-export default function Cards(){
+export default function Cards({firstMovies,lastMovies}){
   const dispatch=useDispatch();
   const movies=useSelector(state=>state.movies.movies)
 
@@ -26,7 +26,7 @@ export default function Cards(){
     return (
         <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-            {movies.length? movies.map((movie)=>{
+            {movies.length? movies.slice(firstMovies,lastMovies).map((movie)=>{
                 return (
                 <Grid item xs={12} md={4} sm={6} 
                 >
