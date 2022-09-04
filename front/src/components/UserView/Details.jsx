@@ -3,6 +3,11 @@ import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
 import { getMovieById } from '../../redux/Slice/movieAction'
+import Header from '../Presentational/header'
+import Footer from '../Presentational/footer'
+import ButtonHome from '../Presentational/ButtonHome'
+import { style } from '@mui/system'
+import styles from "../../styles/styles.module.css"
 
 
 
@@ -20,6 +25,10 @@ export default function Details() {
 
     return (
         <div>
+            <Header/>
+            <div className={styles.title}>
+              <p className={styles.span}>Movie Detail</p></div>
+                <div className={styles.ubButton}><ButtonHome/> </div>
             <div className={Style.generalContainer}>
                 <div className={Style.container}>
                     <div>
@@ -27,25 +36,29 @@ export default function Details() {
                             <img className={Style.movieImg} src={details.image} />
                         </div>
                         <div className={Style.textTitle}>
-                            <h3>{details.title}</h3>
-                            <h5>Date: {details.date} || {details.duration}</h5>
-                            <h5 className={Style.Rate}>Rating: {details.rating}</h5>
+                            <h2>{details.title}</h2>
+                            <h3>Date: {details.date} || {details.duration}</h3>
+                            <h3 className={Style.Rate}>Rating: {details.rating}</h3>
                         </div>
                     </div>
                 </div>             
                 <div className={Style.textContainer}>
-                    <h5>Genres: {details.genres}</h5>
-                    <h5>Description: {details.description}</h5>
-                    <h5>Cast: {details.cast}</h5>
-                    <h5>Director: {details.director}</h5>
-                   {/*  compartir->incorporar->link copy */}
+                    <div><h3>Genres</h3><p>{details.genres}</p></div>
+                    <div><h3>Description</h3><p>{details.description}</p></div>
+                    <div><h3>Cast</h3> <p>{details.cast}</p></div>
+                    <div><h3>Director</h3><p>{details.director}</p></div>
+                    <div><h3>Trailer</h3>
                     <iframe width="560" height="315" src={"https://www.youtube.com/embed/JtqIas3bYhg"} 
                     title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
+                    
                     </iframe>
-                    <h5>Price: {details.price}$</h5>
+                    </div>
+                   {/*  compartir->incorporar->link copy */}
+                    
+                    <div><h3>Price</h3><p>{details.price}$</p></div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }
