@@ -1,0 +1,171 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.link {
+    background-color: #0b132b;
+    padding: 18px;
+    box-shadow: 0 3px 7px rgba(51, 51, 51, 0.555);
+}
+
+.text {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.all {
+    margin-top: 1.5rem;
+    right: 3rem;
+    font-size: 17px;
+}
+
+.form {
+    border: 1px solid rgba(196, 196, 196, 0.911);
+    margin: auto;
+    width: 90%;
+    max-width: 400px;
+    padding: 0em 2em 2em 2em;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -5px rgba(0 0 0 / 50%);
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.containerInputs {
+    display: grid;
+    gap: 2em;
+}
+
+.input {
+    width: 90%;
+    font-size: 15px;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    /* box-shadow: 20px 20px 60px #c5c5c5,
+            -20px -20px 60px #ffffff; */
+    transition: 0.3s;
+}
+
+.input:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+            inset -20px -20px 60px #ffffff;
+    transition: 0.3s;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+.select {
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+}
+
+.option:hover {
+    cursor: pointer;
+    color: #0b132b;
+}
+
+.add {
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #0b132b;
+    border-radius: 5px;
+}
+
+.add:hover {
+    background-color: #0b132b;
+    color: white;
+}
+
+.cast {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.p {
+    cursor: pointer;
+    border: none;
+    background: #e8e8e8;
+    padding: 1px 4px;
+    margin-bottom: 0;
+    border-radius: 5px;
+}
+
+.p:hover {
+    background: #c4c4c4;
+}
+
+.btn {
+    --color: #0b132b;
+    /* --color2: rgb(10, 25, 30); */
+    border-color: #0b132b;
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+   }
+   
+   .btn::after, .btn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+   }
+   
+   .btn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btn:hover {
+    color: white;
+   }
+   
+   .btn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
