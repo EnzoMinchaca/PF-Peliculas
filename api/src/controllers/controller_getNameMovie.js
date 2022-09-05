@@ -7,7 +7,7 @@ const getMovies = async(nameMovie, allMovies) =>{
         if(movie.length){
           return movie
         } 
-        else 'Movie not found';
+        else {return 'Movie not found'};
       }else{
           return allMovies;
       }
