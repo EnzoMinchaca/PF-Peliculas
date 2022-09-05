@@ -56,7 +56,7 @@ export const getMovieById=(id)=>(dispatch)=>{
 
 export const getSearch=(name)=>(dispatch)=>{
     //console.log("Entra"+name)
-    axios.get(`http://localhost:3001/getMovies?name=${name}`)
+    axios.get(`http://localhost:3001/getMovies?nameMovie=${name}`)
     .then(resp=>dispatch(getSearchMovie(resp.data)))
     .catch((e) => {
         console.log(e);
