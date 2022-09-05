@@ -52,15 +52,15 @@ export const getMovieById=(id)=>(dispatch)=>{
 }
 
 export const getSearch=(name)=>(dispatch)=>{
-    console.log("Entra"+name)
-    axios.get(`http://localhost:3001/getMovies?nameMovie=${name}`)
+    //console.log("Entra"+name)
+    axios.get(`http://localhost:3001/getMovies?name=${name}`)
     .then(resp=>dispatch(getSearchMovie(resp.data)))
     .catch((e) => {
         console.log(e);
         return Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Something went wrong! -- GetSearch",
+            text: "The movie was not found! -- GetSearch",
           });
       });      
 }

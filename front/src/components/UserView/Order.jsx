@@ -15,6 +15,9 @@ import css from "./Order.module.css";
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
 import { filterGenre, getGenres, sortRatings, sortYears } from "../../redux/Slice/movieAction";
+import { AiTwotoneStar, AiFillSchedule, AiFillDatabase, AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineSwapRight } from "react-icons/ai";
+
+
 
 export default function Order() {
 
@@ -53,15 +56,15 @@ export default function Order() {
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-            Order by Rating
+           <AiTwotoneStar/> Order by Rating
           </ListSubheader>
         }
       >
         <ListItemButton className={css.redH} onClick={() => handleAscRating("1-5")}>
-          <ListItemText primary="1-5" />
+         <AiOutlineDoubleRight/> <ListItemText primary=" 1 - 5" />
         </ListItemButton>
         <ListItemButton className={css.redH} onClick={() => handleDesRating("5-1")}>
-          <ListItemText primary="5-1"/>
+        <AiOutlineDoubleLeft/> <ListItemText primary= " 5 - 1 "/>
         </ListItemButton>
       </List>
 
@@ -72,15 +75,15 @@ component="nav"
 aria-labelledby="nested-list-subheader"
 subheader={
   <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-    Order by Year
+    <AiFillSchedule/>  Order by Year
   </ListSubheader>
 }
 >
 <ListItemButton className={css.redH} onClick={()=>handleAscYear("1900-2022")}>
-  <ListItemText primary="1900 - 2022"  />
+<AiOutlineDoubleRight/> <ListItemText primary= " 1900 - 2022 "  />
 </ListItemButton>
 <ListItemButton className={css.redH} onClick={()=>handleDesYear("2022-1900")}>
-  <ListItemText primary="2022 - 1900"/>
+<AiOutlineDoubleLeft/>  <ListItemText primary= " 2022 - 1900 "/>
 </ListItemButton>
 </List>
 
@@ -90,14 +93,14 @@ component="nav"
 aria-labelledby="nested-list-subheader"
 subheader={
   <ListSubheader component="div" id="nested-list-subheader" className={css.red}>
-    Order by Genres
+   <AiFillDatabase/> Order by Genres
   </ListSubheader>
 }>
   {
     allGenres.length>0?
     allGenres.map(genre=>{
       return <ListItemButton className={css.redH} onClick={(genre)=>handleGenre(genre)}>
-      <ListItemText primary={genre.name}  />
+      <AiOutlineSwapRight/><ListItemText primary= {genre.name}  />
     </ListItemButton>
     }):
     <p>loading...</p>

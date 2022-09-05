@@ -28,22 +28,22 @@
 
 @keyframes changingTxt {
 	0% {
-		content: 'Here you find the best movies of';
+		content: 'The best movies of';
 	}
 	20% {
-		content: 'Prime Video';
+		content: 'Prime Video, Netflix';
 	}
 	40% {
-		content: 'Netflix';
+		content: 'Paramaout, Amazon';
 	}
 	60% {
-		content: 'Disney+';
+		content: 'Disney+, HBOMax';
 	}
 	80% {
-		content: 'HBOMax';
+		content: ' -- No Subscription --';
 	}
 	100% {
-		content: 'Here you find the best movies of';
+		content: 'The best movies of';
 	}
 }
 

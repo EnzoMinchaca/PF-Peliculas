@@ -1,7 +1,7 @@
 .background {
     top: 0px;
-    background-color: #152146;
-    /*background-image: url("../img/fondo.jpg");*/
+    background-color: #0b132b;
+    background-image: url("../img/fondo.jpg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -15,19 +15,19 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     position: absolute;
-    left: 800px;
-    top: 150px;
+    left: 690px;
+    top: 132px;
     transition: transform 0.7s ease-in-out;
   }
   
   .home_span {
     font-family: sans-serif;
     position: absolute;
-    left: 190px;
-    top: 200px;
+    left: 700px;
+    top: 350px;
     text-decoration: none;
     color: white;
     font-size: 40px;
@@ -43,30 +43,30 @@
 	content: '';
 	animation: changingTxt 5s linear infinite;
     color: white;
-    left: 120px;
-    top: 400px;
+    left: 630px;
+    top: 500px;
     
 
 }
 
 @keyframes changingTxt {
 	0% {
-		content: 'Here you find the best movies of';
+		content: 'The best movies of';
 	}
 	20% {
-		content: 'Prime Video';
+		content: 'Prime Video, Netflix';
 	}
 	40% {
-		content: 'Netflix';
+		content: 'Paramaout, Amazon';
 	}
 	60% {
-		content: 'Disney+';
+		content: 'Disney+, HBOMax';
 	}
 	80% {
-		content: 'HBOMax';
+		content: ' -- No Subscription --';
 	}
 	100% {
-		content: 'Here you find the best movies of';
+		content: 'The best movies of';
 	}
 }
 
@@ -97,8 +97,8 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
-  top: 300px;
-  left: 200px;
+  top: 450px;
+  left: 710px;
   }
 
   .button:hover,
@@ -123,7 +123,7 @@
   }
   .button::after {
 	content: "";
-	background: #4741d7; /* color de fondo hover */
+	background: #0b132b; /* color de fondo hover */
 	position: absolute;
 	z-index: -1;
 	padding: 16px 20px;

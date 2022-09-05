@@ -14,12 +14,13 @@ import Header from "../Presentational/header";
 import Footer from "../Presentational/footer";
 
 
+
 export default function Home() {
 
  let movies= useSelector(state => state.movies.movies);
   
  const [page, setPag] = useState(1);  
- let moviesPerPage = 10;        
+ let moviesPerPage = 9;        
     
  const max= movies.length / moviesPerPage;
 
