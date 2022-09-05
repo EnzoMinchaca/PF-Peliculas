@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar({setPag}) {
 
     const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount+','HBOMAX'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -87,6 +87,7 @@ export default function NavBar() {
   const handleOnClickNavMenu =(plataform)=>{
     dispatch(filterPlataform(plataform.target.innerText))
     console.log(plataform.target.innerText)
+    setPag(1)
 
   }
   const handleOnChange = (text) => {
