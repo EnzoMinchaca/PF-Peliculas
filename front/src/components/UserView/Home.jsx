@@ -17,6 +17,7 @@ import { clearDetails, clearMovies, getGenres, getMovies } from "../../redux/Sli
 import Swal from "sweetalert2";
 
 
+
 export default function Home() {
 
  let movies= useSelector(state => state.movies.movies);
@@ -36,10 +37,12 @@ export default function Home() {
  }
   
  const [page, setPag] = useState(1);  
+
  if(typeof movies !== 'string') {
      var moviesPerPage = 9;        
         
      var max= movies.length / moviesPerPage;
+
     
      var firstMovies = ((page-1)* moviesPerPage);  
      var lastMovies = firstMovies + moviesPerPage ;

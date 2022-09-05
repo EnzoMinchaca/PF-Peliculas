@@ -1,5 +1,5 @@
 
-const getMovies = async(nameMovie,allMovies) =>{
+const getMovies = async(nameMovie, allMovies) =>{
 
     if(nameMovie){
         let movie =  await allMovies.filter(e => e.title.toLowerCase().includes(nameMovie.toLowerCase())
