@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getGenres, getPlatform, postMovies } from "../../redux/Slice/movieAction";
+import { clearGenres, getGenres, getMovies, getPlatform, postMovies } from "../../redux/Slice/movieAction";
 import Swal from "sweetalert2";
 import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
@@ -44,7 +44,8 @@ export default function Form() {
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatform())
-    }, [input])
+        return() => {dispatch(clearGenres())}
+    }, [dispatch])
     // console.log(genres)
     
     function handleChange(e) {
@@ -215,6 +216,7 @@ export default function Form() {
             })
             dispatch(getGenres())
             dispatch(getPlatform())
+            dispatch(getMovies())
         }
     }
 

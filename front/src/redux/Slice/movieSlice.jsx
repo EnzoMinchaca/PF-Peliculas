@@ -19,7 +19,10 @@ export const movieSlice = createSlice({
         getAllMovies: (state, action)=>{
             state.allMovies = action.payload    
             state.movies = action.payload        
+        },
 
+        clearAllMovies: (state)=>{
+          state.movies = []       
         },
 
         postMovie: (state)=>{
@@ -37,6 +40,14 @@ export const movieSlice = createSlice({
         getByGenres: (state, action)=>{
 
             state.genres = action.payload
+        },
+
+        clearAllGenres:(state) => {
+          state.genres = []
+        },
+
+        clearAllDetails:(state) => {
+          state.movie = {}
         },
 
         getByPlatform: (state, action) => {
@@ -59,12 +70,12 @@ export const movieSlice = createSlice({
             let moviesFilter= [];
             state.allMovies.map(movie=> {
                 console.log(movie.platform.toLowerCase())
-                 if (movie.platform.toLowerCase()===action.payload.toLowerCase()) {
+                  if (movie.platform.toLowerCase()===action.payload.toLowerCase()) {
                     moviesFilter.push(movie)
-                 }else if(action.payload.toLowerCase()==='all'){
+                }else if(action.payload.toLowerCase()==='all'){
                     moviesFilter=state.allMovies
-                 }
-           })
+                }
+            })
             state.movies = moviesFilter;
           },
 
@@ -107,17 +118,8 @@ export const movieSlice = createSlice({
               } else {
                 return { ...state, movies: state.filtered };
               }
-
         }
-
-
-
     }
-
-       
-    
-
-
 }
 
 
@@ -125,8 +127,11 @@ export const movieSlice = createSlice({
 
 export const {
     getAllMovies,
+    clearAllMovies,
     getMoviesById,
     getSearchMovie,
+    clearAllGenres,
+    clearAllDetails,
     getByGenres,
     getByPlatform,
     filterBygenre,

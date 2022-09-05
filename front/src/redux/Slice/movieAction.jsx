@@ -3,7 +3,10 @@ import Swal from "sweetalert2";
 
 import { getAllMovies, 
     getMoviesById,  
-    getSearchMovie, 
+    getSearchMovie,
+    clearAllMovies,
+    clearAllGenres, 
+    clearAllDetails,
     getByGenres,
     getByPlatform,  
     filterBygenre,
@@ -108,4 +111,14 @@ export const sortYears=(type)=>(dispatch)=>{
     dispatch(sortYear(type))
 }
 
+export const clearGenres=()=>(dispatch)=>{
+    dispatch(clearAllGenres())
+}
 
+export const clearDetails=()=>(dispatch)=>{
+    dispatch(clearAllDetails())
+}
+
+export const clearMovies=()=>(dispatch)=>{
+    dispatch(clearAllMovies())
+}
