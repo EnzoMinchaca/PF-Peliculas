@@ -93,7 +93,9 @@ export default function NavBar() {
     setSearchValue(text.target.value)
   }
   const searchOnClick = () => {
-    dispatch(getSearch(searchValue));
+    if(searchValue.length > 0) {
+      dispatch(getSearch(searchValue));
+    }
   }
 
   return (

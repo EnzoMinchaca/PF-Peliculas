@@ -15,6 +15,7 @@ export default function Details() {
 
     const dispatch = useDispatch()
     const details = useSelector((state) => state.movies.movie)
+    console.log(details)
 
     const { id } = useParams()
 
@@ -26,38 +27,56 @@ export default function Details() {
     return (
         <div>
             <Header/>
-            <div className={styles.title}>
-              <p className={styles.span}>Movie Detail</p></div>
-                <div className={styles.ubButton}><ButtonHome/> </div>
-            <div className={Style.generalContainer}>
-                <div className={Style.container}>
+            {
+                details ?
                     <div>
-                        <div className={Style.imgContainer}>
-                            <img className={Style.movieImg} src={details.image} />
-                        </div>
-                        <div className={Style.textTitle}>
-                            <h2>{details.title}</h2>
-                            <h3>Date: {details.date} || {details.duration}</h3>
-                            <h3 className={Style.Rate}>Rating: {details.rating}</h3>
+                        <div className={styles.title}>
+                        <p className={styles.span}>Movie Detail</p></div>
+                            <div className={styles.ubButton}><ButtonHome/> </div>
+                        <div className={Style.generalContainer}>
+                            <div className={Style.container}>
+                                <div>
+                                    <div className={Style.imgContainer}>
+                                        <img className={Style.movieImg} src={details.image} />
+                                    </div>
+                                    <div className={Style.textTitle}>
+                                        <h2>{details.title}</h2>
+                                        <h3>Date: {details.date} || {details.duration}</h3>
+                                        <h3 className={Style.Rate}>Rating: {details.rating}</h3>
+                                    </div>
+                                </div>
+                            </div>             
+                            <div className={Style.textContainer}>
+                                <div><h3>Genres</h3><p>{details.genres?.map((g,i) => {
+                                    return(
+                                        details.genres.length === i+1 ? <span>{g}.</span> : <span>{g}, </span>
+                                    )
+                                })}</p></div>
+                                <div><h3>Description</h3><p>{details.description}</p></div>
+                                <div><h3>Cast</h3> <p>{details.cast?.map((c,i) => {
+                                    return(
+                                        details.cast.length === i+1 ? <span>{c}.</span> : <span>{c}, </span>
+                                    )
+                                })}</p></div>
+                                <div><h3>Director</h3><p>{details.director}</p></div>
+                                <div><h3>Trailer</h3>
+                                {
+                                    // details.trailer.split("").slice(7).join("") === "<iframe" ? details.trailer :
+                                <iframe width="560" height="315" src={"https://www.youtube.com/embed/JtqIas3bYhg"} 
+                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                
+                                </iframe>
+                                }
+                                </div>
+                            {/*  compartir->incorporar->link copy */}
+                                
+                                <div><h3>Price</h3><p>$ {details.price}</p></div>
+                            </div>
                         </div>
                     </div>
-                </div>             
-                <div className={Style.textContainer}>
-                    <div><h3>Genres</h3><p>{details.genres}</p></div>
-                    <div><h3>Description</h3><p>{details.description}</p></div>
-                    <div><h3>Cast</h3> <p>{details.cast}</p></div>
-                    <div><h3>Director</h3><p>{details.director}</p></div>
-                    <div><h3>Trailer</h3>
-                    <iframe width="560" height="315" src={"https://www.youtube.com/embed/JtqIas3bYhg"} 
-                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                    
-                    </iframe>
-                    </div>
-                   {/*  compartir->incorporar->link copy */}
-                    
-                    <div><h3>Price</h3><p>{details.price}$</p></div>
-                </div>
-            </div>
+                :
+                null
+            }
             <Footer/>
         </div>
     )
