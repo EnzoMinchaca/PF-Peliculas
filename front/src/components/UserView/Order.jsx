@@ -19,7 +19,7 @@ import { AiTwotoneStar, AiFillSchedule, AiFillDatabase, AiOutlineDoubleLeft, AiO
 
 
 
-export default function Order() {
+export default function Order({setPag}) {
 
   const dispatch = useDispatch();
   let allGenres= useSelector(state => state.movies.genres)
@@ -30,22 +30,27 @@ export default function Order() {
 
   const handleAscRating = (type) => {
     dispatch(sortRatings(type));
+    setPag(1)
   };
 
   const handleDesRating = (type) => {
     dispatch(sortRatings(type));
+    setPag(1)
   };
 
   const handleAscYear = (type) => {
     dispatch(sortYears(type));
+    setPag(1)
   };
 
   const handleDesYear = (type) => {
     dispatch(sortYears(type));
+    setPag(1)
   };
   const handleGenre = (e) => {
     dispatch(filterGenre(e.target.innerText))
     console.log(e.target.innerText);
+    setPag(1)
   };
 
   return (
@@ -97,11 +102,13 @@ subheader={
   </ListSubheader>
 }>
   {
-    allGenres.length>0?
+    allGenres?
     allGenres.map(genre=>{
-      return <ListItemButton className={css.redH} onClick={(genre)=>handleGenre(genre)}>
-      <AiOutlineSwapRight/><ListItemText primary= {genre.name}  />
-    </ListItemButton>
+
+      return (<ListItemButton className={css.redH} onClick={(genre)=>handleGenre(genre)}>
+      <AiOutlineSwapRight/><ListItemText primary={genre.name}  />
+    </ListItemButton>)
+
     }):
     <p>loading...</p>
   }

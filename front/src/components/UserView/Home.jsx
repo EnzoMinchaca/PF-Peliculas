@@ -50,11 +50,11 @@ export default function Home() {
     return (
         <div>
             <Header/>
-            <NavBar />
+            <NavBar setPag={setPag}/>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={3} md={2}>
-                            <Order />
+                            <Order setPag={setPag}/>
                         </Grid>
                         {
                             movies === 'Movie not found' ?
