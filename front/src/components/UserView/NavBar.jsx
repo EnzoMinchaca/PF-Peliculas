@@ -18,6 +18,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { useDispatch } from 'react-redux';
 import { filterPlataform, getSearch } from '../../redux/Slice/movieAction';
@@ -63,12 +64,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({setPag}) {
+export default function NavBar({setPag, openModal, userMenu}) {
 
     const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount+','HBOMAX'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [login, setLogin] = React.useState(false);
   const [searchValue,setSearchValue]=React.useState()
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleSingOff = () => {
+    setAnchorEl(null);
+    localStorage.clear()
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const dispatch= useDispatch();
 
@@ -99,151 +114,339 @@ export default function NavBar({setPag}) {
     }
   }
 
-  return (
-    <AppBar position="static" className={css.fondo}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <MovieCreationIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            HMovies
-          </Typography>
+  React.useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user){
+      setLogin(true)
+    }
+  },[])
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+  if(!login){
+    return (
+      <AppBar position="static" className={css.fondo}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <MovieCreationIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <MovieCreationIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            HMovies
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-
-                onClick={(page)=>handleOnClickNavMenu(page)}
-
-                sx={{ my: 2, color: 'white', display: 'block' }}
+              HMovies
+            </Typography>
+  
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Search>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={(text) => handleOnChange(text)}
-                className={css.inputSearch}
-              />
-            </Search>
-            <Button onClick={() => searchOnClick()} className={css.searchBtn}>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-            </Button>
-          </Box>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <IconButton sx={{ p: 0 }}>
-              <Link to="/Create" key={"Create"}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                className={css.linkBtn}>
-                Create Movie
-              </Link>
-            </IconButton>
-          </Box>
-
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <IconButton sx={{ p: 0 }}>
-            <Link to="/Car"   key={"Car"}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                className={css.linkBtn}>
-                <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-            </Link>
-            </IconButton>
-            </Box> */}
-
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Link to="/Login"           
-                key={"LogIn"}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                className={css.linkBtn}
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <MovieCreationIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              HMovies
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+  
+                  onClick={(page)=>handleOnClickNavMenu(page)}
+  
+                  sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                Login
+                  {page}
+                </Button>
+              ))}
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Search>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={(text) => handleOnChange(text)}
+                  className={css.inputSearch}
+                />
+              </Search>
+              <Button onClick={() => searchOnClick()} className={css.searchBtn}>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+              </Button>
+            </Box>
+  
+            {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <IconButton sx={{ p: 0 }}>
+                <Link to="/Create" key={"Create"}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}>
+                  Create Movie
                 </Link>
               </IconButton>
-            </Tooltip>
-          </Box> */}
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+            </Box> */}
+  
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <IconButton sx={{ p: 0 }}>
+              <Link to="/Car"   key={"Car"}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}>
+                  <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+              </Link>
+              </IconButton>
+              </Box>
+  
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={()=>openModal()} sx={{ p: 0 }}>
+                  <Button to="/Login"           
+                  key={"LogIn"}
+                  onClick={()=>openModal()}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}
+                  >
+                  Login
+                  </Button>
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    );
+  }else{
+    return (
+      <AppBar position="static" className={css.fondo}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <MovieCreationIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              HMovies
+            </Typography>
+  
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <MovieCreationIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              HMovies
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+  
+                  onClick={(page)=>handleOnClickNavMenu(page)}
+  
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Search>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={(text) => handleOnChange(text)}
+                  className={css.inputSearch}
+                />
+              </Search>
+              <Button onClick={() => searchOnClick()} className={css.searchBtn}>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+              </Button>
+            </Box>
+  
+            {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <IconButton sx={{ p: 0 }}>
+                <Link to="/Create" key={"Create"}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}>
+                  Create Movie
+                </Link>
+              </IconButton>
+            </Box> */}
+  
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <IconButton sx={{ p: 0 }}>
+              <Link to="/Car"   key={"Car"}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}>
+                  <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+              </Link>
+              </IconButton>
+              </Box>
+  
+            {/* <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={()=>openModal()} sx={{ p: 0 }}>
+                  <Button to="/Login"           
+                  key={"LogIn"}
+                  onClick={()=>openModal()}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}
+                  >
+                  Login
+                  </Button>
+                </IconButton>
+              </Tooltip>
+            </Box> */}
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton sx={{ p: 0 }}>
+                  <Button to="/userMenu"           
+                  key={"userMenu"}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  className={css.linkBtn}
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                  >
+                  <AccountCircleIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                  </Button>
+                </IconButton>
+              </Tooltip>
+            </Box> 
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem>Edit profile</MenuItem>
+              <MenuItem onClick={handleSingOff}>Sing off</MenuItem>
+            </Menu>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    );
+  }
+  
 };
