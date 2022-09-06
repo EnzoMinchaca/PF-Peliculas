@@ -40,7 +40,16 @@ const userSchema = Schema(
         token: {
             type: String,
             require: false
-        } 
+        },
+        status: {
+            type: String, 
+            enum: ['Pending', 'Active'],
+            default: 'Pending'
+        },
+        confirmationCode: { 
+            type: String, 
+            unique: true 
+        }, 
     }
 )
 
