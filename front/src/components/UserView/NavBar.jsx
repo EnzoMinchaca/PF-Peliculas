@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({setPag}) {
+export default function NavBar({setPag, openModal}) {
 
     const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount+','HBOMAX'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -206,7 +206,7 @@ export default function NavBar({setPag}) {
             </Button>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <IconButton sx={{ p: 0 }}>
               <Link to="/Create" key={"Create"}
                 onClick={handleCloseNavMenu}
@@ -215,9 +215,9 @@ export default function NavBar({setPag}) {
                 Create Movie
               </Link>
             </IconButton>
-          </Box>
+          </Box> */}
 
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <IconButton sx={{ p: 0 }}>
             <Link to="/Car"   key={"Car"}
                 onClick={handleCloseNavMenu}
@@ -226,22 +226,22 @@ export default function NavBar({setPag}) {
                 <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
             </Link>
             </IconButton>
-            </Box> */}
+            </Box>
 
-          {/* <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Link to="/Login"           
+              <IconButton onClick={()=>openModal()} sx={{ p: 0 }}>
+                <Button to="/Login"           
                 key={"LogIn"}
-                onClick={handleCloseNavMenu}
+                onClick={()=>openModal()}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 className={css.linkBtn}
                 >
                 Login
-                </Link>
+                </Button>
               </IconButton>
             </Tooltip>
-          </Box> */}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
