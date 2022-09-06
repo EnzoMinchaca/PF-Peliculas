@@ -15,6 +15,7 @@ import Header from "../Presentational/header";
 import Footer from "../Presentational/footer";
 import { clearDetails, clearMovies, getGenres, getMovies } from "../../redux/Slice/movieAction";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -51,6 +52,7 @@ export default function Home() {
         <div>
             <Header/>
             <NavBar setPag={setPag}/>
+            <Link to="/Panel"><button>adminpanel</button></Link>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={3} md={2}>
