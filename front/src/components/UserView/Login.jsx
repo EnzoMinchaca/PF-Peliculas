@@ -14,7 +14,8 @@ export default function Login({closeModal}){
         email: "",
         password: "",
         name:"",
-        comfirmPassword:""
+        comfirmPassword:"",
+        lastName:""
     })
     
     function handleChange(e) {
@@ -40,6 +41,11 @@ export default function Login({closeModal}){
             } 
             else {
                 e.preventDefault()
+                closeModal()
+                localStorage.setItem('user',JSON.stringify({
+                    email:input.email,
+                    token:"vhunhosighiohoiaehoiahao"
+                }))
                 console.log(input)
                 setInput({
                     email: "",
@@ -47,7 +53,7 @@ export default function Login({closeModal}){
                 })
             }
         }else{
-            if(!input.email || !input.password || !input.name || !input.comfirmPassword) {
+            if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastName) {
                 e.preventDefault()
                 closeModal()
                 Swal.fire({
@@ -60,7 +66,14 @@ export default function Login({closeModal}){
                 console.log("error")
             } 
             else if(input.password!==input.comfirmPassword){
-                setSimilarPassword(false)
+                closeModal()
+                Swal.fire({
+                    icon: "error",
+                    title: "Ohhh!",
+                    text: "Passwords are not the same",
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#0b132b"
+                });
             }else if(input.password===input.comfirmPassword){
                 setSimilarPassword(true)
             }
@@ -71,7 +84,8 @@ export default function Login({closeModal}){
                     email: "",
                     password: "",
                     name:"",
-                    comfirmPassword:""
+                    comfirmPassword:"",
+                    lastName:""
                 })
             }
         }
@@ -139,6 +153,18 @@ export default function Login({closeModal}){
                     />
                 </div>
                 <div>
+                    <label>Last Name: </label>
+                    <input 
+                        className={css.input}
+                        placeholder="Last Name"
+                        type="text" 
+                        required
+                        value={input.lastName}
+                        name="lastName"
+                        onChange={(e) => handleChange(e)}
+                    />
+                </div>
+                <div>
                     <label>Email: </label>
                     <input 
                         className={css.input}
@@ -173,7 +199,6 @@ export default function Login({closeModal}){
                         name="comfirmPassword"
                         onChange={(e) => handleChange(e)}
                     />
-                    {!similarPassword? <label className={css.red}>Passwords are not the same</label>:null}
                 </div>
                 {/* <input type={"submit"} value={"Create"}/> */}
                 <input className={css.btn} type="submit" value="Login"/>
