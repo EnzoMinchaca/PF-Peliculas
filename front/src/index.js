@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import store from './redux/Store';
+import axios from 'axios';
+
+axios.defaults.headers.common = { 'Authorization': `bearer ${localStorage.getItem('token')}` }
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
