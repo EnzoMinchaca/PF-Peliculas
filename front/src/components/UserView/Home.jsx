@@ -16,6 +16,16 @@ import { clearDetails, clearMovies, getGenres, getMovies } from "../../redux/Sli
 import Modal from '@mui/material/Modal';
 import Login from "./Login";
 import css from "./Home.module.css";
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 const style = {
     position: 'absolute',
@@ -51,6 +61,7 @@ export default function Home() {
     
  })
 
+
  const handleOpen = () => {
     setOpen(true);
   };
@@ -78,7 +89,7 @@ export default function Home() {
     return (
         <div>
             <Header/>
-            <NavBar setPag={setPag} openModal={()=>handleOpen()}/>
+            <NavBar setPag={setPag} openModal={()=>handleOpen()} />
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={3} md={2}>
