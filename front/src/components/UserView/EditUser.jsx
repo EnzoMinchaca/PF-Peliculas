@@ -38,57 +38,15 @@ export default function EditUser(){
     const handleClickName = () => {
       setOpenName(!openName);
     };
-    const handleClickLastName = () => {
-        setOpenLastName(!openLastName);
-      };
-      const handleClickPassword = () => {
-        setOpenPassword(!openPassword);
-      };
+    // const handleClickLastName = () => {
+    //     setOpenLastName(!openLastName);
+    //   };
+    //   const handleClickPassword = () => {
+    //     setOpenPassword(!openPassword);
+    //   };
 
       function handleSubmitName(e) {
-            if(!input.name){
-                e.preventDefault()
-                Swal.fire({
-                    icon: "error",
-                    title: "Ohhh!",
-                    text: "Plis check and complete the field",
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: "#0b132b"
-                });
-            }
-            e.preventDefault()
-            console.log(input.name)
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "Successfully save name",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#0b132b"
-            });
-        }
-        function handleSubmitLastName(e) {
-            if(!input.lastName){
-                e.preventDefault()
-                Swal.fire({
-                    icon: "error",
-                    title: "Ohhh!",
-                    text: "Plis check and complete the field",
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: "#0b132b"
-                });
-            }
-            e.preventDefault()
-            console.log(input.lastName)
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "Successfully save Last name",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#0b132b"
-            });
-        }
-        function handleSubmitPassword(e) {
-            if(!input.password || !input.comfirmPassword){
+            if(!input.name || !input.lastName){
                 e.preventDefault()
                 Swal.fire({
                     icon: "error",
@@ -97,19 +55,10 @@ export default function EditUser(){
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
-            }else if(input.password !== input.comfirmPassword){
-                e.preventDefault()
-                Swal.fire({
-                    icon: "error",
-                    title: "Ohhh!",
-                    text: "Passwords not same",
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: "#0b132b"
-                });
             }else{
                 e.preventDefault()
-                console.log(input.password)
-                console.log(input.comfirmPassword)
+                console.log(input.name)
+                console.log(input.lastName)
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -118,8 +67,62 @@ export default function EditUser(){
                     confirmButtonColor: "#0b132b"
                 });
             }
-          
+           
         }
+        // function handleSubmitLastName(e) {
+        //     if(!input.lastName){
+        //         e.preventDefault()
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: "Ohhh!",
+        //             text: "Plis check and complete the field",
+        //             confirmButtonText: "Ok",
+        //             confirmButtonColor: "#0b132b"
+        //         });
+        //     }
+        //     e.preventDefault()
+        //     console.log(input.lastName)
+        //     Swal.fire({
+        //         icon: "success",
+        //         title: "Success",
+        //         text: "Successfully save Last name",
+        //         confirmButtonText: "Ok",
+        //         confirmButtonColor: "#0b132b"
+        //     });
+        // }
+        // function handleSubmitPassword(e) {
+        //     if(!input.password || !input.comfirmPassword){
+        //         e.preventDefault()
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: "Ohhh!",
+        //             text: "Plis check and complete the fields",
+        //             confirmButtonText: "Ok",
+        //             confirmButtonColor: "#0b132b"
+        //         });
+        //     }else if(input.password !== input.comfirmPassword){
+        //         e.preventDefault()
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: "Ohhh!",
+        //             text: "Passwords not same",
+        //             confirmButtonText: "Ok",
+        //             confirmButtonColor: "#0b132b"
+        //         });
+        //     }else{
+        //         e.preventDefault()
+        //         console.log(input.password)
+        //         console.log(input.comfirmPassword)
+        //         Swal.fire({
+        //             icon: "success",
+        //             title: "Success",
+        //             text: "Successfully save name",
+        //             confirmButtonText: "Ok",
+        //             confirmButtonColor: "#0b132b"
+        //         });
+        //     }
+          
+        // }
     return(
         <div>
             <div className={styles.title}>
@@ -158,12 +161,24 @@ export default function EditUser(){
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
+                    <div>
+                        <label>Last Name: </label>
+                        <input 
+                            className={css.input}
+                            placeholder="Last Name"
+                            type="text" 
+                            value={input.lastName}
+                            name="lastName"
+                            required
+                            onChange={(e) => handleChange(e)}
+                        />
+                    </div>
                     {/* <input type={"submit"} value={"Create"}/> */}
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
       </Collapse>
-      <ListItemButton onClick={handleClickLastName}>
+      {/* <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>
           <PersonIcon/>
         </ListItemIcon>
@@ -185,7 +200,6 @@ export default function EditUser(){
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    {/* <input type={"submit"} value={"Create"}/> */}
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
@@ -224,11 +238,10 @@ export default function EditUser(){
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    {/* <input type={"submit"} value={"Create"}/> */}
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
-      </Collapse>
+      </Collapse> */}
       
     </List>
         </div>
