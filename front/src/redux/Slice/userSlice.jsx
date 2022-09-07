@@ -22,10 +22,10 @@ export const userSlice = createSlice({
             }      
         },
 
-        getUser: (state, action)=>{
+        getUsers: (state, action)=>{
             return {
                 ...state,
-                
+
                 data: action.payload
             }      
         },
@@ -64,7 +64,7 @@ export const userSlice = createSlice({
 
 export const { userLogin,
      loginUser, 
-     getUser, 
+     getUsers, 
      logout,
      createUser,
      editUser,
