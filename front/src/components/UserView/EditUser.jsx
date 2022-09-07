@@ -18,7 +18,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { EditUserAction } from "../../redux/Slice/userAction";
+import { EditUser } from "../../redux/Slice/userAction";
 
 export default function EditUser(){
     const [openName, setOpenName] = React.useState(false);
@@ -60,7 +60,7 @@ export default function EditUser(){
                 });
             }else{
                 e.preventDefault()
-                dispatch(EditUserAction(input))
+                dispatch(EditUser(input))
                 console.log(input)
                 console.log(input)
                 Swal.fire({
