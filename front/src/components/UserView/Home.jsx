@@ -94,10 +94,7 @@ export default function Home() {
     return (
         <div>
             <Header/>
-
-            <NavBar setPag={setPag}/>
             <Link to="/Panel"><button>adminpanel</button></Link>
-
             <NavBar setPag={setPag} openModal={()=>handleOpen()} />
 
                 <Box sx={{ flexGrow: 1 }}>

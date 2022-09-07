@@ -107,23 +107,25 @@ export const getUser=()=>(dispatch)=>{
                 })
         }
 
-        export const postCreateUser=(newData)=>(dispatch)=>{
+       export const postCreateUser=(newData)=>(dispatch)=>{
             return axios.post({
-                url: `http://localhost:3001/users`,// ruta temporal para esperar la del back
+                url: `http://localhost:3001/registerUser`,
+                
                 data: {
                     name: newData.firstName,
-                    lastName: newData.lastName,
+                    lastname: newData.lastName,
                     email: newData.email,
                     password: newData.password,
+                    token: newData.token
                 }
-    
+             
             })
                 .then(res => {
                     return{
                         payload: dispatch(createUser(res.data))
                     } 
                 }
-    
+                
                 ).then((res) => {
                     Swal.fire({
                         position: 'top-end',
@@ -133,7 +135,7 @@ export const getUser=()=>(dispatch)=>{
                         timer: 1500
                     })
                     console.log(res)
-                    window.location.assign("http://localhost:3000/login/loginuser")// ruta temporal para esperar la del back
+                    window.location.assign("http://localhost:3000/login/loginuser")
                 })
                 .catch(() => {
                     Swal.fire({
