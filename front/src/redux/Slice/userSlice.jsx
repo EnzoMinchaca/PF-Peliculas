@@ -25,6 +25,7 @@ export const userSlice = createSlice({
         getUser: (state, action)=>{
             return {
                 ...state,
+                
                 data: action.payload
             }      
         },

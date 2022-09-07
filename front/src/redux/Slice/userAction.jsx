@@ -130,7 +130,7 @@ export const getUser=()=>(dispatch)=>{
                     lastname: newData.lastName,
                     email: newData.email,
                     password: newData.password,
-                    token: newData.token
+                    
                 }
              
             })
@@ -199,7 +199,6 @@ export const getUser=()=>(dispatch)=>{
         }
 
         //Modifica solo el password
-
         export const putUserPassword=(token, password)=>(dispatch)=>{
             axios.put({
                 url: `http://localhost:3001/putUserPassword/${token}`, 

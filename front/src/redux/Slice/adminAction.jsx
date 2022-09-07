@@ -19,8 +19,9 @@ export const getUsers=()=>(dispatch)=>{
         console.log(e);
         return Swal.fire({
             icon: "error",
-            title: "Oops...",
+            title: "Oopss...",
             text: "There are no users! -- GetUsers",
+
           });
       });
 }

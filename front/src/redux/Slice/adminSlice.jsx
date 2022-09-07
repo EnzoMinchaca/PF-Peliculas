@@ -11,6 +11,7 @@ export const adminSlice = createSlice({
         getUser: (state, action)=>{
             return {
                 ...state,
+                
                 data: action.payload
             }      
         },
