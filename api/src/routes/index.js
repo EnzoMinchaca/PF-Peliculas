@@ -7,7 +7,9 @@ const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
+
 // const nodemailer = require("../config/emailer")
+
 
 const router = Router()
 

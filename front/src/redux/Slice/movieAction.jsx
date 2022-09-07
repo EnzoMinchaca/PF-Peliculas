@@ -48,7 +48,7 @@ export const getMovieById=(id)=>(dispatch)=>{
         console.log(e);
         return Swal.fire({
             icon: "error",
-            title: "Oops...",
+            title: "Oopss...",
             text: "Something went wrong! -- GetmoviesById",
           });
       });

@@ -5,12 +5,16 @@ import {
     loginUser, 
     getUser, 
     logout,
-    createUser  
+    createUser,
+    editUser,
+    getUserByToken,
+    putUserPassword 
 }from "./userSlice";
 
 // Nota: hay datos temporales que deben ajustarse a lo que venga del back pero la estructura esta. 
 
 
+//Acción para logearse cuando ya este registrado 
 export const postLogin=(data)=>(dispatch)=>{
     return axios.post({
            url: `http://localhost:3001/auth/login`, //ruta temporal para esperar la del back
@@ -23,10 +27,11 @@ export const postLogin=(data)=>(dispatch)=>{
         }
         );     
 }
-
+////////---- Menú Usuario ----//////
+//Acción para revisar la autorización e ingresar - almacena los datos en el localStorage 
 export const getUser=()=>(dispatch)=>{
     return axios.get({
-        url: `http://localhost:3001/auth`,}) // ruta temporal para esperar la del back 
+        url: `http://localhost:3001/autorización`,}) // Revisar ruta
 
         .then((res) => {
             console.log(res.data.message)
@@ -53,6 +58,7 @@ export const getUser=()=>(dispatch)=>{
         })
     }
 
+    //Acción para cerrar la sesión
     export const logOut=()=>(dispatch)=>{
         return axios.get({
             url: `http://localhost:3001/auth/logout`,}) //// ruta temporal para esperar la del back
@@ -79,7 +85,9 @@ export const getUser=()=>(dispatch)=>{
                 })
             })
         }
+        ///// Menú Usuario  1.Verificar ingreso 2. Cerrar sesión//// 
 
+        // Acción ingreso de usuario 
         export const loginUser=(loginData)=>(dispatch)=>{
             axios.post({
                 url: `http://localhost:3001/auth/login`,
@@ -96,34 +104,42 @@ export const getUser=()=>(dispatch)=>{
                 .then(res => {
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
-                    window.location.assign("http://localhost:3000/checkuser/auth/login")// ruta temporal para esperar la del back
+                    window.location.assign("http://localhost:3000/checkuser/auth/login") // Crear ruta para direccionar al usuario
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Ingreso Exitoso...',
+                        text: 'Bienvenido a Henry Movie',
+                    })
                 })
                 .catch(() => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Los datos ingresados son erroneos',
+                        text: 'Los datos ingresados son erroneos, Intente de nuevo',
                     })
                 })
         }
 
-        export const postCreateUser=(newData)=>(dispatch)=>{
+        //Acción para crear usuario 
+       export const postCreateUser=(newData)=>(dispatch)=>{
             return axios.post({
-                url: `http://localhost:3001/users`,// ruta temporal para esperar la del back
+                url: `http://localhost:3001/registerUser`,
+                
                 data: {
                     name: newData.firstName,
-                    lastName: newData.lastName,
+                    lastname: newData.lastName,
                     email: newData.email,
                     password: newData.password,
+                    
                 }
-    
+             
             })
                 .then(res => {
                     return{
                         payload: dispatch(createUser(res.data))
                     } 
                 }
-    
+                
                 ).then((res) => {
                     Swal.fire({
                         position: 'top-end',
@@ -133,7 +149,7 @@ export const getUser=()=>(dispatch)=>{
                         timer: 1500
                     })
                     console.log(res)
-                    window.location.assign("http://localhost:3000/login/loginuser")// ruta temporal para esperar la del back
+                    window.location.assign("http://localhost:3000/login/loginuser") // Sería el componente a donde puede ingresar el usuario
                 })
                 .catch(() => {
                     Swal.fire({
@@ -144,6 +160,68 @@ export const getUser=()=>(dispatch)=>{
                 }
                 )
         }
+        
+
+        //Acción para verificar token
+        export const getToken=(token)=>(dispatch)=>{
+            axios.get(`http://localhost:3001/confirmUser/${token}`)
+            .then(resp=>dispatch(getUserByToken(resp.data)))
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "User Not found.! -- GetByToken",
+                  });
+              });
+        }
+
+        //Acción para modificar perfil 
+        export const EditUser=(bodyFormData, id)=>(dispatch)=>{
+            axios.put({
+                url: `http://localhost:3001/editUser/${id}`, 
+                data: bodyFormData})
+            
+            .then(resp=>dispatch(editUser(resp.data)))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: `The user was successfully modified`,
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Could not modify user.! -- EditUser",
+                  });
+              });
+        }
+
+        //Modifica solo el password
+        export const putUserPassword=(token, password)=>(dispatch)=>{
+            axios.put({
+                url: `http://localhost:3001/putUserPassword/${token}`, 
+                data: password})
+            
+            .then(resp=>dispatch(putUserPassword (resp.data)))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: `
+                The password has been changed successfully`,
+            })
+            window.location.assign("http://localhost:3000/")
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "The user data is not correct",
+                  });
+              });
+        }
+
 
 
 

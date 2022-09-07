@@ -6,6 +6,8 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogin, postCreateUser } from "../../redux/Slice/userAction";
 
 export default function Login({closeModal}){
     const [login,setLogin]=useState(true)
@@ -15,8 +17,10 @@ export default function Login({closeModal}){
         password: "",
         name:"",
         comfirmPassword:"",
-        lastName:""
+        lastname:""
     })
+
+    const dispatch=useDispatch();
     
     function handleChange(e) {
         setInput({
@@ -42,10 +46,7 @@ export default function Login({closeModal}){
             else {
                 e.preventDefault()
                 closeModal()
-                localStorage.setItem('user',JSON.stringify({
-                    email:input.email,
-                    token:"vhunhosighiohoiaehoiahao"
-                }))
+                dispatch(postLogin({email: input.email, password: input.password }))
                 console.log(input)
                 setInput({
                     email: "",
@@ -53,7 +54,7 @@ export default function Login({closeModal}){
                 })
             }
         }else{
-            if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastName) {
+            if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastname) {
                 e.preventDefault()
                 closeModal()
                 Swal.fire({
@@ -74,18 +75,19 @@ export default function Login({closeModal}){
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
-            }else if(input.password===input.comfirmPassword){
-                setSimilarPassword(true)
-            }
-            else {
+            }else {
                 e.preventDefault()
+                dispatch(postCreateUser({email: input.email,
+                password: input.password,
+                name:input.name,
+                lastname:input.lastname}))
                 console.log(input)
                 setInput({
                     email: "",
                     password: "",
                     name:"",
                     comfirmPassword:"",
-                    lastName:""
+                    lastname:""
                 })
             }
         }
@@ -159,8 +161,8 @@ export default function Login({closeModal}){
                         placeholder="Last Name"
                         type="text" 
                         required
-                        value={input.lastName}
-                        name="lastName"
+                        value={input.lastname}
+                        name="lastname"
                         onChange={(e) => handleChange(e)}
                     />
                 </div>

@@ -6,6 +6,8 @@ import Car from "./components/UserView/Car"
 import Landing from "./components/Presentational/LandingPage"
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import EditUser from './components/UserView/EditUser';
+import AdminPanel from './components/AdmidView/AdminPanel';
 //import Order from './components/UserView/Order';
 
 
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/Details/:id" element={<Details/>}/>
         <Route exact path="/Create" element={<Form/>}/>
         <Route exact path="/Car" element={<Car/>}/>
+        <Route exact path="/editUser" element={<EditUser/>}/>
+        <Route exact path="/panel" element={<AdminPanel/>}/>
       </Routes>
     </BrowserRouter>
   )
