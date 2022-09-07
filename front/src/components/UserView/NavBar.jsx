@@ -22,6 +22,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Navigate, useNavigate} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { filterPlataform, getSearch } from '../../redux/Slice/movieAction';
+import { logOut } from '../../redux/Slice/userAction';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -76,9 +77,10 @@ export default function NavBar({setPag, openModal, userMenu}) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const dispatch= useDispatch();
   const handleSingOff = () => {
     setAnchorEl(null);
-    localStorage.clear()
+    dispatch(logOut())
   };
   const handleEdit=()=>{
     return(
@@ -89,7 +91,6 @@ export default function NavBar({setPag, openModal, userMenu}) {
     setAnchorEl(null);
   };
 
-  const dispatch= useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

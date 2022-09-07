@@ -6,6 +6,8 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogin, postCreateUser } from "../../redux/Slice/userAction";
 
 export default function Login({closeModal}){
     const [login,setLogin]=useState(true)
@@ -17,6 +19,8 @@ export default function Login({closeModal}){
         comfirmPassword:"",
         lastname:""
     })
+
+    const dispatch=useDispatch();
     
     function handleChange(e) {
         setInput({
@@ -42,10 +46,7 @@ export default function Login({closeModal}){
             else {
                 e.preventDefault()
                 closeModal()
-                localStorage.setItem('user',JSON.stringify({
-                    email:input.email,
-                    token:"vhunhosighiohoiaehoiahao"
-                }))
+                dispatch(postLogin({email: input.email, password: input.password }))
                 console.log(input)
                 setInput({
                     email: "",
@@ -74,11 +75,12 @@ export default function Login({closeModal}){
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
-            }else if(input.password===input.comfirmPassword){
-                setSimilarPassword(true)
-            }
-            else {
+            }else {
                 e.preventDefault()
+                dispatch(postCreateUser({email: input.email,
+                password: input.password,
+                name:input.name,
+                lastname:input.lastname}))
                 console.log(input)
                 setInput({
                     email: "",
