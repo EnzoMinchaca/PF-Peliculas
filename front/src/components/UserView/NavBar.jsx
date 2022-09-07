@@ -19,7 +19,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import { Navigate, useNavigate} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { filterPlataform, getSearch } from '../../redux/Slice/movieAction';
 
@@ -65,7 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar({setPag, openModal, userMenu}) {
-
+  const navigate=useNavigate()
     const pages = ['All','Netflix', 'Disney+', 'Amazon','Paramount+','HBOMAX'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -80,7 +80,11 @@ export default function NavBar({setPag, openModal, userMenu}) {
     setAnchorEl(null);
     localStorage.clear()
   };
-
+  const handleEdit=()=>{
+    return(
+      navigate("/editUser")
+    )
+  }
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -440,7 +444,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem>Edit profile</MenuItem>
+              <MenuItem onClick={handleEdit}>Edit profile</MenuItem>
               <MenuItem onClick={handleSingOff}>Sing off</MenuItem>
             </Menu>
           </Toolbar>
