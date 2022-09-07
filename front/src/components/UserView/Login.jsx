@@ -15,7 +15,7 @@ export default function Login({closeModal}){
         password: "",
         name:"",
         comfirmPassword:"",
-        lastName:""
+        lastname:""
     })
     
     function handleChange(e) {
@@ -53,7 +53,7 @@ export default function Login({closeModal}){
                 })
             }
         }else{
-            if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastName) {
+            if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastname) {
                 e.preventDefault()
                 closeModal()
                 Swal.fire({
@@ -85,7 +85,7 @@ export default function Login({closeModal}){
                     password: "",
                     name:"",
                     comfirmPassword:"",
-                    lastName:""
+                    lastname:""
                 })
             }
         }
@@ -159,8 +159,8 @@ export default function Login({closeModal}){
                         placeholder="Last Name"
                         type="text" 
                         required
-                        value={input.lastName}
-                        name="lastName"
+                        value={input.lastname}
+                        name="lastname"
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
