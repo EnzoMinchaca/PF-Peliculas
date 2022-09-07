@@ -3,6 +3,11 @@ const { getMovies } = require('../controllers/controller_getNameMovie.js')
 const movieSchema = require('../models/movie.js')
 const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
+const userSchema = require("../models/user")
+const jwt = require("jsonwebtoken")
+
+const nodemailer = require("../config/emailer")
+
 const router = Router()
 
 router.post('/postMovies', async(req, res) => {
@@ -148,7 +153,63 @@ router.delete("/movies/:id", async ( req, res ) => {
 
 });
 
+router.post("/registerUser", async ( req, res ) => {
+    const { name, lastname, password, email } = req.body;
+    
+    try {
 
+        //POR SI QUEREMOS QUE SE REGISTRE UNA SOLA VEZ POR EMAIL.
+        /* const emailBD = await userSchema.findOne({email})
+        if(emailBD) return res.status(409).json({message: "Email in use."}) */
+
+        const token = jwt.sign({ email: req.body.email }, process.env.SECRET);
+
+        const user = await userSchema.create(
+            {
+                name,
+                lastname,
+                password:  await userSchema.encryptPassword(password),
+                email,
+                token,
+            }
+        )
+        
+        return res.send({
+            message:
+            "User was registered successfully! Please check your email",
+        });
+        /* nodemailer.sendConfirmationEmail(
+                user.name,
+                user.email,
+                user.token
+            ); */
+
+    } catch (error) {
+        console.error(error)
+    }
+    
+
+})
+
+router.get("/confirmUser/:token", async ( req, res ) => {
+    const { token } = req.params
+
+    
+    try {
+
+        const user = await userSchema.findOne({ token: token });
+
+        if( !user ) return res.send("User Not found.")
+
+        user.status = "Active"
+
+        user.save()
+
+        res.status(200).send("User active.")
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 module.exports = router
