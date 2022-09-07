@@ -43,11 +43,20 @@ export const userSlice = createSlice({
             }      
         },
 
+        editUser: (state, action)=>{
+            return {
+                ...state,
+                data: action.payload
+            }      
+        },
 
+        getUserByToken: (state, action) => {
+            state.movie = action.payload
+        },
 
-
-
-        
+        putUserPassword: (state, action) => {
+            state.movie = action.payload
+        },
         
     }
 })
@@ -56,7 +65,10 @@ export const { userLogin,
      loginUser, 
      getUser, 
      logout,
-     createUser
+     createUser,
+     editUser,
+     getUserByToken,
+     putUserPassword
    
 } = userSlice.actions
 
