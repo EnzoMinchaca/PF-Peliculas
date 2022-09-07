@@ -154,7 +154,7 @@ router.delete("/movies/:id", async ( req, res ) => {
 });
 
 router.post("/registerUser", async ( req, res ) => {
-    const { name, lastname, password, email } = req.body;
+    const { name, lastname, password, email, status, confirmationCode } = req.body;
     
     try {
 
@@ -168,21 +168,23 @@ router.post("/registerUser", async ( req, res ) => {
             {
                 name,
                 lastname,
-                password: await userSchema.encryptPassword(password),
+                password: password /* await userSchema.encryptPassword(password) */,
                 email,
+                token,
+                status,
+                confirmationCode
             }
         )
         
-        /* res.send({
+        return res.send({
             message:
             "User was registered successfully! Please check your email",
-        }); */
+        });
         /* nodemailer.sendConfirmationEmail(
                 user.name,
                 user.email,
                 user.token
             ); */
-            return console.log("User was registered successfully! Please check your email.")
 
     } catch (error) {
         console.error(error)
