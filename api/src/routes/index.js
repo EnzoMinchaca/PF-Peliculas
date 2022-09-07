@@ -154,7 +154,7 @@ router.delete("/movies/:id", async ( req, res ) => {
 });
 
 router.post("/registerUser", async ( req, res ) => {
-    const { name, lastname, password, email, status, confirmationCode } = req.body;
+    const { name, lastname, password, email } = req.body;
     
     try {
 
@@ -168,11 +168,9 @@ router.post("/registerUser", async ( req, res ) => {
             {
                 name,
                 lastname,
-                password: password /* await userSchema.encryptPassword(password) */,
+                password:  await userSchema.encryptPassword(password),
                 email,
                 token,
-                status,
-                confirmationCode
             }
         )
         
