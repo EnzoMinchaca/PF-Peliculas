@@ -6,7 +6,7 @@ const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
 
-const nodemailer = require("../config/emailer")
+//const nodemailer = require("../config/emailer")
 
 const router = Router()
 
