@@ -17,6 +17,8 @@ import StarBorder from '@mui/icons-material/StarBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { EditUser } from "../../redux/Slice/userAction";
 
 export default function EditUser(){
     const [openName, setOpenName] = React.useState(false);
@@ -24,10 +26,11 @@ export default function EditUser(){
     const [openPassword, setOpenPassword] = React.useState(false);
     const [input, setInput] = React.useState({
         name: "Raul",
-        lastName: "Alvares",
-        password:"",
-        comfirmPassword:""
+        lastName: "Alvares"
+        // password:"",
+        // comfirmPassword:""
     })
+    const dispatch=useDispatch();
     function handleChange(e) {
         setInput({
             ...input,
@@ -57,8 +60,9 @@ export default function EditUser(){
                 });
             }else{
                 e.preventDefault()
-                console.log(input.name)
-                console.log(input.lastName)
+                dispatch(EditUser(input))
+                console.log(input)
+                console.log(input)
                 Swal.fire({
                     icon: "success",
                     title: "Success",
