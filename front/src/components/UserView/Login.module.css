@@ -136,3 +136,9 @@
 .red{
     color: red;
 }
+
+.btnpassword{
+    border: none;
+    background-color: transparent;
+    color: skyblue;
+}
