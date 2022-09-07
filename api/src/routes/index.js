@@ -5,10 +5,8 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
+const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
-
-
-// const nodemailer = require("../config/emailer")
 
 
 const router = Router()
@@ -161,9 +159,8 @@ router.post("/registerUser", async ( req, res ) => {
     
     try {
 
-        //POR SI QUEREMOS QUE SE REGISTRE UNA SOLA VEZ POR EMAIL.
-        /* const emailBD = await userSchema.findOne({email})
-        if(emailBD) return res.status(409).json({message: "Email in use."}) */
+        const emailBD = await userSchema.findOne({email})
+        if(emailBD) return res.status(409).json({message: "Email in use."}) 
 
         const token = jwt.sign({ email: req.body.email }, process.env.SECRET);
 
@@ -173,19 +170,20 @@ router.post("/registerUser", async ( req, res ) => {
                 lastname,
                 password:  await userSchema.encryptPassword(password),
                 email,
-                token,
+                confirmationCode: token,
+                token: token
             }
         )
-        return res.send({
-            message:
-            "User was registered successfully! Please check your email",
-        });
-        /* nodemailer.sendConfirmationEmail(
+
+        nodemailer.sendConfirmationEmail(
                 user.name,
                 user.email,
-                user.token
-            ); */
-
+                user.confirmationCode
+            )
+            return res.send({
+                message:
+                "User was registered successfully! Please check your email",
+            });
     } catch (error) {
         console.error(error)
     }
@@ -205,6 +203,8 @@ router.get("/confirmUser/:token", async ( req, res ) => {
         user.save()
 
         res.status(200).send("User active.")
+
+        return res.redirect("https://localhost:3000/Home")
     } catch (error) {
         console.log(error)
     }
