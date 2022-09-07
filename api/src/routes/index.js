@@ -5,8 +5,9 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
-const nodemailer = require("../config/emailer")
+// const nodemailer = require("../config/emailer")
 
 const router = Router()
 
@@ -173,7 +174,6 @@ router.post("/registerUser", async ( req, res ) => {
                 token,
             }
         )
-        
         return res.send({
             message:
             "User was registered successfully! Please check your email",
@@ -187,14 +187,11 @@ router.post("/registerUser", async ( req, res ) => {
     } catch (error) {
         console.error(error)
     }
-    
-
 })
 
 router.get("/confirmUser/:token", async ( req, res ) => {
     const { token } = req.params
 
-    
     try {
 
         const user = await userSchema.findOne({ token: token });
@@ -211,5 +208,26 @@ router.get("/confirmUser/:token", async ( req, res ) => {
     }
 })
 
+router.get('/loginUser', async(req, res) => {  //ruta para el ingreso
+    try {
+        const {email,password} = req.body
+        if(!email || !password){
+            res.send('You must complete all fields') // si no ingreso algun campo
+        }else{
+            const user = await userSchema.findOne({ email: email });
+             if(user.length===0 || ! bcrypt.compare (password,user.password)){ //contraseña o usuarion invalido, compare devuelve un booleano
+               res.send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
+             }
+             else{
+               const id = user._id;
+               const token= jwt.sign({id:id},process.env.SECRET)
+               res.send(user) 
+            }
+        }
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
 
 module.exports = router
