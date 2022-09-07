@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import {
     userLogin,
     loginUser, 
-    getUser, 
+    getUsers, 
     logout,
     createUser,
     editUser,
@@ -45,7 +45,7 @@ export const getUser=()=>(dispatch)=>{
         })
         .the((res)=>{
             return{
-                payload: dispatch(getUser(res.data.token))
+                payload: dispatch(getUsers(res.data.token))
             }
         })
 
@@ -58,39 +58,19 @@ export const getUser=()=>(dispatch)=>{
         })
     }
 
-    //Acción para cerrar la sesión
-    export const logOut=()=>(dispatch)=>{
-        return axios.get({
-            url: `http://localhost:3001/auth/logout`,}) //// ruta temporal para esperar la del back
+    //Acción para cerrar la sesión y limpiar el localstorage 
+    export const logOut=()=>(dispatch)=>{ 
+             dispatch(logout(localStorage.clear()))
+             window.location.assign('http://localhost:3000')
 
-            .then((res) => {
-                localStorage.clear()
-                return res
-            })
-
-            .then((res) => {
-                return{
-                    payload: dispatch(logout(res.data))
-                }
-            })
-            
-            .then(() =>
-                window.location.assign('http://localhost:3000'))
-
-            .catch(err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: `${err}`,
-                })
-            })
         }
+
         ///// Menú Usuario  1.Verificar ingreso 2. Cerrar sesión//// 
 
         // Acción ingreso de usuario 
-        export const loginUser=(loginData)=>(dispatch)=>{
+        export const loginUsers=(loginData)=>(dispatch)=>{
             axios.post({
-                url: `http://localhost:3001/auth/login`,
+                url: `http://localhost:3001/loginUser`,
                 data: {
                     email: loginData.email,
                     password: loginData.password,
@@ -129,8 +109,7 @@ export const getUser=()=>(dispatch)=>{
                     name: newData.firstName,
                     lastname: newData.lastName,
                     email: newData.email,
-                    password: newData.password,
-                    
+                    password: newData.password,   
                 }
              
             })
@@ -176,8 +155,8 @@ export const getUser=()=>(dispatch)=>{
               });
         }
 
-        //Acción para modificar perfil 
-        export const EditUser=(bodyFormData, id)=>(dispatch)=>{
+        //Acción para modificar perfil (opcional - panel de usuario)
+        export const editUsers=(bodyFormData, id)=>(dispatch)=>{
             axios.put({
                 url: `http://localhost:3001/editUser/${id}`, 
                 data: bodyFormData})
@@ -199,12 +178,12 @@ export const getUser=()=>(dispatch)=>{
         }
 
         //Modifica solo el password
-        export const putUserPassword=(token, password)=>(dispatch)=>{
+        export const UserPassword=(token, password)=>(dispatch)=>{
             axios.put({
                 url: `http://localhost:3001/putUserPassword/${token}`, 
                 data: password})
             
-            .then(resp=>dispatch(putUserPassword (resp.data)))
+            .then(resp=>dispatch(putUserPassword(resp.data)))
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
