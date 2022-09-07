@@ -47,6 +47,7 @@ export default function Login({closeModal}){
                 e.preventDefault()
                 closeModal()
                 dispatch(postLogin({email: input.email, password: input.password }))
+                window.location.reload(false);
                 console.log(input)
                 setInput({
                     email: "",
@@ -81,7 +82,15 @@ export default function Login({closeModal}){
                 password: input.password,
                 name:input.name,
                 lastname:input.lastname}))
+                window.location.reload(false);
                 console.log(input)
+                Swal.fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Successfully create user",
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#0b132b"
+                });
                 setInput({
                     email: "",
                     password: "",

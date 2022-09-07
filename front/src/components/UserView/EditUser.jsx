@@ -66,7 +66,7 @@ export default function EditUser(){
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Successfully save name",
+                    text: "Successfully changes",
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
