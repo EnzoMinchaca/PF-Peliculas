@@ -209,12 +209,11 @@ router.get("/confirmUser/:token", async ( req, res ) => {
 
         res.send("user Acitive.")
 
-        return res.redirect("https://localhost:3000/Home")
+        return res.redirect("https://localhost:3000/home")
     
     } catch (error) {
 
         console.log(error)
-        
     }
 })
 
@@ -309,8 +308,10 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
 });
 
 router.post("/confirmPassword/:token", async ( req, res ) => {
+
     const { token } = req.params;
-try {
+
+    try {
 
     const user = await userSchema.findOne({ token });
 
@@ -321,6 +322,7 @@ try {
     user.password = await userSchema.encryptPassword(password)
 
     user.active
+
     user.save()
 
 
