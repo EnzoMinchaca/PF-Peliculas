@@ -5,7 +5,7 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
-const nodemailer = require("../config/emailer")
+// const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
 
 
@@ -231,5 +231,64 @@ router.get('/loginUser', async(req, res) => {  //ruta para el ingreso
         console.log(error)
     }
 });
-
+router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
+    try {
+        const {idUser}= req.query;
+        const {bodyFormData} = req.body;  //me llega en bodyFormData {name: "Raul",lastName: "Alvares"}
+        const user = await userSchema.findById(idUser);
+        if(!idUser){res.status(404).send('Error')}
+        if(Object.keys(user).length===0){
+            res.status(404).send('User does not exist') 
+        }else{ 
+           if(bodyFormData.name && bodyFormData.lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+             res.send('Your first and lastname were successfully changed')
+           }else if(bodyFormData.name){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
+             res.send('Your name was changed successfully')
+           }else if(bodyFormData.lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+             res.send('Your lastname was successfully changed')
+           } 
+           res.send('You must complete the field you want to modify');
+        }
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
+  router.put('/putUserPassword/:token', async(req, res) => {  //ruta para la contraseña del usuario
+    try {
+        const {token} = req.query;
+        const {newPassword} = req.body;
+        const user = await userSchema.findOne({ token: token });
+        if(Object.keys(user).length===0){
+            res.status(404).send('User does not exist') 
+        }
+        if(!newPassword) {res.send('You must enter a password')}
+        const salt = await bcrypt.genSalt(10);
+        const newPassBcrypt =await bcrypt.hash(newPassword, salt);
+        await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})
+        res.send('We updated your password, check your email');    
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
+  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario
+    try {
+     const {buyMovie,idUser} = req.body 
+      if(!nameMovie) {
+        res.send('could not add user buy, missing data')
+      }
+     const user = await userSchema.findById(idUser);
+     let newBuy = user.buy.concat(buyMovie)
+     await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
+     res.send('Your buy was successfully added')
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
 module.exports = router
