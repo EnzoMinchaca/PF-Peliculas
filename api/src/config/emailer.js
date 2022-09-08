@@ -7,8 +7,15 @@ const clientSecret = process.env.CLIENTSECRET
 const refreshToken = process.env.REFRESHTOKEN
 const accessToken = process.env.ACCESSTOKEN
 
-
-
+// ESTE ES OTRO TRANSPORTER POR SI EL SEGUNDO NO FUNCIONA SOLO DESCOMENTAR Y COMENTR EL OTRO
+/* let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "ivanlabra46@gmail.com",
+    pass: "ywwchfqlspcrlzak"
+});  */
 
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -87,7 +94,5 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
             <a href=http://localhost:3001/confirmUser/${confirmationCode}> Click here</a>
             </div>`,
       }).catch(err => console.log(err));
-
-
     })
 } */
