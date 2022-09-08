@@ -204,19 +204,22 @@ export const getUser=()=>(dispatch)=>{
         }
 
         //Modifica solo el password
-        export const UserPassword=(token, password)=>(dispatch)=>{
-            axios.put({
-                url: `http://localhost:3001/putUserPassword/${token}`, 
-                data: password})
+        export const UserPassword=(email)=>(dispatch)=>{
+            console.log(email)
+            axios.put(`http://localhost:3001/putUserPassword`, email)
             
             .then(resp=>dispatch(putUserPassword(resp.data)))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: `
-                The password has been changed successfully`,
+            .then(()=>{
+                console.log("entra")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `
+                    The password has been changed successfully`,
+                })
+                window.location.reload(false);
             })
-            window.location.assign("http://localhost:3000/")
+           
             .catch((e) => {
                 console.log(e);
                 return Swal.fire({

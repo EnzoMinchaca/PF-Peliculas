@@ -87,8 +87,15 @@ export default function NavBar({setPag, openModal, userMenu}) {
       }else{
         setLogin(false)
       }
+
+      if(user.isAdmin){
+      setAdmin(true)
+      }else{
+        setAdmin(false)
+      }
     }else{
       setLogin(false)
+      setAdmin(false)
     }
    
   })
@@ -607,7 +614,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 className={css.linkBtn}>
-                <AddIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+                <AdminPanelSettingsIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
             </Link>
             </IconButton>
             </Box>

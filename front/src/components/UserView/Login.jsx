@@ -8,7 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loginUsers, postCreateUser } from "../../redux/Slice/userAction";
+import { loginUsers, postCreateUser, UserPassword } from "../../redux/Slice/userAction";
 
 
 export default function Login({closeModal}){
@@ -114,26 +114,18 @@ export default function Login({closeModal}){
             Swal.fire({
                 icon: "error",
                 title: "Ohhh!",
-                text: "Plis check and complete the fields",
+                text: "Plis check and complete the field",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#0b132b"
             });
         }else{
             e.preventDefault()
-            console.log(input.email)
+            closeModal()
+            dispatch(UserPassword(input.email))
             // dispatch(({email: input.email,
             // password: input.password,
             // name:input.name,
             // lastname:input.lastname}))
-            window.location.reload(false);
-            console.log(input)
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "Successfully message send",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#0b132b"
-            });
         }
     }
 
