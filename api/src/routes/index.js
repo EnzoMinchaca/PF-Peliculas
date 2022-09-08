@@ -213,7 +213,7 @@ router.get("/confirmUser/:token", async ( req, res ) => {
     }
 })
 
-router.get('/loginUser', async(req, res) => {  //ruta para el ingreso
+router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
     try {
         const {email,password} = req.body
         if(!email || !password){

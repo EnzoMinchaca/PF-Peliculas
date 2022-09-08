@@ -8,7 +8,8 @@ import {
     createUser,
     editUser,
     getUserByToken,
-    putUserPassword 
+    putUserPassword,
+    addbys
 }from "./userSlice";
 
 
@@ -67,7 +68,7 @@ export const getUser=()=>(dispatch)=>{
 
         // Acción ingreso de usuario 
         export const loginUsers=(loginData)=>(dispatch)=>{
-            axios.get({
+            axios.post({
                 url: `http://localhost:3001/loginUser`,
                 
                 data: {
@@ -91,7 +92,8 @@ export const getUser=()=>(dispatch)=>{
                     });
             
                 })
-                .catch(() => {
+                .catch((e) => {
+                    console.log(e.message)
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -226,6 +228,29 @@ export const getUser=()=>(dispatch)=>{
             axios.get('http://localhost:3001/payment', info)
                 .then(response=>console.log(response))
         }
+
+        /// Ruta para agregar la compra al carrito 
+        export const putBuy=(newData, idUser)=>(dispatch)=>{
+            axios.put({
+                url: `http://localhost:3001/addBuy/${idUser}`, 
+                data: newData})
+            
+            .then(resp=>dispatch(addbys(resp.data)))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: `Added purchase`,
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "can't add purchase! -- Addbuy",
+                  });
+              });
+        }
+
 
 
 

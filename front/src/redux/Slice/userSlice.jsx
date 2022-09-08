@@ -56,6 +56,12 @@ export const userSlice = createSlice({
         putUserPassword: (state, action) => {
             state.movie = action.payload
         },
+
+        addbys: (state, action) => {
+            state.movie = action.payload
+        },
+
+        
         
     }
 })
@@ -67,7 +73,8 @@ export const { userLogin,
      createUser,
      editUser,
      getUserByToken,
-     putUserPassword
+     putUserPassword,
+     addbys
    
 } = userSlice.actions
 
