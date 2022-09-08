@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { postLogin, postCreateUser } from "../../redux/Slice/userAction";
+import { postLogin, postCreateUser, loginUsers} from "../../redux/Slice/userAction";
 
 export default function Login({closeModal}){
     const [rememberPassword,setRememberPassword]=useState(true)
@@ -47,13 +47,13 @@ export default function Login({closeModal}){
             else {
                 e.preventDefault()
                 closeModal()
-                dispatch(postLogin({email: input.email, password: input.password }))
-                window.location.reload(false);
+                dispatch(loginUsers({email: input.email, password: input.password }))
                 console.log(input)
                 setInput({
                     email: "",
                     password: ""
                 })
+                window.location.reload(false);
             }
         }else{
             if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastname) {
@@ -79,11 +79,11 @@ export default function Login({closeModal}){
                 });
             }else {
                 e.preventDefault()
+                closeModal()
                 dispatch(postCreateUser({email: input.email,
                 password: input.password,
                 name:input.name,
                 lastname:input.lastname}))
-                window.location.reload(false);
                 console.log(input)
                 Swal.fire({
                     icon: "success",
