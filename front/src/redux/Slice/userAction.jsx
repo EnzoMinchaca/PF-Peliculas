@@ -84,6 +84,7 @@ export const getUser=()=>(dispatch)=>{
                         icon: "success",
                         timer: "2000",
                     });
+                    window.location.reload(false);
             
                 })
                 .catch((e) => {
@@ -174,15 +175,22 @@ export const getUser=()=>(dispatch)=>{
 
         //Acción para modificar perfil (opcional - panel de usuario)
         export const editUsers=(bodyFormData, id)=>(dispatch)=>{
-            axios.put({
-                url: `http://localhost:3001/editUser/${id}`, 
-                data: bodyFormData})
+            console.log(bodyFormData)
+            console.log(id)
+            axios.put(`http://localhost:3001/editUser/${id}`, bodyFormData)
             
             .then(resp=>dispatch(editUser(resp.data)))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: `The user was successfully modified`,
+            .then(()=>{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `The user was successfully modified`,
+                })
+                const user = JSON.parse(localStorage.getItem('user'))
+                user.name=bodyFormData.nameUser
+                user.lastname=bodyFormData.lastname
+                localStorage.setItem('user', JSON.stringify(user))
+                window.location.reload(false);
             })
             .catch((e) => {
                 console.log(e);
@@ -192,6 +200,7 @@ export const getUser=()=>(dispatch)=>{
                     text: "Could not modify user.! -- EditUser",
                   });
               });
+          
         }
 
         //Modifica solo el password

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/styles.module.css";
 import ButtonHome from "../Presentational/ButtonHome";
 import css from "./EditUser.module.css";
@@ -25,12 +25,21 @@ export default function EditUser(){
     const [openLastName, setOpenLastName] = React.useState(false);
     const [openPassword, setOpenPassword] = React.useState(false);
     const [input, setInput] = React.useState({
-        name: "Raul",
-        lastName: "Alvares"
+        nameUser: "",
+        lastname: ""
         // password:"",
         // comfirmPassword:""
     })
     const dispatch=useDispatch();
+
+    useEffect(()=>{
+      const user = JSON.parse(localStorage.getItem('user'))
+      if(user){
+        if(user.name && user.lastname && user._id){
+          setInput({nameUser: user.name, lastname: user.lastname})
+        }
+      }
+    },[])
     function handleChange(e) {
         setInput({
             ...input,
@@ -49,7 +58,7 @@ export default function EditUser(){
     //   };
 
       function handleSubmitName(e) {
-            if(!input.name || !input.lastName){
+            if(!input.nameUser || !input.lastname){
                 e.preventDefault()
                 Swal.fire({
                     icon: "error",
@@ -60,7 +69,9 @@ export default function EditUser(){
                 });
             }else{
                 e.preventDefault()
-                dispatch(editUsers(input))
+                const user = JSON.parse(localStorage.getItem('user'))
+                console.log(user._id)
+                dispatch(editUsers(input,user._id))
                 console.log(input)
                 console.log(input)
                 Swal.fire({
@@ -159,8 +170,8 @@ export default function EditUser(){
                             className={css.input}
                             placeholder="Name"
                             type="text" 
-                            value={input.name}
-                            name="name"
+                            value={input.nameUser}
+                            name="nameUser"
                             required
                             onChange={(e) => handleChange(e)}
                         />
@@ -171,8 +182,8 @@ export default function EditUser(){
                             className={css.input}
                             placeholder="Last Name"
                             type="text" 
-                            value={input.lastName}
-                            name="lastName"
+                            value={input.lastname}
+                            name="lastname"
                             required
                             onChange={(e) => handleChange(e)}
                         />

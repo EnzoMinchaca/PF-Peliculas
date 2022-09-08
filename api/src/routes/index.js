@@ -250,22 +250,22 @@ router.get('/payment', async(req, res) => {     //para mercadopago en req se le 
 
 router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
     try {
-        const {idUser}= req.query;
-        const {bodyFormData} = req.body;  //me llega en bodyFormData {name: "Raul",lastName: "Alvares"}
+        const {idUser}= req.params;
+        const {nameUser,lastname} = req.body;  //me llega en {name: "Raul",lastName: "Alvares"}
         const user = await userSchema.findById(idUser);
         if(!idUser){res.status(404).send('Error')}
         if(Object.keys(user).length===0){
             res.status(404).send('User does not exist') 
         }else{ 
-           if(bodyFormData.name && bodyFormData.lastname){
-             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
-             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+           if(nameUser && lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: nameUser }})
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: lastname }})
              res.send('Your first and lastname were successfully changed')
-           }else if(bodyFormData.name){
-             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
+           }else if(nameUser){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: nameUser }})
              res.send('Your name was changed successfully')
-           }else if(bodyFormData.lastname){
-             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+           }else if(lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: lastname }})
              res.send('Your lastname was successfully changed')
            } 
            res.send('You must complete the field you want to modify');
