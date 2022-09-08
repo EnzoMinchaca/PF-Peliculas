@@ -46,6 +46,10 @@ const userSchema = Schema(
             enum: ['Pending', 'Active'],
             default: 'Pending'
         },
+        buy: {
+            type: Array,
+            default: []
+       },
         confirmationCode: { 
             type: String, 
             unique: true 

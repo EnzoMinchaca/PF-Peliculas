@@ -222,7 +222,10 @@ export const getUser=()=>(dispatch)=>{
               });
         }
 
-
+        export const getPayment=(info)=>(dispatch)=>{
+            axios.get('http://localhost:3001/payment', info)
+                .then(response=>console.log(response))
+        }
 
 
 

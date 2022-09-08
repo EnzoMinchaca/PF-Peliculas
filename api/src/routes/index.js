@@ -5,11 +5,12 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
+// const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
 
-
-// const nodemailer = require("../config/emailer")
-
+const PaymentController = require('../controllers/paymentsController')
+const PaymentService = require('../service/paymentService')
+const PaymentInstance = new PaymentController(new PaymentService())
 
 const router = Router()
 
@@ -161,9 +162,8 @@ router.post("/registerUser", async ( req, res ) => {
     
     try {
 
-        //POR SI QUEREMOS QUE SE REGISTRE UNA SOLA VEZ POR EMAIL.
-        /* const emailBD = await userSchema.findOne({email})
-        if(emailBD) return res.status(409).json({message: "Email in use."}) */
+        const emailBD = await userSchema.findOne({email})
+        if(emailBD) return res.status(409).json({message: "Email in use."}) 
 
         const token = jwt.sign({ email: req.body.email }, process.env.SECRET);
 
@@ -173,19 +173,20 @@ router.post("/registerUser", async ( req, res ) => {
                 lastname,
                 password:  await userSchema.encryptPassword(password),
                 email,
-                token,
+                confirmationCode: token,
+                token: token
             }
         )
-        return res.send({
-            message:
-            "User was registered successfully! Please check your email",
-        });
-        /* nodemailer.sendConfirmationEmail(
+
+        nodemailer.sendConfirmationEmail(
                 user.name,
                 user.email,
-                user.token
-            ); */
-
+                user.confirmationCode
+            )
+            return res.send({
+                message:
+                "User was registered successfully! Please check your email",
+            });
     } catch (error) {
         console.error(error)
     }
@@ -205,6 +206,8 @@ router.get("/confirmUser/:token", async ( req, res ) => {
         user.save()
 
         res.status(200).send("User active.")
+
+        return res.redirect("https://localhost:3000/Home")
     } catch (error) {
         console.log(error)
     }
@@ -231,5 +234,72 @@ router.get('/loginUser', async(req, res) => {  //ruta para el ingreso
         console.log(error)
     }
 });
+
+
+router.get('/payment', async(req, res) => {     //para mercadopago en req se le pasan por body los datos del usuario
+    PaymentInstance.getPaymentLink(req, res)
+});
+
+
+router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
+    try {
+        const {idUser}= req.query;
+        const {bodyFormData} = req.body;  //me llega en bodyFormData {name: "Raul",lastName: "Alvares"}
+        const user = await userSchema.findById(idUser);
+        if(!idUser){res.status(404).send('Error')}
+        if(Object.keys(user).length===0){
+            res.status(404).send('User does not exist') 
+        }else{ 
+           if(bodyFormData.name && bodyFormData.lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+             res.send('Your first and lastname were successfully changed')
+           }else if(bodyFormData.name){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { name: bodyFormData.name }})
+             res.send('Your name was changed successfully')
+           }else if(bodyFormData.lastname){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: bodyFormData.lastname }})
+             res.send('Your lastname was successfully changed')
+           } 
+           res.send('You must complete the field you want to modify');
+        }
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
+  router.put('/putUserPassword/:token', async(req, res) => {  //ruta para la contraseña del usuario
+    try {
+        const {token} = req.query;
+        const {newPassword} = req.body;
+        const user = await userSchema.findOne({ token: token });
+        if(Object.keys(user).length===0){
+            res.status(404).send('User does not exist') 
+        }
+        if(!newPassword) {res.send('You must enter a password')}
+        const salt = await bcrypt.genSalt(10);
+        const newPassBcrypt =await bcrypt.hash(newPassword, salt);
+        await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})
+        res.send('We updated your password, check your email');    
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
+  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario
+    try {
+     const {buyMovie,idUser} = req.body 
+      if(!nameMovie) {
+        res.send('could not add user buy, missing data')
+      }
+     const user = await userSchema.findById(idUser);
+     let newBuy = user.buy.concat(buyMovie)
+     await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
+     res.send('Your buy was successfully added')
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
 
 module.exports = router
