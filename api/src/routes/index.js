@@ -8,6 +8,9 @@ const jwt = require("jsonwebtoken")
 // const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
 
+const PaymentController = require('../controllers/paymentsController')
+const PaymentService = require('../service/paymentService')
+const PaymentInstance = new PaymentController(new PaymentService())
 
 const router = Router()
 
@@ -231,6 +234,13 @@ router.get('/loginUser', async(req, res) => {  //ruta para el ingreso
         console.log(error)
     }
 });
+
+
+router.get('/payment', async(req, res) => {     //para mercadopago en req se le pasan por body los datos del usuario
+    PaymentInstance.getPaymentLink(req, res)
+});
+
+
 router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
     try {
         const {idUser}= req.query;
@@ -291,4 +301,5 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
         console.log(error)
     }
   });
+
 module.exports = router
