@@ -11,13 +11,11 @@ import {
     putUserPassword 
 }from "./userSlice";
 
-// Nota: hay datos temporales que deben ajustarse a lo que venga del back pero la estructura esta. 
-
 
 //Acción para logearse cuando ya este registrado 
 export const postLogin=(data)=>(dispatch)=>{
     return axios.post({
-           url: `http://localhost:3001/auth/login`, //ruta temporal para esperar la del back
+           url: `http://localhost:3001/loginUser`,
            data: data})
 
         .then(res => {
@@ -50,7 +48,7 @@ export const getUser=()=>(dispatch)=>{
         })
 
         .catch(err => {
-            if (err.message == "Cannot read property 'data' of undefined") {
+            if (err.message === "Cannot read property 'data' of undefined") {
                 return console.log('err:: ', err.message);
             }
             localStorage.setItem('statusToken', 'Token expirado.');
@@ -69,8 +67,9 @@ export const getUser=()=>(dispatch)=>{
 
         // Acción ingreso de usuario 
         export const loginUsers=(loginData)=>(dispatch)=>{
-            axios.post({
+            axios.get({
                 url: `http://localhost:3001/loginUser`,
+                
                 data: {
                     email: loginData.email,
                     password: loginData.password,
@@ -82,26 +81,27 @@ export const getUser=()=>(dispatch)=>{
                     }
                 })
                 .then(res => {
-                    localStorage.setItem('token', res.data.token)
-                    localStorage.setItem('statusToken', 'Usted está autorizado correctamente!')
-                    window.location.assign("http://localhost:3000/checkuser/auth/login") // Crear ruta para direccionar al usuario
+                    localStorage.setItem('email', res.data.token)
+                    localStorage.setItem('statusToken', 'You are properly authorized!')
+                    
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Ingreso Exitoso...',
-                        text: 'Bienvenido a Henry Movie',
-                    })
+                        text: "You have successfully logged in",
+                        icon: "success",
+                        timer: "2000",
+                    });
+            
                 })
                 .catch(() => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Los datos ingresados son erroneos, Intente de nuevo',
+                        text: 'The data entered is incorrect -- LoginUser',
                     })
                 })
         }
 
         //Acción para crear usuario 
-       export const postCreateUser=(newData)=>(dispatch)=>{
+       /*export const postCreateUser=(newData)=>(dispatch)=>{
             return axios.post({
                 url: `http://localhost:3001/registerUser`,
                 
@@ -139,7 +139,28 @@ export const getUser=()=>(dispatch)=>{
                 }
                 )
         }
-        
+        */
+        export const postCreateUser=(user)=>(dispatch)=>{
+            axios.post('http://localhost:3001/registerUser', user)
+            .then(resp=>dispatch(createUser(resp.data)))
+            Swal.fire({
+                //position: 'top-end',
+                position: 'top-end',
+                icon: 'success',
+                title: 'You have successfully logged in',
+                showConfirmButton: false,
+                timer: 5000
+            })
+            window.location.assign("http://localhost:3000/Home")
+            .catch((e) => console.log(e))
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'the email entered is already registered',
+            })
+            
+        }
+
 
         //Acción para verificar token
         export const getToken=(token)=>(dispatch)=>{

@@ -16,9 +16,10 @@ export const userSlice = createSlice({
         },
 
         loginUser: (state, action)=>{
+            localStorage.setItem('usuarioLogeado', action.payload)
             return {
                 ...state,
-                data: action.payload
+                logUsers: action.payload
             }      
         },
 
@@ -37,11 +38,8 @@ export const userSlice = createSlice({
             }      
         },
 
-        createUser: (state, action)=>{
-            return {
-                ...state,
-                data: action.payload
-            }      
+        createUser: (state)=>{
+            return{state}     
         },
 
         editUser: (state, action)=>{

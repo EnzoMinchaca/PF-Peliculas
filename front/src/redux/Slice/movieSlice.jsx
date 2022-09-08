@@ -6,7 +6,7 @@ export const movieSlice = createSlice({
 
     initialState:{
         allMovies:[],//estado que siempre va a almacenar todas las peliculas
-        movies:[], //estado que se va a renderizar en los compon
+        movies:[], //estado que se va a renderizar en los componentes
 
         movie: {},
         filtered: [],
