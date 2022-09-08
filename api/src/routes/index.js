@@ -5,7 +5,7 @@ const genreSchema = require('../models/genre.js')
 const platformSchema = require('../models/platform.js')
 const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
-// const nodemailer = require("../config/emailer")
+const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
 
 const PaymentController = require('../controllers/paymentsController')
@@ -174,7 +174,7 @@ router.post("/registerUser", async ( req, res ) => {
                 password:  await userSchema.encryptPassword(password),
                 email,
                 confirmationCode: token,
-                token: token
+                token: "0"
             }
         )
 
@@ -197,7 +197,7 @@ router.get("/confirmUser/:token", async ( req, res ) => {
 
     try {
 
-        const user = await userSchema.findOne({ token: token });
+        const user = await userSchema.findOne({ confirmationCode : token });
 
         if( !user ) return res.send("User Not found.")
 
@@ -205,10 +205,14 @@ router.get("/confirmUser/:token", async ( req, res ) => {
 
         user.save()
 
-        res.status(200).send("User active.")
+        console.log("User active.")
 
-        return res.redirect("https://localhost:3000/Home")
+        res.send("user Acitive.")
+
+        return res.redirect("https://localhost:3000/home")
+    
     } catch (error) {
+
         console.log(error)
     }
 })
@@ -220,13 +224,15 @@ router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
             res.send('You must complete all fields') // si no ingreso algun campo
         }else{
             const user = await userSchema.findOne({ email: email });
-             if(user.length===0 || ! bcrypt.compare (password,user.password)){ //contraseña o usuarion invalido, compare devuelve un booleano
+             if(user.length===0 || ! bcrypt.compare ( password,user.password )){ //contraseña o usuarion invalido, compare devuelve un booleano
                res.send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
              }
              else{
                const id = user._id;
+
                const token= jwt.sign({id:id},process.env.SECRET)
-               res.send(user) 
+
+               res.json(user) 
             }
         }
     }
@@ -268,38 +274,93 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
         console.log(error)
     }
   });
-  router.put('/putUserPassword/:token', async(req, res) => {  //ruta para la contraseña del usuario
+
+  router.put('/putUserPassword', async(req, res) => {  //ruta para la contraseña del usuario
+
     try {
-        const {token} = req.query;
-        const {newPassword} = req.body;
-        const user = await userSchema.findOne({ token: token });
-        if(Object.keys(user).length===0){
-            res.status(404).send('User does not exist') 
+        const { email } = req.body;
+        const user = await userSchema.findOne({ email: email });
+
+        if(Object.keys(user).length === 0){
+            res.status(404).send('User does not exist')
         }
-        if(!newPassword) {res.send('You must enter a password')}
-        const salt = await bcrypt.genSalt(10);
-        const newPassBcrypt =await bcrypt.hash(newPassword, salt);
-        await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})
-        res.send('We updated your password, check your email');    
+
+        /* const salt = await bcrypt.genSalt(10);
+        const newPassBcrypt =await bcrypt.hash(newPassword, salt);      
+        await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})*/ 
+        const token = jwt.sign({ email }, process.env.SECRET);
+
+        user.token = token
+
+        user.save()
+
+        let verificationLink = `https://localhost:3000/rutaCrearNuevaPass/${token}`
+        nodemailer.RetrievePassword(
+            email,
+            verificationLink
+        )
+
+        res.send('A link to change your password was sent to your email.');    
     }
     catch(error) {
         console.log(error)
     }
-  });
-  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario
+});
+
+router.post("/confirmPassword/:token", async ( req, res ) => {
+
+    const { token } = req.params;
+
     try {
+
+    const user = await userSchema.findOne({ token });
+
+    if(!user) return res.send("The user was not found.")//res.redirect("https://localhost:3000/register")
+
+    console.log("usuario encontrado")
+
+    user.password = await userSchema.encryptPassword(password)
+
+    user.active
+
+    user.save()
+
+
+} catch (error) {
+    console.log(error)
+    res.status(404).send("The user's password could not be changed.")
+}
+})
+
+
+  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario
+
+    try {
+
      const {buyMovie,idUser} = req.body 
+
       if(!nameMovie) {
+
         res.send('could not add user buy, missing data')
-      }
-     const user = await userSchema.findById(idUser);
-     let newBuy = user.buy.concat(buyMovie)
+
+    }
+
+    const user = await userSchema.findById(idUser);
+
+    let newBuy = user.buy.concat(buyMovie)
+
      await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
+
      res.send('Your buy was successfully added')
+
     }
+
     catch(error) {
+
         console.log(error)
+
     }
+
   });
 
 module.exports = router

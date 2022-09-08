@@ -68,22 +68,19 @@ export const getUser=()=>(dispatch)=>{
 
         // Acción ingreso de usuario 
         export const loginUsers=(loginData)=>(dispatch)=>{
-            axios.post({
-                url: `http://localhost:3001/loginUser`,
-                
-                data: {
-                    email: loginData.email,
-                    password: loginData.password,
-                }
-            })
+
+            console.log(loginData)
+            axios.post('http://localhost:3001/loginUser', loginData)
+
                 .then(res => {
+                    console.log(res)
+                    localStorage.setItem('user', JSON.stringify(res.data))
                     return{
                         payload: dispatch(loginUser(res.data))
                     }
                 })
                 .then(res => {
-                    localStorage.setItem('email', res.data.token)
-                    localStorage.setItem('statusToken', 'You are properly authorized!')
+                    console.log(res)
                     
                     Swal.fire({
                         text: "You have successfully logged in",
@@ -147,7 +144,7 @@ export const getUser=()=>(dispatch)=>{
             .then(resp=>dispatch(createUser(resp.data)))
             Swal.fire({
                 //position: 'top-end',
-                position: 'top-end',
+                //position: 'top-end',
                 icon: 'success',
                 title: 'You have successfully logged in',
                 showConfirmButton: false,
