@@ -58,7 +58,6 @@ export default function Login({closeModal}){
                     email: "",
                     password: ""
                 })
-                window.location.reload(false);
             }
         }else{
             if(!input.email || !input.password || !input.name || !input.comfirmPassword || !input.lastname) {
