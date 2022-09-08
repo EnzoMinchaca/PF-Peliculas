@@ -40,7 +40,20 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
   };
 
 
-
+  module.exports.RetrievePassword = ( email ) => {
+    console.log("Check")
+  
+    transporter.sendMail({
+      from: "Password Reset",
+      to:email,
+      subject: "Please confirm that you are the account owner.",
+      html: `<h1>Email Confirmation</h1>
+            <h2>You requested for password reset.</h2>
+            <p>Click on the link below to be redirected to a place where you can change your password.</p>
+            <a href=${verificationLink}>${verificationLink}</a>
+            </div>`,
+    })
+  }
   /* module.exports.sendConfirmationEmail = async (name, email, confirmationCode) =>{
     const OAuth2 = new tokenGoogle(
       accesToken.auth.clientId,
