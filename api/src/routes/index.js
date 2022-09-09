@@ -333,7 +333,7 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 })
 
 
-  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario
+  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario(faltan datos para terminarla)
 
     try {
 
@@ -362,5 +362,49 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
     }
 
   });
-
+  
+router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el estado del usuario
+    try {
+        const {id}= req.params;
+        const {isUser,isAdmin,isOwner,isBan}= req.body
+        const user= await userSchema.findById(id);
+        if(!user){
+          res.status(404).send('The user does not exist')
+        }
+         let changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: isUser, isAdmin: isAdmin, isOwner:isOwner, isBan:isBan}})
+        if(changeStatus){
+            res.send(`${user.name} is status changed successfully`)
+        }
+    
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
+router.delete('/deletUsers/:id', async(req, res) => {  //ruta para la eliminar usuario
+    try {
+        const {id} = req.params;
+        let userDelete = await userSchema.findByIdAndDelete(id)
+        if(!id){res.status(404).send('Error')}
+        if(userDelete){
+          res.send('Your username was successfully deleted')
+        }
+        else{
+          res.send('An error occurred when deleting the user')
+        }
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
+  
+router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuarios devuelve array de obj
+    try {
+     const allUsers = await userSchema.find();
+     res.send(allUsers)
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
 module.exports = router
