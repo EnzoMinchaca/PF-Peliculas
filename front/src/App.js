@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/confirm" element={<Confirm/>}/>
         <Route exact path="/success" element={<Success/>} />
         <Route exact path="/example" element={<Example/>} />
-        <Route exact path="/password" element={<Password/>} />
+        <Route exact path="/password/:token" element={<Password/>} />
         <Route exact path="/vistaUser" element={<VistaUser/>} />
         <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
       </Routes>
