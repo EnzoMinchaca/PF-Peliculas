@@ -171,15 +171,17 @@ export const getUser=()=>(dispatch)=>{
         export const postCreateUser=(user)=>(dispatch)=>{
             axios.post('http://localhost:3001/registerUser', user)
             .then(resp=>dispatch(createUser(resp.data)))
-            Swal.fire({
-                //position: 'top-end',
-                //position: 'top-end',
-                icon: 'success',
-                title: 'You have successfully logged in',
-                showConfirmButton: false,
-                timer: 5000
+            .then(()=>{
+                Swal.fire({
+                    //position: 'top-end',
+                    //position: 'top-end',
+                    icon: 'success',
+                    title: 'You have successfully logged in',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+                window.location.assign("http://localhost:3000/Home")
             })
-            window.location.assign("http://localhost:3000/Home")
             .catch((e) => console.log(e))
             Swal.fire({
                 icon: 'error',
