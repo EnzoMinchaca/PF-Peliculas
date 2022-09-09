@@ -13,6 +13,7 @@ import Success from './components/UserView/Success';
 import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
 import VistaUser from './components/AdmidView/VistaUser';
+import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
 //import Order from './components/UserView/Order';
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/example" element={<Example/>} />
         <Route exact path="/password" element={<Password/>} />
         <Route exact path="/vistaUser" element={<VistaUser/>} />
+        <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
       </Routes>
     </BrowserRouter>
   )

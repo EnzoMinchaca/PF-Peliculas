@@ -118,7 +118,12 @@ export const movieSlice = createSlice({
               } else {
                 return { ...state, movies: state.filtered };
               }
-        }
+        },
+        deleteMovieById: (state,action)=>{         
+          state.movies = state.movies.filter(movie=> movie._id !== action.payload);    
+          state.movies = state.movies.filter(movie=> movie._id !== action.payload);
+      
+        },
     }
 }
 
@@ -138,7 +143,8 @@ export const {
     filterByPlataform,
     sortRating,
     sortYear,
-    postMovie
+    postMovie,
+    deleteMovieById
 } = movieSlice.actions
 
 export default movieSlice.reducer
