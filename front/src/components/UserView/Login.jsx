@@ -92,13 +92,6 @@ export default function Login({closeModal}){
                 name:input.name,
                 lastname:input.lastname}))
                 console.log(input)
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Successfully create user",
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: "#0b132b"
-                });
                 setInput({
                     email: "",
                     password: "",

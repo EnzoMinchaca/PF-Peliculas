@@ -18,7 +18,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { editUsers } from "../../redux/Slice/userAction";
+import { confiPassword, editUsers } from "../../redux/Slice/userAction";
+import { useParams } from "react-router";
 
 export default function Password(){
     const [input, setInput] = React.useState({
@@ -28,6 +29,7 @@ export default function Password(){
         // comfirmPassword:""
     })
     const dispatch=useDispatch();
+    const {token} =useParams();
 
     function handleChange(e) {
         setInput({
@@ -53,11 +55,17 @@ export default function Password(){
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
+            }else if(input.password!==input.comfirmPassword){
+                Swal.fire({
+                    icon: "error",
+                    title: "Ohhh!",
+                    text: "Passwords are not the same",
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#0b132b"
+                });
             }else{
                 e.preventDefault()
-                
-                console.log(input)
-                console.log(input)
+                dispatch(confiPassword(token,input.password))
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -135,7 +143,7 @@ export default function Password(){
                         <input 
                             className={css.input}
                             placeholder="password"
-                            type="text" 
+                            type="password" 
                             value={input.password}
                             name="password"
                             required
@@ -147,7 +155,7 @@ export default function Password(){
                         <input 
                             className={css.input}
                             placeholder="Cofirm password"
-                            type="text" 
+                            type="password" 
                             value={input.comfirmPassword}
                             name="comfirmPassword"
                             required
