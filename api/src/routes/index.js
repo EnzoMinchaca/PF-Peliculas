@@ -242,7 +242,7 @@ router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
 });
 
 
-router.get('/payment', async(req, res) => {     //para mercadopago en req se le pasan por body los datos del usuario
+router.post('/payment', async(req, res) => {     //para mercadopago en req se le pasan por body los datos del usuario
     PaymentInstance.getPaymentLink(req, res)
 });
 
