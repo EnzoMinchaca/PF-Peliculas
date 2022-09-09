@@ -9,7 +9,7 @@ import {
     editUser,
     getUserByToken,
     putUserPassword,
-
+    comfirmPassword,
     addbys,
     getAllUsers,
 
@@ -97,11 +97,15 @@ export const getUser=()=>(dispatch)=>{
             axios.post('http://localhost:3001/loginUser', loginData)
 
                 .then(res => {
-                    console.log(res)
-                    localStorage.setItem('user', JSON.stringify(res.data))
+                    if(res.data.status==="Active"){
+                        localStorage.setItem('user', JSON.stringify(res.data))
                     return{
                         payload: dispatch(loginUser(res.data))
                     }
+                    }else{
+                        throw TypeError("User no activate")
+                    }
+                    
                 })
                 .then(res => {
                     console.log(res)
@@ -233,7 +237,7 @@ export const getUser=()=>(dispatch)=>{
         //Modifica solo el password
         export const UserPassword=(email)=>(dispatch)=>{
             console.log(email)
-            axios.put(`http://localhost:3001/putUserPassword`, email)
+            axios.put(`http://localhost:3001/putUserPassword`, {email: email})
             
             .then(resp=>dispatch(putUserPassword(resp.data)))
             .then(()=>{
@@ -244,7 +248,7 @@ export const getUser=()=>(dispatch)=>{
                     text: `
                     The password has been changed successfully`,
                 })
-                window.location.reload(false);
+                
             })
            
             .catch((e) => {
@@ -255,6 +259,30 @@ export const getUser=()=>(dispatch)=>{
                     text: "The user data is not correct",
                   });
               });
+        }
+
+        export const confiPassword=(token, password)=>(dispatch)=>{
+            console.log(token)
+            console.log(password)
+            axios.post(`http://localhost:3001/confirmPassword/${token}`,{password:password})
+            .then(resp=>dispatch(comfirmPassword(resp.data)))
+            .then(()=>{
+                Swal.fire({
+                    //position: 'top-end',
+                    //position: 'top-end',
+                    icon: 'success',
+                    title: 'Success pasword change',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+                window.location.assign("http://localhost:3000/Home")
+            })
+            .catch((e) => console.log(e))
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to change password',
+            })
         }
 
         export const getPayment=(info)=>(dispatch)=>{

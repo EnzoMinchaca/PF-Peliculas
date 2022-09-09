@@ -221,7 +221,7 @@ router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
         const {email,password} = req.body
         
         if(!email || !password){
-            res.send('You must complete all fields') // si no ingreso algun campo
+            res.status(404).send('You must complete all fields') // si no ingreso algun campo
         }
         
         else{
@@ -229,17 +229,17 @@ router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
             if(user){
                 console.log(await bcrypt.compare( password, user.password))
                 if( ! await bcrypt.compare( password, user.password)){ //contraseña o usuarion invalido, compare devuelve un booleano
-                   res.send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
-                 }
-                 else{
-                   const id = user._id;
-    
-                   const token= jwt.sign({id:id},process.env.SECRET)
-    
-                   res.json(user) 
-                }
+               res.status(404).send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
+             }
+             else{
+               const id = user._id;
+
+               const token= jwt.sign({id:id},process.env.SECRET)
+
+               res.json(user) 
+            }
             }else{
-                res.send("No user fount")
+                res.status(404).send("No user fount")
             }
           
         }
@@ -288,7 +288,8 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
     try {
         const { email } = req.body;
         const user = await userSchema.findOne({ email: email });
-
+        console.log("entra")
+        console.log(email)
         if(!user) return res.send("El usuario no existe.")
 
         /* const salt = await bcrypt.genSalt(10);
@@ -329,7 +330,7 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
     user.password = await userSchema.encryptPassword(password)
     user.save()
 
-    return res.redirect(`https://localhost:3000/home`)
+    return res.send(`Exited change`)
 
 } catch (error) {
     console.log(error)

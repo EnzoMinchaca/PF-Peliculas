@@ -54,6 +54,10 @@ export const userSlice = createSlice({
             return{state}     
         },
 
+        comfirmPassword: (state)=>{
+            return{state}     
+        },
+
         editUser: (state, action)=>{
             return {
                 ...state,
@@ -94,6 +98,7 @@ export const { userLogin,
      getUserByToken,
      putUserPassword,
      getAllUsers,
+     comfirmPassword,
      toPay,
      addbys
 
