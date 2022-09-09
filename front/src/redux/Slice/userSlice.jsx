@@ -64,6 +64,11 @@ export const userSlice = createSlice({
                 payLink: action.payload
             }
         }
+        addbys: (state, action) => {
+            state.movie = action.payload
+        },
+
+        
         
     }
 })
@@ -76,7 +81,8 @@ export const { userLogin,
      editUser,
      getUserByToken,
      putUserPassword,
-     toPay
+     toPay,
+     addbys
    
 } = userSlice.actions
 

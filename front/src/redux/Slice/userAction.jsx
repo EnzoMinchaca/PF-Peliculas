@@ -9,7 +9,8 @@ import {
     editUser,
     getUserByToken,
     putUserPassword,
-    toPay 
+    toPay, 
+    addbys
 }from "./userSlice";
 
 
@@ -68,8 +69,10 @@ export const getUser=()=>(dispatch)=>{
 
         // Acción ingreso de usuario 
         export const loginUsers=(loginData)=>(dispatch)=>{
+
             console.log(loginData)
             axios.post('http://localhost:3001/loginUser', loginData)
+
                 .then(res => {
                     console.log(res)
                     localStorage.setItem('user', JSON.stringify(res.data))
@@ -85,6 +88,7 @@ export const getUser=()=>(dispatch)=>{
                         icon: "success",
                         timer: "2000",
                     });
+                    window.location.reload(false);
             
                 })
                 .catch((e) => {
@@ -175,15 +179,22 @@ export const getUser=()=>(dispatch)=>{
 
         //Acción para modificar perfil (opcional - panel de usuario)
         export const editUsers=(bodyFormData, id)=>(dispatch)=>{
-            axios.put({
-                url: `http://localhost:3001/editUser/${id}`, 
-                data: bodyFormData})
+            console.log(bodyFormData)
+            console.log(id)
+            axios.put(`http://localhost:3001/editUser/${id}`, bodyFormData)
             
             .then(resp=>dispatch(editUser(resp.data)))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: `The user was successfully modified`,
+            .then(()=>{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `The user was successfully modified`,
+                })
+                const user = JSON.parse(localStorage.getItem('user'))
+                user.name=bodyFormData.nameUser
+                user.lastname=bodyFormData.lastname
+                localStorage.setItem('user', JSON.stringify(user))
+                window.location.reload(false);
             })
             .catch((e) => {
                 console.log(e);
@@ -193,22 +204,26 @@ export const getUser=()=>(dispatch)=>{
                     text: "Could not modify user.! -- EditUser",
                   });
               });
+          
         }
 
         //Modifica solo el password
-        export const UserPassword=(token, password)=>(dispatch)=>{
-            axios.put({
-                url: `http://localhost:3001/putUserPassword/${token}`, 
-                data: password})
+        export const UserPassword=(email)=>(dispatch)=>{
+            console.log(email)
+            axios.put(`http://localhost:3001/putUserPassword`, email)
             
             .then(resp=>dispatch(putUserPassword(resp.data)))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: `
-                The password has been changed successfully`,
+            .then(()=>{
+                console.log("entra")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `
+                    The password has been changed successfully`,
+                })
+                window.location.reload(false);
             })
-            window.location.assign("http://localhost:3000/")
+           
             .catch((e) => {
                 console.log(e);
                 return Swal.fire({
@@ -226,6 +241,29 @@ export const getUser=()=>(dispatch)=>{
                     dispatch(toPay(response.data.init_point))
                 })
         }
+
+        /// Ruta para agregar la compra al carrito 
+        export const putBuy=(newData, idUser)=>(dispatch)=>{
+            axios.put({
+                url: `http://localhost:3001/addBuy/${idUser}`, 
+                data: newData})
+            
+            .then(resp=>dispatch(addbys(resp.data)))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: `Added purchase`,
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "can't add purchase! -- Addbuy",
+                  });
+              });
+        }
+
 
 
 

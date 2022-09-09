@@ -20,26 +20,15 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { editUsers } from "../../redux/Slice/userAction";
 
-export default function EditUser(){
-    const [openName, setOpenName] = React.useState(false);
-    const [openLastName, setOpenLastName] = React.useState(false);
-    const [openPassword, setOpenPassword] = React.useState(false);
+export default function Password(){
     const [input, setInput] = React.useState({
-        nameUser: "",
-        lastname: ""
+        password: "",
+        comfirmPassword: ""
         // password:"",
         // comfirmPassword:""
     })
     const dispatch=useDispatch();
 
-    useEffect(()=>{
-      const user = JSON.parse(localStorage.getItem('user'))
-      if(user){
-        if(user.name && user.lastname && user._id){
-          setInput({nameUser: user.name, lastname: user.lastname})
-        }
-      }
-    },[])
     function handleChange(e) {
         setInput({
             ...input,
@@ -47,9 +36,6 @@ export default function EditUser(){
         })
         console.log(input)
     }
-    const handleClickName = () => {
-      setOpenName(!openName);
-    };
     // const handleClickLastName = () => {
     //     setOpenLastName(!openLastName);
     //   };
@@ -58,7 +44,7 @@ export default function EditUser(){
     //   };
 
       function handleSubmitName(e) {
-            if(!input.nameUser || !input.lastname){
+            if(!input.password || !input.comfirmPassword){
                 e.preventDefault()
                 Swal.fire({
                     icon: "error",
@@ -69,9 +55,7 @@ export default function EditUser(){
                 });
             }else{
                 e.preventDefault()
-                const user = JSON.parse(localStorage.getItem('user'))
-                console.log(user._id)
-                dispatch(editUsers(input,user._id))
+                
                 console.log(input)
                 console.log(input)
                 Swal.fire({
@@ -144,46 +128,28 @@ export default function EditUser(){
                 <p className={styles.span}>Edit Profile</p></div>
                 <div className={styles.ubButton}><ButtonHome/> </div>
             <div className={css.generalContainer}></div>
-            <List
-      sx={{ width: '100%',bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Profile settings
-        </ListSubheader>
-      }
-    >
-      <ListItemButton onClick={handleClickName}>
-        <ListItemIcon>
-          <PersonIcon/>
-        </ListItemIcon>
-        <ListItemText primary="Edit Name" />
-        {openName ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={openName} timeout="auto" unmountOnExit>
         <form onSubmit={(e)=>handleSubmitName(e)} className={css.form}>
             <div className={css.containerInputs}>
                     <div>
-                        <label>Name: </label>
+                        <label>Password: </label>
                         <input 
                             className={css.input}
-                            placeholder="Name"
+                            placeholder="password"
                             type="text" 
-                            value={input.nameUser}
-                            name="nameUser"
+                            value={input.password}
+                            name="password"
                             required
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
                     <div>
-                        <label>Last Name: </label>
+                        <label>Comfirm Password: </label>
                         <input 
                             className={css.input}
-                            placeholder="Last Name"
+                            placeholder="Cofirm password"
                             type="text" 
-                            value={input.lastname}
-                            name="lastname"
+                            value={input.comfirmPassword}
+                            name="comfirmPassword"
                             required
                             onChange={(e) => handleChange(e)}
                         />
@@ -192,7 +158,6 @@ export default function EditUser(){
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
-      </Collapse>
       {/* <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>
           <PersonIcon/>
@@ -257,8 +222,6 @@ export default function EditUser(){
                 </div>
         </form>
       </Collapse> */}
-      
-    </List>
         </div>
     )
 }

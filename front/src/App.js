@@ -11,6 +11,7 @@ import AdminPanel from './components/AdmidView/AdminPanel';
 import Confirm from './components/UserView/Confirm';
 import Success from './components/UserView/Success';
 import Example from './components/UserView/Example';
+import Password from './components/UserView/Password';
 //import Order from './components/UserView/Order';
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/confirm" element={<Confirm/>}/>
         <Route exact path="/success" element={<Success/>} />
         <Route exact path="/example" element={<Example/>} />
+        <Route exact path="/password" element={<Password/>} />
       </Routes>
     </BrowserRouter>
   )

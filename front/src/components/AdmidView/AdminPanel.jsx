@@ -1,5 +1,8 @@
 import React from "react";
-import Header from "../Presentational/AdminHeader";
+import Header from '../Presentational/header'
+import Footer from '../Presentational/footer'
+import ButtonHome from '../Presentational/ButtonHome'
+import styles from "../../styles/styles.module.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Style from "./AdminPanel.module.css"
 
@@ -7,9 +10,12 @@ import Style from "./AdminPanel.module.css"
 export default function AdminPanel() {
     return (
         <div>
-            <Header />
+            <Header/>
+            <div className={styles.title}>
+                <p className={styles.span}> Admin Panel</p>
+            </div>
+                <div><ButtonHome/></div>
             <div>
-                <h3>Panel Control</h3>
                 <br />  <br />
                 <table class="table table-hover">
                     <thead className="table-succes">
@@ -91,6 +97,7 @@ export default function AdminPanel() {
                     </tr>
                 </tbody>
             </table>
+            <Footer/>
         </div>
     )
 }
