@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: "users",
 
-    initialState: {},
+    initialState: {payLink:"", number: 3},
 
     
     reducers: {
@@ -57,6 +57,13 @@ export const userSlice = createSlice({
             state.movie = action.payload
         },
 
+        toPay: (state, action) => {
+            // console.log(action.payload)
+            return {
+                ...state,
+                payLink: action.payload
+            }
+        }
         addbys: (state, action) => {
             state.movie = action.payload
         },
@@ -74,6 +81,7 @@ export const { userLogin,
      editUser,
      getUserByToken,
      putUserPassword,
+     toPay,
      addbys
    
 } = userSlice.actions

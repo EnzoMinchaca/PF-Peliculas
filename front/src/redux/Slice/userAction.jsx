@@ -9,6 +9,7 @@ import {
     editUser,
     getUserByToken,
     putUserPassword,
+    toPay, 
     addbys
 }from "./userSlice";
 
@@ -234,8 +235,11 @@ export const getUser=()=>(dispatch)=>{
         }
 
         export const getPayment=(info)=>(dispatch)=>{
-            axios.get('http://localhost:3001/payment', info)
-                .then(response=>console.log(response))
+            axios.post('http://localhost:3001/payment', info)
+                .then(response=>{
+                    // console.log(response.data.init_point)
+                    dispatch(toPay(response.data.init_point))
+                })
         }
 
         /// Ruta para agregar la compra al carrito 
