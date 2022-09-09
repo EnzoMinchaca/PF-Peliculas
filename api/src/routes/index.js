@@ -362,6 +362,7 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
     }
 
   });
+
   
 router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el estado del usuario
     try {
@@ -399,6 +400,7 @@ router.delete('/deletUsers/:id', async(req, res) => {  //ruta para la eliminar u
 });
   
 router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuarios devuelve array de obj
+
     try {
      const allUsers = await userSchema.find();
      res.send(allUsers)
@@ -407,4 +409,5 @@ router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuari
         console.log(error)
     }
 });
+
 module.exports = router
