@@ -4,7 +4,10 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: "users",
 
-    initialState: {},
+    initialState: {
+        allUsers:[],//estado que siempre va a almacenar todos los usuarios
+        users:[],
+    },
 
     
     reducers: {
@@ -21,6 +24,11 @@ export const userSlice = createSlice({
                 ...state,
                 logUsers: action.payload
             }      
+        },
+
+        getAllUsers: (state, action)=>{
+            state.allUsers = action.payload    
+            state.users = action.payload        
         },
 
         getUsers: (state, action)=>{
@@ -74,7 +82,8 @@ export const { userLogin,
      editUser,
      getUserByToken,
      putUserPassword,
-     addbys
+     addbys,
+     getAllUsers
    
 } = userSlice.actions
 

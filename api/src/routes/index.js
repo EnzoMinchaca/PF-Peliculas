@@ -363,4 +363,16 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 
   });
 
+
+
+  router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuarios devuelve array de obj
+    try {
+     const allUsers = await userSchema.find();
+     res.send(allUsers)
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
+
 module.exports = router

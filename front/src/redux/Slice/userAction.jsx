@@ -9,8 +9,28 @@ import {
     editUser,
     getUserByToken,
     putUserPassword,
-    addbys
+    addbys,
+    getAllUsers
 }from "./userSlice";
+
+
+export const allJUsers=()=>(dispatch)=>{
+    axios.get("http://localhost:3001/getUsers")
+    .then(resp=> {
+        return{
+            payload:dispatch(getAllUsers(resp.data))            
+        }})
+    
+    .catch((e) => {
+        console.log(e);
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong! -- GetUsers",
+          });
+      });
+}
+
 
 
 //Acción para logearse cuando ya este registrado 
@@ -259,6 +279,9 @@ export const getUser=()=>(dispatch)=>{
                   });
               });
         }
+
+
+        
 
 
 

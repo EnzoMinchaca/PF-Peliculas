@@ -8,6 +8,7 @@ import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
 import { style } from '@mui/system'
 import styles from "../../styles/styles.module.css"
+import { BsFillCartFill } from "react-icons/bs";
 
 
 
@@ -43,6 +44,7 @@ export default function Details() {
                                         <h2>{details.title}</h2>
                                         <h3>Date: {details.date} || {details.duration}</h3>
                                         <h3 className={Style.Rate}>Rating: {details.rating}</h3>
+                                        <div><button className={styles.btnBuy}><BsFillCartFill />  Buy  </button> </div>
                                     </div>
                                 </div>
                             </div>             
