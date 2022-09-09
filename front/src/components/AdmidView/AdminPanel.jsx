@@ -23,13 +23,12 @@ export default function AdminPanel() {
                 <div className={styles.grid}>
                 <div  className={styles.caja}><Link to="/vistaUser"><div className={styles.movieBtn}></div></Link></div>
                 
-                    <div className={styles.caja}> 
-                    <div className={styles.userBtn}></div>  </div>
+                <div className={styles.caja}><Link to="/modifyMovies"><div className={styles.userBtn}></div></Link></div>
                 
                 
                 
                 <div className={styles.caja}>  <div ><Link to="/vistaUser"></Link><button className={styles.btn1}>  Users </button></div>  </div>
-                <div className={styles.caja}> <div><button className={styles.btn2}>  Movies </button></div></div>
+                <div className={styles.caja}> <div><Link to="/modifyMovies"></Link><button className={styles.btn2}>  Movies </button></div></div>
 
                   
 

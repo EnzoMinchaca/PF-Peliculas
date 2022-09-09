@@ -13,7 +13,8 @@ import { getAllMovies,
     sortRating,
     sortYear,
     postMovie,
-    filterByPlataform}from "./movieSlice";
+    filterByPlataform,
+    deleteMovieById}from "./movieSlice";
 
 
     
@@ -121,4 +122,17 @@ export const clearDetails=()=>(dispatch)=>{
 
 export const clearMovies=()=>(dispatch)=>{
     dispatch(clearAllMovies())
+}
+export const deleteMovies=(id)=>(dispatch)=>{
+    axios.delete(`http://localhost:3001/movies/${id}`)
+    .then(resp=>console.log(resp.data))
+    .catch((e) => {
+        console.log(e);
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+        text: "Something went wrong! -- deleteMovies",
+          });
+      });  
+   dispatch(deleteMovieById(id))
 }
