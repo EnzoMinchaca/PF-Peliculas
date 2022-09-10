@@ -207,9 +207,8 @@ router.get("/confirmUser/:token", async ( req, res ) => {
 
         console.log("User active.")
 
-        res.send("user Acitive.")
 
-        return res.redirect("https://localhost:3000/home")
+        return res.redirect("http://localhost:3000/home")
     
     } catch (error) {
 
@@ -220,12 +219,17 @@ router.get("/confirmUser/:token", async ( req, res ) => {
 router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
     try {
         const {email,password} = req.body
+        
         if(!email || !password){
-            res.send('You must complete all fields') // si no ingreso algun campo
-        }else{
+            res.status(404).send('You must complete all fields') // si no ingreso algun campo
+        }
+        
+        else{
             const user = await userSchema.findOne({ email: email });
-             if(user.length===0 || ! bcrypt.compare ( password,user.password )){ //contraseña o usuarion invalido, compare devuelve un booleano
-               res.send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
+            if(user){
+                console.log(await bcrypt.compare( password, user.password))
+                if( ! await bcrypt.compare( password, user.password)){ //contraseña o usuarion invalido, compare devuelve un booleano
+               res.status(404).send('The email or password entered is not correct') //la contraseña o usuario no son correctos 
              }
              else{
                const id = user._id;
@@ -234,6 +238,10 @@ router.post('/loginUser', async(req, res) => {  //ruta para el ingreso
 
                res.json(user) 
             }
+            }else{
+                res.status(404).send("No user fount")
+            }
+          
         }
     }
     catch(error) {
@@ -280,21 +288,21 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
     try {
         const { email } = req.body;
         const user = await userSchema.findOne({ email: email });
-
-        if(Object.keys(user).length === 0){
-            res.status(404).send('User does not exist')
-        }
+        console.log("entra")
+        console.log(email)
+        if(!user) return res.send("El usuario no existe.")
 
         /* const salt = await bcrypt.genSalt(10);
         const newPassBcrypt =await bcrypt.hash(newPassword, salt);      
         await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})*/ 
         const token = jwt.sign({ email }, process.env.SECRET);
-
+        console.log(token)
+        console.log(email)
         user.token = token
 
         user.save()
 
-        let verificationLink = `https://localhost:3000/rutaCrearNuevaPass/${token}`
+        let verificationLink = `http://localhost:3000/password/${token}`
         nodemailer.RetrievePassword(
             email,
             verificationLink
@@ -310,6 +318,7 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
 router.post("/confirmPassword/:token", async ( req, res ) => {
 
     const { token } = req.params;
+    const { password } = req.body;
 
     try {
 
@@ -318,13 +327,10 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
     if(!user) return res.send("The user was not found.")//res.redirect("https://localhost:3000/register")
 
     console.log("usuario encontrado")
-
     user.password = await userSchema.encryptPassword(password)
-
-    user.active
-
     user.save()
 
+    return res.send(`Exited change`)
 
 } catch (error) {
     console.log(error)
