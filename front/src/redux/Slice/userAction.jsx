@@ -12,13 +12,13 @@ import {
     comfirmPassword,
     addbys,
     getAllUsers,
-
+    deleteUserById,
     toPay, 
 
 }from "./userSlice";
 
 
-export const allJUsers=()=>(dispatch)=>{
+export const allUsers=()=>(dispatch)=>{
     axios.get("http://localhost:3001/getUsers")
     .then(resp=> {
         return{
@@ -315,6 +315,21 @@ export const getUser=()=>(dispatch)=>{
                     text: "can't add purchase! -- Addbuy",
                   });
               });
+        }
+
+
+        export const deleteUsers=(id)=>(dispatch)=>{
+            axios.delete(`http://localhost:3001/deletUsers/${id}`)
+            .then(resp=>console.log(resp.data))
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                text: "Something went wrong! -- deleteUsers",
+                  });
+              });  
+           dispatch(deleteUserById(id))
         }
 
 
