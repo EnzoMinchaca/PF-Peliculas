@@ -19,9 +19,6 @@
 }
 
 .textContainer {
-    /*display: flex;
-    justify-content: center;
-    */
     flex-direction: column;
     letter-spacing: 0.6px;
     word-spacing: -0.2px;
@@ -30,11 +27,12 @@
     padding-left: 1%;
     /* display: flex; */
     /* flex-direction: row; */
-    justify-content: space-between;
-    align-items: center;
-    width: 700px;
-    align-items: center;
+    justify-content: center;
+    width: 55vw;
+    align-items: flex-start;
+    display: flex;
     flex-wrap: wrap;
+    text-align: start;
     padding: 1px 70px;
     margin-bottom: 20px;
     margin-top: 30px;

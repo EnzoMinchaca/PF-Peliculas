@@ -2,7 +2,6 @@ import './App.css';
 import Home from "./components/UserView/Home"
 import Details from "./components/UserView/Details"
 import Form from "./components/AdmidView/Form"
-import Car from "./components/UserView/Car"
 import Landing from "./components/Presentational/LandingPage"
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -12,7 +11,7 @@ import Confirm from './components/UserView/Confirm';
 import Success from './components/UserView/Success';
 import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
-import VistaUser from './components/AdmidView/VistaUser';
+import AdminModifyUser from './components/AdmidView/VistaUser';
 import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
 import ConfirmPay from './components/UserView/ConfirmPay';
 import CancelPay from './components/UserView/CancelPay';
@@ -27,7 +26,6 @@ function App() {
         <Route exact path="/Home" element={<Home/>} />
         <Route exact path="/Details/:id" element={<Details/>}/>
         <Route exact path="/Create" element={<Form/>}/>
-        <Route exact path="/Car" element={<Car/>}/>
         <Route exact path="/editUser" element={<EditUser/>}/>
         <Route exact path="/panel" element={<AdminPanel/>}/>
         <Route exact path="/confirm" element={<Confirm/>}/>
@@ -35,9 +33,12 @@ function App() {
         <Route exact path="/cancelPay" element={<CancelPay/>}/>
         <Route exact path="/success" element={<Success/>} />
         <Route exact path="/example" element={<Example/>} />
-        <Route exact path="/password/:token" element={<Password/>} />
-        <Route exact path="/vistaUser" element={<VistaUser/>} />
+        <Route exact path="/password" element={<Password/>} />
         <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
+        <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
+        
+        
+        
       </Routes>
     </BrowserRouter>
   )

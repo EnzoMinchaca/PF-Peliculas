@@ -4,15 +4,10 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: "users",
 
-
     initialState: {
         allUsers:[],//estado que siempre va a almacenar todos los usuarios
         users:[],
     },
-    
-    initialState: {},
-
-
     
     reducers: {
         userLogin: (state, action)=>{
@@ -102,6 +97,12 @@ export const userSlice = createSlice({
             state.movie = action.payload
         },
 
+        deleteUserById: (state,action)=>{         
+            state.users = state.users.filter(user=> user._id !== action.payload);    
+            state.users = state.users.filter(user=> user._id !== action.payload);
+        
+          },
+
         
         
     }
@@ -120,7 +121,8 @@ export const { userLogin,
      toPay,
      toPayPay,
      toExecute,
-     addbys
+     addbys,
+     deleteUserById
 
    
 } = userSlice.actions

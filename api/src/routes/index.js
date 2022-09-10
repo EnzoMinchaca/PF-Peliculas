@@ -343,7 +343,7 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 })
 
 
-  router.put('/addBuy', async(req, res) => {  //ruta para agregar la compra del usuario(faltan datos para terminarla)
+  router.put('/addBuy', async(req, res) => {
 
     try {
 
@@ -361,7 +361,7 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 
      await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
 
-     res.send('Your buy was successfully added')
+     res.send('Your movie was successfully added')
 
     }
 

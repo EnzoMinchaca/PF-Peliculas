@@ -1,0 +1,7 @@
+.posCart {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    flex-direction: column;
+}
