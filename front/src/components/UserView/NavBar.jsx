@@ -15,15 +15,15 @@ import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Navigate, useNavigate} from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterPlataform, getSearch } from '../../redux/Slice/movieAction';
 import { logOut } from '../../redux/Slice/userAction';
 import { useState } from 'react';
+import ShoppingCart from "../Presentational/ShoppingCart.tsx"
 import AddIcon from '@mui/icons-material/Add';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
@@ -78,6 +78,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
   const [searchValue,setSearchValue]=React.useState()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const cart = useSelector((state)=> state.movies.cart)
 
   React.useEffect(()=>{
     const user = JSON.parse(localStorage.getItem('user'))
@@ -272,14 +273,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
             </Box> */}
   
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <IconButton sx={{ p: 0 }}>
-              <Link to="/Car"   key={"Car"}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                  className={css.linkBtn}>
-                  <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-              </Link>
-              </IconButton>
+              <ShoppingCart/>
               </Box>
   
             <Box sx={{ flexGrow: 0 }}>
@@ -420,14 +414,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
             </Box> */}
   
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <IconButton sx={{ p: 0 }}>
-              <Link to="/Car"   key={"Car"}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                  className={css.linkBtn}>
-                  <ShoppingCartIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-              </Link>
-              </IconButton>
+              <ShoppingCart cart={cart}/>
               </Box>
   
             {/* <Box sx={{ flexGrow: 0 }}>

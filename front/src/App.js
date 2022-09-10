@@ -2,7 +2,6 @@ import './App.css';
 import Home from "./components/UserView/Home"
 import Details from "./components/UserView/Details"
 import Form from "./components/AdmidView/Form"
-import Car from "./components/UserView/Car"
 import Landing from "./components/Presentational/LandingPage"
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -26,7 +25,6 @@ function App() {
         <Route exact path="/Home" element={<Home/>} />
         <Route exact path="/Details/:id" element={<Details/>}/>
         <Route exact path="/Create" element={<Form/>}/>
-        <Route exact path="/Car" element={<Car/>}/>
         <Route exact path="/editUser" element={<EditUser/>}/>
         <Route exact path="/panel" element={<AdminPanel/>}/>
         <Route exact path="/confirm" element={<Confirm/>}/>
