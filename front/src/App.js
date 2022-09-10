@@ -14,6 +14,8 @@ import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
 import VistaUser from './components/AdmidView/VistaUser';
 import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
+import ConfirmPay from './components/UserView/ConfirmPay';
+import CancelPay from './components/UserView/CancelPay';
 //import Order from './components/UserView/Order';
 
 
@@ -29,6 +31,8 @@ function App() {
         <Route exact path="/editUser" element={<EditUser/>}/>
         <Route exact path="/panel" element={<AdminPanel/>}/>
         <Route exact path="/confirm" element={<Confirm/>}/>
+        <Route exact path="/confirmPay" element={<ConfirmPay/>}/>
+        <Route exact path="/cancelPay" element={<CancelPay/>}/>
         <Route exact path="/success" element={<Success/>} />
         <Route exact path="/example" element={<Example/>} />
         <Route exact path="/password/:token" element={<Password/>} />

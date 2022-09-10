@@ -10,7 +10,7 @@ export const userSlice = createSlice({
         users:[],
     },
     
-    initialState: {payLink:"", number: 3},
+    initialState: {},
 
 
     
@@ -80,6 +80,24 @@ export const userSlice = createSlice({
                 payLink: action.payload
             }
         },
+
+        toPayPay: (state, action) => {
+            // console.log(action.payload)
+            return {
+                ...state,
+                payPayLink: action.payload
+            }
+        },
+
+        toExecute: (state, action) => {
+            // console.log(action.payload)
+            // console.log(typeof action.payload)
+            return {
+                ...state,
+                executePay: action.payload
+            }
+        },
+
         addbys: (state, action) => {
             state.movie = action.payload
         },
@@ -100,6 +118,8 @@ export const { userLogin,
      getAllUsers,
      comfirmPassword,
      toPay,
+     toPayPay,
+     toExecute,
      addbys
 
    

@@ -12,9 +12,9 @@ import {
     comfirmPassword,
     addbys,
     getAllUsers,
-
+    toPayPay,
     toPay, 
-
+    toExecute
 }from "./userSlice";
 
 
@@ -287,11 +287,28 @@ export const getUser=()=>(dispatch)=>{
             })
         }
 
+        //Para los pagos
         export const getPayment=(info)=>(dispatch)=>{
             axios.post('http://localhost:3001/payment', info)
                 .then(response=>{
                     // console.log(response.data.init_point)
                     dispatch(toPay(response.data.init_point))
+                })
+        }
+
+        export const postPaymentPay=(info)=>(dispatch)=>{
+            axios.post('http://localhost:3001/paymentPay', info)
+                .then(response=>{
+                    // console.log(response.data.data.links[1].href)
+                    dispatch(toPayPay(response.data.data.links[1].href))
+                })
+        }
+
+        export const postExecutePay=(info)=>(dispatch)=>{
+            axios.post('http://localhost:3001/executePay', info)
+                .then(response=>{
+                    // console.log(response.data.data.status)
+                    dispatch(toExecute(response.data.data.status))
                 })
         }
 
