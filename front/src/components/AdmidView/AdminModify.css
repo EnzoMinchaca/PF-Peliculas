@@ -21,3 +21,6 @@
     display: flex;
     flex-direction: column;
 }
+.Pagination{
+    margin-top: 330px;
+}
