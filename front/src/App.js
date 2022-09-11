@@ -13,6 +13,7 @@ import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
 import AdminModifyUser from './components/AdmidView/VistaUser';
 import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
+import ModifyMovies from './components/AdmidView/ModifyMovies';
 import ConfirmPay from './components/UserView/ConfirmPay';
 import CancelPay from './components/UserView/CancelPay';
 //import Order from './components/UserView/Order';
@@ -35,10 +36,9 @@ function App() {
         <Route exact path="/example" element={<Example/>} />
         <Route exact path="/password" element={<Password/>} />
         <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
-        <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
-        
-        
-        
+        <Route exact path="/Modify/:id" element={<ModifyMovies/>} />
+        <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />        
+         
       </Routes>
     </BrowserRouter>
   )
