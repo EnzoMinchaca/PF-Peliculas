@@ -142,8 +142,10 @@ export default function AdminModifyMovies() {
               }): null
              }
             </div>
-            <Pagination page={page} setPag={setPag} max={max} movies={movies} ></Pagination>
-            <Footer/>
+            <div className={typeof movies ==='string'?"Pagination":''} >
+              <Pagination page={page} setPag={setPag} max={max} movies={movies} ></Pagination>
+            </div>
+              <Footer/>
         </div>
     )
 }
