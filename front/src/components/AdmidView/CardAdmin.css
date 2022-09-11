@@ -1,9 +1,24 @@
-.Card{
+
+.imageMovie{
+    width: 80px;
+}
+
+.Card {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    justify-content: space-evenly;
-}
-.imageMovie{
-    width: 100px;
+    margin-right: -6px;
+    margin-top:20px;
+    margin-left: 20px;
+    height: 120px;
+    padding: .8em;
+  
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.31), 0 2px 2px rgba(0,0,0,0.24);
+   }
+
+.title{
+    width: 190px;
 }

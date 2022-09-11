@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
 import { deleteMovies } from "../../redux/Slice/movieAction";
-import "./CardAdmin.css"
-
+import "./CardAdmin.css";
+import { FaTrash } from 'react-icons/fa';
 
 
 export default function CardAdmin(props) {
@@ -13,14 +14,16 @@ export default function CardAdmin(props) {
     return (
   
       <div className="Card" key={props.key}>
-       
+          
              <img className="imageMovie" src={props.image} alt="movie" />  
 
-             <p>Title:{props.title}</p>
+             <p className="title">{props.title}</p>
  
-             <p>Price:{props.price}Usd</p>
-             <button onClick={(props) => {handleDelete(props)}} >Delete</button>
-        
+             <p> Price: {props.price}Usd</p>
+             <Link to={`/Modify/${props.id}`}><button>Modify</button> </Link>
+             <button onClick={(props) => {handleDelete(props)}} > <FaTrash></FaTrash></button> 
+             
+           
       </div>
       
            
