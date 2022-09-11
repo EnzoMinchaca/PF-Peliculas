@@ -10,23 +10,29 @@ export default function Confirm() {
     const navigate = useNavigate()
     const {search} = useLocation()
     const query = new URLSearchParams(search)
-    console.log(query)
+    // console.log(query)
 
     const status = query.get('status')
-    console.log(status)
-    console.log(typeof status)
+    const collectionStatus = query.get('collection_status')
+    const collectionId = query.get('collection_id')
+    const paymentId = query.get('payment_id')
+    // console.log(status)
+    // console.log(typeof status)
 
     useEffect(() => {
-        if(status === "approved") {
+        if(status === "approved" && collectionStatus === "approved" && collectionId !== "null" && paymentId !== "null") {
             navigate("/success")
         }
-        if(status === "rejected") {
+        if(status === "rejected" && collectionStatus === "rejected" && collectionId !== "null" && paymentId !== "null") {
             navigate("/home")
         }
-        if(status === "null") {
+        if(status === "null" && collectionStatus === "null" && collectionId === "null" && paymentId === "null") {
             navigate("/home")
         }
-        if(status === "in_process") {
+        if(status === "in_process" && collectionStatus === "in_process" && collectionId !== "null" && paymentId !== "null") {
+            navigate("/home")
+        }
+        if(!status || !collectionStatus || !collectionId || !paymentId) {
             navigate("/home")
         }
     }, [])
@@ -37,17 +43,17 @@ export default function Confirm() {
             {
                 status === "approved" ?
                 <div>
-                    <h1>Se aprobo tu pago perri ya tenes tu nueva pelicula</h1>
+                    <h1>Aproved</h1>
                     <Link to={"/home"}>
                         <button>Volver al home</button>
                     </Link>
                 </div> 
                 : status === "rejected" ?
-                <h1>Nos rechazaron perri</h1>
+                <h1>Rejected</h1>
                 : status === "in_process" ?
-                <h1>Estamos en proceso perri</h1>
+                <h1>In Process</h1>
                 :
-                <h1>Estamos nulo perri</h1>
+                <h1>Null</h1>
             }
         </div>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import Pay from './Pay.jsx'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPayment } from '../../redux/Slice/userAction.jsx'
+import { getPayment, postPaymentPay } from '../../redux/Slice/userAction.jsx'
 
 export default function Example() {
 
@@ -10,12 +10,15 @@ export default function Example() {
     const openModal = () => {
         setisOpen(true)
         dispatch(getPayment(simulador))
+        dispatch(postPaymentPay(simuladorPay))
         console.log(linkPay)
+        console.log(linkPayPaypal)
     }
     const closeModal = () => setisOpen(false)
 
     const dispatch = useDispatch()
     const linkPay = useSelector(state => state.users.payLink)
+    const linkPayPaypal = useSelector(state => state.users.payPayLink)
 
     const simulador = {
         email: "test_user_11831113@testuser.com",
@@ -37,11 +40,15 @@ export default function Example() {
         }
     ]}
 
+    const simuladorPay = {
+        price: 700
+    }
+
     return (
         <div>
             <h2>Component to pay</h2>
             <button onClick={openModal}>Pay</button>
-            <Pay isOpen={isOpenModal} closeModal={closeModal} link={linkPay}>
+            <Pay isOpen={isOpenModal} closeModal={closeModal} linkMP={linkPay} linkPP={linkPayPaypal}>
                 <h3>Payment methods</h3>
             </Pay>
         </div>

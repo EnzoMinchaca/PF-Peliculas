@@ -5,3 +5,13 @@
     font-family: 'Times New Roman', Times, serif;
     flex-direction: column;
 }
+.hrTotal {
+    border-top: 4px solid green;
+    border-radius: 18px;
+    width: 100vw;
+}
+.cartText {
+    display: flex;
+    padding: 1rem;
+    text-align: center;
+}

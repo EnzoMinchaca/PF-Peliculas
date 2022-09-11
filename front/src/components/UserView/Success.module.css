@@ -34,6 +34,7 @@
 .btn {
     padding: 5px 22px;
     margin-right: 100px;
+    height: 100%;
     background-color: #5aa01c;
     border-radius: 3px;
     border: 0px solid #5aa01c;
