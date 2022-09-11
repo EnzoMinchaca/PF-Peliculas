@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer")
+const { google } = require("googleapis")
 
 const email = process.env.EMAIL
 const pass = process.env.PASSWORD
@@ -6,34 +7,33 @@ const cliendId = process.env.CLIENTID
 const clientSecret = process.env.CLIENTSECRET
 const refreshToken = process.env.REFRESHTOKEN
 const accessToken = process.env.ACCESSTOKEN
+module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => {
 
-// ESTE ES OTRO TRANSPORTER POR SI EL SEGUNDO NO FUNCIONA SOLO DESCOMENTAR Y COMENTR EL OTRO
-/* let transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: "ivanlabra46@gmail.com",
-    pass: "ywwchfqlspcrlzak"
-});  */
-
-let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      type: "OAuth2",
-      user: "ivanlabra46@gmail.com",
-      clientId: "349684398334-ua759bu6cr6b3qtopvv0tomhr9d9j99g.apps.googleusercontent.com",
-      clientSecret: "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",
-      refreshToken: "1//04FzTc-ewtFu8CgYIARAAGAQSNwF-L9Ir43xw7KBDQPxgpSk5jxd7yKWejrRbJsMTOdhKORx4Fuy97gDNFYeWc4nJV-sqd-ggjak",
-      accessToken: "ya29.a0AVA9y1vjfdM1IujvHb8bbw0_JoPhgkDOuEUQMkd0bPk7z0V_g3wGU2-hUnUrwYlS_AWqWRkLnn96K8XhK3edlflQpdxB9_Li5Z3_rXCYk3syasgbABatnSlEsrUQ174hwJyZ7fl2Ve1OVHbxdcO81Z-TZ5syaCgYKATASAQASFQE65dr8m755v4J4vMBmlJ16zsTINg0163",
-      expires: 1484314,
-    }
-  }); 
-
-module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
     console.log("Check");
+    const CLIENT_ID = "435765551994-0dvbqrs6g6k3qbjr7lfnr3ds2vanuc39.apps.googleusercontent.com"
+    const CLIENT_SECRET = "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"
+    const REDIRCET_URI = "https://developers.google.com/oauthplayground"
+    const REFRESHTOKEN = "1//04-VhYcRds3oICgYIARAAGAQSNwF-L9IrZyomrnIZ2j7BSpYREcpjewY-hx9PMFQMdEV-Mq6qEv3dehuZ6dXtHDGisVa2cv8f_EQ"
+    const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRCET_URI)
+
+    oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
+
+    const accessToken = await oAuth2Client.getAccessToken()
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth:{
+        type:"OAuth2",
+        user:"pruebadatos86@gmail.com",
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESHTOKEN,
+        accessToken: accessToken
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    })
     transporter.sendMail({
       from: name,
       to: email,
@@ -45,11 +45,33 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
           </div>`,
     }).catch(err => console.log(err));
   };
+module.exports.RetrievePassword =async  ( email,verificationLink ) => {
+  console.log("Check");
+  const CLIENT_ID = "435765551994-0dvbqrs6g6k3qbjr7lfnr3ds2vanuc39.apps.googleusercontent.com"
+  const CLIENT_SECRET = "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"
+  const REDIRCET_URI = "https://developers.google.com/oauthplayground"
+  const REFRESHTOKEN = "1//04-VhYcRds3oICgYIARAAGAQSNwF-L9IrZyomrnIZ2j7BSpYREcpjewY-hx9PMFQMdEV-Mq6qEv3dehuZ6dXtHDGisVa2cv8f_EQ"
+  const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRCET_URI)
 
+  oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
 
-  module.exports.RetrievePassword = ( email ) => {
-    console.log("Check")
-  
+  const accessToken = await oAuth2Client.getAccessToken()
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth:{
+      type:"OAuth2",
+      user:"pruebadatos86@gmail.com",
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESHTOKEN,
+      accessToken: accessToken
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  })
+
     transporter.sendMail({
       from: "Password Reset",
       to:email,
@@ -61,38 +83,3 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
             </div>`,
     })
   }
-  /* module.exports.sendConfirmationEmail = async (name, email, confirmationCode) =>{
-    const OAuth2 = new tokenGoogle(
-      accesToken.auth.clientId,
-      accesToken.auth.clientSecret,
-      "https://developers.google.com/oauthplayground"
-    )  
-    await OAuth2.setCredentials({
-      refreshToken: accesToken.auth.refreshToken,
-      tls:{
-        rejectUnauthorized: false
-      }
-    })
-
-    console.log("llega hasta aca")
-    OAuth2.getAccessToken((err, token) => {
-
-      console.log("entro adentro")
-      if(err) return console.log(err)
-
-      accesToken.auth.refreshToken = token;
-
-      let envio = nodemailer.createTransport(accesToken)
-
-      envio.sendMail({
-        from: name,
-        to: email,
-        subject: "Please confirm your account",
-        html: `<h1>Email Confirmation</h1>
-            <h2>Hello ${name}</h2>
-            <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-            <a href=http://localhost:3001/confirmUser/${confirmationCode}> Click here</a>
-            </div>`,
-      }).catch(err => console.log(err));
-    })
-} */

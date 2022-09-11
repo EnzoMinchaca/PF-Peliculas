@@ -4,13 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: "users",
 
-
     initialState: {
         allUsers:[],//estado que siempre va a almacenar todos los usuarios
         users:[],
+        payLink:"", number: 3, /// Nota: Enzo puede revisar porque estaba duplicado el initialState
+        //yo habia creado dos estados
     },
     
-    initialState: {payLink:"", number: 3},
+     
 
 
     
@@ -54,6 +55,10 @@ export const userSlice = createSlice({
             return{state}     
         },
 
+        comfirmPassword: (state)=>{
+            return{state}     
+        },
+
         editUser: (state, action)=>{
             return {
                 ...state,
@@ -80,6 +85,12 @@ export const userSlice = createSlice({
             state.movie = action.payload
         },
 
+        deleteUserById: (state,action)=>{         
+            state.users = state.users.filter(user=> user._id !== action.payload);    
+            state.users = state.users.filter(user=> user._id !== action.payload);
+        
+          },
+
         
         
     }
@@ -94,8 +105,10 @@ export const { userLogin,
      getUserByToken,
      putUserPassword,
      getAllUsers,
+     comfirmPassword,
      toPay,
-     addbys
+     addbys,
+     deleteUserById
 
    
 } = userSlice.actions
