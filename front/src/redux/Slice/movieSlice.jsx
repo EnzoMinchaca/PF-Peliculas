@@ -61,10 +61,8 @@ export const movieSlice = createSlice({
     },
 
      removeCart: (state, action) => {
-     /*  localStorage.setItem(`cart`) */
-     /*  JSON.stringify(state.cart.filter((e) => e._id !== action.payload)) */
-      
-        state.cart= state.cart.filter((e) => e._id !== action.payload)
+localStorage.setItem("cart", JSON.stringify(state.cart.filter((e)=> e._id !== action.payload)))
+        state.cart= state.cart.filter((e) => e._id !== action.payload)       
     },
 
     filterBygenre: (state, action) => {

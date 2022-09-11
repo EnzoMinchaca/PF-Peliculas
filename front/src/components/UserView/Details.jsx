@@ -7,15 +7,15 @@ import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
 import { style } from '@mui/system'
+import Swal from "sweetalert2";
 import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
-
-
-
+import axios from 'axios'
 
 
 
 export default function Details() {
+
 
 
     const { id } = useParams()
@@ -35,12 +35,12 @@ export default function Details() {
 
         if (!cart.map((e) => e._id).includes(id)) {
             let a = await dispatch(addMovieToCart(id))
-            localStorage.setItem("cart", a)
+            let json = await axios.get(`http://localhost:3001/movieDetails/${id}`)
+            localStorage.setItem("cart", JSON.stringify([...cart, json.data]))
         }
 
     }
-
-
+    
 
     return (
         <div>
@@ -61,7 +61,7 @@ export default function Details() {
                                         <h2>{details.title}</h2>
                                         <h5>Date: {details.date} || {details.duration}</h5>
                                         <h3 className={Style.Rate}>Rating: {details.rating}</h3>
-                                        <div><button onClick={() => dispatch(addMovieToCart(id))} className={styles.btnBuy}><BsFillCartFill />Buy</button> </div>
+                                        <div><button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button> </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
                                 </div>

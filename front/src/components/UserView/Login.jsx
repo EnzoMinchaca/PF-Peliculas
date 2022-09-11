@@ -40,7 +40,7 @@ export default function Login({closeModal}){
                 Swal.fire({
                     icon: "error",
                     title: "Ohhh!",
-                    text: "Plis check and complete the fields",
+                    text: "Please check and complete the fields",
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
@@ -69,7 +69,7 @@ export default function Login({closeModal}){
                 Swal.fire({
                     icon: "error",
                     title: "Ohhh!",
-                    text: "Plis check and complete the fields",
+                    text: "Please check and complete the fields",
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#0b132b"
                 });
@@ -110,7 +110,7 @@ export default function Login({closeModal}){
             Swal.fire({
                 icon: "error",
                 title: "Ohhh!",
-                text: "Plis check and complete the field",
+                text: "Please check and complete the field",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#0b132b"
             });
