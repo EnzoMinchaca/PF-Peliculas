@@ -15,9 +15,10 @@ import {
     toPayPay,
     deleteUserById,
     toPay, 
+    toExecute,
+    theUser
     filterByStatus,
     editUserSt,
-    toExecute
 
 }from "./userSlice";
 
@@ -83,6 +84,16 @@ export const getUser=()=>(dispatch)=>{
             localStorage.setItem('statusToken', 'Token expirado.');
             console.error('detalle error:', err.message);
         })
+    }
+
+    export const oneUser = (id) => (dispatch) => {
+        console.log(id)
+        return axios.get(`http://localhost:3001/userId/${id}`)
+            .then(response=> {
+                console.log(response)
+                dispatch(theUser(response.data))
+                localStorage.setItem('user', JSON.stringify(response.data))
+            })
     }
 
     //Acción para cerrar la sesión y limpiar el localstorage 
@@ -318,16 +329,17 @@ export const getUser=()=>(dispatch)=>{
 
         /// Ruta para agregar la compra al carrito 
         export const putBuy=(newData, idUser)=>(dispatch)=>{
-            axios.put({
-                url: `http://localhost:3001/addBuy/${idUser}`, 
-                data: newData})
+            axios.put(`http://localhost:3001/addBuy/${idUser}`, {buyMovie: newData})
             
-            .then(resp=>dispatch(addbys(resp.data)))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: `Added purchase`,
+            .then(resp=>{
+                // console.log(resp)
+                dispatch(addbys(resp.data))
             })
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Success',
+            //     text: `Added purchase`,
+            // })
             .catch((e) => {
                 console.log(e);
                 return Swal.fire({

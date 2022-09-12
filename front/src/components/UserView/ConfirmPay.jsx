@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { postExecutePay } from '../../redux/Slice/userAction'
+import { oneUser, postExecutePay, putBuy } from '../../redux/Slice/userAction'
+import { clearCart } from '../../redux/Slice/movieAction'
 import s from './ConfirmPay.module.css'
 
 export default function ConfirmPay() {
@@ -22,6 +23,9 @@ export default function ConfirmPay() {
     
     const status = useSelector(state => state.users.executePay)
     // console.log(status)
+    const movies = JSON.parse(localStorage.getItem('cart'))
+        const user = JSON.parse(localStorage.getItem('user'))
+        const idUser = user._id
 
     useEffect(() => {
         dispatch(postExecutePay(send))
@@ -30,13 +34,17 @@ export default function ConfirmPay() {
             navigate("/home")
         }
     }, [])
-    
     if(status === "COMPLETED") {
+        dispatch(putBuy(movies, idUser))
+        dispatch(oneUser(idUser))
+        localStorage.setItem('user', JSON.stringify(user))
+        dispatch(clearCart())
         navigate("/success")
     }
     if(!status) {
         navigate("/home")
     }
+    
 
     return (
         <div className={s.content}>

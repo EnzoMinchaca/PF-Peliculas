@@ -26,7 +26,7 @@ export default function Order({setPag}) {
   useEffect(()=>{
     dispatch(getGenres());
   },[dispatch]);
-  console.log(allGenres)
+  // console.log(allGenres)
 
   const handleAscRating = (type) => {
     dispatch(sortRatings(type));
@@ -49,7 +49,7 @@ export default function Order({setPag}) {
   };
   const handleGenre = (e) => {
     dispatch(filterGenre(e.target.innerText))
-    console.log(e.target.innerText);
+    // console.log(e.target.innerText);
     setPag(1)
   };
 

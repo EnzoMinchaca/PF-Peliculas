@@ -57,7 +57,7 @@ const style = {
 export default function Home() {
  const [open, setOpen] = React.useState(false);
  let movies= useSelector(state => state.movies.movies);
- console.log(movies)
+//  console.log(movies)
  const dispatch = useDispatch()
 
  useEffect(()=>{

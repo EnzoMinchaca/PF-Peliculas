@@ -18,6 +18,7 @@ import {
     removeCart,
     filterByPlataform,
     deleteMovieById,
+    clearCarts
 } from "./movieSlice";
 
 
@@ -55,8 +56,13 @@ export const addMovieToCart = (id) => (dispatch) => {
     
 
 export const deleteFromCart = (id) => (dispatch)=> {
-    return dispatch(removeCart(id))
+    localStorage.setItem('cart', JSON.stringify([]))
+    dispatch(removeCart(id))
   }
+
+export const clearCart = () => (dispatch) => {
+    return dispatch(clearCarts())
+}
 
 export const postMovies = (movie) => (dispatch) => {
     axios.post('http://localhost:3001/postMovies', movie)

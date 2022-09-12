@@ -94,8 +94,10 @@ export const userSlice = createSlice({
             }
         },
 
-        addbys: (state, action) => {
-            state.movie = action.payload
+        addbys: (state) => {
+            return {
+                ...state
+            }
         },
 
         deleteUserById: (state,action)=>{         
@@ -103,6 +105,14 @@ export const userSlice = createSlice({
             state.users = state.users.filter(user=> user._id !== action.payload);
         
           },
+
+
+        theUser: (state, action) => {
+            return {
+                ...state,
+                user: action.payload
+            }
+        }
 
           filterByStatus: (state, action) => {
 
@@ -147,6 +157,7 @@ export const userSlice = createSlice({
 
            
         
+
         
     }
 })
@@ -166,8 +177,10 @@ export const { userLogin,
      toExecute,
      addbys,
      deleteUserById,
+     theUser
      filterByStatus,
      editUserSt
+
 
    
 } = userSlice.actions

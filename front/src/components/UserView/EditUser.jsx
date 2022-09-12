@@ -17,8 +17,8 @@ import StarBorder from '@mui/icons-material/StarBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
-import { editUsers } from "../../redux/Slice/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { editUsers, oneUser } from "../../redux/Slice/userAction";
 
 export default function EditUser(){
     const [openName, setOpenName] = React.useState(false);
@@ -31,15 +31,22 @@ export default function EditUser(){
         // comfirmPassword:""
     })
     const dispatch=useDispatch();
+    const theUser = useSelector(state => state.users.user)
+    console.log(theUser)
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
 
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
+      dispatch(oneUser(user._id))
       if(user){
         if(user.name && user.lastname && user._id){
           setInput({nameUser: user.name, lastname: user.lastname})
         }
       }
+      localStorage.setItem('user',JSON.stringify(user))
     },[])
+    
     function handleChange(e) {
         setInput({
             ...input,
@@ -50,12 +57,12 @@ export default function EditUser(){
     const handleClickName = () => {
       setOpenName(!openName);
     };
-    // const handleClickLastName = () => {
-    //     setOpenLastName(!openLastName);
-    //   };
-    //   const handleClickPassword = () => {
-    //     setOpenPassword(!openPassword);
-    //   };
+    const handleClickLastName = () => {
+        setOpenLastName(!openLastName);
+      };
+      // const handleClickPassword = () => {
+      //   setOpenPassword(!openPassword);
+      // };
 
       function handleSubmitName(e) {
             if(!input.nameUser || !input.lastname){
@@ -70,10 +77,10 @@ export default function EditUser(){
             }else{
                 e.preventDefault()
                 const user = JSON.parse(localStorage.getItem('user'))
-                console.log(user._id)
+                // console.log(user._id)
                 dispatch(editUsers(input,user._id))
-                console.log(input)
-                console.log(input)
+                // console.log(input)
+                // console.log(input)
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -141,7 +148,7 @@ export default function EditUser(){
     return(
         <div>
             <div className={styles.title}>
-                <p className={styles.span}>Edit Profile</p></div>
+                <p className={styles.span}>Profile</p></div>
                 <div className={styles.ubButton}><ButtonHome/> </div>
             <div className={css.generalContainer}></div>
             <List
@@ -192,6 +199,29 @@ export default function EditUser(){
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
+      </Collapse>
+      <ListItemButton onClick={handleClickLastName}>
+        <ListItemIcon>
+          <PersonIcon/>
+        </ListItemIcon>
+        <ListItemText primary="My movies" />
+        {openLastName ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={openLastName} timeout="auto" unmountOnExit>
+        <div className={css.contentList}>
+          {
+            user.buy.length > 0 ? user.buy.map(m => {
+              return(
+                <div className={css.direction}>
+                  <p className={css.list}>{m.title}</p>
+                  <img src={m.image} alt="image" className={css.port} />
+                </div>
+              )
+            })
+            :
+            <h2>No movies</h2>
+          }
+        </div>
       </Collapse>
       {/* <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>

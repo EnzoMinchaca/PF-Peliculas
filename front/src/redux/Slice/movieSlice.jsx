@@ -56,6 +56,10 @@ export const movieSlice = createSlice({
       state.platform = action.payload
     },
 
+    clearCarts: (state) => {
+      state.cart = []
+    },
+
     addToCart: (state, action) => {
       state.cart = [...state.cart, action.payload]
     },
@@ -157,7 +161,8 @@ export const {
   removeCart,
   addToCart,
   postMovie,
-  deleteMovieById
+  deleteMovieById,
+  clearCarts
 } = movieSlice.actions
 
 export default movieSlice.reducer

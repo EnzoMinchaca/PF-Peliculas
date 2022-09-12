@@ -23,7 +23,7 @@ export default function Pay({children, isOpen, closeModal, linkMP, linkPP}) {
                         <img src={pp} alt="paypal" className='img'/>
                     </a>
                 </div>
-                <button className='btn' onClick={closeModal}>Cancel</button>
+                <button className='butn' onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )

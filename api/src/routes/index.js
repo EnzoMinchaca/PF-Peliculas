@@ -343,13 +343,13 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 })
 
 
-  router.put('/addBuy', async(req, res) => {
+  router.put('/addBuy/:idUser', async(req, res) => {
 
     try {
+        const {idUser} = req.params
+     const {buyMovie} = req.body 
 
-     const {buyMovie,idUser} = req.body 
-
-      if(!nameMovie) {
+      if(!buyMovie) {
 
         res.send('could not add user buy, missing data')
 
@@ -359,9 +359,9 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 
     let newBuy = user.buy.concat(buyMovie)
 
-     await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
+     const response = await userSchema.findByIdAndUpdate(idUser, { $set: { buy: newBuy }}) 
 
-     res.send('Your movie was successfully added')
+     res.json(response)
 
     }
 
@@ -372,6 +372,17 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
     }
 
   });
+
+router.get('/userId/:id', async(req, res) => {
+    try {
+        const {id} = req.params
+        const user = await userSchema.findById(id);
+        res.json(user)
+    }
+    catch(error) {
+        console.log(error)
+    }
+})
 
   
 router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el estado del usuario
