@@ -1,0 +1,29 @@
+.content {
+    display: flex;
+    justify-content: center;
+    margin-top: 15em;
+}
+
+.text {
+    font-size: 50px;
+}
+
+.dots {
+    font-size: 50px;
+    display: block;
+    white-space: nowrap;
+    width: 2ch;
+
+    animation: typing 2s steps(5),
+    blink .5s infinite alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}

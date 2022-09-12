@@ -7,14 +7,8 @@ export const userSlice = createSlice({
     initialState: {
         allUsers:[],//estado que siempre va a almacenar todos los usuarios
         users:[],
-        
-        payLink:"", number: 3, /// Nota: Enzo puede revisar porque estaba duplicado el initialState
-        //yo habia creado dos estados
+
     },
-    
-     
-
-
     
     reducers: {
         userLogin: (state, action)=>{
@@ -82,6 +76,24 @@ export const userSlice = createSlice({
                 payLink: action.payload
             }
         },
+
+        toPayPay: (state, action) => {
+            // console.log(action.payload)
+            return {
+                ...state,
+                payPayLink: action.payload
+            }
+        },
+
+        toExecute: (state, action) => {
+            // console.log(action.payload)
+            // console.log(typeof action.payload)
+            return {
+                ...state,
+                executePay: action.payload
+            }
+        },
+
         addbys: (state, action) => {
             state.movie = action.payload
         },
@@ -150,6 +162,8 @@ export const { userLogin,
      getAllUsers,
      comfirmPassword,
      toPay,
+     toPayPay,
+     toExecute,
      addbys,
      deleteUserById,
      filterByStatus,

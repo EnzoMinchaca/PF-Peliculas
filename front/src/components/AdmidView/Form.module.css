@@ -169,3 +169,24 @@
     filter: brightness(.7);
     transform: scale(.98);
    }
+   .modifyForm{
+    border: 1px solid rgba(196, 196, 196, 0.911);
+    margin: auto;
+    width: 90%;
+    max-width: 510px;
+    padding: 0em 2em 2em 2em;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -5px rgba(0 0 0 / 50%);
+    text-align: center;
+    margin-bottom: 2em;
+   }
+   .textareaForm{
+    width: 452px; 
+    height: 107px;
+    font-size: 15px;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    transition: 0.3s;
+   }

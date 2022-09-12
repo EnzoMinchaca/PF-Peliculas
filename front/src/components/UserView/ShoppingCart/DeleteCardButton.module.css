@@ -1,0 +1,15 @@
+.equis {
+    color: black;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.813);
+    border-radius: 20%;
+    font-weight: 600;
+    transition: .25s;
+    background-color: rgba(189, 0, 0, 0.813);
+    color: white;
+    border: none;
+}
+
+.equis:hover{
+    background-color: rgba(237, 45, 45, 0.813);
+}
