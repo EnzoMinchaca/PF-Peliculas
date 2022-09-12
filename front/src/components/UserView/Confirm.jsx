@@ -3,6 +3,9 @@ import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { putBuy, oneUser } from '../../redux/Slice/userAction'
+import { useDispatch } from 'react-redux'
+import { clearCart } from '../../redux/Slice/movieAction'
 import Swal from 'sweetalert2'
 
 export default function Confirm() {
@@ -12,6 +15,7 @@ export default function Confirm() {
     const query = new URLSearchParams(search)
     // console.log(query)
 
+    const dispatch = useDispatch()
     const status = query.get('status')
     const collectionStatus = query.get('collection_status')
     const collectionId = query.get('collection_id')
@@ -20,7 +24,22 @@ export default function Confirm() {
     // console.log(typeof status)
 
     useEffect(() => {
+        const movies = JSON.parse(localStorage.getItem('cart'))
+        console.log(movies)
+        const user = JSON.parse(localStorage.getItem('user'))
+        const idUser = user._id
+        console.log(idUser)
         if(status === "approved" && collectionStatus === "approved" && collectionId !== "null" && paymentId !== "null") {
+            dispatch(putBuy(movies, idUser))
+            dispatch(oneUser(idUser))
+            // console.log(user.buy)
+            // const send = user
+            // console.log(movies)
+            // send.buy = user.buy.concat(movies)
+            // console.log(send.buy)
+            // console.log(send)
+            localStorage.setItem('user', JSON.stringify(user))
+            dispatch(clearCart())
             navigate("/success")
         }
         if(status === "rejected" && collectionStatus === "rejected" && collectionId !== "null" && paymentId !== "null") {

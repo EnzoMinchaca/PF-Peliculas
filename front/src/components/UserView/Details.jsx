@@ -37,6 +37,12 @@ export default function Details() {
             let a = await dispatch(addMovieToCart(id))
             let json = await axios.get(`http://localhost:3001/movieDetails/${id}`)
             localStorage.setItem("cart", JSON.stringify([...cart, json.data]))
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to cart',
+                showConfirmButton: false,
+                timer: 1000
+            })
         }
 
     }

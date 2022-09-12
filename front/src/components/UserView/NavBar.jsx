@@ -458,7 +458,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem onClick={handleEdit}>Edit profile</MenuItem>
+              <MenuItem onClick={handleEdit}>Profile</MenuItem>
               <MenuItem onClick={handleSingOff}>Sing off</MenuItem>
             </Menu>
           </Toolbar>
@@ -647,7 +647,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleEdit}>Edit profile</MenuItem>
+            <MenuItem onClick={handleEdit}>Profile</MenuItem>
             <MenuItem onClick={handleSingOff}>Sing off</MenuItem>
           </Menu>
         </Toolbar>

@@ -93,8 +93,10 @@ export const userSlice = createSlice({
             }
         },
 
-        addbys: (state, action) => {
-            state.movie = action.payload
+        addbys: (state) => {
+            return {
+                ...state
+            }
         },
 
         deleteUserById: (state,action)=>{         
@@ -103,7 +105,12 @@ export const userSlice = createSlice({
         
           },
 
-        
+        theUser: (state, action) => {
+            return {
+                ...state,
+                user: action.payload
+            }
+        }
         
     }
 })
@@ -122,7 +129,8 @@ export const { userLogin,
      toPayPay,
      toExecute,
      addbys,
-     deleteUserById
+     deleteUserById,
+     theUser
 
    
 } = userSlice.actions

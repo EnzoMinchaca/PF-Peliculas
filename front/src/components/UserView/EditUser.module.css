@@ -256,3 +256,34 @@
 .red{
     color: red;
 }
+
+.contentList {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid #999999; */
+    /* border-radius: 10px; */
+    width: 50%;
+    padding: 0;
+    margin-left: 20em;
+    /* position: absolute; */
+}
+
+.list {
+    /* border: 1px solid black; */
+}
+
+.direction {
+    /* display: flex; */
+    flex-direction: row;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.port {
+    width: 10%;
+    height: 10%;
+    padding-bottom: 10px;
+}
