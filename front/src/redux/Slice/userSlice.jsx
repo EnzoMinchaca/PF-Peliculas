@@ -7,6 +7,7 @@ export const userSlice = createSlice({
     initialState: {
         allUsers:[],//estado que siempre va a almacenar todos los usuarios
         users:[],
+
     },
     
     reducers: {
@@ -105,12 +106,58 @@ export const userSlice = createSlice({
         
           },
 
+
         theUser: (state, action) => {
             return {
                 ...state,
                 user: action.payload
             }
         }
+
+          filterByStatus: (state, action) => {
+
+          let userFilter = [];
+             state.allUsers.forEach(user => {
+                 user.status.forEach(status => {
+                 if (status === action.payload) {
+                    userFilter.push(user)
+                }
+              })
+            })
+            state.users = userFilter;
+          },
+/*
+            const status = action.payload
+            if (status === "default")
+              return {
+                ...state,
+                users: state.allUsers,
+                filtered: state.allUsers,
+              };
+            else {
+              let usersFiltered = state.allUsers?.filter((users) => {
+                return users.status;
+              });
+              return {
+                ...state,
+                users: usersFiltered,
+                filtered: usersFiltered,
+              };
+            }
+          },*/
+
+          editUserSt: (state, action)=>{
+            return {
+                ...state,
+                data: action.payload
+            }      
+        },
+          
+
+
+           
+        
+
         
     }
 })
@@ -131,6 +178,9 @@ export const { userLogin,
      addbys,
      deleteUserById,
      theUser
+     filterByStatus,
+     editUserSt
+
 
    
 } = userSlice.actions
