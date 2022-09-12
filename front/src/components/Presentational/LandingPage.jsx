@@ -7,7 +7,6 @@ function LandingPage() {
     <div className={styles.background}>
       <Link to="/Home">
         <div className={styles.homeBtn}></div>
-        <button className={styles.button}>HOME</button>
         <span className={styles.home_span}>HMovies</span>
       </Link>
         <h1></h1>

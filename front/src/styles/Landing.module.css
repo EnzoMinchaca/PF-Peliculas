@@ -15,10 +15,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 320px;
     position: absolute;
-    left: 690px;
+    left: 600px;
     top: 132px;
     transition: transform 0.7s ease-in-out;
   }
@@ -27,9 +27,9 @@
     font-family: sans-serif;
     position: absolute;
     left: 700px;
-    top: 350px;
+    top: 600px;
     text-decoration: none;
-    color: white;
+    color: #5aa01c;
     font-size: 40px;
     letter-spacing: 2px;
   }
@@ -40,11 +40,13 @@
 
   h1:before {
     position: relative;
-	content: '';
-	animation: changingTxt 5s linear infinite;
+	  content: '';
+	  animation: changingTxt 5s linear infinite;
     color: white;
-    left: 630px;
-    top: 500px;
+    left: 420px;
+    top: 450px;
+    font-size: 90px;
+
     
 
 }
@@ -97,8 +99,8 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
-  top: 450px;
-  left: 710px;
+  top: 240px;
+  left: 300px;
   }
 
   .button:hover,
