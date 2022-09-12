@@ -192,41 +192,34 @@
     background-repeat: no-repeat;
     width: 100px;
     height: 100px;
-    position:absolute;
-   
+    position:relative;
+    left: 0%;
     transition: transform 0.7s ease-in-out;
   }
 
   .userBtn {
     background-image: url("../img/peli.png");
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
     width: 100px;
     height: 100px;
-    position: absolute ;
+    position:relative;
+    left: 150%;
   
     transition: transform 0.7s ease-in-out;
   }
 
   
   .card2{
-    width: 50vw;
-    height: 60vh;
+    width: 100%;
+    height: 50vh;
     background-color: rgb(244, 244, 244);
-    border-radius: 12px;
     display: flex;
-    margin: 30px 35px 90px 400px; /* Top, Right, Bottom, Left */
+    margin: 30px 35px 200px 2px; /* Top, Right, Bottom, Left */
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    box-shadow: #152146 0px 5px 15px;
-    -webkit-animation-name: slideInLeft;
-    animation-name: slideInLeft;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+    
   }
 
   .card2 cardGradient {

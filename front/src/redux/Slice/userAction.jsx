@@ -15,7 +15,10 @@ import {
     toPayPay,
     deleteUserById,
     toPay, 
+    filterByStatus,
+    editUserSt,
     toExecute
+
 }from "./userSlice";
 
 
@@ -339,6 +342,12 @@ export const getUser=()=>(dispatch)=>{
         export const deleteUsers=(id)=>(dispatch)=>{
             axios.delete(`http://localhost:3001/deletUsers/${id}`)
             .then(resp=>console.log(resp.data))
+            return Swal.fire({
+                icon: "success",
+                title: "Delete...",
+            text: "Successfully deleted user",
+              })
+              
             .catch((e) => {
                 console.log(e);
                 return Swal.fire({
@@ -348,6 +357,34 @@ export const getUser=()=>(dispatch)=>{
                   });
               });  
            dispatch(deleteUserById(id))
+        }
+
+        export const filterBStatus = (status) => (dispatch) => {
+            dispatch(filterByStatus(status))
+        }
+
+        export const editUsersStatus=(bodyFormData, id)=>(dispatch)=>{
+            console.log(bodyFormData)
+            console.log(id)
+            axios.put(`http://localhost:3001/promoveUsers/${id}`, bodyFormData)
+            
+            .then(resp=>dispatch(editUserSt(resp.data)))
+            .then(()=>{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `The user was successfully modified`,
+                })
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Could not modify user.! -- PromoveUser",
+                  });
+              });
+          
         }
 
 

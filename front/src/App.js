@@ -36,8 +36,14 @@ function App() {
         <Route exact path="/example" element={<Example/>} />
         <Route exact path="/password" element={<Password/>} />
         <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
+
+        <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
+        
+         
+        
+
         <Route exact path="/Modify/:id" element={<ModifyMovies/>} />
-        <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />        
+             
          
       </Routes>
     </BrowserRouter>
