@@ -88,7 +88,7 @@ export default function Details() {
                                 <div><h3>Trailer</h3>
                                     {
                                         // details.trailer.split("").slice(7).join("") === "<iframe" ? details.trailer :
-                                        <iframe width="560" height="310" src="https://www.youtube.com/embed/T1NeHRuPpoM"
+                                        <iframe width="560" height="310" src={details.trailer}
                                             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                         </iframe>
                                     }
