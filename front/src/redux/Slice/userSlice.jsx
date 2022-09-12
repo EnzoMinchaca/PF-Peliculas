@@ -112,7 +112,7 @@ export const userSlice = createSlice({
                 ...state,
                 user: action.payload
             }
-        }
+        },
 
           filterByStatus: (state, action) => {
 
@@ -177,7 +177,7 @@ export const { userLogin,
      toExecute,
      addbys,
      deleteUserById,
-     theUser
+     theUser,
      filterByStatus,
      editUserSt
 

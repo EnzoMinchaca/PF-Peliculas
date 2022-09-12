@@ -16,7 +16,7 @@ import {
     deleteUserById,
     toPay, 
     toExecute,
-    theUser
+    theUser,
     filterByStatus,
     editUserSt,
 
