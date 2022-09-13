@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Login.module.css";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -7,6 +7,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import {GoogleLogin} from "react-google-login"
+import { gapi } from 'gapi-script';
 
 import { loginUsers, postCreateUser, UserPassword } from "../../redux/Slice/userAction";
 
@@ -24,6 +26,16 @@ export default function Login({closeModal}){
     })
 
     const dispatch=useDispatch();
+    const clientId = '386932037035-k8v833noqjk************.apps.googleusercontent.com';
+    useEffect(()=>{
+        const initClient = () => {
+            gapi.client.init({
+            clientId: clientId,
+            scope: ''
+          });
+       };
+       gapi.load('client:auth2', initClient);
+    })
     
     function handleChange(e) {
         setInput({
@@ -31,6 +43,28 @@ export default function Login({closeModal}){
             [e.target.name]: e.target.value
         })
         console.log(input)
+    }
+    function googleSingUp(response){
+        console.log(response)
+        console.log(response.profileObj.email)
+        console.log(response.profileObj.familyName)
+        console.log(response.profileObj.givenName)
+        console.log(response.profileObj.googleId)
+        closeModal()
+        dispatch(postCreateUser({email: response.profileObj.email,
+            password: response.profileObj.googleId,
+            name:response.profileObj.givenName,
+            lastname:response.profileObj.familyName}))
+    }
+    function googleLogin(response){
+        console.log(response)
+        console.log(response.profileObj.email)
+        console.log(response.profileObj.familyName)
+        console.log(response.profileObj.givenName)
+        console.log(response.profileObj.googleId)
+        closeModal()
+        dispatch(loginUsers({email: response.profileObj.email,
+            password: response.profileObj.googleId }))
     }
     function handleSubmit(e) {
         if(login){
@@ -177,6 +211,13 @@ export default function Login({closeModal}){
                         <input className={css.btn} type="submit" value="Login"/>
                         <button onClick={handleRemember} className={css.btnpassword}>Don't remember password</button>
                     </div>
+                    <GoogleLogin
+                        clientId="789693821904-sf3fdgl0ih103ad95ruro29ka5238gds.apps.googleusercontent.com"
+                        buttonText="Login with Google"
+                        onSuccess={(response)=>googleLogin(response)}
+                        onFailure={(response)=>googleLogin(response)}
+                        cookiePolicy={'single_host_origin'}
+                        />
                 </form> :
                 <form onSubmit={(e) => handleSubmit(e)} className={css.form}>
                 <div className={css.containerInputs}>
@@ -243,6 +284,13 @@ export default function Login({closeModal}){
                     {/* <input type={"submit"} value={"Create"}/> */}
                     <input className={css.btn} type="submit" value="Login"/>
                 </div>
+                <GoogleLogin
+                        clientId="789693821904-sf3fdgl0ih103ad95ruro29ka5238gds.apps.googleusercontent.com"
+                        buttonText="Sing up with Google"
+                        onSuccess={(response)=>googleSingUp(response)}
+                        onFailure={(response)=>googleSingUp(response)}
+                        cookiePolicy={'single_host_origin'}
+                        />
             </form>
                 }
             </div>
