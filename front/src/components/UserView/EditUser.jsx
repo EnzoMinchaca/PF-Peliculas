@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "../../styles/styles.module.css";
+import buton from "../../styles/Buttons.module.css"
 import ButtonHome from "../Presentational/ButtonHome";
 import css from "./EditUser.module.css";
 import ListSubheader from '@mui/material/ListSubheader';
@@ -213,13 +215,20 @@ export default function EditUser(){
             user.buy.length > 0 ? user.buy.map(m => {
               return(
                 <div className={css.direction}>
-                  <p className={css.list}>{m.title}</p>
                   <img src={m.image} alt="image" className={css.port} />
+                  <p className={css.list}>{m.title}</p>
+                  <p className={css.list}>{m.platform}</p>
+                  <Link to={`/Details/${m._id}`}>
+                    <button className={buton.btn}>View Details</button>
+                  </Link>
+                  <a href={m.trailer} target={"_blank"}>
+                    <button className={buton.btn}>Play</button>
+                  </a>
                 </div>
               )
             })
             :
-            <h2>No movies</h2>
+            <h2 className={css.text}>No movies</h2>
           }
         </div>
       </Collapse>
