@@ -387,13 +387,24 @@ router.get('/userId/:id', async(req, res) => {
   
 router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el estado del usuario
     try {
-        const {id}= req.params;
-        const {isUser,isAdmin,isOwner,isBan}= req.body
+        const {id}= req.params;    //{id: id, role : 'admin' o 'user' ...}
+        const {role}= req.body;
+        let changeStatus;
         const user= await userSchema.findById(id);
         if(!user){
           res.status(404).send('The user does not exist')
         }
-         let changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: isUser, isAdmin: isAdmin, isOwner:isOwner, isBan:isBan}})
+
+         if(role==='Admin'){
+          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: false, isAdmin: true, isOwner:false, isBan:false}})
+         }else if(role==='User'){
+          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: true, isAdmin: false, isOwner:false, isBan:false}})
+         }else if(role==='Banned'){
+          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser:false, isAdmin: false, isOwner:false, isBan:true}})
+         }else if(role==='Owner'){
+          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: false, isAdmin: false, isOwner:true, isBan:false}})  
+         }
+
         if(changeStatus){
             res.send(`${user.name} is status changed successfully`)
         }
@@ -428,6 +439,27 @@ router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuari
     }
     catch(error) {
         console.log(error)
+    }
+});
+
+  //busca usuario por nombre
+  router.get('/getUsersName', async(req,res)=>{
+    let allUsers = await userSchema.find();
+    const {nameUser}= req.query;
+    try {
+        if(allUsers.length ===0) res.sen('There is no registered user yet')
+        if(nameUser){
+            let user = allUsers.filter(e => e.name.toLowerCase().includes(nameUser.toLowerCase())
+             )
+            if(user.length){
+              res.send(user);
+            } 
+            else {res.send('User not found')};
+        }else{
+            res.send('Invalid name');
+          }
+      } catch (error) {
+        console.log(error);
     }
 });
 

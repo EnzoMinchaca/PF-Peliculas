@@ -12,8 +12,7 @@ import { Link } from "react-router-dom";
 export default function AdminPanel() {
     return (
         <div>
-            <Header/>
-            
+           
             <div className={styles.title}>
                 <p className={styles.span}> Admin Panel</p>
             </div>
