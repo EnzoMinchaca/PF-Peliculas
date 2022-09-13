@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 import CardsUser from "./visPrueba";
 import Footer from "../Presentational/footer";
 import styles from "../../styles/styles.module.css";
@@ -58,6 +60,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AdminModifyUser() {
 
+    const navigate = useNavigate()
+    const [isUser, setisUser] = useState(true)
+
     const dispatch = useDispatch();
     const [ setOrder] = useState("");
     const [currentPage, setCurrentPage] = useState(1); 
@@ -76,7 +81,7 @@ export default function AdminModifyUser() {
         dispatch(filterBStatus(status));
         setOrder(status);
         setCurrentPage(1);
-  };
+ };
       //search
   const [searchValue,setSearchValue]=useState('')
   const handleOnChange = (text) => {
@@ -87,13 +92,34 @@ export default function AdminModifyUser() {
       dispatch(getSearchUser(searchValue));
     }
    }
+      useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user === null) {
+            console.log(user)
+            // setisUser(true)
+            navigate("/home")
+        }
+        if(user) {
+            const flag = user.isUser ? true : false
+            // setisUser(true)
+            if(flag) {
+                navigate("/home")
+            }
+        }
+        setisUser(false)
+      }, [])
 
-    return(
-        <div>
-      
-            <div className={styles.title}>
-                <p className={styles.span}> Admin Panel -- Users</p>
-                {/*para el search */}
+      if(isUser) {
+        return(
+            <div>
+            </div>
+        )
+    } else {
+      return(
+          <div>
+              <div className={styles.title}>
+                  <p className={styles.span}> Admin Panel -- Users</p>
+                   {/*para el search */}
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Search>
              
@@ -113,27 +139,26 @@ export default function AdminModifyUser() {
               </Button>
             </Box>
              {/*para el search */}
-            </div>
-           
-            <NavHome 
-            handleStatusFilter={handleStatusFilter}/>
-          
-            <CardsUser
-            lastItemIndex={lastItemIndex}
-            firstItemIndex={firstItemIndex}/>
+              </div>
+             
+              <NavHome 
+              handleStatusFilter={handleStatusFilter}/>
+            
+              <CardsUser
+              lastItemIndex={lastItemIndex}
+              firstItemIndex={firstItemIndex}/>
+  
+              <Pagination
+              items={users}
+              quantityXPage={quantityXPage}
+              handlePagination={handlePagination}
+              currentPage={currentPage}
+            />
+  
+            <Footer></Footer>
+                                            
+          </div>
+      )
+    }
 
-            <Pagination
-            items={users}
-            quantityXPage={quantityXPage}
-            handlePagination={handlePagination}
-            currentPage={currentPage}
-          />
-
-          <Footer></Footer>
-            
-            
-            
-            
-        </div>
-    )
 }

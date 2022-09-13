@@ -33,18 +33,11 @@ function App() {
         <Route exact path="/confirmPay" element={<ConfirmPay/>}/>
         <Route exact path="/cancelPay" element={<CancelPay/>}/>
         <Route exact path="/success" element={<Success/>} />
-        <Route exact path="/example" element={<Example/>} />
+        {/* <Route exact path="/example" element={<Example/>} /> */}
         <Route exact path="/password" element={<Password/>} />
         <Route exact path="/modifyMovies" element={<AdminModifyMovies/>} />
-
         <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
-        
-         
-        
-
-        <Route exact path="/Modify/:id" element={<ModifyMovies/>} />
-             
-         
+        <Route exact path="/Modify/:id" element={<ModifyMovies/>} />      
       </Routes>
     </BrowserRouter>
   )

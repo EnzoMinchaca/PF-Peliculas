@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getMovies, getSearch } from "../../redux/Slice/movieAction";
 import CardAdmin from "./Card";
 import Footer from "../Presentational/footer";
@@ -57,6 +57,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function AdminModifyMovies() {
+
+    const navigate = useNavigate()
+    const [isUser, setisUser] = useState(true)
+
     const dispatch=useDispatch()
 
     const movies=useSelector(state=>state.movies.movies)
@@ -91,61 +95,83 @@ export default function AdminModifyMovies() {
 }
        React.useEffect(()=>{
          dispatch(getMovies())
+         const user = JSON.parse(localStorage.getItem('user'))
+        if(user === null) {
+            console.log(user)
+            // setisUser(true)
+            navigate("/home")
+        }
+        if(user) {
+            const flag = user.isUser ? true : false
+            // setisUser(true)
+            if(flag) {
+                navigate("/home")
+            }
+        }
+        setisUser(false)
        },[])
 
-    return(
-        <div>
-           <div className="link">
-                <NavLink to="/panel" key={"panel"} className={s.text}>
-                    Back
-                </NavLink>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Search>
-             
-                <StyledInputBase
-                  onChange={(text) => handleOnChange(text)}
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                  
-                  className={css.inputSearch}
-                />
-              </Search>
-        
-              <Button onClick={() => searchOnClick()}  className={css.searchBtn}>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-              </Button>
-            </Box>
-                
-            </div>
-            <div className="section">
-            {typeof movies ==='string'?
-              <div className={styles.uniqueHome}>
-              <h2>Movie not found</h2>
-              <button onClick={() => handleRefresh()} className={s.btn}>Refresh</button>
-          </div>
-            :
-            movies.length>0? movies.slice(firstMovies,lastMovies).map((movie)=>{
-                  return (
+      if(isUser) {
+        return(
+            <div></div>
+        )
+    } else {
+      return(
+          <div>
+             <div className="link">
+                  <NavLink to="/panel" key={"panel"} className={s.text}>
+                      Back
+                  </NavLink>
+                      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Search>
+               
+                  <StyledInputBase
+                    onChange={(text) => handleOnChange(text)}
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
                     
-                      <CardAdmin
-                      key={movie.id}
-                      title={movie.title}
-                      image={movie.image}
-                      price={movie.price}
-                      genres={movie.genres}
-                      platform={movie.platform}
-                      id={movie._id}/>
-    
-                )
-              }): null
-             }
+                    className={css.inputSearch}
+                  />
+                </Search>
+          
+                <Button onClick={() => searchOnClick()}  className={css.searchBtn}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                </Button>
+              </Box>
+                  
+              </div>
+              <div className="section">
+              {typeof movies ==='string'?
+                <div className={styles.uniqueHome}>
+                <h2>Movie not found</h2>
+                <button onClick={() => handleRefresh()} className={s.btn}>Refresh</button>
             </div>
-            <div className={typeof movies ==='string'?"Pagination":''} >
-              <Pagination page={page} setPag={setPag} max={max} movies={movies} ></Pagination>
-            </div>
-              <Footer/>
-        </div>
-    )
+              :
+              movies.length>0? movies.slice(firstMovies,lastMovies).map((movie)=>{
+                    return (
+                      
+                        <CardAdmin
+                        key={movie.id}
+                        title={movie.title}
+                        image={movie.image}
+                        price={movie.price}
+                        genres={movie.genres}
+                        platform={movie.platform}
+                        id={movie._id}/>
+      
+                  )
+                }): null
+               }
+              </div>
+              <div className={typeof movies ==='string'?"Pagination":''} >
+                <Pagination page={page} setPag={setPag} max={max} movies={movies} ></Pagination>
+              </div>
+                <Footer/>
+          </div>
+      )
+
+    }
+
 }

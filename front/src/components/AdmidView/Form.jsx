@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { clearGenres, getGenres, getMovies, getPlatform, postMovies } from "../../redux/Slice/movieAction";
 import Swal from "sweetalert2";
 import { Box } from "@mui/material";
@@ -21,9 +21,11 @@ export default function Form() {
     }
     years()
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const genres = useSelector(state => state.movies.genres)
     const platform = useSelector(state => state.movies.platform)
+    const [isUser, setisUser] = useState(true)
     const [input, setInput] = useState({
         title: "",
         date: 2022,
@@ -42,6 +44,20 @@ export default function Form() {
     })
 
     useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user === null) {
+            console.log(user)
+            // setisUser(true)
+            navigate("/home")
+        }
+        if(user) {
+            const flag = user.isUser ? true : false
+            // setisUser(true)
+            if(flag) {
+                navigate("/home")
+            }
+        }
+        setisUser(false)
         dispatch(getGenres())
         dispatch(getPlatform())
         return() => {dispatch(clearGenres())}
@@ -220,183 +236,192 @@ export default function Form() {
         }
     }
 
-    return (
-        <div className={s.content}>
-            <Header/>
-            <div className={s.link}>
-                <NavLink to="/Home" key={"Home"} className={s.text}>
-                    Back
-                </NavLink>
+    if(isUser) {
+        return(
+            <div>
             </div>
-            <div className={s.all}>
-                <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
-                    <h2>Create Movie</h2>
-                    <div className={s.containerInputs}>
-                        <div>
-                            <label>*Title: </label>
-                            <input 
-                                className={s.input}
-                                placeholder="Movie's title"
-                                type="text" 
-                                value={input.title}
-                                name="title"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div className={s.order}>
-                            <label> Date: </label>
-                            <select onChange={(e) => handleChange(e)} defaultValue={2022} name="date" value={input.date} className={s.select}>
-                                {
-                                    year?.map((y, i) => {
-                                        return(
-                                            <option value={y} key={i}>{y}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div>
-                            <label>*Description: </label>
-                            <input 
-                                className={s.input}
-                                placeholder="Movie's description"
-                                type="text" 
-                                value={input.description}
-                                name="description"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div className={s.order}>
-                            <label> Rating: </label>
-                            <select onChange={(e) => handleChange(e)} defaultValue={1} name="rating" value={input.rating} className={s.select}>
-                                {
-                                    rat?.map((r, i) => {
-                                        return(
-                                            <option value={r} key={i}>{r}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div className={s.order}>
-                            <label>*Platform: </label>
-                            <select onChange={(e) => handleSelectPlatform(e)} name="platform" className={s.select}>
-                                <option selected>Select...</option>
-                                {
-                                    platform?.map(p => {
-                                        return(
-                                            <option value={p.name} key={p._id}>{p.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div className={s.order}>
-                            <label>*Duration (hours:minutes): </label>
-                            <input
-                                className={s.select} 
-                                type="time" 
-                                name="duration"
-                                defaultValue={"00:00"}
-                                value={input.durationView}
-                                onChange={(e) => handleChangeDuration(e)}
-                            />
-                        </div>
-                        <div>
-                            <label>*URL Image: </label>
-                            <input
-                                className={s.input}
-                                placeholder="http/https:.................jpg/png" 
-                                type="text" 
-                                value={input.image}
-                                name="image"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div>
-                            <label>*Casting: </label>
-                            <input 
-                                className={s.input}
-                                type="text" 
-                                placeholder="Introduce a name and add"
-                                value={input.castName}
-                                name="castName"
-                                onChange={(e) => handleChange(e)}
-                            />
-                            <button onClick={(e) => addCast(e)} className={s.add}>Add</button>
-                            <div className={s.cast}>
-                                {
-                                    input.cast?.map(name => {
-                                        return(
-                                            <p onClick={() => handleDeleteCast(name)} className={s.p}>{name}</p>
-                                        )
-                                    })
-                                }
+        )
+    } else {
+
+        return (
+            <div className={s.content}>
+                <Header/>
+                <div className={s.link}>
+                    <NavLink to="/Home" key={"Home"} className={s.text}>
+                        Back
+                    </NavLink>
+                </div>
+                <div className={s.all}>
+                    <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
+                        <h2>Create Movie</h2>
+                        <div className={s.containerInputs}>
+                            <div>
+                                <label>*Title: </label>
+                                <input 
+                                    className={s.input}
+                                    placeholder="Movie's title"
+                                    type="text" 
+                                    value={input.title}
+                                    name="title"
+                                    onChange={(e) => handleChange(e)}
+                                />
                             </div>
-                        </div>
-                        <div>
-                            <label>*Director: </label>
-                            <input 
-                                className={s.input}
-                                placeholder="Director's name"
-                                type="text" 
-                                value={input.director}
-                                name="director"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div>
-                            <label>*Trailer: </label>
-                            <input 
-                                className={s.input}
-                                placeholder="<iframe..................></iframe>"
-                                type="text" 
-                                value={input.trailer}
-                                name="trailer"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div className={s.order}>
-                            <label>*Genres: </label>
-                            <select onChange={(e) => handleChangeGenre(e)} name="genres" className={s.select}>
-                                <option selected>Select...</option>
-                                {
-                                    genres?.map(g => {
-                                        return(
-                                            <option value={g.name} key={g._id} className={s.option}>{g.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                            <div className={s.cast}>
-                                {
-                                    input.genres?.map(genre => {
-                                        return(
-                                            <p onClick={() => handleDeleteGenre(genre)} className={s.p}>{genre}</p>
-                                        )
-                                    })
-                                }
+                            <div className={s.order}>
+                                <label> Date: </label>
+                                <select onChange={(e) => handleChange(e)} defaultValue={2022} name="date" value={input.date} className={s.select}>
+                                    {
+                                        year?.map((y, i) => {
+                                            return(
+                                                <option value={y} key={i}>{y}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
                             </div>
+                            <div>
+                                <label>*Description: </label>
+                                <input 
+                                    className={s.input}
+                                    placeholder="Movie's description"
+                                    type="text" 
+                                    value={input.description}
+                                    name="description"
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            <div className={s.order}>
+                                <label> Rating: </label>
+                                <select onChange={(e) => handleChange(e)} defaultValue={1} name="rating" value={input.rating} className={s.select}>
+                                    {
+                                        rat?.map((r, i) => {
+                                            return(
+                                                <option value={r} key={i}>{r}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className={s.order}>
+                                <label>*Platform: </label>
+                                <select onChange={(e) => handleSelectPlatform(e)} name="platform" className={s.select}>
+                                    <option selected>Select...</option>
+                                    {
+                                        platform?.map(p => {
+                                            return(
+                                                <option value={p.name} key={p._id}>{p.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className={s.order}>
+                                <label>*Duration (hours:minutes): </label>
+                                <input
+                                    className={s.select} 
+                                    type="time" 
+                                    name="duration"
+                                    defaultValue={"00:00"}
+                                    value={input.durationView}
+                                    onChange={(e) => handleChangeDuration(e)}
+                                />
+                            </div>
+                            <div>
+                                <label>*URL Image: </label>
+                                <input
+                                    className={s.input}
+                                    placeholder="http/https:.................jpg/png" 
+                                    type="text" 
+                                    value={input.image}
+                                    name="image"
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            <div>
+                                <label>*Casting: </label>
+                                <input 
+                                    className={s.input}
+                                    type="text" 
+                                    placeholder="Introduce a name and add"
+                                    value={input.castName}
+                                    name="castName"
+                                    onChange={(e) => handleChange(e)}
+                                />
+                                <button onClick={(e) => addCast(e)} className={s.add}>Add</button>
+                                <div className={s.cast}>
+                                    {
+                                        input.cast?.map(name => {
+                                            return(
+                                                <p onClick={() => handleDeleteCast(name)} className={s.p}>{name}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <label>*Director: </label>
+                                <input 
+                                    className={s.input}
+                                    placeholder="Director's name"
+                                    type="text" 
+                                    value={input.director}
+                                    name="director"
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            <div>
+                                <label>*Trailer: </label>
+                                <input 
+                                    className={s.input}
+                                    placeholder="<iframe..................></iframe>"
+                                    type="text" 
+                                    value={input.trailer}
+                                    name="trailer"
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            <div className={s.order}>
+                                <label>*Genres: </label>
+                                <select onChange={(e) => handleChangeGenre(e)} name="genres" className={s.select}>
+                                    <option selected>Select...</option>
+                                    {
+                                        genres?.map(g => {
+                                            return(
+                                                <option value={g.name} key={g._id} className={s.option}>{g.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                                <div className={s.cast}>
+                                    {
+                                        input.genres?.map(genre => {
+                                            return(
+                                                <p onClick={() => handleDeleteGenre(genre)} className={s.p}>{genre}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            <div className={s.order}>
+                                <label>*Price: </label>
+                                <input 
+                                    className={s.select}
+                                    type="number" 
+                                    name="price"
+                                    step={"0.01"}
+                                    min={0}
+                                    defaultValue={0}
+                                    value={input.price}
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            {/* <input type={"submit"} value={"Create"}/> */}
+                            <button className={s.btn}>Create</button>
                         </div>
-                        <div className={s.order}>
-                            <label>*Price: </label>
-                            <input 
-                                className={s.select}
-                                type="number" 
-                                name="price"
-                                step={"0.01"}
-                                min={0}
-                                defaultValue={0}
-                                value={input.price}
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        {/* <input type={"submit"} value={"Create"}/> */}
-                        <button className={s.btn}>Create</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <Footer/>
             </div>
-            <Footer/>
-        </div>
-    )
+    
+        )
+    }
 }
