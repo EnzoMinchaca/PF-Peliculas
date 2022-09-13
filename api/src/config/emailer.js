@@ -103,7 +103,7 @@ module.exports.SendPuchase = async ( email, nameMovie, date, hour, linkViewMovie
       rejectUnauthorized: false
     }
   })
-  transporter.verify().then(data=> console.log(data)).catch(error=> console.log(error))
+  //transporter.verify().then(data=> console.log(data)).catch(error=> console.log(error))
   transporter.sendMail({
     from: "Puchase successful",
     to: email,

@@ -435,7 +435,7 @@ router.post("/sendPuchase", async ( req, res ) => {
 
     //Tiene que llegar todo en string;
     //Date ejemplo : 13/9/2022
-    //Hour ejemplo : 12:52
+    //Hour ejemplo : 12:50
     
     const { email, nameMovie, date, hour, linkViewMovie, price , image} = req.body;
 
