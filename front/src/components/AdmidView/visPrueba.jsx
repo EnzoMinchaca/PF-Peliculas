@@ -17,7 +17,10 @@ export default function CardsUser({ lastItemIndex, firstItemIndex }){
 
       return (
         <>
-          {users.length !== 0 ? (
+          {typeof users ==='string'?
+          <h2>{users}, click refresh </h2>
+          :
+          users.length !== 0 ? (
             <div  className={styles.usersContainer}>
               {Array.isArray(users) === false ? (
                 <>
@@ -32,6 +35,10 @@ export default function CardsUser({ lastItemIndex, firstItemIndex }){
                     lastname={user.lastname}
                     email={user.email}
                     status={user.status}
+                    isUser={user.isUser}
+                    isBan={user.isBan}
+                    isOwner={user.isOwner}
+                    isAdmin={user.isAdmin}
                     id={user._id} 
                       
                     />
@@ -40,10 +47,8 @@ export default function CardsUser({ lastItemIndex, firstItemIndex }){
               )}
             </div>
           ) : (
-            <>
-              
-             
-            </>
+            <>                  
+           </>
           )}
         </>
       );
