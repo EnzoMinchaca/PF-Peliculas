@@ -5,7 +5,7 @@ import CardUser from "./vista";
 import styles from "../../styles/Admin.module.css";
 
 
-export default function CardsUser({ lastItemIndex, firstItemIndex }){
+export default function CardsUser(){
 
     const dispatch=useDispatch();
 
@@ -16,7 +16,24 @@ export default function CardsUser({ lastItemIndex, firstItemIndex }){
        },[])
 
       return (
-        <>
+
+        <div  className={styles.usersContainer}>
+
+                      <CardUser />
+          </div>
+
+       
+      );
+    }
+
+      
+          
+      
+
+  
+
+
+/* <>
           {users.length !== 0 ? (
             <div  className={styles.usersContainer}>
               {Array.isArray(users) === false ? (
@@ -45,37 +62,4 @@ export default function CardsUser({ lastItemIndex, firstItemIndex }){
              
             </>
           )}
-        </>
-      );
-    }
-
-        /*
-          
-          <div  className={styles.usersContainer}>
-           
-        
-        {users.length? users.map((user)=>{
-                  return (
-                    
-                      <CardUser
-                      key={user.id}
-                      name={user.name}
-                      lastname={user.lastname}
-                      email={user.email}
-                      status={user.status}
-                      id={user._id} 
-                      />
-    
-                )
-                  }):null}
-
-              
-           
-          </div>
-          
-          
-       
-      )
-  }
-*/
-  
+        </>*/

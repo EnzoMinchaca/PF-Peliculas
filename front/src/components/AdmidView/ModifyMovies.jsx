@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
@@ -6,9 +7,10 @@ import { clearDetails, clearGenres, getGenres, getMovieById, getMovies, getPlatf
 import Swal from "sweetalert2";
 import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
-import Header from "../Presentational/header";
-import Footer from "../Presentational/footer";
 import s from './Form.module.css'
+import styles from "../../styles/Admin.module.css"
+import { BsFillHouseDoorFill} from "react-icons/bs";
+import { AiFillLeftSquare } from "react-icons/ai";
 
 export default function ModifyMovies() {
     
@@ -202,14 +204,18 @@ export default function ModifyMovies() {
 
     return (
         <div className={s.content}>
-            <div className={s.link}>
-                <NavLink to="/modifyMovies" key={"modifyMovies"} className={s.text}>
-                    Back
-                </NavLink>
+           <div className={styles.title1}>
+           <p className={styles.span1}>Admin Panel - Edit Movie</p>
+           <div className={styles.home} >
+            <Link to="/Home">   
+               <BsFillHouseDoorFill className={styles.icon}/> 
+            </Link>
             </div>
+            <div className={styles.home1}><Link to="/panel"><AiFillLeftSquare className={styles.icon2}/></Link></div>
+          </div>
             <div className={s.all}>
                 <form onSubmit={(e) => handleSubmit(e)} className={s.modifyForm}>
-                    <h2>Modify Movie</h2>
+                    <h5>Movie Data</h5>
                     <div className={s.containerInputs}>
                         <div className={s.order}>
                             <label>Title: </label>
@@ -374,7 +380,7 @@ export default function ModifyMovies() {
                     </div>
                 </form>
             </div>
-            <Footer/>
+       
         </div>
     )
 }

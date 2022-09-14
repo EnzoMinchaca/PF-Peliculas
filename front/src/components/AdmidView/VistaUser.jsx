@@ -1,69 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CardsUser from "./visPrueba";
-import Header from "../Presentational/header";
-import Footer from "../Presentational/footer";
-import styles from "../../styles/styles.module.css";
-import { filterStatus} from "../AdmidView/Filter";
+import CardUser from "./visPrueba";
+import styles from "../../styles/Admin.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { filterBStatus, allUsers } from "../../redux/Slice/userAction";
-import NavHome from "../AdmidView/NavBar";
-
-import Pagination, { objIndexPagination } from "../AdmidView/Pagination";
-
+import { allUsers } from "../../redux/Slice/userAction";
+import { BsFillHouseDoorFill} from "react-icons/bs";
+import { AiFillLeftSquare } from "react-icons/ai";
 
 
 export default function AdminModifyUser() {
 
-    const dispatch = useDispatch();
-    const [ setOrder] = useState("");
-    const [currentPage, setCurrentPage] = useState(1); 
-    const users=useSelector(state=>state.users.users);
-    const quantityXPage = 6; 
+  const dispatch=useDispatch();
 
-      //Paginado
-  const handlePagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const { lastItemIndex, firstItemIndex } = objIndexPagination(
-    currentPage,
-    quantityXPage
-  );
- 
+  const users=useSelector(state=>state.users.users);
 
-    const handleStatusFilter = (status) => {
-        dispatch(filterBStatus(status));
-        setOrder(status);
-        setCurrentPage(1);
-      };
-
+       React.useEffect(()=>{
+       dispatch(allUsers())
+     },[])
 
     return(
         <div>
-            <Header></Header>
-            <div className={styles.title}>
-                <p className={styles.span}> Admin Panel -- Users</p>
+             
+          <div className={styles.title1}>
+           <p className={styles.span1}>Admin Panel - View Users</p>
+           <div className={styles.home} >
+            <Link to="/Home">   
+               <BsFillHouseDoorFill className={styles.icon}/> 
+            </Link>
             </div>
-           
-            <NavHome 
-            handleStatusFilter={handleStatusFilter}/>
-          
-            <CardsUser
-            lastItemIndex={lastItemIndex}
-            firstItemIndex={firstItemIndex}/>
+            <div className={styles.home1}><Link to="/panel"><AiFillLeftSquare className={styles.icon2}/></Link></div>
+          </div>
 
-            <Pagination
-            items={users}
-            quantityXPage={quantityXPage}
-            handlePagination={handlePagination}
-            currentPage={currentPage}
-          />
-
-          <Footer></Footer>
-            
-            
-            
-            
+            <CardUser/>
+   
         </div>
     )
 }
