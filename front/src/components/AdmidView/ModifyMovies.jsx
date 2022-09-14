@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
@@ -6,9 +7,10 @@ import { clearDetails, clearGenres, getGenres, getMovieById, getMovies, getPlatf
 import Swal from "sweetalert2";
 import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
-import Header from "../Presentational/header";
-import Footer from "../Presentational/footer";
 import s from './Form.module.css'
+import styles from "../../styles/Admin.module.css"
+import { BsFillHouseDoorFill} from "react-icons/bs";
+import { AiFillLeftSquare } from "react-icons/ai";
 
 export default function ModifyMovies() {
     
@@ -216,33 +218,123 @@ export default function ModifyMovies() {
             dispatch(getMovieById(id))
     }
 
-    if(isUser) {
-        return(
-            <div>
+
+    return (
+        <div className={s.content}>
+           <div className={styles.title1}>
+           <p className={styles.span1}>Admin Panel - Edit Movie</p>
+           <div className={styles.home} >
+            <Link to="/Home">   
+               <BsFillHouseDoorFill className={styles.icon}/> 
+            </Link>
             </div>
-        )
-    } else {
-        return (
-            <div className={s.content}>
-                <div className={s.link}>
-                    <NavLink to="/modifyMovies" key={"modifyMovies"} className={s.text}>
-                        Back
-                    </NavLink>
-                </div>
-                <div className={s.all}>
-                    <form onSubmit={(e) => handleSubmit(e)} className={s.modifyForm}>
-                        <h2>Modify Movie</h2>
-                        <div className={s.containerInputs}>
-                            <div className={s.order}>
-                                <label>Title: </label>
-                                <input 
-                                    className={s.input}
-                                    
-                                    type="text" 
-                                    defaultValue={movie.title}
-                                    name="title"
-                                    onChange={(e) => handleChange(e)}
-                                />
+            <div className={styles.home1}><Link to="/panel"><AiFillLeftSquare className={styles.icon2}/></Link></div>
+          </div>
+            <div className={s.all}>
+                <form onSubmit={(e) => handleSubmit(e)} className={s.modifyForm}>
+                    <h5>Movie Data</h5>
+                    <div className={s.containerInputs}>
+                        <div className={s.order}>
+                            <label>Title: </label>
+                            <input 
+                                className={s.input}
+                                
+                                type="text" 
+                                defaultValue={movie.title}
+                                name="title"
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className={s.order}>
+                            <label> Date: </label>
+                            <select onChange={(e) => handleChange(e)}  name="date" defaultValue={`${movie.date}`} className={s.select}>
+                                {
+                                    year?.map((y, i) => {
+                                        return(
+                                            <option selected={y===movie.date? `${movie.date}` : '' } value={y} key={i}>{y}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label>Description: </label>
+                            <textarea 
+                                className={s.textareaForm}
+        
+                                type="text" 
+                                defaultValue={movie.description}
+                                name="description"
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className={s.order}>
+                            <label> Rating: </label>
+                            <select onChange={(e) => handleChange(e)} defaultValue={`${movie.rating}`} name="rating" className={s.select}>
+                                {
+                                    rat?.map((r, i) => {
+                                        return(
+                                            <option selected={r===movie.rating? `${movie.rating}` : '' } value={r} key={i}>{r}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className={s.order}>
+                            <label>Platform: </label>
+                            <select onChange={(e) => handleSelectPlatform(e)} defaultValue={`${movie.platform}`} name="platform" className={s.select}>
+                               
+                                {
+                                    platform?.map(p => {
+                                        return(
+                                            <option selected={p.name===movie.platform? `${movie.platform}` : '' } value={p.name} key={p._id}>{p.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className={s.order}>
+                            <label>Duration (hours:minutes): {`(actual ${movie.duration})`} </label>
+                            <input
+                                className={s.select} 
+                                type="time" 
+                                name="duration"
+                                defaultValue={""}
+                                value={input.durationView}
+                                onChange={(e) => handleChangeDuration(e)}
+                            />
+                        </div>
+                        <div>
+                            <label>URL Image: </label>
+                            <input
+                                className={s.input}
+                                
+                                type="text" 
+                                defaultValue={movie.image}
+                                name="image"
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div>
+                            <label>Casting: </label>
+                            <input 
+                                className={s.input}
+                                type="text" 
+                               
+                                defaultValue={movie.cast}
+                                name="castName"
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <button onClick={(e) => addCast(e)} className={s.add}>Add</button>
+                            <div className={s.cast}>
+                                {
+                                    input.cast?.map(name => {
+                                        return(
+                                            <p onClick={() => handleDeleteCast(name)} className={s.p}>{name}</p>
+                                        )
+                                    })
+                                }
+
                             </div>
                             <div className={s.order}>
                                 <label> Date: </label>
@@ -398,8 +490,9 @@ export default function ModifyMovies() {
                 </div>
                 <Footer/>
             </div>
-        )
 
-    }
+       
+        </div>
+    )
 
 }
