@@ -5,7 +5,7 @@ import ButtonHome from '../Presentational/ButtonHome'
 import Footer from '../Presentational/footer'
 import Header from '../Presentational/header'
 import s from "./Success.module.css"
-import styles from "../../styles/Buttons.module.css";
+/* import styles from "../../styles/Buttons.module.css"; */
 
 export default function Success() {
     

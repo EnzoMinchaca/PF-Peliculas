@@ -11,11 +11,13 @@ import {
     getByGenres,
     getByPlatform,
     addToCart,
+    addToFavs,
     filterBygenre,
     sortRating,
     sortYear,
     postMovie,
     removeCart,
+    removeFavs,
     filterByPlataform,
     deleteMovieById,
     clearCarts,
@@ -44,7 +46,7 @@ export const getMovies = () => (dispatch) => {
 }
 export const addMovieToCart = (id) => (dispatch) => {
     axios.get(`http://localhost:3001/movieDetails/${id}`)
-        .then(resp => dispatch(addToCart(resp.data)))   
+        .then(resp => dispatch(addToCart(resp.data)))
         .catch((e) => {
             console.log(e);
             return Swal.fire({
@@ -52,14 +54,32 @@ export const addMovieToCart = (id) => (dispatch) => {
                 title: "Oops...",
                 text: "Movie has beed added",
             });
-        });       
-        }
-    
+        });
+}
 
-export const deleteFromCart = (id) => (dispatch)=> {
+export const addMovieToFavs = (id) => (dispatch) => {
+    axios.get(`http://localhost:3001/movieDetails/${id}`)
+        .then(resp => dispatch(addToFavs(resp.data)))
+        .catch((e) => {
+            console.log(e);
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Movie has beed added",
+            });
+        });
+}
+
+export const deleteFromFavs =(id) => (dispatch) => {
+    localStorage.setItem('favs', JSON.stringify([]))
+    dispatch(removeFavs(id))
+}
+
+
+export const deleteFromCart = (id) => (dispatch) => {
     localStorage.setItem('cart', JSON.stringify([]))
     dispatch(removeCart(id))
-  }
+}
 
 export const clearCart = () => (dispatch) => {
     return dispatch(clearCarts())
@@ -165,17 +185,18 @@ export const deleteMovies = (id) => (dispatch) => {
         });
     dispatch(deleteMovieById(id))
 }
+
 export const modifyMovies=(input)=>(dispatch)=>{
     axios.put(`http://localhost:3001/movies/${input.id}`, input)
-    .then(resp=>dispatch(getMoviesById(resp.data)))
-    .catch((e) => {
-        console.log(e);
-        return Swal.fire({
-            icon: "error",
-            title: "Oops...",
-        text: "Something went wrong! -- modifyMovies",
-          });
-      });  
+        .then(resp => dispatch(getMoviesById(resp.data)))
+        .catch((e) => {
+            console.log(e);
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! -- modifyMovies",
+            });
+        });
 }
 export const addBuyMovie=(movies)=>(dispatch)=>{
     axios.put(`http://localhost:3001/addBuyInMovie`, {buyMovies: movies} )
