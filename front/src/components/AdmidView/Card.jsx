@@ -18,7 +18,7 @@ export default function CardAdmin(props) {
              <img className="imageMovie" src={props.image} alt="movie" />  
 
              <p className="title">{props.title}</p>
- 
+              <p>Quantity sold: {props.amountOfSales}</p>
              <p> Price: {props.price}Usd</p>
              <Link to={`/Modify/${props.id}`}><button>Modify</button> </Link>
              <button onClick={(props) => {handleDelete(props)}} > <FaTrash></FaTrash></button> 

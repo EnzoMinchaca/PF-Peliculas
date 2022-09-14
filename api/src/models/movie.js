@@ -49,7 +49,11 @@ const movieSchema = mongoose.Schema({
     price: {
         type: Number,
         require: true
-    }
+    },
+    amountOfSales: {
+        type: Number,
+        default: 0
+    },
     // genres: [{
     //     type: mongoose.Schema.Types.ObjectId, 
     //     ref: 'Genre'

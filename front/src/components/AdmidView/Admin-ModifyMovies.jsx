@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getMovies, getSearch } from "../../redux/Slice/movieAction";
+import { getMovies, getSearch, sortSoldMovies } from "../../redux/Slice/movieAction";
 import CardAdmin from "./Card";
 import Footer from "../Presentational/footer";
 import s from './Form.module.css';
@@ -88,6 +88,17 @@ export default function AdminModifyMovies() {
     dispatch(getSearch(searchValue));
   }
  }
+ //para el ordenamiento
+ const[input, setInput] = useState({select: ''})
+
+  const onSelectChange = (e) => {
+    console.log(e.target.value)
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value, 
+   });
+  };
+ React.useEffect(()=>{  dispatch(sortSoldMovies(input)) },[dispatch,input])
  function handleRefresh() {
   // dispatch(clearMovies())
   dispatch(getMovies())
@@ -140,7 +151,13 @@ export default function AdminModifyMovies() {
                   </SearchIconWrapper>
                 </Button>
               </Box>
-                  
+                  {/*odenamiento de mas a menos vendidas*/}
+                  <h5>Sort by sales </h5>
+                  <select name="select" onChange={e => onSelectChange(e)}>
+                    <option value="none" >--</option>
+                    <option value='DESCENDENTE' >most sold</option>
+                    <option value='ASCENDANT' >least sold</option> 
+                  </select>  
               </div>
               <div className="section">
               {typeof movies ==='string'?
@@ -159,6 +176,7 @@ export default function AdminModifyMovies() {
                         price={movie.price}
                         genres={movie.genres}
                         platform={movie.platform}
+                        amountOfSales={movie.amountOfSales}
                         id={movie._id}/>
       
                   )
