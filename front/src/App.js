@@ -11,6 +11,7 @@ import Confirm from './components/UserView/Confirm';
 import Success from './components/UserView/Success';
 import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
+import Favorites from "./components/UserView/Favorites/Favorites"
 import AdminModifyUser from './components/AdmidView/VistaUser';
 import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
 import ModifyMovies from './components/AdmidView/ModifyMovies';
@@ -34,13 +35,17 @@ function App() {
         <Route exact path="/cancelPay" element={<CancelPay/>}/>
         <Route exact path="/success" element={<Success/>} />
         <Route exact path="/example" element={<Example/>} />
+
         <Route exact path="/password" element={<Password/>} />
         <Route exact path="/ViewMovies" element={<AdminModifyMovies/>} />
         <Route exact path="/modifyMovies" element={<ModifyMovies/>} />
         <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
         <Route exact path="/Modify/:id" element={<ModifyMovies/>} />
-             
-         
+
+        <Route exact path="/Favorites" element={<Favorites/>}/>
+        <Route exact path="/password/:token" element={<Password/>} />
+        {/* <Route exact path="/example" element={<Example/>} /> */}
+
       </Routes>
     </BrowserRouter>
   )

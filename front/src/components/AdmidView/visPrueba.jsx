@@ -17,6 +17,7 @@ export default function CardsUser(){
 
       return (
 
+
         <div  className={styles.usersContainer}>
 
                       <CardUser />
@@ -35,6 +36,7 @@ export default function CardsUser(){
 
 /* <>
           {users.length !== 0 ? (
+
             <div  className={styles.usersContainer}>
               {Array.isArray(users) === false ? (
                 <>
@@ -49,6 +51,10 @@ export default function CardsUser(){
                     lastname={user.lastname}
                     email={user.email}
                     status={user.status}
+                    isUser={user.isUser}
+                    isBan={user.isBan}
+                    isOwner={user.isOwner}
+                    isAdmin={user.isAdmin}
                     id={user._id} 
                       
                     />
@@ -57,9 +63,7 @@ export default function CardsUser(){
               )}
             </div>
           ) : (
-            <>
-              
-             
-            </>
+            <>                  
+           </>
           )}
         </>*/

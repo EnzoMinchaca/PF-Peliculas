@@ -1,3 +1,4 @@
+
 import React from "react";
 import styles from "../../styles/Admin.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,4 +34,5 @@ export default function AdminPanel() {
         </div>
 
     )
+
 }

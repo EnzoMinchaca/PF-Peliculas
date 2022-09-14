@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import CardUser from "./visPrueba";
 import styles from "../../styles/Admin.module.css";
@@ -8,7 +9,9 @@ import { BsFillHouseDoorFill} from "react-icons/bs";
 import { AiFillLeftSquare } from "react-icons/ai";
 
 
+
 export default function AdminModifyUser() {
+
 
   const dispatch=useDispatch();
 
@@ -35,4 +38,5 @@ export default function AdminModifyUser() {
    
         </div>
     )
+
 }

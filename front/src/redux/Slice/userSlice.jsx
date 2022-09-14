@@ -153,7 +153,9 @@ export const userSlice = createSlice({
             }      
         },
           
-
+        getUserName: (state, action)=>{
+            state.users = action.payload        
+        },
 
            
         
@@ -179,7 +181,8 @@ export const { userLogin,
      deleteUserById,
      theUser,
      filterByStatus,
-     editUserSt
+     editUserSt,
+     getUserName
 
 
    

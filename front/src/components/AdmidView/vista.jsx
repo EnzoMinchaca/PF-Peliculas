@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./CardAdmin.css"
@@ -18,6 +19,7 @@ export default function CardUser() {
 
   const users=useSelector(state=>state.users.users);
  
+
     return (
      
       <div className={styles.cardContainer} key={users.key}> 
@@ -74,6 +76,17 @@ export default function CardUser() {
                 <div className={styles.statsCard}>
                 <h6>S  tatus:</h6><p>{props.status}</p>
                 </div> 
+                <div className={styles.statsCard}>
+                <h6>Role actual:</h6><p>{role}</p>
+                <select name="role" key={props.id} onChange={(e)=>{onSelectChange(e)}}>
+                  <option disabled selected >-Select role-</option>
+                  <option value={'Admin'}>Admin</option>
+                  <option value={'User'}>User</option>
+                  <option value={'Banned'}>Banned</option>
+                  <option value={'Owner'}>Owner</option>
+                </select>
+                <button onClick={submitRole} >change</button>
+                </div>
                 <div className={styles.cardCon}>
                 <div><button onClick={(props) => {handleDelete(props)}} className={styles.button}><BsFillTrashFill/></button></div>
                

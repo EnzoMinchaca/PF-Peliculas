@@ -19,6 +19,7 @@ import {
     theUser,
     filterByStatus,
     editUserSt,
+    getUserName,
 
 }from "./userSlice";
 
@@ -375,10 +376,9 @@ export const getUser=()=>(dispatch)=>{
             dispatch(filterByStatus(status))
         }
 
-        export const editUsersStatus=(bodyFormData, id)=>(dispatch)=>{
-            console.log(bodyFormData)
-            console.log(id)
-            axios.put(`http://localhost:3001/promoveUsers/${id}`, bodyFormData)
+        export const editUsersStatus=(roleUser)=>(dispatch)=>{
+            console.log(roleUser)
+            axios.put(`http://localhost:3001/promoveUsers/${roleUser.id}`, roleUser)
             
             .then(resp=>dispatch(editUserSt(resp.data)))
             .then(()=>{
@@ -396,8 +396,25 @@ export const getUser=()=>(dispatch)=>{
                     text: "Could not modify user.! -- PromoveUser",
                   });
               });
-          
         }
+  //busca un usuarion por nombre
+  export const getSearchUser=(name)=>(dispatch)=>{
+    axios.get(`http://localhost:3001/getUsersName?nameUser=${name}`)
+    .then(resp=> {
+        return{
+            payload:dispatch(getUserName(resp.data))            
+        }})
+    
+    .catch((e) => {
+        console.log(e);
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong! -- GetUsers",
+          });
+      });
+}
+
 
 
         
