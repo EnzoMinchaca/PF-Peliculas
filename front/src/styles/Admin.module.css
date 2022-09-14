@@ -8,8 +8,8 @@
     height: 350px;
     display: grid;
     padding: 4%;
-    grid-template-columns: 10% 10% 10% 10% 10%;
-    grid-row: 10% 10% 10% 10% 10%;
+    grid-template-columns: 10% 10% 10% 10%;
+    grid-row: 10% 10% 10% 10%;
     grid-column-gap:70px;
     grid-row-gap: 15px; /*espaciado*/
     justify-content:center;
