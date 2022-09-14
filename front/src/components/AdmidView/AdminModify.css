@@ -4,10 +4,8 @@
 } */
 @media (min-width: 768px) {
     .section {
-        display: grid;
-        grid-template-columns: 50% 50% ; /* que ocupe la tercer parte del 100% de la pantalla xq son 3 espacios, o podemos poner 1fr (de fraccion)o poner repeat(3, 1fr)*/
-        column-gap: 1rem; /* separacion entre las columnas*/
-
+        display:flex;
+    flex-direction: column;
     }
 }
 .link {
@@ -23,4 +21,7 @@
 }
 .Pagination{
     margin-top: 330px;
+}
+h5{
+    color: white;
 }

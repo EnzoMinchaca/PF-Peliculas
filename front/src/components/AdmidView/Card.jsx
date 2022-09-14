@@ -34,6 +34,15 @@ export default function CardAdmin(props) {
 
       <TableContainer component ={Paper}>
 
+
+             <p className="title">{props.title}</p>
+              <p>Quantity sold: {props.amountOfSales}</p>
+             <p> Price: {props.price}Usd</p>
+             <Link to={`/Modify/${props.id}`}><button>Modify</button> </Link>
+             <button onClick={(props) => {handleDelete(props)}} > <FaTrash></FaTrash></button> 
+             
+           
+
       <Table aria-label="simple table">
            <TableHead>
               <TableRow className={styles.row}>
@@ -61,6 +70,7 @@ export default function CardAdmin(props) {
 </Table>
 </TableContainer>
     
+
       </div>
               
     )

@@ -484,6 +484,29 @@ router.post("/sendPuchase", async ( req, res ) => {
 
     res.send("Revisa el email o tu lista de peliculas adqueridas.")
 })
+router.put('/addBuyInMovie', async(req, res) => {  
 
+    try {
+        const {buyMovies}= req.body;//viene un array de obj
+         let setBuyMovies= [];
+         for (let i = 0; i < buyMovies.length; i++) {
+            const movie= await movieSchema.findById(buyMovies[i]._id);
+            
+             let newAmount = movie.amountOfSales + 1;
+             let addAmountInMovie = await movieSchema.findByIdAndUpdate(buyMovies[i]._id, { $set: { amountOfSales: newAmount}})
+             if(addAmountInMovie){
+              setBuyMovies.push(addAmountInMovie)
+             }else{
+              res.send('Error adding sales amount')
+             }
+         }
+         if(setBuyMovies.length >0){
+           res.status(200).send('Quantity added successfully')
+         }
+    }
+    catch(error) {
+         console.log(error)
+    }
+});
 
-module.exports = router
+module.exports = router 

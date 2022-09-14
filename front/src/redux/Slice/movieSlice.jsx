@@ -149,6 +149,17 @@ export const movieSlice = createSlice({
       state.movies = state.movies.filter(movie => movie._id !== action.payload);
 
     },
+    orderSoldMovies : (state, action) => {
+      let orderSoldMovies= [...state.movies];
+        console.log(action.payload.select)
+       let orderAscendant= orderSoldMovies.sort((a, b) => a.amountOfSales - b.amountOfSales)
+       if(action.payload.select === 'ASCENDANT'){
+        return{...state, movies: orderAscendant}
+       }else if(action.payload.select === 'DESCENDENTE'){
+        let orderDesc = orderAscendant.reverse();
+        return{...state, movies: orderDesc}
+       };
+    },
   }
 }
 
@@ -174,7 +185,8 @@ export const {
   addToFavs,
   postMovie,
   deleteMovieById,
-  clearCarts
+  clearCarts,
+  orderSoldMovies
 } = movieSlice.actions
 
 export default movieSlice.reducer

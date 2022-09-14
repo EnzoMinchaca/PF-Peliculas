@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { oneUser, postExecutePay, putBuy } from '../../redux/Slice/userAction'
-import { clearCart } from '../../redux/Slice/movieAction'
+import { addBuyMovie, clearCart } from '../../redux/Slice/movieAction'
 import s from './ConfirmPay.module.css'
 
 export default function ConfirmPay() {
@@ -40,6 +40,7 @@ export default function ConfirmPay() {
         localStorage.setItem('user', JSON.stringify(user))
         dispatch(clearCart())
         navigate("/success")
+        dispatch(addBuyMovie(movies))
     }
     if(!status) {
         navigate("/home")

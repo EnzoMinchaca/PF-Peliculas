@@ -20,7 +20,8 @@ import {
     removeFavs,
     filterByPlataform,
     deleteMovieById,
-    clearCarts
+    clearCarts,
+    orderSoldMovies
 } from "./movieSlice";
 
 
@@ -184,8 +185,8 @@ export const deleteMovies = (id) => (dispatch) => {
         });
     dispatch(deleteMovieById(id))
 }
-export const modifyMovies = (input) => (dispatch) => {
-    console.log('soy modifyyy')
+
+export const modifyMovies=(input)=>(dispatch)=>{
     axios.put(`http://localhost:3001/movies/${input.id}`, input)
         .then(resp => dispatch(getMoviesById(resp.data)))
         .catch((e) => {
@@ -197,3 +198,17 @@ export const modifyMovies = (input) => (dispatch) => {
             });
         });
 }
+export const addBuyMovie=(movies)=>(dispatch)=>{
+    axios.put(`http://localhost:3001/addBuyInMovie`, {buyMovies: movies} )
+    .then(resp=>console.log(resp.data))
+    .catch((e) => {
+        console.log(e);
+    });  
+}
+
+export const sortSoldMovies=(order)=>(dispatch)=>{
+    dispatch(orderSoldMovies(order))
+}
+
+
+
