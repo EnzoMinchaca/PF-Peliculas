@@ -76,7 +76,7 @@ module.exports.RetrievePassword = async  ( email,verificationLink ) => {
     })
   }
 
-module.exports.SendPuchase = async ( email, array ) => {
+module.exports.SendPuchase = async ( email, MoviesBuy ) => {
   console.log("Check")
 
   oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
@@ -104,39 +104,39 @@ module.exports.SendPuchase = async ( email, array ) => {
   let hour = "";
   let price = "";
   let links = "";
-  let total = array.length
+  let total = MoviesBuy.length
   let value = "";
-  if(array){
+  if(MoviesBuy){
     
-    imagenes = array.map(e =>{
+    imagenes = MoviesBuy.map(e =>{
       return `<td><img src=${e.image}></td>`
     }).join().split("").filter(e => {
       if(e !== ","){
         return e
       }
     }).join("")
-    nameMovies = array.map(e =>{
-      return `<td>Title: ${e.nameMovie}</td>`
+    nameMovies = MoviesBuy.map(e =>{
+      return `<td>Title: ${e.title}</td>`
     }).join().split("").filter(e => {
       if(e !== ","){
         return e
       }
     }).join("")
-    date = array.map(e =>{
+    date = MoviesBuy.map(e =>{
       return `<td>Date: ${e.date}</td>`
     }).join().split("").filter(e => {
       if(e !== ","){
         return e
       }
     }).join("")
-    hour = array.map(e =>{
-      return `<td>Hour: ${e.hour}</td>`
+    hour = MoviesBuy.map(e =>{
+      return `<td>Hour: ${e.duration}</td>`
     }).join().split("").filter(e => {
       if(e !== ","){
         return e
       }
     }).join("")
-    price = array.map(e =>{
+    price = MoviesBuy.map(e =>{
       return `<td>Price: $${e.price}</td>`
     }).join().split("").filter(e => {
       if(e !== ","){
@@ -144,15 +144,15 @@ module.exports.SendPuchase = async ( email, array ) => {
       }
     }).join("")
 
-    links = array.map(e => {
-      return `<a href=${e.linkViewMovie} style="margin-left:10px ;margin-left: 10px; font-size: 20px;">Watch ${e.nameMovie}</a>`
+    links = MoviesBuy.map(e => {
+      return `<a href=${e.trailer} style="margin-left:10px ;margin-left: 10px; font-size: 20px;">Watch ${e.title}</a>`
     }).join().split("").filter(e => {
       if(e !== ","){
         return e
       }
     }).join("")
 
-    value = array.map(e => {
+    value = MoviesBuy.map(e => {
       return Number(e.price)
     }).reduce((acc, c)=>{
       return acc+ c
@@ -262,13 +262,13 @@ module.exports.SendPuchase = async ( email, array ) => {
   }).catch(error=> console.log(error))
 }
 
-module.exports.BannedAccount = async ( name, lastname, email, banned ) => {
+module.exports.BannedAccount = async ( name, lastname, email, role ) => {
   oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
 
   let comunicate = [ "Your account has been banned.", "Your account has been unbanned."]
   let response;
   
-  if(banned === "true"){
+  if(role === "Banned"){
 
     response = comunicate[0]
     
@@ -364,19 +364,16 @@ module.exports.BannedAccount = async ( name, lastname, email, banned ) => {
   }).catch(error => console.log(error))
 }
 
-module.exports.PromotionAccount = async ( name, lastname, email , promocion ) => {
+module.exports.PromotionAccount = async ( name, lastname, email , role ) => {
   console.log("Check")
 
   let comunicate = [ "Your account has been Promoted to:", "Your account has been downgraded to:"]
   let response;
 
-  console.log(promocion+ "1")
-  console.log(name+ "2")
-  console.log(lastname+ "3")
-  console.log(email+ "4")
+
   
   
-  if( promocion === "Admin") {
+  if( role === "Admin" || role === "Owner") {
     response = comunicate[0]
   }else{
     response = comunicate[1]
@@ -403,7 +400,7 @@ module.exports.PromotionAccount = async ( name, lastname, email , promocion ) =>
     }
     
   })
-  transporter.verify().then(data=> console.log(data)).catch(error=> console.log(error))
+  //transporter.verify().then(data=> console.log(data)).catch(error=> console.log(error))
   transporter.sendMail({
     from: "Promotion Account",
       to:email,
@@ -449,7 +446,7 @@ module.exports.PromotionAccount = async ( name, lastname, email , promocion ) =>
               <!-- Contenido Principal -->
               <div style=" background-color: #D0D3D4 ; padding: 20px 10px 20px 10px ; text-align: center">
                   <h3>${response}</h3>
-                  <h2>${promocion}</h2>
+                  <h2>${role}</h2>
                   <p>Name: ${name} ${lastname} | Email: ${email}</p>
                   <p>For more information on the matter, contact:</p>
                   <p>pruebaDatos89@gmail.com</p>

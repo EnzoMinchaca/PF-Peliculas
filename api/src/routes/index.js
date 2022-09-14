@@ -389,7 +389,10 @@ router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el est
     try {
         const {id}= req.params;    //{id: id, role : 'admin' o 'user' ...}
         const {role}= req.body;
+
         let changeStatus;
+
+
         const user= await userSchema.findById(id);
         if(!user){
           res.status(404).send('The user does not exist')
@@ -397,12 +400,36 @@ router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el est
 
          if(role==='Admin'){
           changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: false, isAdmin: true, isOwner:false, isBan:false}})
+          nodemailer.PromotionAccount(
+            user.name,
+            user.lastname,
+            user.email,
+            role
+          )
          }else if(role==='User'){
           changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: true, isAdmin: false, isOwner:false, isBan:false}})
+          nodemailer.PromotionAccount(
+            user.name,
+            user.lastname,
+            user.email,
+            role
+          )
          }else if(role==='Banned'){
           changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser:false, isAdmin: false, isOwner:false, isBan:true}})
+          nodemailer.PromotionAccount(
+            user.name,
+            user.lastname,
+            user.email,
+            role
+          )
          }else if(role==='Owner'){
-          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: false, isAdmin: false, isOwner:true, isBan:false}})  
+          changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser: false, isAdmin: false, isOwner:true, isBan:false}})
+          nodemailer.PromotionAccount(
+            user.name,
+            user.lastname,
+            user.email,
+            role
+          )  
          }
 
         if(changeStatus){
@@ -466,23 +493,18 @@ router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuari
 
 router.post("/sendPuchase", async ( req, res ) => {
 
-    //Tiene que llegar todo en string;
-    //Date ejemplo : 13/9/2022
-    //Hour ejemplo : 12:50
+    const { email } = req.body;
+
+    const user = await userSchema.findOne({email});
     
-    const { email, nameMovie, date, hour, linkViewMovie, price , image} = req.body;
+    let MoviesBuy = user.buy
 
     nodemailer.SendPuchase(
         email,
-        nameMovie,
-        date,
-        hour,
-        linkViewMovie,
-        price,
-        image
+        MoviesBuy
     )
 
-    res.send("Revisa el email o tu lista de peliculas adqueridas.")
+    res.send("Check the email or your list of purchased movies.")
 })
 router.put('/addBuyInMovie', async(req, res) => {  
 
