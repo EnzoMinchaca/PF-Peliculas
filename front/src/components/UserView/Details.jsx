@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
-import { addMovieToCart, getMovieById, } from '../../redux/Slice/movieAction'
+import { addMovieToCart, getMovieById, addMovieToFavs } from '../../redux/Slice/movieAction'
 import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
@@ -12,6 +12,7 @@ import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
 import axios from 'axios'
 import buton from "../../styles/Buttons.module.css"
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 
@@ -28,6 +29,7 @@ export default function Details() {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.movies.movie)
     const cart = useSelector((state) => state.movies.cart)
+    const favs = useSelector((state) => state.movies.favs)
     // console.log(details)
 
 
@@ -67,6 +69,31 @@ export default function Details() {
         }
 
     }
+
+    const addToFavList = async (id) => {
+
+        if(!isUser) {
+            Swal.fire({
+                icon: 'error',
+                title: 'You need to login to add to Favs',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        } else if 
+
+            (!cart.map((e) => e._id).includes(id)) {
+            let a = await dispatch(addMovieToFavs(id))
+            let json = await axios.get(`http://localhost:3001/movieDetails/${id}`)
+            localStorage.setItem("favs", JSON.stringify([...favs, json.data]))
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to favs',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        }
+
+    }
     
 
     return (
@@ -88,15 +115,16 @@ export default function Details() {
                                         <h2>{details.title}</h2>
                                         <h5>Date: {details.date} || {details.duration}</h5>
                                         <h3 className={Style.Rate}>Rating: {details.rating}</h3>
-                                        <div>
+                                        <div className={Style.cartFav}>
                                             {
                                                 hasMovie?
                                                     <a href={details.trailer} target={"_blank"}>
                                                         <button className={buton.btn}>Play</button>
                                                     </a> 
-                                                    :
-                                                    <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button> 
+                                                    :                   
+                                                    <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button>                                               
                                             }
+                                          <button onClick={() => addToFavList(id)} className={Style.button}><FavoriteIcon/></button>
                                         </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>

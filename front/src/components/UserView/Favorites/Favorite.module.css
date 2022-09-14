@@ -1,0 +1,89 @@
+.classContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    flex-direction: row-reverse;
+    gap: 200px;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    width: 40vw;
+    height: 70vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    grid-template-columns:max-content;
+
+  }
+  .text {
+    display: flex;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-size:larger;
+  }
+    
+/* From uiverse.io by @Tiagoadag */
+.card {
+    width: 190px;
+    height: 254px;
+    background-image: linear-gradient(163deg, #e9100c 0%, #e41b1b 100%);
+    border-radius: 25px;
+    transition: all .3s;
+   }
+   
+   .card2 {
+    width: 190px;
+    height: 254px;
+    background-color: #e21313;
+    border-radius:5px;
+    transition: all .2s;
+   }
+   
+   .card2:hover {
+    transform: scale(0.98);
+    border-radius: 25px;
+   }
+   
+   .card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(255, 0, 0, 0.3);
+   }
+
+   
+   .button {
+    padding: 1.3em 3em;
+    font-size: 2px;
+    width: 10vw;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: rgb(246, 12, 12);
+    background-color: rgb(39, 4, 4);
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(64, 192, 111, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .button:hover {
+    background-color: #f70303;
+    box-shadow: 0px 15px 20px rgba(150, 80, 150, 0.4);
+    color: rgb(255, 255, 255);
+    transform: translateY(-7px);
+  }
+  
+  .button:active {
+    transform: translateY(-1px);
+  }
+  .cartFav {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  
+  

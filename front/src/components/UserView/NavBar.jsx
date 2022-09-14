@@ -17,6 +17,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import css from "./NavBar.module.css"
+import Style from "./NavBar.module.css"
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Navigate, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -415,6 +417,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
   
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <ShoppingCart cart={cart}/>
+              <Link to="/Favorites"><button className={Style.button}><FavoriteIcon/></button></Link>
               </Box>
   
             {/* <Box sx={{ flexGrow: 0 }}>
