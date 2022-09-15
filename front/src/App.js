@@ -11,6 +11,7 @@ import Confirm from './components/UserView/Confirm';
 import Success from './components/UserView/Success';
 import Example from './components/UserView/Example';
 import Password from './components/UserView/Password';
+import Questions from "./components/Presentational/Questions.tsx"
 import Favorites from "./components/UserView/Favorites/Favorites"
 import AdminModifyUser from './components/AdmidView/VistaUser';
 import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
@@ -41,6 +42,7 @@ function App() {
         <Route exact path="/modifyUsers" element={<AdminModifyUser/>} />
         <Route exact path="/Modify/:id" element={<ModifyMovies/>} />
         <Route exact path="/Favorites" element={<Favorites/>}/>
+        <Route exact path="/FreqQuestions" element={<Questions/>}/>
         <Route exact path="/password/:token" element={<Password/>} />
         {/* <Route exact path="/example" element={<Example/>} /> */}
 
