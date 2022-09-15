@@ -57,23 +57,23 @@ export const addMovieToCart = (id) => (dispatch) => {
         });
 }
 
-export const addMovieToFavs = (id) => (dispatch) => {
-    axios.get(`http://localhost:3001/movieDetails/${id}`)
-        .then(resp => dispatch(addToFavs(resp.data)))
-        .catch((e) => {
-            console.log(e);
-            return Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Movie has beed added",
-            });
-        });
-}
+// export const addMovieToFavs = (id) => (dispatch) => {
+//     axios.get(`http://localhost:3001/movieDetails/${id}`)
+//         .then(resp => dispatch(addToFavs(resp.data)))
+//         .catch((e) => {
+//             console.log(e);
+//             return Swal.fire({
+//                 icon: "error",
+//                 title: "Oops...",
+//                 text: "Movie has beed added",
+//             });
+//         });
+// }
 
-export const deleteFromFavs =(id) => (dispatch) => {
-    localStorage.setItem('favs', JSON.stringify([]))
-    dispatch(removeFavs(id))
-}
+// export const deleteFromFavs =(id) => (dispatch) => {
+//     localStorage.setItem('favs', JSON.stringify([]))
+//     dispatch(removeFavs(id))
+// }
 
 
 export const deleteFromCart = (id) => (dispatch) => {

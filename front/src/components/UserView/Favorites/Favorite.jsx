@@ -2,17 +2,19 @@ import React from 'react';
 import Style from "./Favorite.module.css"
 import { useDispatch } from 'react-redux';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import { deleteFromFavs } from '../../../redux/Slice/movieAction';
+import { deleteFromFavs } from '../../../redux/Slice/userAction';
+import { deleteFavToUser } from '../../../redux/Slice/userAction';
 
 
 
-const Favorite = ({ id, title, image, rating, platform, description }) => {
+const Favorite = ({ id, title, image, rating, platform, description, idUser }) => {
 
     const dispatch = useDispatch();
 
     function deleteFav(e) {
         e.preventDefault()
         dispatch(deleteFromFavs(id));
+        dispatch(deleteFavToUser({id: id}, idUser))
     }
 
 

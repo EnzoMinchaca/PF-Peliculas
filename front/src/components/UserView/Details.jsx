@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
-import { addMovieToCart, getMovieById, addMovieToFavs } from '../../redux/Slice/movieAction'
+import { addMovieToCart, getMovieById} from '../../redux/Slice/movieAction'
 import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
@@ -15,6 +15,7 @@ import Rating from '@mui/material/Rating';
 import HighQualityIcon from '@mui/icons-material/HighQuality';
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { putFavToUser, addMovieToFavs  } from '../../redux/Slice/userAction'
 
 
 
@@ -31,7 +32,8 @@ export default function Details() {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.movies.movie)
     const cart = useSelector((state) => state.movies.cart)
-    const favs = useSelector((state) => state.movies.favs)
+    // const favs = useSelector((state) => state.movies.favs)
+    const user = JSON.parse(localStorage.getItem('user'))
     // console.log(details)
 
 
@@ -85,8 +87,9 @@ export default function Details() {
 
             (!cart.map((e) => e._id).includes(id)) {
             let a = await dispatch(addMovieToFavs(id))
+            dispatch(putFavToUser(details, user._id))
             let json = await axios.get(`http://localhost:3001/movieDetails/${id}`)
-            localStorage.setItem("favs", JSON.stringify([...favs, json.data]))
+            // localStorage.setItem("favs", JSON.stringify([...favs, json.data]))
             Swal.fire({
                 icon: 'success',
                 title: 'Added to favs',
