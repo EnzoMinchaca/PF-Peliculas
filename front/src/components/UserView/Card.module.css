@@ -75,7 +75,7 @@
    
    .cardA:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    height: 50vh !important;
+    height: 60vh !important;
     
     background-color: #0b132b !important;
     background-image: none !important;
@@ -110,7 +110,7 @@
    
    .cardA:hover .img {
     width: 100%;
-    height: 60%;
+    height: 50%;
     border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -193,7 +193,7 @@
    
    .cardN:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    height: 50vh !important;
+    height: 60vh !important;
     
     background-color: #0b132b !important;
     background-image: none !important;
@@ -244,7 +244,7 @@
    
    .cardN:hover .img {
     width: 100%;
-    height: 60%;
+    height: 50%;
     border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -313,7 +313,7 @@
    .cardD:hover {
 
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    height: 50vh !important;
+    height: 60vh !important;
     
     background-color: #0b132b!important;
     background-image: none !important;
@@ -348,7 +348,7 @@
    
    .cardD:hover .img {
     width: 100%;
-    height: 60%;
+    height: 50%;
     border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -431,7 +431,7 @@
    
    .cardH:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    height: 50vh !important;
+    height: 60vh !important;
     
     background-color: #0b132b!important;
     background-image: none !important;
@@ -466,7 +466,7 @@
    
    .cardH:hover .img {
     width: 100%;
-    height: 60%;
+    height: 50%;
     border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -548,7 +548,7 @@
    
    .cardP:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-    height: 50vh !important;
+    height: 60vh !important;
     
     background-color: #0b132b !important;
     background-image: none !important;
@@ -583,7 +583,7 @@
    
    .cardP:hover .img {
     width: 100%;
-    height: 60%;
+    height: 50%;
     border-radius: 10px 10px 10px;
     margin: 0 auto;
     background-color: #f0f0f0;
