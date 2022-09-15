@@ -139,6 +139,8 @@
     font-size: 25px;
     text-decoration: none !important;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
    }
 
    .cardA:hover .rating {
@@ -168,6 +170,8 @@
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
    .cardA:hover>p>p {
     height: 20%;
@@ -270,6 +274,8 @@
     font-size: 25px;
     text-decoration: none !important;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
    }
    
    .cardN>p {
@@ -286,12 +292,16 @@
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
    .cardN:hover>p>p {
     height: 20%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
 
    /*////////////////////*/
@@ -373,6 +383,8 @@
     font-size: 25px;
     text-decoration: none !important;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
    }
    
    .cardD>p {
@@ -405,12 +417,16 @@
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
    .cardD:hover>p>p {
     height: 20%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
 
    /*////////////////////////*/
@@ -491,6 +507,8 @@
     font-size: 25px;
     text-decoration: none !important;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
    }
    
    .cardH>p {
@@ -523,12 +541,16 @@
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
    .cardH:hover>p>p {
     height: 20%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
  /*///////////////////////////////*/
 
@@ -608,6 +630,8 @@
     font-size: 25px;
     text-decoration: none !important;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
    }
    
    .cardP>p {
@@ -640,12 +664,16 @@
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
    .cardP:hover>p>p {
     height: 20%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
    }
 
    /*//////////////////////////////////////////////////////////////////////////////*/
