@@ -373,6 +373,64 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 
   });
 
+router.put('/addFavorite/:idUser', async(req, res) => {
+    try {
+        const {idUser} = req.params
+        const favMovie = req.body
+        // console.log(favMovie)
+        if(!favMovie) {
+            res.send('not send favourite movie')
+        }
+        const user = await userSchema.findById(idUser)
+        // console.log(user.favorites)
+        let newFavorite = []
+        let flag = false
+        if(user.favorites.length === 0) {
+            newFavorite = [...favMovie]
+        } else {
+            for(let i=0; i<user.favorites.length; i++) {
+                if(favMovie[0]._id === user.favorites[i]._id) {
+                    flag = true
+                    break
+                }
+            }
+            if(flag) {
+                newFavorite = [...user.favorites]
+            } else {
+                newFavorite = [...user.favorites, ...favMovie]
+            }
+        }
+        // console.log(newFavorite)
+        const response = await userSchema.findByIdAndUpdate(idUser, { $set: { favorites: newFavorite } })
+        res.json(response)
+    }
+    catch(error) {
+        console.log(error)
+    }
+})
+
+router.put('/deleteFavorite/:idUser', async(req, res) => {
+    try {
+        const {idUser} = req.params
+        // console.log(idUser)
+        const favMovie = req.body
+        // console.log(favMovie)
+        if(!favMovie) {
+            res.send('not send favourite movie')
+        }
+        const user = await userSchema.findById(idUser)
+        let newFavorite = await user.favorites.filter(m => m._id !== favMovie[0].id)
+        const response = await userSchema.findByIdAndUpdate(idUser, { $set: { favorites: newFavorite } })
+        // console.log(response)
+        const theuser = await userSchema.findById(idUser)
+        // console.log(theuser)
+        res.json(theuser)
+    }
+    catch(error) {
+        console.log(error)
+    }
+})
+
 router.get('/userId/:id', async(req, res) => {
     try {
         const {id} = req.params

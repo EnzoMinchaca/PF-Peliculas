@@ -20,6 +20,8 @@ import {
     filterByStatus,
     editUserSt,
     getUserName,
+    addFav,
+    removeFav
 
 }from "./userSlice";
 
@@ -93,6 +95,7 @@ export const getUser=()=>(dispatch)=>{
             .then(response=> {
                 console.log(response)
                 dispatch(theUser(response.data))
+                // dispatch(addFav(response.data.favorites))
                 localStorage.setItem('user', JSON.stringify(response.data))
             })
     }
@@ -349,6 +352,41 @@ export const getUser=()=>(dispatch)=>{
                     text: "can't add purchase! -- Addbuy",
                   });
               });
+        }
+
+        export const addMovieToFavs = (id) => (dispatch) => {
+            axios.get(`http://localhost:3001/movieDetails/${id}`)
+                .then(resp => dispatch(addFav([resp.data])))
+                .catch((e) => {
+                    console.log(e);
+                    return Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Movie has beed added",
+                    });
+                });
+        }
+
+        export const deleteFromFavs =(id) => (dispatch) => {
+            // localStorage.setItem('favs', JSON.stringify([]))
+            dispatch(removeFav(id))
+        }
+
+        export const putFavToUser=(movieFav, idUser) => (dispatch) => {
+            axios.put(`http://localhost:3001/addFavorite/${idUser}`, [movieFav])
+                .then(resp => {
+                    localStorage.setItem('user', JSON.stringify(resp.data))
+                })
+                .catch((e) => console.log(e))
+        }
+
+        export const deleteFavToUser=(movieFav, idUser) => (dispatch) => {
+            axios.put(`http://localhost:3001/deleteFavorite/${idUser}`, [movieFav])
+                .then(resp => {
+                    console.log(resp.data)
+                    localStorage.setItem('user', JSON.stringify(resp.data))
+                })
+                .catch((e) => console.log(e))
         }
 
 
