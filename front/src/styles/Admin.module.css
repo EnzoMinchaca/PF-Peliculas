@@ -149,7 +149,7 @@
 }
 
 .row{
-  background-color: #c5d3fc;
+  background-color: #7ebbec;
   
 }
 
@@ -355,3 +355,39 @@
  
 }
 
+
+.containerM{
+ 
+  width: 80%;
+  height: 80%;
+  margin: 30px 5px 0 150px;/* Top, Right, Bottom, Left */
+}
+
+.trash{
+    border-style: none;
+    color: #0A58CA;
+    background-color: white;
+
+}
+
+.barra{
+  background-color: #7ebbec;
+}
+
+.search{
+  display: flex;
+  margin-left: 15%;
+  justify-content: center;
+}
+
+.filter{
+  display: flex;
+  position:relative;
+  margin-left: 80%;
+  
+}
+
+.sort{
+  padding-right: 5%;
+  
+}

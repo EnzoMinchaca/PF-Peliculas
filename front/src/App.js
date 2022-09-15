@@ -17,7 +17,8 @@ import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
 import ModifyMovies from './components/AdmidView/ModifyMovies';
 import ConfirmPay from './components/UserView/ConfirmPay';
 import CancelPay from './components/UserView/CancelPay';
-//import Order from './components/UserView/Order';
+import VistaRoles from "./components/AdmidView/Rol";
+
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/Favorites" element={<Favorites/>}/>
         <Route exact path="/password/:token" element={<Password/>} />
         {/* <Route exact path="/example" element={<Example/>} /> */}
+        <Route exact path="/rol" element={<VistaRoles/>} />
 
       </Routes>
     </BrowserRouter>
