@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import css from "./Card.module.css";
+import Rating from '@mui/material/Rating';
 import { Link } from "react-router-dom";
 
 export default function CardIndividual(props) {
@@ -51,6 +52,9 @@ export default function CardIndividual(props) {
             </p>)
           })}
         </p>
+        <div className={css.rating}>
+          <Rating name="read-only" value={props.rating} readOnly />
+        </div>
       </div>
     </Link>
 

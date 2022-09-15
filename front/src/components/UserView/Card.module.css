@@ -58,7 +58,9 @@
 
 
 .cardA {
-    width: 60%;
+    width: 80%;
+    
+    
     margin: 0 auto;
     height: 70%;
     font-size: 100%;
@@ -73,6 +75,8 @@
    
    .cardA:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    height: 50vh !important;
+    
     background-color: #0b132b !important;
     background-image: none !important;
    }
@@ -117,12 +121,27 @@
     opacity: 0;
     transition: all 0.75s;
    }
+   .cardA .rating{
+    opacity: 0;
+    transition: all 0.75s;
+   }
    
    .cardA span {
     font-size: 18px;
    }
    
    .cardA:hover h2 {
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
+   }
+
+   .cardA:hover .rating {
     height: 10%;
     opacity: 1;
     transition: all 0.1s;
@@ -145,7 +164,7 @@
    }
    
    .cardA:hover>p {
-    height: 20%;
+    height: 10%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
@@ -158,7 +177,8 @@
    }
 
    .cardN {
-    width: 60%;
+    width: 80%;
+    
     height: 70%;
     color: white !important;
     margin: 0 auto;
@@ -173,6 +193,8 @@
    
    .cardN:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    height: 50vh !important;
+    
     background-color: #0b132b !important;
     background-image: none !important;
    }
@@ -189,6 +211,22 @@
    
    .cardN:hover .blob {
     height: 0;
+   }
+
+   .cardN .rating{
+    opacity: 0;
+    transition: all 0.75s;
+   }
+
+   .cardN:hover .rating {
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
    }
    
    .cardN .img {
@@ -212,6 +250,7 @@
     background-color: #f0f0f0;
     z-index: 99999;
    }
+
    
    .cardN h2 {
     opacity: 0;
@@ -243,7 +282,7 @@
    }
    
    .cardN:hover>p {
-    height: 20%;
+    height: 10%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
@@ -258,7 +297,8 @@
    /*////////////////////*/
 
    .cardD {
-    width: 60%;
+    width: 80%;
+    
     height: 70%;
     margin: 0 auto;
     background-image: url("../../img/disney.jpg") ;
@@ -273,6 +313,8 @@
    .cardD:hover {
 
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    height: 50vh !important;
+    
     background-color: #0b132b!important;
     background-image: none !important;
    }
@@ -341,9 +383,25 @@
    .cardD>p>p {
     padding: 5px;
    }
+
+   .cardD .rating{
+    opacity: 0;
+    transition: all 0.75s;
+   }
+
+   .cardD:hover .rating {
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
+   }
    
    .cardD:hover>p {
-    height: 20%;
+    height: 10%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
@@ -358,7 +416,8 @@
    /*////////////////////////*/
 
    .cardH {
-    width: 60%;
+    width: 80%;
+    
     height: 70%;
     margin: 0 auto;
     background-image: url("../../img/hbo.png") ;
@@ -372,6 +431,8 @@
    
    .cardH:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    height: 50vh !important;
+    
     background-color: #0b132b!important;
     background-image: none !important;
    }
@@ -440,9 +501,25 @@
    .cardH>p>p {
     padding: 5px;
    }
+
+   .cardH .rating{
+    opacity: 0;
+    transition: all 0.75s;
+   }
+
+   .cardH:hover .rating {
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
+   }
    
    .cardH:hover>p {
-    height: 20%;
+    height: 10%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;
@@ -456,7 +533,8 @@
  /*///////////////////////////////*/
 
  .cardP {
-    width: 60%;
+    width: 80%;
+    
     height: 70%;
     margin: 0 auto;
     background-image: url("../../img/paramount.png") ;
@@ -470,6 +548,8 @@
    
    .cardP:hover {
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
+    height: 50vh !important;
+    
     background-color: #0b132b !important;
     background-image: none !important;
    }
@@ -538,9 +618,25 @@
    .cardP>p>p {
     padding: 5px;
    }
+
+   .cardP .rating{
+    opacity: 0;
+    transition: all 0.75s;
+   }
+
+   .cardP:hover .rating {
+    height: 10%;
+    opacity: 1;
+    transition: all 0.1s;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    text-decoration: none !important;
+    color: white;
+   }
    
    .cardP:hover>p {
-    height: 20%;
+    height: 10%;
     opacity: 1;
     transition: all 0.1s;
     justify-content: center;

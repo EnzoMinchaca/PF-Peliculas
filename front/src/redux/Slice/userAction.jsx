@@ -119,6 +119,11 @@ export const getUser=()=>(dispatch)=>{
                         payload: dispatch(loginUser(res.data))
                     }
                     }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'User not active, check your email',
+                        })
                         throw TypeError("User no activate")
                     }
                     
@@ -135,12 +140,27 @@ export const getUser=()=>(dispatch)=>{
             
                 })
                 .catch((e) => {
-                    console.log(e.message)
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'The data entered is incorrect -- LoginUser',
-                    })
+
+                    if(e.response.data==="No user fount"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No user fount',
+                        })
+                    }else if(e.response.data==="The email or password entered is not correct"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'The email or password entered is not correct',
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'The data entered is incorrect -- LoginUser',
+                        })
+                    }
+                   
                 })
         }
 
@@ -192,18 +212,22 @@ export const getUser=()=>(dispatch)=>{
                     //position: 'top-end',
                     //position: 'top-end',
                     icon: 'success',
-                    title: 'You have successfully logged in',
+                    title: 'User was registered successfully! Please check your email',
                     showConfirmButton: false,
                     timer: 5000
                 })
                 window.location.assign("http://localhost:3000/Home")
+                
             })
-            .catch((e) => console.log(e))
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'the email entered is already registered',
+            .catch((e) => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'the email entered is already registered',
+                })
             })
+           
             
         }
 
@@ -246,7 +270,7 @@ export const getUser=()=>(dispatch)=>{
                 return Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Could not modify user.! -- EditUser",
+                    text: "Could not modify user",
                   });
               });
           
@@ -264,7 +288,7 @@ export const getUser=()=>(dispatch)=>{
                     icon: 'success',
                     title: 'Success',
                     text: `
-                    The password has been changed successfully`,
+                    Check the email to change the password`,
                 })
                 
             })
