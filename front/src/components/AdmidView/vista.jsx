@@ -13,8 +13,6 @@ import {
   Paper
 } from "@mui/material";
 
-
-
 export default function CardUser() {
 
   const users=useSelector(state=>state.users.users);
@@ -32,6 +30,7 @@ export default function CardUser() {
                 <TableCell>Lastname</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Status</TableCell>
+                
               </TableRow>
             </TableHead>
             <TableBody>
@@ -43,6 +42,7 @@ export default function CardUser() {
                     <TableCell>{row.lastname}</TableCell>
                     <TableCell>{row.email}</TableCell>
                     <TableCell>{row.status}</TableCell>
+                   
                 </TableRow>
 
               ))}

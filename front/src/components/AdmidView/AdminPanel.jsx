@@ -21,7 +21,7 @@ export default function AdminPanel() {
          </div>
                 <div className={styles.gridContainer}>
                 <div className={styles.item1}><Link to="/modifyUsers"><div className={styles.img1}></div></Link></div>
-                <div className={styles.item2}><Link to="/modifyUsers"><div className={styles.img2}></div></Link></div>
+                <div className={styles.item2}><Link to="/rol"><div className={styles.img2}></div></Link></div>
                 <div className={styles.item3}><Link to="/ViewMovies"><div className={styles.img3}></div></Link></div>
                 <div className={styles.item4}><Link to="/modifyMovies"><div className={styles.img4}></div></Link></div>
                 <div className={styles.item6}><div className={styles.butt}>View Users</div></div>

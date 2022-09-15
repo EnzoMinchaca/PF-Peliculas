@@ -21,6 +21,8 @@ import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { editUsers, oneUser } from "../../redux/Slice/userAction";
+import styless from "../../styles/styles.module.css"
+
 
 export default function EditUser(){
     const [openName, setOpenName] = React.useState(false);
@@ -149,6 +151,7 @@ export default function EditUser(){
         // }
     return(
         <div>
+    
             <div className={styles.title}>
                 <p className={styles.span}>Profile</p></div>
                 <div className={styles.ubButton}><ButtonHome/> </div>
@@ -298,6 +301,7 @@ export default function EditUser(){
       </Collapse> */}
       
     </List>
-        </div>
+    </div>
+   
     )
 }
