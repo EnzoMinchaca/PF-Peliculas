@@ -55,6 +55,9 @@ export default function CardIndividual(props) {
         <div className={css.rating}>
           <Rating name="read-only" value={props.rating} readOnly />
         </div>
+        <div className={css.rating}>
+          <p>{props.date}</p>
+        </div>
       </div>
     </Link>
 
