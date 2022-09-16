@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import FavoritesCards from './FavoritesCards'
 import Style from "./Favorite.module.css"
 import Header from '../../Presentational/header'
-import Footer from '../../Presentational/footer'
 import { Link } from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
