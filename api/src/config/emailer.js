@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const nodemailer = require("nodemailer")
 const { google } = require("googleapis")
 
@@ -6,7 +8,6 @@ const { google } = require("googleapis")
     const REDIRCET_URI = "https://developers.google.com/oauthplayground"
     const REFRESHTOKEN = "1//04-VhYcRds3oICgYIARAAGAQSNwF-L9IrZyomrnIZ2j7BSpYREcpjewY-hx9PMFQMdEV-Mq6qEv3dehuZ6dXtHDGisVa2cv8f_EQ"
     const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRCET_URI)
-
 
 module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => {
 
@@ -240,7 +241,7 @@ module.exports.SendPuchase = async ( email, MoviesBuy ) => {
                         ${links}
                     </div>
                     <hr>
-                    <a href="https://localhost:3001/home">Go to website</a>
+                    <a href="http://localhost:3000/Home">Go to website</a>
                 </div>
             </div>
             <div style=" padding: 20px 10px 20px ; color: black; text-align: center" background-color:  #2E86C1>
@@ -369,16 +370,11 @@ module.exports.PromotionAccount = async ( name, lastname, email , role ) => {
 
   let comunicate = [ "Your account has been Promoted to:", "Your account has been downgraded to:"]
   let response;
-
-
-  
-  
   if( role === "Admin" || role === "Owner") {
     response = comunicate[0]
   }else{
     response = comunicate[1]
   }
-
   
 
   oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})

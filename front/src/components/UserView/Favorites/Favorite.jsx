@@ -2,27 +2,30 @@ import React from 'react';
 import Style from "./Favorite.module.css"
 import { useDispatch } from 'react-redux';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import { deleteFromFavs } from '../../../redux/Slice/movieAction';
+import { deleteFromFavs } from '../../../redux/Slice/userAction';
+import { deleteFavToUser } from '../../../redux/Slice/userAction';
+import Rating from '@mui/material/Rating';
 
 
 
-const Favorite = ({ id, title, image, rating, platform, description }) => {
+const Favorite = ({ id, title, image, rating, idUser }) => {
 
     const dispatch = useDispatch();
 
     function deleteFav(e) {
         e.preventDefault()
         dispatch(deleteFromFavs(id));
+        dispatch(deleteFavToUser({id: id}, idUser))
     }
 
 
     return (
         <div >
             <div className={Style.card}>
-                <div key={id} className={Style.card2}>
+                <div key={id} className={Style.card}>
                     <img className={Style.card} src={image} />
                     <h3 className={Style.text}>{title.length < 20 ? title : title.slice(0, 20) + "..."}</h3>
-                    <h3 className={Style.text}>{rating}</h3>
+                    <Rating name="read-only" value={rating} readOnly />
                     <button className={Style.button} onClick={(e) => deleteFav(e)}><HeartBrokenIcon /></button>
                 </div>
 

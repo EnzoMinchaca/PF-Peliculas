@@ -22,7 +22,12 @@ import {
     deleteMovieById,
     clearCarts,
     orderSoldMovies,
+
     postComments
+
+    getComments,
+    clearStateComments
+
 } from "./movieSlice";
 
 
@@ -71,7 +76,7 @@ export const addMovieToFavs = (id) => (dispatch) => {
         });
 }
 
-export const deleteFromFavs =(id) => (dispatch) => {
+export const deleteFromFavs = (id) => (dispatch) => {
     localStorage.setItem('favs', JSON.stringify([]))
     dispatch(removeFavs(id))
 }
@@ -187,7 +192,7 @@ export const deleteMovies = (id) => (dispatch) => {
     dispatch(deleteMovieById(id))
 }
 
-export const modifyMovies=(input)=>(dispatch)=>{
+export const modifyMovies = (input) => (dispatch) => {
     axios.put(`http://localhost:3001/movies/${input.id}`, input)
         .then(resp => dispatch(getMoviesById(resp.data)))
         .catch((e) => {
@@ -199,17 +204,18 @@ export const modifyMovies=(input)=>(dispatch)=>{
             });
         });
 }
-export const addBuyMovie=(movies)=>(dispatch)=>{
-    axios.put(`http://localhost:3001/addBuyInMovie`, {buyMovies: movies} )
-    .then(resp=>console.log(resp.data))
-    .catch((e) => {
-        console.log(e);
-    });  
+export const addBuyMovie = (movies) => (dispatch) => {
+    axios.put(`http://localhost:3001/addBuyInMovie`, { buyMovies: movies })
+        .then(resp => console.log(resp.data))
+        .catch((e) => {
+            console.log(e);
+        });
 }
 
-export const sortSoldMovies=(order)=>(dispatch)=>{
+export const sortSoldMovies = (order) => (dispatch) => {
     dispatch(orderSoldMovies(order))
 }
+
 
 //Ruta para post de Comentarios 
 
@@ -220,4 +226,16 @@ export const postComment = (info) => (dispatch) => {
 }
 
 
+export const getCommentsMovie = (titleMovie) => (dispatch) => {
+    axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
+        .then(resp => dispatch(getComments(resp.data)))
+        .catch((e) => {
+            console.log(e);
+        });
+}
+
+
+export const clearComments = () => (dispatch) => {
+    dispatch(clearStateComments({}))
+}
 

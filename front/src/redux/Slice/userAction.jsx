@@ -20,6 +20,8 @@ import {
     filterByStatus,
     editUserSt,
     getUserName,
+    addFav,
+    removeFav
 
 }from "./userSlice";
 
@@ -93,6 +95,7 @@ export const getUser=()=>(dispatch)=>{
             .then(response=> {
                 console.log(response)
                 dispatch(theUser(response.data))
+                // dispatch(addFav(response.data.favorites))
                 localStorage.setItem('user', JSON.stringify(response.data))
             })
     }
@@ -276,6 +279,34 @@ export const getUser=()=>(dispatch)=>{
           
         }
 
+        export const editUsersImage=(bodyFormData, id)=>(dispatch)=>{
+            console.log(bodyFormData)
+            console.log(id)
+            axios.put(`http://localhost:3001/editUserImage/${id}`, {image:bodyFormData})
+            
+            .then(resp=>dispatch(editUser(resp.data)))
+            .then(()=>{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `The user was successfully modified`,
+                })
+                const user = JSON.parse(localStorage.getItem('user'))
+                user.image=bodyFormData
+                localStorage.setItem('user', JSON.stringify(user))
+                
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Could not modify user",
+                  });
+              });
+          
+        }
+
         //Modifica solo el password
         export const UserPassword=(email)=>(dispatch)=>{
             console.log(email)
@@ -375,6 +406,41 @@ export const getUser=()=>(dispatch)=>{
               });
         }
 
+        export const addMovieToFavs = (id) => (dispatch) => {
+            axios.get(`http://localhost:3001/movieDetails/${id}`)
+                .then(resp => dispatch(addFav([resp.data])))
+                .catch((e) => {
+                    console.log(e);
+                    return Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Movie has beed added",
+                    });
+                });
+        }
+
+        export const deleteFromFavs =(id) => (dispatch) => {
+            // localStorage.setItem('favs', JSON.stringify([]))
+            dispatch(removeFav(id))
+        }
+
+        export const putFavToUser=(movieFav, idUser) => (dispatch) => {
+            axios.put(`http://localhost:3001/addFavorite/${idUser}`, [movieFav])
+                .then(resp => {
+                    localStorage.setItem('user', JSON.stringify(resp.data))
+                })
+                .catch((e) => console.log(e))
+        }
+
+        export const deleteFavToUser=(movieFav, idUser) => (dispatch) => {
+            axios.put(`http://localhost:3001/deleteFavorite/${idUser}`, [movieFav])
+                .then(resp => {
+                    console.log(resp.data)
+                    localStorage.setItem('user', JSON.stringify(resp.data))
+                })
+                .catch((e) => console.log(e))
+        }
+
 
         export const deleteUsers=(id)=>(dispatch)=>{
             axios.delete(`http://localhost:3001/deletUsers/${id}`)
@@ -438,6 +504,11 @@ export const getUser=()=>(dispatch)=>{
           });
       });
 }
+
+    export const sendMailAfterBuy=(email, moviesBuy)=>(dispatch)=>{
+        axios.post('http://localhost:3001/sendPuchase', {email: email, moviesBuy: moviesBuy})
+            .then(resp => console.log(resp))
+    }
 
 
 

@@ -11,6 +11,10 @@ const userSchema = Schema(
             type: String,
             require: true,
         },
+        image: {
+            type: String,
+            require: true,
+        },
         email: {
             type: String,
             require: true,
@@ -49,7 +53,11 @@ const userSchema = Schema(
         buy: {
             type: Array,
             default: []
-       },
+        },
+        favorites: {
+            type: Array,
+            default: []
+        },
         confirmationCode: { 
             type: String, 
             unique: true 

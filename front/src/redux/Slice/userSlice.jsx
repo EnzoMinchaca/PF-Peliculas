@@ -7,6 +7,7 @@ export const userSlice = createSlice({
     initialState: {
         allUsers:[],//estado que siempre va a almacenar todos los usuarios
         users:[],
+        fav: []
 
     },
     
@@ -100,6 +101,24 @@ export const userSlice = createSlice({
             }
         },
 
+        addFav: (state, action) => {
+            let array = [...state.fav, ...action.payload]
+            if(array.length > 0) {
+                let set = new Set( array.map( JSON.stringify ) )
+                let arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
+                // console.log( arrSinDuplicaciones );
+                state.fav = arrSinDuplicaciones
+            } else {
+                state.fav = [...action.payload]
+            }
+        },
+
+        removeFav: (state, action) => {
+            // console.log(state.fav)
+            // localStorage.setItem("favs", JSON.stringify(state.favs.filter((e) => e._id !== action.payload)))
+            state.fav = state.fav.filter((e) => e._id !== action.payload)
+        },
+
         deleteUserById: (state,action)=>{         
             state.users = state.users.filter(user=> user._id !== action.payload);    
             state.users = state.users.filter(user=> user._id !== action.payload);
@@ -182,7 +201,9 @@ export const { userLogin,
      theUser,
      filterByStatus,
      editUserSt,
-     getUserName
+     getUserName,
+     addFav,
+     removeFav
 
 
    

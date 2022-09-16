@@ -36,6 +36,7 @@ export default function Cards({firstMovies,lastMovies}){
                     genres={movie.genres}
                     platform={movie.platform}
                     rating={movie.rating}
+                    date={movie.date}
                     id={movie._id}/>
                 </Grid>
               )
