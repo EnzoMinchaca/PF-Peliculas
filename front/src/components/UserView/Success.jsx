@@ -25,6 +25,7 @@ export default function Success() {
             </div>
             <div className={s.body}>
                 <h2>Go to your profile to see your acquisitions or go to home</h2>
+                <p>We send you an email with the details of your purchase</p>
                 <div className={s.buttons}>
                     <NavLink to={"/editUser"}>
                         <button className={s.btn}>Profile</button>
