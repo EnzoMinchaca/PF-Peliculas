@@ -49,7 +49,11 @@ const userSchema = Schema(
         buy: {
             type: Array,
             default: []
-       },
+        },
+        favorites: {
+            type: Array,
+            default: []
+        },
         confirmationCode: { 
             type: String, 
             unique: true 

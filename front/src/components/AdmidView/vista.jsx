@@ -13,8 +13,6 @@ import {
   Paper
 } from "@mui/material";
 
-
-
 export default function CardUser() {
 
   const users=useSelector(state=>state.users.users);
@@ -32,6 +30,7 @@ export default function CardUser() {
                 <TableCell>Lastname</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Status</TableCell>
+                
               </TableRow>
             </TableHead>
             <TableBody>
@@ -43,6 +42,7 @@ export default function CardUser() {
                     <TableCell>{row.lastname}</TableCell>
                     <TableCell>{row.email}</TableCell>
                     <TableCell>{row.status}</TableCell>
+                   
                 </TableRow>
 
               ))}
@@ -63,33 +63,3 @@ export default function CardUser() {
     )
 }
 
-/* <div className={styles.stats}>
-              <div className={styles.statsCard}>
-                <h6>Name:</h6><p>{props.name}</p>
-                </div> 
-                <div className={styles.statsCard}>
-                <h6>LastName:</h6><p>{props.lastname}</p>
-                </div> 
-                <div className={styles.statsCard}>
-                <h6>Email:</h6><p>{props.email}</p>
-                </div> 
-                <div className={styles.statsCard}>
-                <h6>S  tatus:</h6><p>{props.status}</p>
-                </div> 
-                <div className={styles.statsCard}>
-                <h6>Role actual:</h6><p>{role}</p>
-                <select name="role" key={props.id} onChange={(e)=>{onSelectChange(e)}}>
-                  <option disabled selected >-Select role-</option>
-                  <option value={'Admin'}>Admin</option>
-                  <option value={'User'}>User</option>
-                  <option value={'Banned'}>Banned</option>
-                  <option value={'Owner'}>Owner</option>
-                </select>
-                <button onClick={submitRole} >change</button>
-                </div>
-                <div className={styles.cardCon}>
-                <div><button onClick={(props) => {handleDelete(props)}} className={styles.button}><BsFillTrashFill/></button></div>
-               
-                </div>
-                
-              </div >*/

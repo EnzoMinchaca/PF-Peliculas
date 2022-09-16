@@ -21,9 +21,11 @@ import styless from "../../styles/Admin.module.css";
 
 
 const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+  position: 'absolute',
+  alignItems: 'center',
+  justifyContent: 'center',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.10),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -37,9 +39,9 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 16),
   height: '100%',
-  position: 'absolute',
+  position: 'relative',
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -75,7 +77,7 @@ export default function AdminModifyMovies() {
     const [page, setPag] = useState(1);  
 
  if(typeof movies !== 'string') {
-     var moviesPerPage = 10;        
+     var moviesPerPage = 5;        
         
      var max= movies.length / moviesPerPage;
 
@@ -103,6 +105,7 @@ export default function AdminModifyMovies() {
       [e.target.name]: e.target.value, 
    });
   };
+
  React.useEffect(()=>{  dispatch(sortSoldMovies(input)) },[dispatch,input])
  function handleRefresh() {
   // dispatch(clearMovies())
@@ -137,7 +140,7 @@ export default function AdminModifyMovies() {
             
           
           <div className={styless.title1}>
-           <p className={styless.span1}>Admin Panel - View Users</p>
+           <p className={styless.span1}>Admin Panel - View Movies</p>
            <div className={styless.home} >
             <Link to="/Home">   
                <BsFillHouseDoorFill className={styless.icon}/> 
@@ -147,33 +150,39 @@ export default function AdminModifyMovies() {
             </div>
 
 
-             <div className="link">
+             <div className={styless.barra}>
                       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                <Search>
+                <div className={styless.search}><Search>
                
-                  <StyledInputBase
-                    onChange={(text) => handleOnChange(text)}
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                    
-                    className={css.inputSearch}
-                  />
-                </Search>
-          
+               <StyledInputBase
+                 onChange={(text) => handleOnChange(text)}
+                 placeholder="Search…"
+                 inputProps={{ 'aria-label': 'search' }}
+                 
+                 className={css.inputSearch}
+               />
+               </Search></div>
+                
                 <Button onClick={() => searchOnClick()}  className={css.searchBtn}>
                   <SearchIconWrapper>
                     <SearchIcon />
                   </SearchIconWrapper>
                 </Button>
               </Box>
+
+
                   {/*odenamiento de mas a menos vendidas*/}
-                  <h5> Sort by sales </h5>
-                  <select name="select" onChange={e => onSelectChange(e)}>
-                    <option value="none" >--</option>
-                    <option value='DESCENDENTE' >most sold</option>
-                    <option value='ASCENDANT' >least sold</option> 
-                  </select>  
-              </div>
+
+                  <div className={styless.filter}>
+                    <p className={styless.sort}> Sort by sales </p>
+                      <select name="select" onChange={e => onSelectChange(e)}>
+                         <option value="none" >--</option>
+                         <option value='DESCENDENTE' >Most sold</option>
+                         <option value='ASCENDANT' >Least sold</option> 
+                      </select>  </div> 
+                  </div>
+
+                  
               <div className="section">
               {typeof movies ==='string'?
                 <div className={styles.uniqueHome}>
