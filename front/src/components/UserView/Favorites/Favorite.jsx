@@ -7,7 +7,7 @@ import { deleteFavToUser } from '../../../redux/Slice/userAction';
 
 
 
-const Favorite = ({ id, title, image, rating, platform, description, idUser }) => {
+const Favorite = ({ id, title, image, rating, idUser }) => {
 
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const Favorite = ({ id, title, image, rating, platform, description, idUser }) =
     return (
         <div >
             <div className={Style.card}>
-                <div key={id} className={Style.card2}>
+                <div key={id} className={Style.card}>
                     <img className={Style.card} src={image} />
                     <h3 className={Style.text}>{title.length < 20 ? title : title.slice(0, 20) + "..."}</h3>
                     <h3 className={Style.text}>{rating}</h3>

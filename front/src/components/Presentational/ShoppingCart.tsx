@@ -116,7 +116,7 @@ export default function TemporaryDrawer(props: any) {
       <Divider />
       <List>
         {props.cart?.map((text: any, index: any) => (
-          <ListItem key={text.title} disablePadding>
+          <ListItem key={text.image} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {<img src={text.image} width="100px" alt="none" />}

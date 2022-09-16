@@ -1,15 +1,27 @@
 .equis {
-    color: black;
-    border: 2px solid black;
-    background-color: rgba(255, 255, 255, 0.813);
-    border-radius: 20%;
-    font-weight: 600;
-    transition: .25s;
-    background-color: rgba(189, 0, 0, 0.813);
-    color: white;
+    padding: 1.3em 3em;
+    font-size: 1px;
+    width: 5vw;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: rgb(246, 12, 12);
+    background-color: grey(95, 82, 82);
     border: none;
-}
-
-.equis:hover{
-    background-color: rgba(237, 45, 45, 0.813);
-}
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(7, 229, 88, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .equis:hover {
+    background-color: #f70303;
+    box-shadow: 0px 15px 20px rgba(150, 80, 150, 0.4);
+    color: rgb(255, 255, 255);
+    transform: translateY(-7px);
+  }
+  
+  .equis:active {
+    transform: translateY(-1px);
+  }

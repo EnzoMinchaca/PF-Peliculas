@@ -12,7 +12,7 @@ function Cart() {
       {cart.length>0 ? cart.map((e) =>(
         <div key={e._id}>
           <DeleteCartButton id={e._id} />
-          <p>{e.name}</p>
+          <p>{e.title}</p>
           <p>Precio: {e.price}</p>
           <img src={e.image[0].url} />
         </div>
