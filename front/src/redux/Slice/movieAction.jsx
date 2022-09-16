@@ -21,7 +21,9 @@ import {
     filterByPlataform,
     deleteMovieById,
     clearCarts,
-    orderSoldMovies
+    orderSoldMovies,
+    getComments,
+    clearStateComments
 } from "./movieSlice";
 
 
@@ -210,5 +212,15 @@ export const sortSoldMovies=(order)=>(dispatch)=>{
     dispatch(orderSoldMovies(order))
 }
 
+export const getCommentsMovie=(titleMovie)=>(dispatch)=>{
+    axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
+    .then(resp=>dispatch(getComments(resp.data)))
+    .catch((e) => {
+        console.log(e);
+    });  
+}
 
+export const clearComments=()=>(dispatch)=>{
+    dispatch(clearStateComments({}))
+}
 

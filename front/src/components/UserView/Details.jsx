@@ -13,6 +13,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import axios from 'axios'
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Comments from './Comments'
 
 
 
@@ -128,6 +129,17 @@ export default function Details() {
                                         </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
+                                </div>
+                                <div >
+                                    <h3>Comments</h3> 
+                                    {
+                                        details.title?
+                                        <div  >
+                                          <Comments titleMovies={details.title}></Comments>
+                                        </div>
+                                        :
+                                        <p></p>
+                                    }
                                 </div>
                             </div>
                             <div className={Style.textContainer}>

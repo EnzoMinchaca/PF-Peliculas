@@ -15,6 +15,7 @@ export const movieSlice = createSlice({
     platform: [],
     cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
     favs: localStorage.getItem("favs") ? JSON.parse(localStorage.getItem("favs")) : [],
+    commentsMovie:{}
   },
 
 
@@ -160,6 +161,12 @@ export const movieSlice = createSlice({
         return{...state, movies: orderDesc}
        };
     },
+    getComments: (state, action) => {
+        state.commentsMovie = action.payload;
+    },
+    clearStateComments :(state, action) => {
+      state.commentsMovie = action.payload;
+  },
   }
 }
 
@@ -186,7 +193,9 @@ export const {
   postMovie,
   deleteMovieById,
   clearCarts,
-  orderSoldMovies
+  orderSoldMovies,
+  getComments,
+  clearStateComments
 } = movieSlice.actions
 
 export default movieSlice.reducer
