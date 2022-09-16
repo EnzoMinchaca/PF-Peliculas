@@ -7,8 +7,10 @@ const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
+const cloudinary = require("../config/cloudinary.js")
 const commentsSchema = require('../models/externalComments')
 const axios = require('axios');
+
 const {PaymentController, createPayment, executePayment} = require('../controllers/paymentsController')
 const PaymentService = require('../service/paymentService')
 const PaymentInstance = new PaymentController(new PaymentService())
@@ -18,6 +20,11 @@ const router = Router()
 router.post('/postMovies', async(req, res) => {
     try {
         const movie = movieSchema(req.body)
+
+        
+        let response = cloudinary.uploader.upload(req.body.image)
+        movie.image = (await response).url
+
         const createMovie = await movie.save()
         res.json(createMovie)
     }
@@ -102,6 +109,8 @@ router.put("/movies/:id", async ( req, res )=> {
         
         let movieModify = await movieSchema.findById(_id);
 
+        let response = cloudinary.uploader.upload(req.body.image)
+
         if(!movieModify || movieModify === null)return console.log("No movie was found in the database with that id.");
         
         title? movieModify.title = title : console.log("Title not changed.");
@@ -109,7 +118,9 @@ router.put("/movies/:id", async ( req, res )=> {
         description? movieModify.description = description : console.log("Description was not modified.");
         rating? movieModify.rating = rating : console.log("Rating was not modified.");
         platform? movieModify.platform = platform : console.log("Platform was not modified.");
-        image? movieModify.image = image : console.log("Image was not modified.")
+        
+        (await response).url? movieModify.image = (await response).url : console.log("Image was not modified.")
+
         duration? movieModify.duration = duration : console.log("Duration was not modified.");
 
         if(  cast !== undefined && cast.length > 0){
