@@ -12,7 +12,6 @@ import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
 import axios from 'axios'
 import Rating from '@mui/material/Rating';
-import HighQualityIcon from '@mui/icons-material/HighQuality';
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -126,8 +125,6 @@ export default function Details() {
                                         {details.rating?
                                         <Rating name="read-only" value={details.rating} readOnly />
                                         :null}
-                                        <h4></h4>
-                                        <br />
                                         <div className={Style.cartFav}>
                                             {
                                                 hasMovie?
@@ -175,7 +172,6 @@ export default function Details() {
                                         </iframe>
                                     }
                                 </div>
-                                {/*  compartir->incorporar->link copy */}
                             </div>
                         </div>
                     </div>

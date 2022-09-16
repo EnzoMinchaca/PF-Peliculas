@@ -15,7 +15,7 @@ export const movieSlice = createSlice({
     platform: [],
     cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
     favs: localStorage.getItem("favs") ? JSON.parse(localStorage.getItem("favs")) : [],
-    commentsMovie:{}
+    commentsMovie: {}
 
   },
 
@@ -26,9 +26,9 @@ export const movieSlice = createSlice({
       state.movies = action.payload
     },
 
-    clearAllMovies: (state) => {
+    /* clearAllMovies: (state) => {
       state.movies = []
-    },
+    }, */
 
     postMovie: (state) => {
       return { state }
@@ -67,14 +67,14 @@ export const movieSlice = createSlice({
       state.cart = [...state.cart, action.payload]
     },
 
-    // removeCart: (state, action) => {
-    //   localStorage.setItem("cart", JSON.stringify(state.cart.filter((e) => e._id !== action.payload)))
-    //   state.cart = state.cart.filter((e) => e._id !== action.payload)
-    // },
+    removeCart: (state, action) => {
+      localStorage.setItem("cart", JSON.stringify(state.cart.filter((e) => e._id !== action.payload)))
+      state.cart = state.cart.filter((e) => e._id !== action.payload)
+    },
 
-    // addToFavs: (state, action) => {
-    //   state.favs = [...state.favs, action.payload]
-    // },
+    addToFavs: (state, action) => {
+      state.favs = [...state.favs, action.payload]
+    },
 
     removeFavs: (state, action) => {
       localStorage.setItem("favs", JSON.stringify(state.favs.filter((e) => e._id !== action.payload)))
@@ -151,23 +151,23 @@ export const movieSlice = createSlice({
       state.movies = state.movies.filter(movie => movie._id !== action.payload);
 
     },
-    orderSoldMovies : (state, action) => {
-      let orderSoldMovies= [...state.movies];
-        console.log(action.payload.select)
-       let orderAscendant= orderSoldMovies.sort((a, b) => a.amountOfSales - b.amountOfSales)
-       if(action.payload.select === 'ASCENDANT'){
-        return{...state, movies: orderAscendant}
-       }else if(action.payload.select === 'DESCENDENTE'){
+    orderSoldMovies: (state, action) => {
+      let orderSoldMovies = [...state.movies];
+      console.log(action.payload.select)
+      let orderAscendant = orderSoldMovies.sort((a, b) => a.amountOfSales - b.amountOfSales)
+      if (action.payload.select === 'ASCENDANT') {
+        return { ...state, movies: orderAscendant }
+      } else if (action.payload.select === 'DESCENDENTE') {
         let orderDesc = orderAscendant.reverse();
-        return{...state, movies: orderDesc}
-       };
+        return { ...state, movies: orderDesc }
+      };
     },
     getComments: (state, action) => {
-        state.commentsMovie = action.payload;
-    },
-    clearStateComments :(state, action) => {
       state.commentsMovie = action.payload;
-  },
+    },
+    clearStateComments: (state, action) => {
+      state.commentsMovie = action.payload;
+    },
   }
 }
 
