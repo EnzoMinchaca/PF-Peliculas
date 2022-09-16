@@ -19,6 +19,7 @@ router.post('/postMovies', async(req, res) => {
     try {
         const movie = movieSchema(req.body)
 
+        
         let response = cloudinary.uploader.upload(req.body.image)
         movie.image = (await response).url
 
@@ -115,7 +116,9 @@ router.put("/movies/:id", async ( req, res )=> {
         description? movieModify.description = description : console.log("Description was not modified.");
         rating? movieModify.rating = rating : console.log("Rating was not modified.");
         platform? movieModify.platform = platform : console.log("Platform was not modified.");
+        
         (await response).url? movieModify.image = (await response).url : console.log("Image was not modified.")
+
         duration? movieModify.duration = duration : console.log("Duration was not modified.");
 
         if(  cast !== undefined && cast.length > 0){
