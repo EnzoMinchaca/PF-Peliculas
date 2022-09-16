@@ -76,6 +76,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [login, setLogin] = React.useState(false);
+  const [image, setImage] = React.useState("");
   const [admin,setAdmin]=React.useState(false)
   const [searchValue,setSearchValue]=React.useState()
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -96,6 +97,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
       }else{
         setAdmin(false)
       }
+      setImage(user.image)
     }else{
       setLogin(false)
       setAdmin(false)
@@ -447,7 +449,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
                   >
-                  <AccountCircleIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                 <img src={image} alt={image} className={css.image}/>
                   </Button>
                 </IconButton>
               </Tooltip>
@@ -636,7 +638,7 @@ export default function NavBar({setPag, openModal, userMenu}) {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
                 >
-                <AccountCircleIcon className={css.margin} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <img src={image} alt={image} className={css.image}/>
                 </Button>
               </IconButton>
             </Tooltip>
