@@ -3,6 +3,9 @@ import styles from "../../styles/styles.module.css";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillFacebook, AiFillTwitterSquare, AiFillYoutube } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import InfoIcon from '@mui/icons-material/Info';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 
 const Footer = () => {
@@ -17,18 +20,19 @@ const Footer = () => {
                     </figure>
                 </div>
                 <div className={styles.box}>
-                    <Link to="/FreqQuestions"><h2>Frequent Questions</h2></Link>
+                    <Link to="/FreqQuestions"><h2><ContactSupportIcon/>  Frequent Questions</h2></Link>
+                    <Link to="/AboutUs"><h2><InfoIcon/>  About Us</h2></Link>
                     <p><BsFillTelephoneFill /> 0800-HMOVIE</p>
                     <p>Location <br/>Buenos Aires, Argentina</p>
                 </div>
                 <div className={styles.box}>
-                    <h2>Follow us</h2>
+                    <h2><AutoAwesomeIcon/>  Follow Us</h2>
 
 
                     <div className={styles.redSocial}>
-                        <a><AiFillFacebook classname={styles.fafaFacebook} /></a>
-                        <a><AiFillTwitterSquare /></a>
-                        <a><AiFillYoutube /></a>
+                        <a href="https://www.facebook.com"><AiFillFacebook classname={styles.fafaFacebook} /></a>
+                        <a href="https://www.twitter.com"><AiFillTwitterSquare /></a>
+                        <a href="https://www.youtube.com"><AiFillYoutube /></a>
                     </div>
                 </div>
             </div>

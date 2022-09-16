@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Favorite from './Favorite'
+import Footer from '../../Presentational/footer'
+import Header from '../../Presentational/header'
+import Favorite from './FavoriteCard'
 import Style from "./Favorite.module.css"
 
 
