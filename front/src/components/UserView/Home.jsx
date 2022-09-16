@@ -31,7 +31,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Slider from "../Presentational/./Slider/Slider"
-import Slider2 from "../Presentational/./Slider/Slider2"
+import Chat from "../Presentational/Chat"
+
 
 
 
@@ -134,6 +135,7 @@ export default function Home() {
                         <Login closeModal={()=>handleClose()}/>                  
                     </Box>
                 </Modal>
+                
             <Footer/>
         </div>
     )

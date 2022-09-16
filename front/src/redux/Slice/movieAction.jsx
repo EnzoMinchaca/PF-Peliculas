@@ -21,7 +21,8 @@ import {
     filterByPlataform,
     deleteMovieById,
     clearCarts,
-    orderSoldMovies
+    orderSoldMovies,
+    postComments
 } from "./movieSlice";
 
 
@@ -208,6 +209,14 @@ export const addBuyMovie=(movies)=>(dispatch)=>{
 
 export const sortSoldMovies=(order)=>(dispatch)=>{
     dispatch(orderSoldMovies(order))
+}
+
+//Ruta para post de Comentarios 
+
+export const postComment = (info) => (dispatch) => {
+    axios.post('http://localhost:3001/comments', info)
+        .then(resp => dispatch(postComments(resp.data)))
+        .catch((e) => console.log(e))
 }
 
 

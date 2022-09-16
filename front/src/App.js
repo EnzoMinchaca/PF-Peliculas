@@ -22,6 +22,8 @@ import AdminModUser from "./components/AdmidView/AdminModifyUser";
 
 
 
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -47,6 +49,7 @@ function App() {
         <Route exact path="/password/:token" element={<Password/>} />
         {/* <Route exact path="/example" element={<Example/>} /> */}
         <Route exact path="/rol" element={<AdminModUser/>} />
+        
 
       </Routes>
     </BrowserRouter>

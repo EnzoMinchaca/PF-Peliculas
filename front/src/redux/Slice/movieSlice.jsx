@@ -160,6 +160,10 @@ export const movieSlice = createSlice({
         return{...state, movies: orderDesc}
        };
     },
+
+    postComments: (state) => {
+      return { state }
+    },
   }
 }
 
@@ -186,7 +190,8 @@ export const {
   postMovie,
   deleteMovieById,
   clearCarts,
-  orderSoldMovies
+  orderSoldMovies,
+  postComments
 } = movieSlice.actions
 
 export default movieSlice.reducer
