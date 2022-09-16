@@ -552,14 +552,15 @@ router.get('/getUsers', async(req, res) => {  //ruta para traer todos los usuari
 router.post("/sendPuchase", async ( req, res ) => {
 
     const { email } = req.body;
+    const { moviesBuy } = req.body
 
     const user = await userSchema.findOne({email});
     
-    let MoviesBuy = user.buy
+    // let MoviesBuy = user.buy
 
     nodemailer.SendPuchase(
         email,
-        MoviesBuy
+        moviesBuy
     )
 
     res.send("Check the email or your list of purchased movies.")

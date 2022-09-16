@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { putBuy, oneUser } from '../../redux/Slice/userAction'
+import { putBuy, oneUser, sendMailAfterBuy } from '../../redux/Slice/userAction'
 import { useDispatch } from 'react-redux'
 import { clearCart } from '../../redux/Slice/movieAction'
 import Swal from 'sweetalert2'
@@ -32,6 +32,7 @@ export default function Confirm() {
         if(status === "approved" && collectionStatus === "approved" && collectionId !== "null" && paymentId !== "null") {
             dispatch(putBuy(movies, idUser))
             dispatch(oneUser(idUser))
+            dispatch(sendMailAfterBuy(user.email, movies))
             // console.log(user.buy)
             // const send = user
             // console.log(movies)
@@ -64,7 +65,7 @@ export default function Confirm() {
                 <div>
                     <h1>Aproved</h1>
                     <Link to={"/home"}>
-                        <button>Volver al home</button>
+                        <button>Go to home</button>
                     </Link>
                 </div> 
                 : status === "rejected" ?
