@@ -4,11 +4,12 @@ import { allUsers, deleteUsers, editUsersStatus } from "../../redux/Slice/userAc
 import "./CardAdmin.css"
 import styles from "../../styles/Admin.module.css"
 import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillPencilFill } from "react-icons/bs";
 import { useState } from "react";
 
 
 
-export default function Vista(props) {
+export default function CardUse(props) {
   const dispatch= useDispatch();
   const handleDelete = ()=>{
     dispatch(deleteUsers(props.id))
@@ -38,15 +39,15 @@ export default function Vista(props) {
       role='banned'
     }
     return (
-
-      <div className={styles.containerM}>
+  
+      <div className={styles.containerU}>
         
-        <div  className="Card" key={props.key}>  
-           <p className="title">{props.name}</p>
+        <div className={styles.cont} key={props.key}>  
+           <p>Name: {props.name}</p>
            <p>LastName: {props.name}</p>
            <p>Email: {props.email}</p>
            <p>Status: {props.status}</p>
-           <p>Rol Actual: {role}</p>
+           <p>Current role: {role}</p>
            <select name="role" key={props.id} onChange={(e)=>{onSelectChange(e)}}>
                   <option disabled selected >-Select role-</option>
                   <option value={'Admin'}>Admin</option>
@@ -54,13 +55,13 @@ export default function Vista(props) {
                   <option value={'Banned'}>Banned</option>
                   <option value={'Owner'}>Owner</option>
             </select>
-            <button onClick={submitRole} >change</button>
+            <button className={styles.Change} onClick={submitRole} >Change</button>
             <button onClick={(props) => {handleDelete(props)}} className={styles.button}><BsFillTrashFill/></button>
       </div>
   
   </div >  
- 
       
            
     )
 }
+
