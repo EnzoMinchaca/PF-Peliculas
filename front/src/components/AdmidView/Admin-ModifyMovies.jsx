@@ -105,6 +105,7 @@ export default function AdminModifyMovies() {
       [e.target.name]: e.target.value, 
    });
   };
+
  React.useEffect(()=>{  dispatch(sortSoldMovies(input)) },[dispatch,input])
  function handleRefresh() {
   // dispatch(clearMovies())
@@ -139,7 +140,7 @@ export default function AdminModifyMovies() {
             
           
           <div className={styless.title1}>
-           <p className={styless.span1}>Admin Panel - View Users</p>
+           <p className={styless.span1}>Admin Panel - View Movies</p>
            <div className={styless.home} >
             <Link to="/Home">   
                <BsFillHouseDoorFill className={styless.icon}/> 
@@ -180,6 +181,8 @@ export default function AdminModifyMovies() {
                          <option value='ASCENDANT' >Least sold</option> 
                       </select>  </div> 
                   </div>
+
+                  
               <div className="section">
               {typeof movies ==='string'?
                 <div className={styles.uniqueHome}>
