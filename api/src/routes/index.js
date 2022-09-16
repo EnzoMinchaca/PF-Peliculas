@@ -7,7 +7,8 @@ const userSchema = require("../models/user")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("../config/emailer")
 const bcrypt = require("bcrypt")
-
+const commentsSchema = require('../models/externalComments')
+const axios = require('axios');
 const {PaymentController, createPayment, executePayment} = require('../controllers/paymentsController')
 const PaymentService = require('../service/paymentService')
 const PaymentInstance = new PaymentController(new PaymentService())
@@ -373,6 +374,64 @@ router.post("/confirmPassword/:token", async ( req, res ) => {
 
   });
 
+router.put('/addFavorite/:idUser', async(req, res) => {
+    try {
+        const {idUser} = req.params
+        const favMovie = req.body
+        // console.log(favMovie)
+        if(!favMovie) {
+            res.send('not send favourite movie')
+        }
+        const user = await userSchema.findById(idUser)
+        // console.log(user.favorites)
+        let newFavorite = []
+        let flag = false
+        if(user.favorites.length === 0) {
+            newFavorite = [...favMovie]
+        } else {
+            for(let i=0; i<user.favorites.length; i++) {
+                if(favMovie[0]._id === user.favorites[i]._id) {
+                    flag = true
+                    break
+                }
+            }
+            if(flag) {
+                newFavorite = [...user.favorites]
+            } else {
+                newFavorite = [...user.favorites, ...favMovie]
+            }
+        }
+        // console.log(newFavorite)
+        const response = await userSchema.findByIdAndUpdate(idUser, { $set: { favorites: newFavorite } })
+        res.json(response)
+    }
+    catch(error) {
+        console.log(error)
+    }
+})
+
+router.put('/deleteFavorite/:idUser', async(req, res) => {
+    try {
+        const {idUser} = req.params
+        // console.log(idUser)
+        const favMovie = req.body
+        // console.log(favMovie)
+        if(!favMovie) {
+            res.send('not send favourite movie')
+        }
+        const user = await userSchema.findById(idUser)
+        let newFavorite = await user.favorites.filter(m => m._id !== favMovie[0].id)
+        const response = await userSchema.findByIdAndUpdate(idUser, { $set: { favorites: newFavorite } })
+        // console.log(response)
+        const theuser = await userSchema.findById(idUser)
+        // console.log(theuser)
+        res.json(theuser)
+    }
+    catch(error) {
+        console.log(error)
+    }
+})
+
 router.get('/userId/:id', async(req, res) => {
     try {
         const {id} = req.params
@@ -528,6 +587,45 @@ router.put('/addBuyInMovie', async(req, res) => {
     }
     catch(error) {
          console.log(error)
+    }
+});
+//ruta para cargar comentarios desde la api
+router.post('/postComments', async(req, res) => {
+    try {
+        let {titleMovie, idApiMovie}= req.body;
+        const getApi = await axios.get(`https://api.themoviedb.org/3/movie/${idApiMovie}/reviews?api_key=c656d7cba036abff6008b44eb0937f2a&language=en-US&page=1`)
+        let infoApi= getApi.data; //info en forma de obj
+        let commentsApi= await infoApi.results.map(e=>{
+            return{
+                username:e.author_details.username,
+               avatar_path:e.author_details.avatar_path,
+                 rating:e.author_details.rating,
+                content:e.content,
+                created_at:e.created_at,
+            }
+        })
+        let commentsForDB= {titleMovie: titleMovie, idApiMovie: idApiMovie, allComments: commentsApi}
+        const comments = commentsSchema(commentsForDB)
+        const createComents = await comments.save()
+        res.json(createComents)
+    }
+    catch(error) {
+        console.log(error)
+    }
+});
+router.get('/getComments', async(req,res)=>{
+
+    try {
+        const {movie}= req.query;
+        let comments = await commentsSchema.find({titleMovie: movie});
+        if(comments.length ===0) res.status(404).send('No comments found');
+
+        if(comments){
+           res.send(comments[0]);  
+        };
+      } 
+    catch (error) {
+        console.log(error);
     }
 });
 

@@ -11,6 +11,7 @@ import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
+import Rating from '@mui/material/Rating';
 import css from "./Order.module.css";
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
@@ -66,10 +67,10 @@ export default function Order({setPag}) {
         }
       >
         <ListItemButton className={css.redH} onClick={() => handleAscRating("1-5")}>
-         <AiOutlineDoubleRight/> <ListItemText primary=" 1 - 5" />
+         <AiOutlineDoubleRight/> <ListItemText primary={<p><Rating name="read-only" value={1} readOnly /> - <Rating name="read-only" value={5} readOnly /></p>  } />
         </ListItemButton>
         <ListItemButton className={css.redH} onClick={() => handleDesRating("5-1")}>
-        <AiOutlineDoubleLeft/> <ListItemText primary= " 5 - 1 "/>
+        <AiOutlineDoubleLeft/> <ListItemText primary={<p><Rating name="read-only" value={5} readOnly /> - <Rating name="read-only" value={1} readOnly /></p>  }/>
         </ListItemButton>
       </List>
 

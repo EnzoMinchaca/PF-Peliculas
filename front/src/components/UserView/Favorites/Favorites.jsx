@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FavoritesCards from './FavoritesCards'
 import Style from "./Favorite.module.css"
 import Header from '../../Presentational/header'

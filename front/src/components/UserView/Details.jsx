@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
-import { addMovieToCart, getMovieById, addMovieToFavs } from '../../redux/Slice/movieAction'
+import { addMovieToCart, getMovieById} from '../../redux/Slice/movieAction'
 import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
@@ -11,9 +11,15 @@ import Swal from "sweetalert2";
 import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
 import axios from 'axios'
+import Rating from '@mui/material/Rating';
 import HighQualityIcon from '@mui/icons-material/HighQuality';
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import Comments from './Comments'
+
+import { putFavToUser, addMovieToFavs  } from '../../redux/Slice/userAction'
+
 
 
 
@@ -30,7 +36,8 @@ export default function Details() {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.movies.movie)
     const cart = useSelector((state) => state.movies.cart)
-    const favs = useSelector((state) => state.movies.favs)
+    // const favs = useSelector((state) => state.movies.favs)
+    const user = JSON.parse(localStorage.getItem('user'))
     // console.log(details)
 
 
@@ -84,8 +91,9 @@ export default function Details() {
 
             (!cart.map((e) => e._id).includes(id)) {
             let a = await dispatch(addMovieToFavs(id))
+            dispatch(putFavToUser(details, user._id))
             let json = await axios.get(`http://localhost:3001/movieDetails/${id}`)
-            localStorage.setItem("favs", JSON.stringify([...favs, json.data]))
+            // localStorage.setItem("favs", JSON.stringify([...favs, json.data]))
             Swal.fire({
                 icon: 'success',
                 title: 'Added to favs',
@@ -114,8 +122,12 @@ export default function Details() {
                                     </div>
                                     <div className={Style.textTitle}>
                                         <h2>{details.title}</h2>
-                                        <h3> {details.date} || {details.duration}</h3> 
+                                        <h3> {details.date} || {details.duration}</h3>
+                                        {details.rating?
+                                        <Rating name="read-only" value={details.rating} readOnly />
+                                        :null}
                                         <h4></h4>
+                                        <br />
                                         <div className={Style.cartFav}>
                                             {
                                                 hasMovie?
@@ -129,6 +141,17 @@ export default function Details() {
                                         </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
+                                </div>
+                                <div >
+                                    <h3>Comments</h3> 
+                                    {
+                                        details.title?
+                                        <div  >
+                                          <Comments titleMovies={details.title}></Comments>
+                                        </div>
+                                        :
+                                        <p></p>
+                                    }
                                 </div>
                             </div>
                             <div className={Style.textContainer}>

@@ -1,0 +1,51 @@
+scroll-container {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  scroll-container {
+    display: block;
+    width:490px;
+    height: 154px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+  scroll-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    font-size: 5em;
+}
+/* Tamaño del scroll */
+scroll-container::-webkit-scrollbar{
+  width: 8px;
+}
+
+ /* Estilos barra (thumb) de scroll */
+scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+scroll-container::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+ /* Estilos track de scroll */
+ scroll-container::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+} 
+
+scroll-container::-webkit-scroll-page-track:hover, 
+scroll-container::-webkit-scroll-page-track:active {
+  background: #d4d4d4;
+} 
+

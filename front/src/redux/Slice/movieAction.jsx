@@ -21,7 +21,9 @@ import {
     filterByPlataform,
     deleteMovieById,
     clearCarts,
-    orderSoldMovies
+    orderSoldMovies,
+    getComments,
+    clearStateComments
 } from "./movieSlice";
 
 
@@ -57,23 +59,23 @@ export const addMovieToCart = (id) => (dispatch) => {
         });
 }
 
-export const addMovieToFavs = (id) => (dispatch) => {
-    axios.get(`http://localhost:3001/movieDetails/${id}`)
-        .then(resp => dispatch(addToFavs(resp.data)))
-        .catch((e) => {
-            console.log(e);
-            return Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Movie has beed added",
-            });
-        });
-}
+// export const addMovieToFavs = (id) => (dispatch) => {
+//     axios.get(`http://localhost:3001/movieDetails/${id}`)
+//         .then(resp => dispatch(addToFavs(resp.data)))
+//         .catch((e) => {
+//             console.log(e);
+//             return Swal.fire({
+//                 icon: "error",
+//                 title: "Oops...",
+//                 text: "Movie has beed added",
+//             });
+//         });
+// }
 
-export const deleteFromFavs =(id) => (dispatch) => {
-    localStorage.setItem('favs', JSON.stringify([]))
-    dispatch(removeFavs(id))
-}
+// export const deleteFromFavs =(id) => (dispatch) => {
+//     localStorage.setItem('favs', JSON.stringify([]))
+//     dispatch(removeFavs(id))
+// }
 
 
 export const deleteFromCart = (id) => (dispatch) => {
@@ -210,5 +212,15 @@ export const sortSoldMovies=(order)=>(dispatch)=>{
     dispatch(orderSoldMovies(order))
 }
 
+export const getCommentsMovie=(titleMovie)=>(dispatch)=>{
+    axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
+    .then(resp=>dispatch(getComments(resp.data)))
+    .catch((e) => {
+        console.log(e);
+    });  
+}
 
+export const clearComments=()=>(dispatch)=>{
+    dispatch(clearStateComments({}))
+}
 
