@@ -3,7 +3,7 @@ import {Carousel,CarouselItem,CarouselControl,CarouselIndicators, CarouselCaptio
 import styles from "./Slider.module.css";
 const items = [
   {
-    src:"https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg"
+    src: "https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg"
   },
   {
     src: 'https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg'

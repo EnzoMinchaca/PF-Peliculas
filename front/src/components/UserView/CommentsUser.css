@@ -1,0 +1,95 @@
+.wrapper {
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+  }
+  .wrapper ul {
+    list-style-type: none;
+  }
+  
+  /* ------------------------------ */
+  /* una vez que se responde a un mensaje... */
+  .wrapper .responde .box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 415px;
+    height: 95px;
+    background-color: #fff;
+    margin: auto;
+    list-style-type: none;
+    top: -75px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 8px 4px -4px rgb(230,230,230);
+      -moz-box-shadow: 0 8px 4px -4px rgb(230,230,230);
+      box-shadow: 0 8px 4px -4px rgb(230,230,230);
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+  }
+  .wrapper .responde .box img {
+  
+    position: absolute;
+    width: 90px;
+    border-radius: 100%;
+    height: 95px;
+    border: 2px solid #1e88e5;
+  }
+  .wrapper .responde .box .head {
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid grey;
+  }
+  .wrapper .responde .box h5 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    
+    font-weight: 400;
+    color: rgb(16,2,2);
+    
+    position: relative;
+    top: 5px;
+  }
+  .wrapper .responde .box a {
+    text-align: center;
+    position: relative;
+    font-size: 9px;
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    top: -80px;
+   
+  }
+  .wrapper .responde article {
+    position: relative;
+    margin: auto;
+    width: 70%;
+    height: 55%;
+    margin-left: 115px;
+    margin-top: -5px;
+  }
+  .wrapper .responde article p {
+    font-size: 11px;
+    margin-top: 5px;
+    font-family: 'Open Sans', sans-serif;
+    color: grey;
+    max-width: 100%;
+  }
+  .wrapper ul .responde .opciones {
+    border-bottom-left-radius: 80px;
+    border-top-left-radius: 80px;
+    height: 95px;
+  }
+  .wrapper ul .responde .opciones:hover {
+    width: 350px;
+  }
+  /* Línea que separa los mensajes */
+  .wrapper ul .responde .linea {
+    position: absolute;
+    display: flex;
+    width: 5px;
+    height: 20px;
+    left: 40px;
+    margin: auto;
+    top: -20px;
+    background-color: rgba(122,122,122,0.477);
+}

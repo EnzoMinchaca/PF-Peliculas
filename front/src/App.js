@@ -18,7 +18,7 @@ import AdminModifyMovies from './components/AdmidView/Admin-ModifyMovies';
 import ModifyMovies from './components/AdmidView/ModifyMovies';
 import ConfirmPay from './components/UserView/ConfirmPay';
 import CancelPay from './components/UserView/CancelPay';
-import VistaRoles from "./components/AdmidView/Rol";
+import AdminModUser from "./components/AdmidView/AdminModifyUser";
 
 
 
@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/FreqQuestions" element={<Questions/>}/>
         <Route exact path="/password/:token" element={<Password/>} />
         {/* <Route exact path="/example" element={<Example/>} /> */}
-        <Route exact path="/rol" element={<VistaRoles/>} />
+        <Route exact path="/rol" element={<AdminModUser/>} />
 
       </Routes>
     </BrowserRouter>

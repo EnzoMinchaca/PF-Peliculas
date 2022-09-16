@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { oneUser, postExecutePay, putBuy } from '../../redux/Slice/userAction'
+import { oneUser, postExecutePay, putBuy, sendMailAfterBuy } from '../../redux/Slice/userAction'
 import { addBuyMovie, clearCart } from '../../redux/Slice/movieAction'
 import s from './ConfirmPay.module.css'
 
@@ -38,9 +38,10 @@ export default function ConfirmPay() {
         dispatch(putBuy(movies, idUser))
         dispatch(oneUser(idUser))
         localStorage.setItem('user', JSON.stringify(user))
+        dispatch(sendMailAfterBuy(user.email, movies))
         dispatch(clearCart())
-        navigate("/success")
         dispatch(addBuyMovie(movies))
+        navigate("/success")
     }
     if(!status) {
         navigate("/home")

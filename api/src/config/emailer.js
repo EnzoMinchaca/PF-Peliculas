@@ -241,7 +241,7 @@ module.exports.SendPuchase = async ( email, MoviesBuy ) => {
                         ${links}
                     </div>
                     <hr>
-                    <a href="https://localhost:3001/home">Go to website</a>
+                    <a href="http://localhost:3000/Home">Go to website</a>
                 </div>
             </div>
             <div style=" padding: 20px 10px 20px ; color: black; text-align: center" background-color:  #2E86C1>

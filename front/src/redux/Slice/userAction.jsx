@@ -477,6 +477,11 @@ export const getUser=()=>(dispatch)=>{
       });
 }
 
+    export const sendMailAfterBuy=(email, moviesBuy)=>(dispatch)=>{
+        axios.post('http://localhost:3001/sendPuchase', {email: email, moviesBuy: moviesBuy})
+            .then(resp => console.log(resp))
+    }
+
 
 
         
