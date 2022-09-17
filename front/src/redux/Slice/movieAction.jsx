@@ -22,8 +22,12 @@ import {
     deleteMovieById,
     clearCarts,
     orderSoldMovies,
+
+    postComments
+
     getComments,
     clearStateComments
+
 } from "./movieSlice";
 
 
@@ -212,6 +216,16 @@ export const sortSoldMovies = (order) => (dispatch) => {
     dispatch(orderSoldMovies(order))
 }
 
+
+//Ruta para post de Comentarios 
+
+export const postComment = (info) => (dispatch) => {
+    axios.post('http://localhost:3001/comments', info)
+        .then(resp => dispatch(postComments(resp.data)))
+        .catch((e) => console.log(e))
+}
+
+
 export const getCommentsMovie = (titleMovie) => (dispatch) => {
     axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
         .then(resp => dispatch(getComments(resp.data)))
@@ -219,6 +233,7 @@ export const getCommentsMovie = (titleMovie) => (dispatch) => {
             console.log(e);
         });
 }
+
 
 export const clearComments = () => (dispatch) => {
     dispatch(clearStateComments({}))

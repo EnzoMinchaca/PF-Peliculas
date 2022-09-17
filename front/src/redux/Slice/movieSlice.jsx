@@ -168,6 +168,10 @@ export const movieSlice = createSlice({
     clearStateComments: (state, action) => {
       state.commentsMovie = action.payload;
     },
+
+    postComments: (state) => {
+      return { state }
+    },
   }
 }
 
@@ -195,8 +199,12 @@ export const {
   deleteMovieById,
   clearCarts,
   orderSoldMovies,
+
+  postComments
+
   getComments,
   clearStateComments
+
 } = movieSlice.actions
 
 export default movieSlice.reducer
