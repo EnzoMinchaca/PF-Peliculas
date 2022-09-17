@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
-import { addMovieToCart, getMovieById} from '../../redux/Slice/movieAction'
+import { addMovieToCart, getMovieById, movieToView} from '../../redux/Slice/movieAction'
 import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
@@ -10,6 +10,7 @@ import { style } from '@mui/system'
 import Swal from "sweetalert2";
 import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
+import { FiPlay } from "react-icons/fi" 
 import axios from 'axios'
 import Rating from '@mui/material/Rating';
 import buton from "../../styles/Buttons.module.css"
@@ -31,7 +32,7 @@ export default function Details() {
     const [isUser, setisUser] = useState(false)
     const [hasMovie, sethasMovie] = useState(false)
 
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const details = useSelector((state) => state.movies.movie)
     const cart = useSelector((state) => state.movies.cart)
@@ -39,6 +40,11 @@ export default function Details() {
     const user = JSON.parse(localStorage.getItem('user'))
     // console.log(details)
 
+    const handleClick = () => {
+        dispatch(movieToView(details))
+        localStorage.setItem('movie', JSON.stringify(details))
+        navigate("/viewMovie")
+    }
 
     useEffect(() => {
         const login = JSON.parse(localStorage.getItem('user'))
@@ -128,9 +134,10 @@ export default function Details() {
                                         <div className={Style.cartFav}>
                                             {
                                                 hasMovie?
-                                                    <a href={details.trailer} target={"_blank"}>
-                                                        <button className={buton.btn}>Play</button>
-                                                    </a> 
+                                                    // < href={details.trailer} target={"_blank"}>
+                                                        <button className={buton.btn} onClick={handleClick} ><FiPlay/> Play</button>
+                                                    // </a>
+                                                    // <ButtonPlay/> 
                                                     :                   
                                                     <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button>                                               
                                             }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles.module.css";
 import buton from "../../styles/Buttons.module.css"
 import ButtonHome from "../Presentational/ButtonHome";
@@ -22,12 +22,16 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { editUsers, oneUser, editUsersImage} from "../../redux/Slice/userAction";
 import styless from "../../styles/styles.module.css"
+import { BiDetail } from "react-icons/bi"
+import { FiPlay } from "react-icons/fi" 
+import { getMovieById, movieToView } from "../../redux/Slice/movieAction";
 import ImageIcon from '@mui/icons-material/Image';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+
 
 
 export default function EditUser(){
@@ -42,11 +46,20 @@ export default function EditUser(){
         // password:"",
         // comfirmPassword:""
     })
+    const navigate = useNavigate()
     const dispatch=useDispatch();
     const theUser = useSelector(state => state.users.user)
     console.log(theUser)
     const user = JSON.parse(localStorage.getItem('user'))
     console.log(user)
+    const details = useSelector((state) => state.movies.movie)
+
+    const handleClick = (id) => {
+      dispatch(getMovieById(id))
+      dispatch(movieToView(details))
+      localStorage.setItem('movie', JSON.stringify(details))
+      navigate("/viewMovie")
+    }
 
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
@@ -288,11 +301,9 @@ export default function EditUser(){
                   <p className={css.list}>{m.title}</p>
                   <p className={css.list}>{m.platform}</p>
                   <Link to={`/Details/${m._id}`}>
-                    <button className={buton.btn}>View Details</button>
+                    <button className={buton.btn}><BiDetail/> View Details</button>
                   </Link>
-                  <a href={m.trailer} target={"_blank"}>
-                    <button className={buton.btn}>Play</button>
-                  </a>
+                  <button className={buton.btn} onClick={() => handleClick(m._id)} ><FiPlay/> Play</button>
                 </div>
               )
             })

@@ -22,10 +22,10 @@ import {
     deleteMovieById,
     clearCarts,
     orderSoldMovies,
-
     postComments
-
     getComments,
+    clearStateComments,
+    getMovieToView
     clearStateComments
 
 } from "./movieSlice";
@@ -99,7 +99,10 @@ export const postMovies = (movie) => (dispatch) => {
 
 export const getMovieById = (id) => (dispatch) => {
     axios.get(`http://localhost:3001/movieDetails/${id}`)
-        .then(resp => dispatch(getMoviesById(resp.data)))
+        .then(resp => {
+            dispatch(getMoviesById(resp.data))
+            localStorage.setItem('movie', JSON.stringify(resp.data))
+        })
         .catch((e) => {
             console.log(e);
             return Swal.fire({
@@ -239,3 +242,6 @@ export const clearComments = () => (dispatch) => {
     dispatch(clearStateComments({}))
 }
 
+export const movieToView = (movie) => (dispatch) => {
+    dispatch(getMovieToView(movie))
+}
