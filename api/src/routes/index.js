@@ -17,6 +17,20 @@ const PaymentInstance = new PaymentController(new PaymentService())
 
 const router = Router()
 
+const multer = require("multer")
+const path = require("path")
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, "../public/uploads"), 
+    filename: ( req, file ,cb ) => {
+        cb( null ,  new Date().getTime() + path.extname(file.originalname))
+    }
+})
+const upload = (multer({storage}).single("image"))
+
+
+
+
 router.post('/postMovies', async(req, res) => {
     try {
         const movie = movieSchema(req.body)
@@ -186,7 +200,8 @@ router.post("/registerUser", async ( req, res ) => {
                 password:  await userSchema.encryptPassword(password),
                 email,
                 confirmationCode: token,
-                token: "0"
+                token: "0",
+                image:"https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png"
             }
         )
 
@@ -271,11 +286,22 @@ router.post('/paymentPay', createPayment)       //paypal
 router.post('/executePay', executePayment)
 
 
-router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
+router.put('/editUser/:idUser', upload , async(req, res) => {  //ruta para cambiar datos del usuario
     try {
         const {idUser}= req.params;
         const {nameUser,lastname} = req.body;  //me llega en {name: "Raul",lastName: "Alvares"}
         const user = await userSchema.findById(idUser);
+
+        if(req.file){//editar foto 
+
+            const response = await cloudinary.uploader.upload(req.file.path)
+            await userSchema.findByIdAndUpdate(idUser, { $set: { image: response.url }})
+            //res.send('Your image was successfully changed')
+
+		await fs.unlink(req.file.path)
+        }
+
+
         if(!idUser){res.status(404).send('Error')}
         if(Object.keys(user).length===0){
             res.status(404).send('User does not exist') 
@@ -290,7 +316,7 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
            }else if(lastname){
              await userSchema.findByIdAndUpdate(idUser, { $set: { lastname: lastname }})
              res.send('Your lastname was successfully changed')
-           } 
+           }
            res.send('You must complete the field you want to modify');
         }
     }
