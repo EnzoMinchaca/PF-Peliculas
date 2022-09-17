@@ -186,7 +186,9 @@ export default function Details() {
                     :
                     null
             }
-           <Footer />
+            <div className={Style.footer}>
+            <Footer />
+            </div>
             
         </div>
     )
