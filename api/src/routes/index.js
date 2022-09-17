@@ -296,7 +296,7 @@ router.put('/editUser/:idUser', upload , async(req, res) => {  //ruta para cambi
 
             const response = await cloudinary.uploader.upload(req.file.path)
             await userSchema.findByIdAndUpdate(idUser, { $set: { image: response.url }})
-            res.send('Your image was successfully changed')
+            //res.send('Your image was successfully changed')
 
 		await fs.unlink(req.file.path)
         }
