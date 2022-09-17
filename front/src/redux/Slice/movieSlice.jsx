@@ -172,6 +172,10 @@ export const movieSlice = createSlice({
 
     getMovieToView: (state, action) => {
       state.movieView = action.payload
+
+    postComments: (state) => {
+      return { state }
+
     },
   }
 }
@@ -200,9 +204,12 @@ export const {
   deleteMovieById,
   clearCarts,
   orderSoldMovies,
+  postComments
   getComments,
   clearStateComments,
   getMovieToView
+  clearStateComments
+
 } = movieSlice.actions
 
 export default movieSlice.reducer

@@ -20,17 +20,26 @@ import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { editUsers, oneUser } from "../../redux/Slice/userAction";
+import { editUsers, oneUser, editUsersImage} from "../../redux/Slice/userAction";
 import styless from "../../styles/styles.module.css"
 import { BiDetail } from "react-icons/bi"
 import { FiPlay } from "react-icons/fi" 
 import { getMovieById, movieToView } from "../../redux/Slice/movieAction";
+import ImageIcon from '@mui/icons-material/Image';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 
 export default function EditUser(){
     const [openName, setOpenName] = React.useState(false);
     const [openLastName, setOpenLastName] = React.useState(false);
+    const [openImage, setOpenImage] = React.useState(false);
     const [openPassword, setOpenPassword] = React.useState(false);
+    const [image,setImage]=React.useState("");
     const [input, setInput] = React.useState({
         nameUser: "",
         lastname: ""
@@ -62,6 +71,37 @@ export default function EditUser(){
       }
       localStorage.setItem('user',JSON.stringify(user))
     },[])
+
+    const handleSubmitImage=()=>{
+      if(image===""){
+        Swal.fire({
+            icon: "error",
+            title: "Ohhh!",
+            text: "Plis check and complete the fields",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#0b132b"
+        });
+    }else{
+        const user = JSON.parse(localStorage.getItem('user'))
+        // console.log(user._id)
+        dispatch(editUsersImage(image,user._id))
+        // console.log(input)
+        // console.log(input)
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successfully changes",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#0b132b"
+        });
+    }
+   
+    }
+
+    const handleImage=(img)=>{
+      setImage(img);
+      console.log(image)
+    }
     
     function handleChange(e) {
         setInput({
@@ -72,6 +112,9 @@ export default function EditUser(){
     }
     const handleClickName = () => {
       setOpenName(!openName);
+    };
+    const handleClickImage = () => {
+      setOpenImage(!openImage);
     };
     const handleClickLastName = () => {
         setOpenLastName(!openLastName);
@@ -216,6 +259,30 @@ export default function EditUser(){
                     <input className={css.btn} type="submit" value="Save"/>
                 </div>
         </form>
+      </Collapse>
+      <ListItemButton onClick={handleClickImage}>
+        <ListItemIcon>
+          <ImageIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Profile Image" />
+        {openName ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={openImage} timeout="auto" unmountOnExit>
+        <FormControl className={css.form}>
+          <FormLabel id="demo-radio-buttons-group-label">Images:</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="Img1"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />} />
+            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg")} value="Img2" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" />} />
+            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg")}  value="Img3" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" />} />
+            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg")} value="Img4" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" />} />
+            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png")} value="Img5" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" />} />
+          </RadioGroup>
+          <button onClick={()=>handleSubmitImage()} className={css.btn}>Save</button>
+        </FormControl>
       </Collapse>
       <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>

@@ -299,6 +299,27 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
     }
   });
 
+  router.put('/editUserImage/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
+    try {
+        const {idUser}= req.params;
+        const {image} = req.body;  //me llega en {name: "Raul",lastName: "Alvares"}
+        const user = await userSchema.findById(idUser);
+        if(!idUser){res.status(404).send('Error')}
+        if(Object.keys(user).length===0){
+            res.status(404).send('User does not exist') 
+        }else{ 
+           if(image){
+             await userSchema.findByIdAndUpdate(idUser, { $set: { image: image }})
+             res.send('Your image were successfully changed')
+            }
+           res.send('You must complete the field you want to modify');
+        }
+    }
+    catch(error) {
+        console.log(error)
+    }
+  });
+
   router.put('/putUserPassword', async(req, res) => {  //ruta para la contraseña del usuario
 
     try {

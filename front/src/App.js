@@ -24,6 +24,8 @@ import ViewMovie from './components/UserView/ViewMovie';
 
 
 
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -51,6 +53,7 @@ function App() {
         {/* <Route exact path="/example" element={<Example/>} /> */}
         <Route exact path="/rol" element={<AdminModUser/>} />
         <Route exact path="/viewMovie" element={<ViewMovie/>}  />
+
 
       </Routes>
     </BrowserRouter>

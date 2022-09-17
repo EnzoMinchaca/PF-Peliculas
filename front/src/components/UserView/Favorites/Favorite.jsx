@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { deleteFromFavs } from '../../../redux/Slice/userAction';
 import { deleteFavToUser } from '../../../redux/Slice/userAction';
+import Rating from '@mui/material/Rating';
 
 
 
@@ -24,7 +25,7 @@ const Favorite = ({ id, title, image, rating, idUser }) => {
                 <div key={id} className={Style.card}>
                     <img className={Style.card} src={image} />
                     <h3 className={Style.text}>{title.length < 20 ? title : title.slice(0, 20) + "..."}</h3>
-                    <h3 className={Style.text}>{rating}</h3>
+                    <Rating name="read-only" value={rating} readOnly />
                     <button className={Style.button} onClick={(e) => deleteFav(e)}><HeartBrokenIcon /></button>
                 </div>
 
