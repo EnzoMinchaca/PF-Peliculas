@@ -6,7 +6,8 @@ const { google } = require("googleapis")
     const CLIENT_ID = "435765551994-0dvbqrs6g6k3qbjr7lfnr3ds2vanuc39.apps.googleusercontent.com"
     const CLIENT_SECRET = "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"
     const REDIRCET_URI = "https://developers.google.com/oauthplayground"
-    const REFRESHTOKEN = "1//04-VhYcRds3oICgYIARAAGAQSNwF-L9IrZyomrnIZ2j7BSpYREcpjewY-hx9PMFQMdEV-Mq6qEv3dehuZ6dXtHDGisVa2cv8f_EQ"
+    //const REFRESHTOKEN = "1//04-VhYcRds3oICgYIARAAGAQSNwF-L9IrZyomrnIZ2j7BSpYREcpjewY-hx9PMFQMdEV-Mq6qEv3dehuZ6dXtHDGisVa2cv8f_EQ"
+    const REFRESHTOKEN = "1//048nH8a7ZzvwKCgYIARAAGAQSNwF-L9IrmGzvaKX11Gzhpd70fSLL4h1KlKWjXvhKC5TIHFVUEetXL7-F71Gx2Ne2qdkn_pOXKk0"
     const oAuth2Client = new google.auth.OAuth2( CLIENT_ID, CLIENT_SECRET, REDIRCET_URI)
 
 module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => {
@@ -14,9 +15,9 @@ module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => 
     console.log("Check");
     
     oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
-
+    console.log("Check2");
     const accessToken = await oAuth2Client.getAccessToken()
-
+    console.log("Check3");
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth:{
@@ -31,6 +32,7 @@ module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => 
         rejectUnauthorized: false
       }
     })
+    console.log("Check5");
     transporter.sendMail({
       from: name,
       to: email,
