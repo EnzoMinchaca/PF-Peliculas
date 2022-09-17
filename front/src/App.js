@@ -20,6 +20,7 @@ import ConfirmPay from './components/UserView/ConfirmPay';
 import CancelPay from './components/UserView/CancelPay';
 import AboutUs from "./components/Presentational/AboutUs"
 import AdminModUser from "./components/AdmidView/AdminModifyUser";
+import ViewMovie from './components/UserView/ViewMovie';
 
 
 
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/password/:token" element={<Password/>} />
         {/* <Route exact path="/example" element={<Example/>} /> */}
         <Route exact path="/rol" element={<AdminModUser/>} />
+        <Route exact path="/viewMovie" element={<ViewMovie/>}  />
 
       </Routes>
     </BrowserRouter>
