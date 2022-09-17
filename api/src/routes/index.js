@@ -688,4 +688,33 @@ router.get('/getComments', async(req,res)=>{
     }
 });
 
+
+router.put('/addCommentUser', async(req, res) => {  
+
+    try {
+        const {titleMovie, name, imgProfile, rating, content} = req.body;//viene un obj
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        let date= today.toISOString();
+        let newComment = {username: name, avatar_path:imgProfile, rating: rating, content: content, created_at: date}
+        
+         let comments = await commentsSchema.find({titleMovie: titleMovie}); //trae array con un elem [0] q es un obj 
+         
+         if(comments.length===0) res.status(404).send('Error the movie does not exist')
+          
+         let newAllComments = comments[0].allComments.concat(newComment)
+         let addComment = await commentsSchema.findByIdAndUpdate(comments[0]._id, { $set: { allComments: newAllComments}})
+         console.log(addComment)
+         if(Object.keys(addComment).length>0) {
+             res.send('Your comment was added successfully')
+         }
+         else {
+             res.status(404).send('An error has occurred, we could not load your comment')
+         }
+    }
+    catch(error) {
+         console.log(error)
+    }
+});
 module.exports = router 
+

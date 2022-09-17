@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Style from "./Details.module.css"
-import { addMovieToCart, getMovieById, movieToView} from '../../redux/Slice/movieAction'
+import { addMovieToCart, clearDetails, getMovieById, movieToView } from '../../redux/Slice/movieAction'
 import Header from '../Presentational/header'
 import Footer from '../Presentational/footer'
 import ButtonHome from '../Presentational/ButtonHome'
@@ -56,6 +56,7 @@ export default function Details() {
             } 
         }
         dispatch(getMovieById(id))
+        return() => {dispatch(clearDetails())}
     }, [])
 
     const addToCartAndStorage = async (id) => {
