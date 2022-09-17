@@ -8,7 +8,7 @@ export const movieSlice = createSlice({
   initialState: {
     allMovies: [],//estado que siempre va a almacenar todas las peliculas
     movies: [], //estado que se va a renderizar en los componentes
-
+    movieView: {},
     movie: {},
     filtered: [],
     genres: [],
@@ -36,6 +36,7 @@ export const movieSlice = createSlice({
 
     getMoviesById: (state, action) => {
       state.movie = action.payload
+      state.movieView = action.payload
     },
 
     getSearchMovie: (state, action) => {
@@ -168,6 +169,14 @@ export const movieSlice = createSlice({
     clearStateComments: (state, action) => {
       state.commentsMovie = action.payload;
     },
+
+    getMovieToView: (state, action) => {
+      state.movieView = action.payload
+
+    postComments: (state) => {
+      return { state }
+
+    },
   }
 }
 
@@ -195,8 +204,12 @@ export const {
   deleteMovieById,
   clearCarts,
   orderSoldMovies,
+  postComments
   getComments,
+  clearStateComments,
+  getMovieToView
   clearStateComments
+
 } = movieSlice.actions
 
 export default movieSlice.reducer

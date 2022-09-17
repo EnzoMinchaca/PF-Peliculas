@@ -22,8 +22,12 @@ import {
     deleteMovieById,
     clearCarts,
     orderSoldMovies,
+    postComments
     getComments,
+    clearStateComments,
+    getMovieToView
     clearStateComments
+
 } from "./movieSlice";
 
 
@@ -95,7 +99,10 @@ export const postMovies = (movie) => (dispatch) => {
 
 export const getMovieById = (id) => (dispatch) => {
     axios.get(`http://localhost:3001/movieDetails/${id}`)
-        .then(resp => dispatch(getMoviesById(resp.data)))
+        .then(resp => {
+            dispatch(getMoviesById(resp.data))
+            localStorage.setItem('movie', JSON.stringify(resp.data))
+        })
         .catch((e) => {
             console.log(e);
             return Swal.fire({
@@ -212,6 +219,16 @@ export const sortSoldMovies = (order) => (dispatch) => {
     dispatch(orderSoldMovies(order))
 }
 
+
+//Ruta para post de Comentarios 
+
+export const postComment = (info) => (dispatch) => {
+    axios.post('http://localhost:3001/comments', info)
+        .then(resp => dispatch(postComments(resp.data)))
+        .catch((e) => console.log(e))
+}
+
+
 export const getCommentsMovie = (titleMovie) => (dispatch) => {
     axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
         .then(resp => dispatch(getComments(resp.data)))
@@ -220,7 +237,11 @@ export const getCommentsMovie = (titleMovie) => (dispatch) => {
         });
 }
 
+
 export const clearComments = () => (dispatch) => {
     dispatch(clearStateComments({}))
 }
 
+export const movieToView = (movie) => (dispatch) => {
+    dispatch(getMovieToView(movie))
+}
