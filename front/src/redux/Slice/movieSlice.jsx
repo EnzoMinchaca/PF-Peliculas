@@ -21,6 +21,7 @@ export const movieSlice = createSlice({
 
 
   reducers: {
+
     getAllMovies: (state, action) => {
       state.allMovies = action.payload
       state.movies = action.payload
@@ -93,6 +94,7 @@ export const movieSlice = createSlice({
       })
       state.movies = moviesFilter;
     },
+
     filterByPlataform: (state, action) => {
       console.log(action.payload.toLowerCase())
       let moviesFilter = [];
@@ -106,7 +108,6 @@ export const movieSlice = createSlice({
       })
       state.movies = moviesFilter;
     },
-
 
     sortRating: (state, action) => {
       if (action.payload === "1-5") {
@@ -128,6 +129,7 @@ export const movieSlice = createSlice({
         return { ...state, movies: state.filtered };
       }
     },
+
     sortYear: (state, action) => {
       if (action.payload === "1900-2022") {
         return {
@@ -147,11 +149,13 @@ export const movieSlice = createSlice({
         return { ...state, movies: state.filtered };
       }
     },
+
     deleteMovieById: (state, action) => {
       state.movies = state.movies.filter(movie => movie._id !== action.payload);
       state.movies = state.movies.filter(movie => movie._id !== action.payload);
 
     },
+
     orderSoldMovies: (state, action) => {
       let orderSoldMovies = [...state.movies];
       console.log(action.payload.select)
@@ -163,6 +167,7 @@ export const movieSlice = createSlice({
         return { ...state, movies: orderDesc }
       };
     },
+
     getComments: (state, action) => {
       state.commentsMovie = action.payload;
     },
@@ -172,15 +177,14 @@ export const movieSlice = createSlice({
 
     getMovieToView: (state, action) => {
       state.movieView = action.payload
+    },
 
     postComments: (state) => {
       return { state }
-
     },
+  
   }
 }
-
-
 )
 
 export const {
@@ -204,12 +208,12 @@ export const {
   deleteMovieById,
   clearCarts,
   orderSoldMovies,
-  postComments
+  postComments,
   getComments,
   clearStateComments,
-  getMovieToView
-  clearStateComments
-
+  getMovieToView,
+  
+  
 } = movieSlice.actions
 
 export default movieSlice.reducer
