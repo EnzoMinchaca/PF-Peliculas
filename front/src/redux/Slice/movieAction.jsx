@@ -22,11 +22,11 @@ import {
     deleteMovieById,
     clearCarts,
     orderSoldMovies,
-    postComments
+    postComments,
     getComments,
     clearStateComments,
     getMovieToView
-    clearStateComments
+    
 
 } from "./movieSlice";
 
@@ -236,7 +236,6 @@ export const getCommentsMovie = (titleMovie) => (dispatch) => {
             console.log(e);
         });
 }
-
 
 export const clearComments = () => (dispatch) => {
     dispatch(clearStateComments({}))
