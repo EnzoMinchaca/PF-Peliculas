@@ -147,8 +147,8 @@ export default function Details() {
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
                                 </div>
-                                <div >
-                                    <h3>Comments</h3> 
+                                <div className={Style.SectionComments} >
+                                    <h5>Comments</h5> 
                                     {
                                         details.title?
                                         <div  >
@@ -186,7 +186,8 @@ export default function Details() {
                     :
                     null
             }
-            <Footer />
+           <Footer />
+            
         </div>
     )
 }

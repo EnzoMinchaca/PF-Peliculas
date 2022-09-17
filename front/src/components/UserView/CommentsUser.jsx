@@ -50,7 +50,7 @@ export default function CommentsUser ({username, rating, created_at, content, av
                 
                       <article>
                       <div class="head">
-                        <h5>User {username} <Rating name="read-only" value={stars} readOnly ></Rating></h5>
+                        <h6>User {username} <Rating  name="read-only" size="small" value={stars} readOnly ></Rating></h6>
                         <a>{date}</a>
                         
                       </div>
