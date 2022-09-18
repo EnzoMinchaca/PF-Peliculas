@@ -6,12 +6,13 @@ scroll-container {
 
   scroll-container {
     display: block;
-    width:490px;
-    height: 154px;
+    width: 545px;
+    height: 290px;
     overflow-y: scroll;
     scroll-behavior: smooth;
   }
   scroll-page {
+
     display: flex;
     align-items: center;
     justify-content: center;

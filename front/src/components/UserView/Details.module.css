@@ -3,9 +3,10 @@
     flex-direction: row;
     justify-content: space-around;
     box-shadow: #152146 0px 5px 15px;
-    
+    height: 990px;
 }
 .container {
+    margin-top: 142px;
     display: flex;
     justify-content:center;
     align-items:center;
@@ -14,10 +15,16 @@
     height: 100vh;
     position:relative;
     
-    
-
 }
-
+.footer{
+    margin-top: 120px;
+}
+.SectionComments{
+    margin-top: 100px;
+}
+.SectionComments h5 {
+    color: #181818;
+}
 .textContainer {
     flex-direction: column;
     letter-spacing: 0.6px;

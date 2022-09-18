@@ -1,4 +1,5 @@
 .wrapper {
+ 
     position: relative;
     margin: auto;
     background-color: #fff;
@@ -13,7 +14,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 415px;
+    width: 526px;
     height: 95px;
     background-color: #fff;
     margin: auto;
@@ -35,14 +36,14 @@
     border: 2px solid #1e88e5;
   }
   .wrapper .responde .box .head {
-    height: 100%;
-    width: 100%;
+    height: 53px;
+    width: 324px;
     border-bottom: 1px solid grey;
   }
   .wrapper .responde .box h5 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    
+ 
     font-weight: 400;
     color: rgb(16,2,2);
     
@@ -68,11 +69,13 @@
     margin-top: -5px;
   }
   .wrapper .responde article p {
+    width:400px;
     font-size: 11px;
     margin-top: 5px;
     font-family: 'Open Sans', sans-serif;
     color: grey;
     max-width: 100%;
+    margin-bottom: 20px;
   }
   .wrapper ul .responde .opciones {
     border-bottom-left-radius: 80px;
