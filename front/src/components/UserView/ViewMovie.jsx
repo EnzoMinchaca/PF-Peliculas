@@ -5,15 +5,16 @@ import Footer from '../Presentational/footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieToView } from '../../redux/Slice/movieSlice'
 import { BiDetail } from "react-icons/bi"
-import Comments from './Comments'
 import ButtonHome from '../Presentational/ButtonHome'
 import buton from "../../styles/Buttons.module.css"
 import s from './ViewMovie.module.css'
+import CommentsVM from './CommentsViewMovie'
+
 
 export default function ViewMovie() {
 
     const rat = [1, 2, 3, 4, 5]
-
+   
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
         if(user === null) {
@@ -28,6 +29,7 @@ export default function ViewMovie() {
     const dispatch = useDispatch()
     const movie = useSelector((state) => state.movies.movieView)
     console.log(movie)
+    
 
   return (
     <div>
@@ -45,9 +47,11 @@ export default function ViewMovie() {
                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
             </iframe>
             <div className={s.com}>
-                <div>
-                    <h2>Add your comment!</h2>
-                    <textarea className={s.textareaForm}></textarea>
+            <h3 className={s.comments} >Comments</h3> 
+                <div >
+                     <h2>Add your comment!</h2> 
+                   <textarea className={s.textareaForm} ></textarea> 
+                    
                     <button>Send</button>
                 </div>
                 <div>
@@ -62,11 +66,11 @@ export default function ViewMovie() {
                         }
                     </select>
                 </div>
-                <h3>Comments</h3> 
                     {
                         movie.title?
                         <div  >
-                            <Comments titleMovies={movie.title}></Comments>
+                            <CommentsVM titleMovies={movie.title} ></CommentsVM>
+                          
                         </div>
                         :
                         <p></p>
