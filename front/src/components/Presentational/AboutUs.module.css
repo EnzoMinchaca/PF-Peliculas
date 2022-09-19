@@ -70,3 +70,7 @@
 .card:hover>div,.card:hover>strong {
   opacity: 0;
 }
+.container::-webkit-scrollbar {
+  background-color: aqua;
+  border-radius: 5px;
+}
