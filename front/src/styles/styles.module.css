@@ -3,6 +3,10 @@
     
 }
 
+.fondo{
+  background-image: linear-gradient(to bottom, #e9ebee, #ebedef, #eceef0, #eef0f1, #f0f1f2);
+}
+
 .header_home{
     position: relative;
     top: 0;
@@ -601,3 +605,6 @@
 }
 
   
+.link{
+  text-decoration: none;
+}

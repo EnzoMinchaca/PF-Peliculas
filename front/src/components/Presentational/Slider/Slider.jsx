@@ -3,16 +3,19 @@ import {Carousel,CarouselItem,CarouselControl,CarouselIndicators, CarouselCaptio
 import styles from "./Slider.module.css";
 const items = [
   {
-    src: "https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg"
+    src: "https://res.cloudinary.com/pruebadatos/image/upload/v1663529452/B3_txvsnm.png"
   },
   {
-    src: 'https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg'
+    src: 'https://res.cloudinary.com/pruebadatos/image/upload/v1663529439/B2_z2gjnb.png'
   },
   {
-    src:  'https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg'
+    src:  'https://res.cloudinary.com/pruebadatos/image/upload/v1663529462/B4_fki9jv.png'
   },
   {
-    src: 'https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg',
+    src: 'https://res.cloudinary.com/pruebadatos/image/upload/v1663529393/B1_o9jm50.png',
+  },
+  {
+    src: 'https://res.cloudinary.com/pruebadatos/image/upload/v1663529471/B5_z53lf4.png',
   }
 ];
 
@@ -37,6 +40,7 @@ const Slide = (props) => {
     setActiveIndex(newIndex);
   }
 
+  
   const slides = items.map((item) => {
     return (
       <CarouselItem

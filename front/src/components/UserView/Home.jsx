@@ -97,7 +97,7 @@ export default function Home() {
      var lastMovies = firstMovies + moviesPerPage ;
  }
     return (
-        <div>
+        <div className={styles.fondo}>
             <Slider></Slider>
             <Header/>
             
