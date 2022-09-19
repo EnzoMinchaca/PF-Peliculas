@@ -32,7 +32,7 @@ export const movieSlice = createSlice({
     }, */
 
     postMovie: (state) => {
-      return { state }
+      return { ...state }
     },
 
     getMoviesById: (state, action) => {
@@ -169,10 +169,16 @@ export const movieSlice = createSlice({
     },
 
     getComments: (state, action) => {
-      state.commentsMovie = action.payload;
+      return {
+        ...state,
+        commentsMovie: action.payload
+      }
     },
     clearStateComments: (state, action) => {
-      state.commentsMovie = action.payload;
+      return {
+        ...state,
+        commentsMovie: action.payload
+      }
     },
 
     getMovieToView: (state, action) => {
