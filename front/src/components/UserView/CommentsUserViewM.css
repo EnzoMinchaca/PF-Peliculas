@@ -14,16 +14,13 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    width: 526px;
+    width: 720px;
     height: 95px;
     background-color: #fff;
     margin: auto;
     list-style-type: none;
     top: -75px;
     margin-bottom: 20px;
-    -webkit-box-shadow: 0 8px 4px -4px rgb(230,230,230);
-      -moz-box-shadow: 0 8px 4px -4px rgb(230,230,230);
-      box-shadow: 0 8px 4px -4px rgb(230,230,230);
     border-top-left-radius: 80px;
     border-bottom-left-radius: 80px;
   }
@@ -37,13 +34,13 @@
   }
   .wrapper .responde .box .head {
     height: 53px;
-    width: 324px;
+    width: 523px;
     border-bottom: 1px solid grey;
   }
-  .wrapper .responde .box h5 {
+  .wrapper .responde .box h6 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
- 
+    margin-right: 224px;
     font-weight: 400;
     color: rgb(16,2,2);
     
@@ -58,7 +55,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
     top: -80px;
-   
+   margin-right: 224px;
   }
   .wrapper .responde article {
     position: relative;
@@ -69,7 +66,7 @@
     margin-top: -5px;
   }
   .wrapper .responde article p {
-    width:400px;
+    width:566px;
     font-size: 11px;
     margin-top: 5px;
     font-family: 'Open Sans', sans-serif;

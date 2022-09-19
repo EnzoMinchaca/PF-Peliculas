@@ -5,13 +5,13 @@ import Footer from '../Presentational/footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieToView } from '../../redux/Slice/movieSlice'
 import { BiDetail } from "react-icons/bi"
-import Comments from './Comments'
 import ButtonHome from '../Presentational/ButtonHome'
 import buton from "../../styles/Buttons.module.css"
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 import s from './ViewMovie.module.css'
+import CommentsVM from './CommentsViewMovie'
 import { clearComments, getCommentsMovie, getMovies, postComment } from '../../redux/Slice/movieAction'
 import Swal from 'sweetalert2'
 
@@ -25,7 +25,6 @@ export default function ViewMovie() {
     let movie= useSelector(state => state.movies.movieView)
     // let comments =useSelector(state=> state.movies.commentsMovie)
 
-    
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
         if(user === null) {
@@ -136,11 +135,11 @@ export default function ViewMovie() {
                         <button className={s.but} onClick={(e)=>handleSubmit(e)}>Send</button>
                     </div>
                 </div>
-                <h3>Comments</h3> 
                     {
                         movie.title?
                         <div  >
-                            <Comments titleMovies={movie.title}></Comments>
+                            <CommentsVM titleMovies={movie.title} ></CommentsVM>
+                          
                         </div>
                         :
                         <p></p>

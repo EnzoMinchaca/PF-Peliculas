@@ -716,5 +716,36 @@ router.put('/addCommentUser', async(req, res) => {
          console.log(error)
     }
 });
+
+router.delete('/deleteComments', async(req, res) => {  
+
+    try {
+        const {titleMovie, name, rating, content} = req.body;
+         let commentDelete = [];
+         let commentsDb = await commentsSchema.find({titleMovie: titleMovie}); //trae array con un elem [0] q es un obj 
+         
+         if(commentsDb.length===0) res.status(404).send('Error the movie does not exist')
+          
+          commentsDb[0].allComments.forEach(comment=>{ 
+           if(comment.username !== name || comment.rating !== rating || comment.content !== content){
+             commentDelete.push(comment)
+           } 
+        });
+
+         let newComment = await commentsSchema.findByIdAndUpdate(commentsDb[0]._id, { $set: { allComments: commentDelete}})
+         
+         if(Object.keys(newComment).length>0) {
+             res.send('Your comment was deleted successfully')
+         }
+         else {
+             res.status(404).send('An error has occurred, we could not delete your comment')
+         }
+    }
+    catch(error) {
+         console.log(error)
+    }
+});
+
+
 module.exports = router 
 

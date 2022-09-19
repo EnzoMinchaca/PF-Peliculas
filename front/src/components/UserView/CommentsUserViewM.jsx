@@ -1,11 +1,9 @@
 import { Rating } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCommentsMovie } from "../../redux/Slice/movieAction";
-import './CommentsUser.css'
+import React from "react";
+import './CommentsUserViewM.css'
 
 
-export default function CommentsUser ({username, rating, created_at, content, avatar_path}) {
+export default function CommentsUserVM ({username, rating, created_at, content, avatar_path}) {
  
     let date= created_at.slice(0, -14);
     let stars;
