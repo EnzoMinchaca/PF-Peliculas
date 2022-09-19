@@ -240,7 +240,7 @@ export const postComment = (info) => (dispatch) => {
 export const getCommentsMovie = (titleMovie) => (dispatch) => {
     axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
         .then(resp => {
-            console.log(resp.data)
+            // console.log(resp.data)
             localStorage.setItem('comment', JSON.stringify(resp.data))
             dispatch(getComments(resp.data))
         })
@@ -254,5 +254,15 @@ export const clearComments = () => (dispatch) => {
 }
 
 export const movieToView = (movie) => (dispatch) => {
+    localStorage.setItem('movie', JSON.stringify(movie))
     dispatch(getMovieToView(movie))
+}
+
+export const deleteComment = (data) => (dispatch) => {
+    console.log(data)
+    axios.delete(`http://localhost:3001/deleteComments`, {data})
+        .then(resp => {
+            console.log(resp.data)
+        })
+        .catch((e) => console.log(e))
 }

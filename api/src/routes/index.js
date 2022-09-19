@@ -725,7 +725,7 @@ router.delete('/deleteComments', async(req, res) => {
         const {titleMovie, name, rating, content} = req.body;
          let commentDelete = [];
          let commentsDb = await commentsSchema.find({titleMovie: titleMovie}); //trae array con un elem [0] q es un obj 
-         
+         console.log(commentsDb)
          if(commentsDb.length===0) res.status(404).send('Error the movie does not exist')
           
           commentsDb[0].allComments.forEach(comment=>{ 
