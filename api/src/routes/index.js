@@ -123,7 +123,7 @@ router.put("/movies/:id", async ( req, res )=> {
         
         let movieModify = await movieSchema.findById(_id);
 
-        let response = cloudinary.uploader.upload(req.body.image)
+        
 
         if(!movieModify || movieModify === null)return console.log("No movie was found in the database with that id.");
         
@@ -132,8 +132,10 @@ router.put("/movies/:id", async ( req, res )=> {
         description? movieModify.description = description : console.log("Description was not modified.");
         rating? movieModify.rating = rating : console.log("Rating was not modified.");
         platform? movieModify.platform = platform : console.log("Platform was not modified.");
-        
-        (await response).url? movieModify.image = (await response).url : console.log("Image was not modified.")
+        if(image){
+            let response = cloudinary.uploader.upload(image)
+            (await response).url? movieModify.image = (await response).url : console.log("Image was not modified.")
+        }
 
         duration? movieModify.duration = duration : console.log("Duration was not modified.");
 
