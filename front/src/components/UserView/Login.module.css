@@ -8,9 +8,11 @@
     color:  white !important;
 }
 
+/*
 .contentForm{
     
-}
+    
+}*/
 
 .form {
     border: 1px solid rgba(196, 196, 196, 0.911);
@@ -125,7 +127,7 @@
    
    .btn:hover {
     color: white;
-    background-color: #0b132b ;
+    background-color: #dedfe2 ;
    }
    
    .btn:active {

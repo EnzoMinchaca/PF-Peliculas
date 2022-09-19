@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,7 +9,10 @@ import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
 import Header from "../Presentational/header";
 import Footer from "../Presentational/footer";
-import s from './Form.module.css'
+import s from './Form.module.css';
+import { BsFillHouseDoorFill} from "react-icons/bs";
+import { AiFillLeftSquare } from "react-icons/ai";
+import styless from "../../styles/Admin.module.css";
 
 export default function Form() {
 
@@ -245,15 +249,19 @@ export default function Form() {
 
         return (
             <div className={s.content}>
-                <Header/>
-                <div className={s.link}>
-                    <NavLink to="/Home" key={"Home"} className={s.text}>
-                        Back
-                    </NavLink>
-                </div>
+                <div className={styless.title1}>
+           <p className={styless.span1}>Admin Panel - Create Movie</p>
+           <div className={styless.home} >
+            <Link to="/Home">   
+               <BsFillHouseDoorFill className={styless.icon}/> 
+            </Link>
+            </div>
+               <div className={styless.home1}><Link to="/panel"><AiFillLeftSquare className={styless.icon2}/></Link></div>
+            </div>
+                
                 <div className={s.all}>
                     <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
-                        <h2>Create Movie</h2>
+                        <h3>New Movie</h3>
                         <div className={s.containerInputs}>
                             <div>
                                 <label>*Title: </label>

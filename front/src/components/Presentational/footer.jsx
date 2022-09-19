@@ -20,8 +20,8 @@ const Footer = () => {
                     </figure>
                 </div>
                 <div className={styles.box}>
-                    <Link to="/FreqQuestions"><h2><ContactSupportIcon />  Frequent Questions</h2></Link>
-                    <Link to="/AboutUs"><h2><InfoIcon />  About Us</h2></Link>
+                    <Link to="/FreqQuestions" className={styles.link}><h2><ContactSupportIcon />  Frequent Questions</h2></Link>
+                    <Link to="/AboutUs" className={styles.link}><h2><InfoIcon />  About Us</h2></Link>
                     <p><BsFillTelephoneFill /> 0800-HMOVIE</p>
                     <p>Location <br />Buenos Aires, Argentina</p>
                 </div>
