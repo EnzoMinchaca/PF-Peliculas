@@ -36,19 +36,11 @@ export default function ViewMovie() {
         dispatch(getMovieToView(themovie))
     }, [])
     
-    // if(Object.entries(comments).length > 0) {
-    //     let isComment = comments.allComments.find(e => e.username === user.name)
-    //     console.log(isComment)
-    //     if(isComment.length > 0) {
-    //         setisThat(true)
-    //     }
-    // }
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
         setComment(e.target.value)
-        // console.log(comment)
     }
 
     const handleSubmit = (e) => {
@@ -84,15 +76,16 @@ export default function ViewMovie() {
                 })
                 // dispatch(getMovies())
                 dispatch(clearComments())
+                dispatch(getCommentsMovie(movie.title))
+                dispatch(clearComments())
+                dispatch(getCommentsMovie(movie.title))
                 setValue(1)
                 setComment('')
                 setFlag(!flag)
                 const themovie = JSON.parse(localStorage.getItem('movie'))
                 dispatch(getMovieToView(themovie))
-                dispatch(getCommentsMovie(movie.title))
             }
     } 
-    // dispatch(getMovies())
 
   return (
     <div>
@@ -135,15 +128,17 @@ export default function ViewMovie() {
                         <button className={s.but} onClick={(e)=>handleSubmit(e)}>Send</button>
                     </div>
                 </div>
+                <div>
+                    <h3>Comments</h3>
                     {
                         movie.title?
-                        <div  >
+                        <div className={s.commen}>
                             <CommentsVM titleMovies={movie.title} ></CommentsVM>
-                          
                         </div>
                         :
                         <p></p>
                     }
+                </div>
             </div>
         </div>
         :

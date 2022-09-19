@@ -13,6 +13,7 @@ export default function Comments ({titleMovies}) {
  const dispatch= useDispatch();
   useEffect(() => {
     if(titleMovies){
+        dispatch(clearComments())
       dispatch(getCommentsMovie(titleMovies))
     }
     return() => {dispatch(clearComments())}
