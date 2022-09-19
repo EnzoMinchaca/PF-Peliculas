@@ -100,7 +100,9 @@ export const postMovies = (movie) => (dispatch) => {
 export const getMovieById = (id) => (dispatch) => {
     axios.get(`http://localhost:3001/movieDetails/${id}`)
         .then(resp => {
+            console.log(resp.data)
             dispatch(getMoviesById(resp.data))
+            localStorage.setItem('movie', JSON.stringify({}))
             localStorage.setItem('movie', JSON.stringify(resp.data))
         })
         .catch((e) => {
@@ -223,15 +225,25 @@ export const sortSoldMovies = (order) => (dispatch) => {
 //Ruta para post de Comentarios 
 
 export const postComment = (info) => (dispatch) => {
-    axios.post('http://localhost:3001/comments', info)
-        .then(resp => dispatch(postComments(resp.data)))
+    axios.put('http://localhost:3001/addCommentUser', info)
+        .then(resp => {
+            // console.log(resp.data)
+            // console.log(movie)
+            // dispatch(getMovieToView(movie))
+            // localStorage.setItem('movie', JSON.stringify(movie))
+            dispatch(postComments(resp.data))
+        })
         .catch((e) => console.log(e))
 }
 
 
 export const getCommentsMovie = (titleMovie) => (dispatch) => {
     axios.get(`http://localhost:3001/getComments?movie=${titleMovie}`)
-        .then(resp => dispatch(getComments(resp.data)))
+        .then(resp => {
+            console.log(resp.data)
+            localStorage.setItem('comment', JSON.stringify(resp.data))
+            dispatch(getComments(resp.data))
+        })
         .catch((e) => {
             console.log(e);
         });

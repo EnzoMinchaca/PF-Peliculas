@@ -180,7 +180,7 @@ export const movieSlice = createSlice({
     },
 
     postComments: (state) => {
-      return { state }
+      return { ...state }
     },
   
   }
