@@ -49,15 +49,15 @@ export default function EditUser(){
     const navigate = useNavigate()
     const dispatch=useDispatch();
     const theUser = useSelector(state => state.users.user)
-    console.log(theUser)
+    // console.log(theUser)
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
+    // console.log(user)
     const details = useSelector((state) => state.movies.movie)
 
     const handleClick = (id) => {
+      console.log(id)
       dispatch(getMovieById(id))
       dispatch(movieToView(details))
-      localStorage.setItem('movie', JSON.stringify(details))
       navigate("/viewMovie")
     }
 
