@@ -1,13 +1,57 @@
 import { Rating } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { clearComments, deleteComment, getCommentsMovie } from "../../redux/Slice/movieAction";
 import './CommentsUserViewM.css'
+import Swal from "sweetalert2";
 
 
-export default function CommentsUserVM ({username, rating, created_at, content, avatar_path}) {
+export default function CommentsUserVM ({username, rating, created_at, content, avatar_path, titleMovies}) {
  
+    const [show, setShow] = React.useState(false)
+    const dispatch = useDispatch()
+    // console.log(titleMovies)
+    React.useEffect(() => {
+        const theuser = JSON.parse(localStorage.getItem('user'))
+        if(theuser.name === username) {
+            setShow(true)
+        }
+    }, [])
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        Swal.fire({
+            title: 'Do you really want to delete your comment?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            confirmButtonColor: "#0b132b"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteComment({
+                    titleMovie: titleMovies,
+                    name: username,
+                    rating: rating,
+                    content: content
+                }))
+                dispatch(clearComments())
+                dispatch(getCommentsMovie(titleMovies))
+                dispatch(getCommentsMovie(titleMovies))
+                dispatch(getCommentsMovie(titleMovies))
+                dispatch(getCommentsMovie(titleMovies))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Comment deleted!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
+        })
+    }
+
     let date= created_at.slice(0, -14);
     let stars;
     let image;
+    // console.log(user)
     if(avatar_path !== null){
         if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3]+avatar_path[4] ==='/http'){
             image=avatar_path.slice(1);
@@ -53,6 +97,14 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
                         
                       </div>
                       <p>{content}.</p>
+                      <div>
+                        {
+                            show?
+                                <button onClick={(e) => handleClick(e)} class="butn">Delete</button>
+                            :
+                            null
+                        }
+                      </div>
                       </article>
                    </div>
                  </div>

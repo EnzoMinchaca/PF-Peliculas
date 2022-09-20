@@ -8,8 +8,8 @@ import CommentsUserVM from "./CommentsUserViewM";
 export default function CommentsVM ({titleMovies}) {
  
     let comments =useSelector(state=> state.movies.commentsMovie)
-   
-    console.log(comments)
+    // console.log(user)
+    // console.log(comments)
  const dispatch= useDispatch();
   useEffect(() => {
     if(titleMovies){
@@ -25,7 +25,7 @@ export default function CommentsVM ({titleMovies}) {
                 comments.allComments.map(comment =>{
                     return(
                         <scroll-page id={`page${comments.allComments.indexOf(comment)}`}> <CommentsUserVM username={comment.username} rating={comment.rating} created_at
-                            ={comment.created_at} content={comment.content} avatar_path={comment.avatar_path}></CommentsUserVM>
+                            ={comment.created_at} content={comment.content} avatar_path={comment.avatar_path} titleMovies={titleMovies}></CommentsUserVM>
                         </scroll-page>
                     )
                 }):

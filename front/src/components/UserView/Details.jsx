@@ -122,7 +122,7 @@ export default function Details() {
                         <div className={styles.ubButton}><ButtonHome /> </div>
                         <div className={Style.generalContainer}>
                             <div className={Style.container}>
-                                <div>
+                                <div className={Style.cont}>
                                     <div className={Style.imgContainer}>
                                         <img className={Style.movieImg} src={details.image} />
                                     </div>
@@ -176,7 +176,7 @@ export default function Details() {
                             {
                                 details.title ?
                                     <div  >
-                                        <Comments titleMovies={details.title}></Comments>
+                                        <Comments titleMovies={details.title} user={user}></Comments>
                                     </div>
                                     :
                                     <p></p>

@@ -31,8 +31,11 @@ export default function ViewMovie() {
             navigate("/home")
         }
         setUser(user)
-        console.log(user)
+        // console.log(user)
         const themovie = JSON.parse(localStorage.getItem('movie'))
+        // console.log(themovie)
+        console.log(themovie.title)
+        dispatch(getCommentsMovie(themovie.title))
         dispatch(getMovieToView(themovie))
     }, [])
     
@@ -75,9 +78,9 @@ export default function ViewMovie() {
                     timer: 1000
                 })
                 // dispatch(getMovies())
-                dispatch(clearComments())
+                // dispatch(clearComments())
                 dispatch(getCommentsMovie(movie.title))
-                dispatch(clearComments())
+                // dispatch(clearComments())
                 dispatch(getCommentsMovie(movie.title))
                 setValue(1)
                 setComment('')
@@ -133,7 +136,7 @@ export default function ViewMovie() {
                     {
                         movie.title?
                         <div className={s.commen}>
-                            <CommentsVM titleMovies={movie.title} ></CommentsVM>
+                            <CommentsVM titleMovies={movie.title}></CommentsVM>
                         </div>
                         :
                         <p></p>
