@@ -72,7 +72,7 @@ export default function VistaRoles(){
                 users?.slice(firstUsers, lastUsers).map((user) => {
                   return (
                     <VistaRol
-                    key={user.id}
+                    key={user._id}
                     name={user.name}
                     lastname={user.lastname}
                     email={user.email}
