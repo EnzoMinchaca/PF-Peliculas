@@ -39,7 +39,7 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 16),
+  padding: theme.spacing(0, 15),
   height: '100%',
   position: 'relative',
   pointerEvents: 'none',
@@ -174,9 +174,9 @@ export default function AdminModifyMovies() {
                   {/*odenamiento de mas a menos vendidas*/}
 
                   <div className={styless.filter}>
-                    <p className={styless.sort}> Sort by sales </p>
-                      <select name="select" onChange={e => onSelectChange(e)}>
-                         <option value="none" >--</option>
+                    <p className={styless.sort}> Sort by: </p>
+                      <select className={styless.selec} name="select" onChange={e => onSelectChange(e)}>
+                         <option value="none" >Sort by Sales</option>
                          <option value='DESCENDENTE' >Most sold</option>
                          <option value='ASCENDANT' >Least sold</option> 
                       </select>  </div> 

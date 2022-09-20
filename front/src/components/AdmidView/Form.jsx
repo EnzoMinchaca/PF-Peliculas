@@ -7,8 +7,6 @@ import { clearGenres, getGenres, getMovies, getPlatform, postMovies } from "../.
 import Swal from "sweetalert2";
 import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
-import Header from "../Presentational/header";
-import Footer from "../Presentational/footer";
 import s from './Form.module.css';
 import { BsFillHouseDoorFill} from "react-icons/bs";
 import { AiFillLeftSquare } from "react-icons/ai";
@@ -427,7 +425,7 @@ export default function Form() {
                         </div>
                     </form>
                 </div>
-                <Footer/>
+            
             </div>
     
         )

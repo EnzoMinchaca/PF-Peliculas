@@ -26,7 +26,7 @@
     border: 1px solid rgba(196, 196, 196, 0.911);
     margin: auto;
     width: 90%;
-    max-width: 400px;
+    max-width: 600px;
     padding: 0em 2em 2em 2em;
     border-radius: 10px;
     box-shadow: 0 10px 15px -5px rgba(0 0 0 / 50%);
@@ -84,7 +84,7 @@
     margin-top: 5px;
     cursor: pointer;
     font-size: 15px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #0b132b;
     border-radius: 5px;
 }
@@ -126,6 +126,8 @@
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
+    width: 50%;
+    left: 25%;
     font-weight: 300;
     font-size: 17px;
     font-family: 'Roboto', 'Segoe UI', sans-serif;
