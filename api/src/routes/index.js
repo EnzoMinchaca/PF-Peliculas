@@ -375,16 +375,13 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
     try {
         const { email } = req.body;
         const user = await userSchema.findOne({ email: email });
-        console.log("entra")
-        console.log(email)
+
+
         if(!user) return res.send("El usuario no existe.")
 
-        /* const salt = await bcrypt.genSalt(10);
-        const newPassBcrypt =await bcrypt.hash(newPassword, salt);      
-        await userSchema.findOneAndUpdate({ token: token }, { $set: { password: newPassBcrypt }})*/ 
+        
         const token = jwt.sign({ email }, process.env.SECRET);
-        console.log(token)
-        console.log(email)
+
         user.token = token
 
         user.save()
@@ -395,7 +392,8 @@ router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos 
             verificationLink
         )
 
-        res.send('A link to change your password was sent to your email.');    
+        res.send('A link to change your password was sent to your email.');
+        
     }
     catch(error) {
         console.log(error)
@@ -557,7 +555,7 @@ router.put('/promoveUsers/:id', async(req, res) => {  //ruta para cambiar el est
           )
          }else if(role==='Banned'){
           changeStatus = await userSchema.findByIdAndUpdate(id, { $set: { isUser:false, isAdmin: false, isOwner:false, isBan:true}})
-          nodemailer.PromotionAccount(
+          nodemailer.BannedAccount(
             user.name,
             user.lastname,
             user.email,
