@@ -88,7 +88,7 @@ export const deleteFromCart = (id) => (dispatch) => {
 }
 
 export const clearCart = () => (dispatch) => {
-    return dispatch(clearCarts())
+    dispatch(clearCarts())
 }
 
 export const postMovies = (movie) => (dispatch) => {

@@ -15,6 +15,7 @@ export default function Success() {
         if(!user) {
             navigate("/home")
         }
+        localStorage.setItem('cart', JSON.stringify([]))
     }, [])
 
     return (
