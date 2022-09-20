@@ -42,21 +42,30 @@ export default function CardUse(props) {
   
       <div className={styles.containerU}>
         
-        <div className={styles.cont} key={props.key}>  
-           <p>Name: {props.name}</p>
+        <div className={styles.U} key={props.key}>  
+           <p>Name: {props.name}</p> 
            <p>LastName: {props.name}</p>
            <p>Email: {props.email}</p>
            <p>Status: {props.status}</p>
            <p>Current role: {role}</p>
-           <select name="role" key={props.id} onChange={(e)=>{onSelectChange(e)}}>
+           <div>
+             <select name="role" key={props.id} onChange={(e)=>{onSelectChange(e)}}>
                   <option disabled selected >-Select role-</option>
                   <option value={'Admin'}>Admin</option>
                   <option value={'User'}>User</option>
                   <option value={'Banned'}>Banned</option>
                   <option value={'Owner'}>Owner</option>
-            </select>
-            <button className={styles.Change} onClick={submitRole} >Change</button>
-            <button onClick={(props) => {handleDelete(props)}} className={styles.button}><BsFillTrashFill/></button>
+                  </select>
+           </div>
+          
+            <div className={styles.bChange}>
+              <button className={styles.Change} onClick={submitRole} >Change</button>
+            </div>
+            <div className={styles.bTrash}>
+              <button className={styles.trash1} onClick={(props) => {handleDelete(props)}} ><BsFillTrashFill /></button>
+            </div>
+            
+            
       </div>
   
   </div >  

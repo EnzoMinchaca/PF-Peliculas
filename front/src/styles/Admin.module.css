@@ -156,8 +156,9 @@
   width: 4vh;
   height: 4vh;
   
-
 }
+
+
 
 .home{    
   text-decoration: none;
@@ -221,7 +222,7 @@
 
 .cardContainer{
     width: 60vw;
-    height: 50vh;
+    height: 60vh;
     background-color: rgb(244, 242, 242);
     border-radius: 6px;
     display: flex;
@@ -365,12 +366,13 @@
 .containerU{
 
   display: flex;
-  background-color: #f9f9f9;
+  background-color: #f7f9f9;
+  border-radius: 12px;
   position: relative;
   padding: 0% 10%  10% 10%;
   flex-wrap: wrap;
-  width: 120%;
-  height: 10%;
+  width: 55vh;
+  height: 40vh;
   margin: 30px 5px 0 20px;
 }
 
@@ -381,26 +383,42 @@
 
 }
 
+.trash1{
+  display: flex;
+  border-style: none;
+  color: #0A58CA;
+  background-color: white;
+  text-decoration: none;
+  outline: none;
+
+  padding-left: 2%;
+
+
+}
+
 .barra{
   background-color: #7ebbec;
 }
 
 .search{
   display: flex;
-  margin-left: 15%;
+  margin-left: 22%;
   justify-content: center;
 }
 
+
+
 .filter{
   display: flex;
-  position:relative;
+  position:absolute;
   margin-left: 80%;
+  top: 14.5%;
   
 }
 
-.sort{
-  padding-right: 5%;
-  
+.selec{
+  position: absolute;
+  min-width: 100px;
 }
 
 .refresh{
@@ -427,12 +445,41 @@
 }
 
 .Change{
-  color: #0A58CA;
+  color: white;
   text-decoration: none;
   outline: none;
   font-size: 15px;
   border-style: none;
+  background-color: #3784c2;
+  width: 75px;
+  height: 25px;
+  border-radius: 6px;
 
 }
 
+.name{
+  font-weight:bold;
+}
 
+.cont{
+  display: flex;
+  top: 2%;
+}
+
+.bChange{
+  display:flex;
+  position:absolute;
+  left: 45%;
+  top: 75%
+}
+
+.bTrash{
+  display:flex;
+  position:absolute;
+  left: 75%;
+  top: 75%;
+}
+
+.U{
+  margin-top: 7%;
+}
