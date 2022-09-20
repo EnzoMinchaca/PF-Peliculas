@@ -19,11 +19,11 @@ const router = Router()
 
 const multer = require("multer")
 const path = require("path")
-
+const fs = require("fs-extra")
 const storage = multer.diskStorage({
     destination: path.join(__dirname, "../public/uploads"), 
     filename: ( req, file ,cb ) => {
-        cb( null ,  new Date().getTime() + path.extname(file.originalname))
+        cb( null ,  Date.now() +"-"+ file.originalname)
     }
 })
 const upload = (multer({storage}).single("image"))
@@ -31,7 +31,8 @@ const upload = (multer({storage}).single("image"))
 
 
 
-router.post('/postMovies', async(req, res) => {
+router.post('/postMovies', upload,async(req, res) => {
+
     try {
         const movie = movieSchema(req.body)
 
@@ -288,20 +289,11 @@ router.post('/paymentPay', createPayment)       //paypal
 router.post('/executePay', executePayment)
 
 
-router.put('/editUser/:idUser', upload , async(req, res) => {  //ruta para cambiar datos del usuario
+router.put('/editUser/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
     try {
         const {idUser}= req.params;
         const {nameUser,lastname} = req.body;  //me llega en {name: "Raul",lastName: "Alvares"}
         const user = await userSchema.findById(idUser);
-
-        if(req.file){//editar foto 
-
-            const response = await cloudinary.uploader.upload(req.file.path)
-            await userSchema.findByIdAndUpdate(idUser, { $set: { image: response.url }})
-            //res.send('Your image was successfully changed')
-
-		await fs.unlink(req.file.path)
-        }
 
 
         if(!idUser){res.status(404).send('Error')}
@@ -326,6 +318,36 @@ router.put('/editUser/:idUser', upload , async(req, res) => {  //ruta para cambi
         console.log(error)
     }
   });
+
+  router.put("/editUserImageLocal/:idUser", upload, async ( req, res ) => {
+
+    const { idUser } = req.params
+    
+    
+    try {
+    
+        const user = await userSchema.findById(idUser);
+
+        if(req.file){//editar foto forma local
+            
+            if(!user) return res.status(404).send('User does not exist') 
+
+            const response = await cloudinary.uploader.upload(req.file.path)
+
+            user.image = response.url
+            
+            user.save()
+
+            await fs.unlink(req.file.path) 
+
+        }
+        
+        res.send(user.image)
+
+    } catch (error) {
+        console.log(error)
+    }
+  })
 
   router.put('/editUserImage/:idUser', async(req, res) => {  //ruta para cambiar datos del usuario
     try {

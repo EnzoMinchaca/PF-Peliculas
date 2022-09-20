@@ -307,6 +307,28 @@ export const getUser=()=>(dispatch)=>{
           
         }
 
+        export const editUsersImageLocal=( image, id )=>(dispatch)=>{
+
+            let formData = new FormData()
+            formData.append("image", image)
+            axios.put(`http://localhost:3001/editUserImageLocal/${id}`, formData)
+            /* .then(resp=>dispatch(editUser(resp.data))) */
+            .then((res)=>{
+                const user = JSON.parse(localStorage.getItem('user'))
+                user.image=res.data;
+                localStorage.setItem('user', JSON.stringify(user))
+            })
+            .catch((e) => {
+                console.log(e);
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Could not modify user",
+                  });
+              });
+          
+        }
+
         //Modifica solo el password
         export const UserPassword=(email)=>(dispatch)=>{
             console.log(email)
