@@ -20,7 +20,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import PasswordIcon from '@mui/icons-material/Password';
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { editUsers, oneUser, editUsersImage} from "../../redux/Slice/userAction";
+import { editUsers, oneUser, editUsersImage, editUsersImageLocal} from "../../redux/Slice/userAction";
 import styless from "../../styles/styles.module.css"
 import { BiDetail } from "react-icons/bi"
 import { FiPlay } from "react-icons/fi" 
@@ -40,6 +40,9 @@ export default function EditUser(){
     const [openImage, setOpenImage] = React.useState(false);
     const [openPassword, setOpenPassword] = React.useState(false);
     const [image,setImage]=React.useState("");
+    const [imageLocal, setImageLocal] = React.useState()
+    const [viewImageSelect, setViewImageSelect] = React.useState()
+    const [idUser , setIdUser] = React.useState()
     const [input, setInput] = React.useState({
         nameUser: "",
         lastname: ""
@@ -64,6 +67,7 @@ export default function EditUser(){
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
       dispatch(oneUser(user._id))
+      setIdUser(user._id)
       if(user){
         if(user.name && user.lastname && user._id){
           setInput({nameUser: user.name, lastname: user.lastname})
@@ -136,7 +140,8 @@ export default function EditUser(){
             }else{
                 e.preventDefault()
                 const user = JSON.parse(localStorage.getItem('user'))
-                // console.log(user._id)
+                console.log(user._id)
+
                 dispatch(editUsers(input,user._id))
                 // console.log(input)
                 // console.log(input)
@@ -148,7 +153,7 @@ export default function EditUser(){
                     confirmButtonColor: "#0b132b"
                 });
             }
-           
+
         }
         // function handleSubmitLastName(e) {
         //     if(!input.lastName){
@@ -204,6 +209,61 @@ export default function EditUser(){
         //     }
           
         // }
+
+
+        
+        //Solo modifica los valores de la variable que se muestra y la variable q se envia
+        
+        
+        const handleChangeLocal = (e) => {
+
+
+        let url = URL.createObjectURL(e.target.files[0])
+
+        setImageLocal(e.target.files[0])
+
+        setViewImageSelect(url)
+
+        }
+
+        const handleSubmitImageLocal=(e)=>{
+          e.preventDefault()
+          if(imageLocal===""){
+
+            Swal.fire({
+                icon: "error",
+                title: "Ohhh!",
+                text: "Plis check and complete the fields",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#0b132b"
+            });
+        }else{
+            
+            dispatch(editUsersImageLocal( imageLocal, idUser ))
+
+
+            Swal.fire({
+
+                icon: "success",
+                title: "Success",
+                text: "Successfully changes",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#0b132b"
+
+            });
+
+            document.getElementById("inputimg").value = null
+            
+            setImageLocal(null)
+            setViewImageSelect(null)
+
+        }
+        }
+
+
+        
+
+
     return(
         <div>
     
@@ -275,6 +335,15 @@ export default function EditUser(){
             defaultValue="Img1"
             name="radio-buttons-group"
           >
+            {/* SUBIR IMAGEN DEL PC */}
+        <form encType="multipart/form-data">
+        <input id='inputimg' type="file" name='image' onChange={(e)=>handleChangeLocal(e)}></input>
+        <input type="submit" onClick={(e)=> handleSubmitImageLocal(e) } ></input>
+        </form>
+      {
+        viewImageSelect && <div><img src={viewImageSelect} alt="Img Select" height="200px"/></div>
+      }
+      {/* SUBIR IMAGEN DEL PC */}
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg")} value="Img2" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg")}  value="Img3" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" />} />
@@ -312,6 +381,8 @@ export default function EditUser(){
           }
         </div>
       </Collapse>
+
+      
       {/* <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>
           <PersonIcon/>
