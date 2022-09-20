@@ -1,7 +1,9 @@
 .wrapper {
- 
+    display: flex;
     position: relative;
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 60px;
+    margin-bottom: 50px;
     background-color: #fff;
   }
   .wrapper ul {
@@ -96,4 +98,15 @@
     margin: auto;
     top: -20px;
     background-color: rgba(122,122,122,0.477);
+}
+
+.cont {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: flex;
+}
+
+.bt {
+  display: flex;
+  margin-bottom: 10px;
 }

@@ -82,6 +82,8 @@ export default function ViewMovie() {
                 dispatch(getCommentsMovie(movie.title))
                 // dispatch(clearComments())
                 dispatch(getCommentsMovie(movie.title))
+                dispatch(getCommentsMovie(movie.title))
+                dispatch(getCommentsMovie(movie.title))
                 setValue(1)
                 setComment('')
                 setFlag(!flag)

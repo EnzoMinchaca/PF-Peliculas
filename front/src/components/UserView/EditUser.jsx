@@ -70,6 +70,9 @@ export default function EditUser(){
 
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
+      if(!user) {
+        navigate("/home")
+      }
       dispatch(oneUser(user._id))
       setIdUser(user._id)
       if(user){
