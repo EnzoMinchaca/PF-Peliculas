@@ -35,8 +35,6 @@
     margin: 0;
     outline: none;
     padding: 10px 0.8em;
-    top: 90%;
-    position: absolute;
     text-align: center;
     text-decoration: none;
     user-select: none;
@@ -123,6 +121,7 @@
 	padding-right: 20%;
 	padding-top: 1%;
 	padding-bottom: 1%;
+  border-radius: 15px;
 	
 }
 .ubButton:hover {
@@ -161,13 +160,6 @@
   transition-delay: 0.35s;
  }
 
- .ubButton span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #ae00ff);
- }
 
  .ubButton:hover span:nth-child(2) {
   top: 100%;
@@ -536,7 +528,7 @@
 }
 .piePagina .grupo1{
     width: 100%;
-    max-width: 1200px;
+    width: 100%;
     margin: auto;
     display:grid;
     grid-template-columns: repeat(3, 1fr);

@@ -15,6 +15,7 @@ import axios from 'axios'
 import Rating from '@mui/material/Rating';
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCart from "../Presentational/ShoppingCart.tsx"
 
 import Comments from './Comments'
 
@@ -119,7 +120,7 @@ export default function Details() {
                     <div>
                         <div className={styles.title}>
                             <p className={styles.span}>Exclusive of "{details.platform}"</p></div>
-                        <div className={styles.ubButton}><ButtonHome /> </div>
+                        <div className={styles.ubButton}><div><ButtonHome /></div><div><button className={Style.seeButton} ><ShoppingCart cart={cart}/>Show Cart</button></div></div>
                         <div className={Style.generalContainer}>
                             <div className={Style.container}>
                                 <div>
@@ -127,7 +128,7 @@ export default function Details() {
                                         <img className={Style.movieImg} src={details.image} />
                                     </div>
                                     <div className={Style.textTitle}>
-                                        <h2>{details.title}</h2>
+                                        <h2>{details.title/* .length < 15 ? details.title : details.title.slice(0, 15) + "..." */}</h2>
                                         <h3> {details.date} || {details.duration}</h3>
                                         {details.rating ?
                                             <Rating name="read-only" value={details.rating} readOnly />
