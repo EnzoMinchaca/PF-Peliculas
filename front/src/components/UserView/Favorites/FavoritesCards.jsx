@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Favorite from './Favorite'
 import Style from "./Favorite.module.css"
 import { addMovieToFavs, oneUser } from '../../../redux/Slice/userAction'
+import LocalMoviesOutlinedIcon from '@mui/icons-material/LocalMoviesOutlined';
 
 
 
@@ -14,11 +15,11 @@ const FavoritesCards = () => {
     const fav = useSelector((state) => state.users.fav)
     // console.log(fav)
     const user = JSON.parse(localStorage.getItem('user'))
-    
-    
+
+
     useEffect(() => {
         const theuser = JSON.parse(localStorage.getItem('user'))
-        if(theuser.favorites.length > 0) {  
+        if (theuser.favorites.length > 0) {
             theuser.favorites.map(m => dispatch(addMovieToFavs(m._id)))
         }
     }, [])
@@ -42,7 +43,7 @@ const FavoritesCards = () => {
                                 idUser={user._id}
                             />
                         )
-                    })
+                    })                    
                     }
                 </div>
             </div>
