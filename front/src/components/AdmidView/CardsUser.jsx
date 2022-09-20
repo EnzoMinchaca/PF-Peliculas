@@ -32,7 +32,7 @@ export default function CardUsers({ lastItemIndex, firstItemIndex }){
                   return (
 
                     <CardUse
-                    key={user.id}
+                    key={user._id}
                     name={user.name}
                     lastname={user.lastname}
                     email={user.email}

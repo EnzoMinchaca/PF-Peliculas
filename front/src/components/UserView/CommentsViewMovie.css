@@ -4,7 +4,7 @@ scroll-container {
 
   scroll-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     width: 80vw;
     height: 50vh;
     overflow-y: scroll;

@@ -56,8 +56,11 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
         if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3]+avatar_path[4] ==='/http'){
             image=avatar_path.slice(1);
            
-         }else{
-             image='https://us.123rf.com/450wm/alekseyvanin/alekseyvanin1705/alekseyvanin170500978/77418653-usuario-icono-de-cuenta-plana-bot%C3%B3n-redondo-simple-signo-circular-vector-dise%C3%B1o-de-estilo-plano.jpg';
+        }else if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3] ==='http'){
+            image=avatar_path;
+        } 
+        else{
+            image='https://us.123rf.com/450wm/alekseyvanin/alekseyvanin1705/alekseyvanin170500978/77418653-usuario-icono-de-cuenta-plana-bot%C3%B3n-redondo-simple-signo-circular-vector-dise%C3%B1o-de-estilo-plano.jpg';
      
          }
     }else{
