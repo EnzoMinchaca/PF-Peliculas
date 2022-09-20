@@ -39,17 +39,17 @@ export default function CommentsUser ({username, rating, created_at, content, av
     return(
        
 
-          <div class="wrapper">
+          <div class="wrapperd">
           <ul>
               {/* <!-- una vez que se responde a un mensaje --> */}
              <li>
-                 <div class="responde">
-                   <div class="box">
+                 <div class="responded">
+                   <div class="boxd">
                                                         
                       <img src={image}/>
                 
                       <article>
-                      <div class="head">
+                      <div class="headd">
                         <h6>User {username} <Rating  name="read-only" size="small" value={stars} readOnly ></Rating></h6>
                         <a>{date}</a>
                         

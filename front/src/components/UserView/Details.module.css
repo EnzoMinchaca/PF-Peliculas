@@ -3,7 +3,15 @@
     flex-direction: row;
     justify-content: space-around;
     box-shadow: #152146 0px 5px 15px;
-    height: 990px;
+    height: 100%;
+}
+::-webkit-scrollbar{
+    background-color: whitesmoke;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: green;
+    border-radius: 10px;
 }
 .container {
     margin-top: 142px;
@@ -11,19 +19,30 @@
     justify-content:center;
     align-items:center;
     flex-direction: column;
-    width: 40vw;
+    width: 60vw;
     height: 100vh;
     position:relative;
     
 }
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
 .footer{
     margin-top: 120px;
 }
 .SectionComments{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .SectionComments h5 {
     color: #181818;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: #5aa01c;
 }
 .textContainer {
     flex-direction: column;
@@ -31,11 +50,9 @@
     word-spacing: -0.2px;
     color: black;
     background-color: #f3f2f2;
-    padding-left: 1%;
-    /* display: flex; */
-    /* flex-direction: row; */
+    gap: 30px;
     justify-content: center;
-    width: 55vw;
+    width: 60vw;
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
@@ -152,4 +169,44 @@
     display: flex;
     flex-direction: row-reverse;
   }
+
+  
+  /* boton de carro */
+
+  .seeButton {
+    font-size: 0.5px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    background-color: #5aa01c;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(64, 192, 111, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    color: #f3f2f2;
+  }
+  
+  .seeButton:hover {
+    background-color: #000000;
+    width: 4vw;
+    box-shadow: 0px 15px 20px rgba(150, 80, 150, 0.4);
+    color: rgb(255, 253, 253);
+    transform: translateY(-7px);
+    color: rgb(255, 255, 255);
+    font-size: small;
+    
+  }
+  
+  .seeButton:active {
+    transform: translateY(-1px);
+  }
+  .cartFav {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+
 

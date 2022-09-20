@@ -10,15 +10,16 @@ import { style } from '@mui/system'
 import Swal from "sweetalert2";
 import styles from "../../styles/styles.module.css"
 import { BsFillCartFill } from "react-icons/bs";
-import { FiPlay } from "react-icons/fi" 
+import { FiPlay } from "react-icons/fi"
 import axios from 'axios'
 import Rating from '@mui/material/Rating';
 import buton from "../../styles/Buttons.module.css"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCart from "../Presentational/ShoppingCart.tsx"
 
 import Comments from './Comments'
 
-import { putFavToUser, addMovieToFavs  } from '../../redux/Slice/userAction'
+import { putFavToUser, addMovieToFavs } from '../../redux/Slice/userAction'
 
 
 
@@ -48,27 +49,27 @@ export default function Details() {
 
     useEffect(() => {
         const login = JSON.parse(localStorage.getItem('user'))
-        if(login) {
+        if (login) {
             setisUser(true)
             const us = login.buy.filter(m => m._id === id)
-            if(us.length > 0) {
+            if (us.length > 0) {
                 sethasMovie(true)
-            } 
+            }
         }
         dispatch(getMovieById(id))
-        return() => {dispatch(clearDetails())}
+        return () => { dispatch(clearDetails()) }
     }, [])
 
     const addToCartAndStorage = async (id) => {
 
-        if(!isUser) {
+        if (!isUser) {
             Swal.fire({
                 icon: 'error',
                 title: 'You need to login to add to cart',
                 showConfirmButton: false,
                 timer: 1500
             })
-        } else if 
+        } else if
 
             (!cart.map((e) => e._id).includes(id)) {
             let a = await dispatch(addMovieToCart(id))
@@ -86,14 +87,14 @@ export default function Details() {
 
     const addToFavList = async (id) => {
 
-        if(!isUser) {
+        if (!isUser) {
             Swal.fire({
                 icon: 'error',
                 title: 'You need to login to add to Favs',
                 showConfirmButton: false,
                 timer: 1500
             })
-        } else if 
+        } else if
 
             (!cart.map((e) => e._id).includes(id)) {
             let a = await dispatch(addMovieToFavs(id))
@@ -109,7 +110,7 @@ export default function Details() {
         }
 
     }
-    
+
 
     return (
         <div>
@@ -119,44 +120,33 @@ export default function Details() {
                     <div>
                         <div className={styles.title}>
                             <p className={styles.span}>Exclusive of "{details.platform}"</p></div>
-                        <div className={styles.ubButton}><ButtonHome /> </div>
+                        <div className={styles.ubButton}><div><ButtonHome /></div><div><button className={Style.seeButton} ><ShoppingCart cart={cart}/>Show Cart</button></div></div>
                         <div className={Style.generalContainer}>
                             <div className={Style.container}>
-                                <div>
+                                <div className={Style.cont}>
                                     <div className={Style.imgContainer}>
                                         <img className={Style.movieImg} src={details.image} />
                                     </div>
                                     <div className={Style.textTitle}>
-                                        <h2>{details.title}</h2>
+                                        <h2>{details.title/* .length < 15 ? details.title : details.title.slice(0, 15) + "..." */}</h2>
                                         <h3> {details.date} || {details.duration}</h3>
-                                        {details.rating?
-                                        <Rating name="read-only" value={details.rating} readOnly />
-                                        :null}
+                                        {details.rating ?
+                                            <Rating name="read-only" value={details.rating} readOnly />
+                                            : null}
                                         <div className={Style.cartFav}>
                                             {
-                                                hasMovie?
+                                                hasMovie ?
                                                     // < href={details.trailer} target={"_blank"}>
-                                                        <button className={buton.btn} onClick={handleClick} ><FiPlay/> Play</button>
+                                                    <button className={buton.btn} onClick={handleClick} ><FiPlay /> Play</button>
                                                     // </a>
                                                     // <ButtonPlay/> 
-                                                    :                   
-                                                    <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button>                                               
+                                                    :
+                                                    <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button>
                                             }
-                                          <button onClick={() => addToFavList(id)} className={Style.button}><FavoriteIcon/></button>
+                                            <button onClick={() => addToFavList(id)} className={Style.button}><FavoriteIcon /></button>
                                         </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
-                                </div>
-                                <div className={Style.SectionComments} >
-                                    <h5>Comments</h5> 
-                                    {
-                                        details.title?
-                                        <div  >
-                                          <Comments titleMovies={details.title}></Comments>
-                                        </div>
-                                        :
-                                        <p></p>
-                                    }
                                 </div>
                             </div>
                             <div className={Style.textContainer}>
@@ -182,14 +172,25 @@ export default function Details() {
                                 </div>
                             </div>
                         </div>
+                        <div className={Style.SectionComments} >
+                            <h5>Comments</h5>
+                            {
+                                details.title ?
+                                    <div  >
+                                        <Comments titleMovies={details.title} user={user}></Comments>
+                                    </div>
+                                    :
+                                    <p></p>
+                            }
+                        </div>
                     </div>
                     :
                     null
             }
             <div className={Style.footer}>
-            <Footer />
+                <Footer />
             </div>
-            
+
         </div>
     )
 }

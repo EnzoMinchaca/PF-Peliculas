@@ -20,19 +20,19 @@ export default function Comments ({titleMovies}) {
   }, [])
     return(
         
-         <scroll-container>
+         <scroll-containerd>
             {
                 Object.keys(comments).length>0?
                 comments.allComments.map(comment =>{
                     return(
-                        <scroll-page id={`page${comments.allComments.indexOf(comment)}`}> <CommentsUser username={comment.username} rating={comment.rating} created_at
+                        <scroll-paged id={`page${comments.allComments.indexOf(comment)}`}> <CommentsUser username={comment.username} rating={comment.rating} created_at
                             ={comment.created_at} content={comment.content} avatar_path={comment.avatar_path}></CommentsUser>
-                        </scroll-page>
+                        </scroll-paged>
                     )
                 }):
                 null
             }
-        </scroll-container>
+        </scroll-containerd>
        
     )
 };

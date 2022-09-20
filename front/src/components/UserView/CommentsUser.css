@@ -1,16 +1,16 @@
-.wrapper {
+.wrapperd {
  
     position: relative;
     margin: auto;
     background-color: #fff;
   }
-  .wrapper ul {
+  .wrapperd ul {
     list-style-type: none;
   }
   
   /* ------------------------------ */
   /* una vez que se responde a un mensaje... */
-  .wrapper .responde .box {
+  .wrapperd .responded .boxd {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@
     border-top-left-radius: 80px;
     border-bottom-left-radius: 80px;
   }
-  .wrapper .responde .box img {
+  .wrapperd .responded .boxd img {
   
     position: absolute;
     width: 90px;
@@ -35,12 +35,12 @@
     height: 95px;
     border: 2px solid #1e88e5;
   }
-  .wrapper .responde .box .head {
+  .wrapperd .responded .boxd .headd {
     height: 53px;
     width: 324px;
     border-bottom: 1px solid grey;
   }
-  .wrapper .responde .box h5 {
+  .wrapperd .responded .boxd h5 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
  
@@ -50,7 +50,7 @@
     position: relative;
     top: 5px;
   }
-  .wrapper .responde .box a {
+  .wrapperd .responded .boxd a {
     text-align: center;
     position: relative;
     font-size: 9px;
@@ -60,7 +60,7 @@
     top: -80px;
    
   }
-  .wrapper .responde article {
+  .wrapperd .responded article {
     position: relative;
     margin: auto;
     width: 70%;
@@ -68,7 +68,7 @@
     margin-left: 115px;
     margin-top: -5px;
   }
-  .wrapper .responde article p {
+  .wrapperd .responded article p {
     width:400px;
     font-size: 11px;
     margin-top: 5px;
@@ -77,16 +77,16 @@
     max-width: 100%;
     margin-bottom: 20px;
   }
-  .wrapper ul .responde .opciones {
+  .wrapperd ul .responded .opciones {
     border-bottom-left-radius: 80px;
     border-top-left-radius: 80px;
     height: 95px;
   }
-  .wrapper ul .responde .opciones:hover {
+  .wrapperd ul .responded .opciones:hover {
     width: 350px;
   }
   /* Línea que separa los mensajes */
-  .wrapper ul .responde .linea {
+  .wrapperd ul .responded .linea {
     position: absolute;
     display: flex;
     width: 5px;

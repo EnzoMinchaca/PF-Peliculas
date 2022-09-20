@@ -40,9 +40,13 @@ export default function EditUser(){
     const [openImage, setOpenImage] = React.useState(false);
     const [openPassword, setOpenPassword] = React.useState(false);
     const [image,setImage]=React.useState("");
+
     const [imageLocal, setImageLocal] = React.useState()
     const [viewImageSelect, setViewImageSelect] = React.useState()
     const [idUser , setIdUser] = React.useState()
+
+    const [check,setCheck]=React.useState("");
+
     const [input, setInput] = React.useState({
         nameUser: "",
         lastname: ""
@@ -100,6 +104,10 @@ export default function EditUser(){
         });
     }
    
+    }
+
+    const handlechangeImg=(event)=>{
+      setCheck(event.target.value)
     }
 
     const handleImage=(img)=>{
@@ -328,13 +336,17 @@ export default function EditUser(){
         {openName ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={openImage} timeout="auto" unmountOnExit>
-        <FormControl className={css.form}>
-          <FormLabel id="demo-radio-buttons-group-label">Images:</FormLabel>
-          <RadioGroup
+        <div className={css.formImage}>
+        <h2 id="demo-radio-buttons-group-label">Images:</h2>
+        <form action=""></form>
+        <div className={css.with}>  
+          <form
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="Img1"
             name="radio-buttons-group"
+            className={css.flex}
           >
+
             {/* SUBIR IMAGEN DEL PC */}
         <form encType="multipart/form-data">
         <input id='inputimg' type="file" name='image' onChange={(e)=>handleChangeLocal(e)}></input>
@@ -350,8 +362,37 @@ export default function EditUser(){
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg")} value="Img4" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png")} value="Img5" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" />} />
           </RadioGroup>
+
+            <div className={css.withRadio}>
+              <label>
+              <input type="radio" checked={check==="Img1"} onChange={(event)=> handlechangeImg(event)} className={css.withRadio} onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} /><img className={css.img} src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />
+              </label>
+            </div>
+            <div className={css.withRadio}>
+              <label>
+              <input type="radio" checked={check==="Img2"} onChange={(event)=> handlechangeImg(event)} className={css.withRadio} onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg")} value="Img2" control={<Radio />} /><img className={css.img} src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" />
+              </label>
+            </div>
+            <div className={css.withRadio}>
+              <label>
+              <input type="radio" checked={check==="Img3"} onChange={(event)=> handlechangeImg(event)} className={css.withRadio} onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg")}  value="Img3" control={<Radio />} /><img className={css.img} src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" />
+              </label>
+            </div>
+            <div className={css.withRadio}>
+              <label>
+              <input type="radio" checked={check==="Img4"} onChange={(event)=> handlechangeImg(event)} className={css.withRadio} onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg")} value="Img4" control={<Radio />}/><img className={css.img} src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" />
+              </label>
+            </div>
+            <div className={css.withRadio}>
+              <label>
+              <input type="radio" checked={check==="Img5"} onChange={(event)=> handlechangeImg(event)}  onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png")} value="Img5" control={<Radio />}/><img className={css.img} src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" />
+              </label>
+              </div>
+            </form>
+          </div>
+
           <button onClick={()=>handleSubmitImage()} className={css.btn}>Save</button>
-        </FormControl>
+        </div>
       </Collapse>
       <ListItemButton onClick={handleClickLastName}>
         <ListItemIcon>

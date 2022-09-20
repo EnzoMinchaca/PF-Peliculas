@@ -32,28 +32,28 @@ export default function TemporaryDrawer(props: any) {
 
   React.useEffect(() => {
     const login = JSON.parse(localStorage.getItem('user'))
-    if(login) {
+    if (login) {
       setisUser(true)
-    } 
+    }
   }, [])
 
   const [isOpenModal, setisOpen] = useState(false)
-    const openModal = () => {
-      if(cart.length > 0) {
+  const openModal = () => {
+    if (cart.length > 0) {
       const movies = JSON.parse(localStorage.getItem('cart'))
       console.log(movies)
       let moviesSend = []
       let price_total = 0
       for (let i = 0; i < movies.length; i++) {
         price_total += movies[i].price
-          moviesSend.push({
-              title: movies[i].title,
-              description: movies[i].description,
-              picture_url: movies[i].image,
-              category_id: movies[i]._id,
-              quantity: 1,
-              unit_price: movies[i].price * 250
-          });
+        moviesSend.push({
+          title: movies[i].title,
+          description: movies[i].description,
+          picture_url: movies[i].image,
+          category_id: movies[i]._id,
+          quantity: 1,
+          unit_price: movies[i].price * 250
+        });
       }
 
       const user = JSON.parse(localStorage.getItem('user'))
@@ -82,15 +82,15 @@ export default function TemporaryDrawer(props: any) {
         text: "No movies to buy",
         confirmButtonText: "Ok",
         confirmButtonColor: "#0b132b"
-    });
+      });
     }
-    }
-    const closeModal = () => setisOpen(false)
+  }
+  const closeModal = () => setisOpen(false)
 
-    const dispatch = useDispatch()
-    const linkPay = useSelector(state => state.users.payLink)
-    const linkPayPaypal = useSelector(state => state.users.payPayLink)
-    const cart = useSelector(state => state.movies.cart)
+  const dispatch = useDispatch()
+  const linkPay = useSelector(state => state.users.payLink)
+  const linkPayPaypal = useSelector(state => state.users.payPayLink)
+  const cart = useSelector(state => state.movies.cart)
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -129,22 +129,25 @@ export default function TemporaryDrawer(props: any) {
       </List>
       <Divider />
       {
-        <div style={{ display: "flex", width: "100%", flexDirection: "column", alignItems: "center" }}>
-          <hr className={Style.hrTotal} />
-          <div>Total: ${props.cart?.map((e:any)=> parseFloat(e.price)).reduce((a:any, b:any) => a + b, 0)}</div>
-          <hr className={Style.hrTotal} />
+        <div style={{ display: "flex", width: "100%", flexDirection: "column", alignItems: "center" }}>         
+            <hr className={Style.hrTotal} />
+            <div>Total: ${props.cart?.map((e: any) => parseFloat(e.price)).reduce((a: any, b: any) => a + b, 0)}</div>
+            <hr className={Style.hrTotal} />
           {
             isUser ?
               <div>
-                <button onClick={openModal} className={styles.btnBuy}>Pay</button>
+                <button onClick={openModal} className={styles.btnBuy}>Pay
                   <Pay isOpen={isOpenModal} closeModal={closeModal} linkMP={linkPay} linkPP={linkPayPaypal}>
-                      <h3>Payment methods</h3>
+                    <h3>Payment methods</h3>
                   </Pay>
+                </button>
               </div> :
-                <h6 className={Style.cartText}>You must be logged in, to buy a movie</h6>
+              <h6 className={Style.cartText}>You must be logged in, to buy a movie</h6>
           }
         </div>
+
       }
+
     </Box>
 
   );
