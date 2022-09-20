@@ -15,9 +15,7 @@ module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => 
     console.log("Check");
     
     oAuth2Client.setCredentials({ refresh_token: REFRESHTOKEN})
-    console.log("Check2");
     const accessToken = await oAuth2Client.getAccessToken()
-    console.log("Check3");
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth:{
@@ -32,16 +30,84 @@ module.exports.sendConfirmationEmail = async (name, email, confirmationCode) => 
         rejectUnauthorized: false
       }
     })
-    console.log("Check5");
     transporter.sendMail({
       from: name,
       to: email,
       subject: "Please confirm your account",
-      html: `<h1>Email Confirmation</h1>
-          <h2>Hello ${name}</h2>
-          <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-          <a href=http://localhost:3001/confirmUser/${confirmationCode}> Click here</a>
-          </div>`,
+      html: `
+          <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title></title>
+          <style>
+          h4{
+            font-size: 20px;
+            color: white
+        }
+        p{
+            font-size: 20px;
+            font: bold;
+        }
+        i{
+            font-size: 20px;
+        }
+        div > a{
+            font-size: 20px;
+        }
+        a{
+            text-decoration: none; 
+            font-size:20px;  
+        }
+        img{
+            height: 300px;
+        }
+        td{
+            font-size: 20px;
+            font: bold;
+        }
+        div > a {
+      }
+          </style>
+      </head>
+      <body>
+      <div style="width:100% ; background-color:  #2E86C1 ;">
+          <div style="background-color: rgba(0, 0, 0, 0.514);">
+              <!-- Imagen inicial -->
+              <div style="padding: 20px 10px 20px 10px; height: 100px; text-align:center" >
+              <div style="position:absolute ; left:50% ; transform: translate(-50%); top:3%;">
+              <img src=cid:logo style="width: 100px; height: 80px; display: inline;">
+                      <a target="_blank" href="https://localhost:3000/home"><h1 style="display: inline-block; color:black;">Movies Films.</h1></a>
+                  </div>
+              </div>
+              <!-- Contenido Principal -->
+              <div style=" background-color: #D0D3D4 ; padding: 20px 10px 20px 10px ; text-align: center">
+              <h1>Email Confirmation</h1>
+              <h2>Hello ${name}</h2>
+              <p>Thank you for subscribing. Please confirm your email by clicking on the following link:</p>
+              <a href=http://localhost:3001/confirmUser/${confirmationCode}> Click here</a>
+                  <hr>
+                  <p>Visit the page through this link:</p>
+                  <a href="https://localhost:3000/home">Go to website</a>
+              </div>
+              
+              <!-- Services -->
+              <div style="padding: 20px 10px 20px ; color: black; text-align: center">
+                <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
+            </div>
+          </div>
+      </div>
+      </body>
+      </html>`,
+      attachments:[
+        {
+          filename:"carrete.png",
+          path:"./src/config/imageEmail/carrete.png",
+          cid:"logo"
+        }
+      ]
     }).catch(err => console.log(err));
   };
   
@@ -71,11 +137,81 @@ module.exports.RetrievePassword = async  ( email,verificationLink ) => {
       from: "Password Reset",
       to:email,
       subject: "Please confirm that you are the account owner.",
-      html: `<h1>Email Confirmation</h1>
-            <h2>You requested for password reset.</h2>
-            <p>Click on the link below to be redirected to a place where you can change your password.</p>
-            <a href=${verificationLink}>${verificationLink}</a>
-            </div>`,
+      html: `
+            <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title></title>
+          <style>
+          h4{
+            font-size: 20px;
+            color: white
+        }
+        p{
+            font-size: 20px;
+            font: bold;
+        }
+        i{
+            font-size: 20px;
+        }
+        div > a{
+            font-size: 20px;
+        }
+        a{
+            text-decoration: none; 
+            font-size:20px;  
+        }
+        img{
+            height: 300px;
+        }
+        td{
+            font-size: 20px;
+            font: bold;
+        }
+        div > a {
+      }
+          </style>
+      </head>
+      <body>
+      <div style="width:100% ; background-color:  #2E86C1 ;">
+          <div style="background-color: rgba(0, 0, 0, 0.514);">
+              <!-- Imagen inicial -->
+              <div style="padding: 20px 10px 20px 10px; height: 100px; text-align:center" >
+              <div style="position:absolute ; left:50% ; transform: translate(-50%); top:3%;">
+              <img src=cid:logo style="width: 100px; height: 80px; display: inline;">
+                      <a target="_blank" href="https://localhost:3000/home"><h1 style="display: inline-block; color:black;">Movies Films.</h1></a>
+                  </div>
+              </div>
+              <!-- Contenido Principal -->
+              <div style=" background-color: #D0D3D4 ; padding: 20px 10px 20px 10px ; text-align: center">
+              <h1>Email Confirmation</h1>
+              <h2>You requested for password reset.</h2>
+              <p>Click on the link below to be redirected to a place where you can change your password.</p>
+              <a href=${verificationLink}>${verificationLink}</a>
+                  <hr>
+                  <p>Visit the page through this link:</p>
+                  <a href="https://localhost:3000/home">Go to website</a>
+              </div>
+              
+              <!-- Services -->
+              <div style="padding: 20px 10px 20px ; color: black; text-align: center">
+                <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
+            </div>
+          </div>
+      </div>
+      </body>
+      </html>`,
+      attachments:[
+        {
+          filename:"carrete.png",
+          path:"./src/config/imageEmail/carrete.png",
+          cid:"logo"
+        }
+      ]
+            ,
     })
   }
 
@@ -110,7 +246,7 @@ module.exports.SendPuchase = async ( email, MoviesBuy ) => {
   let total = MoviesBuy.length
   let value = "";
   if(MoviesBuy){
-    
+    console.log(MoviesBuy)
     imagenes = MoviesBuy.map(e =>{
       return `<td><img src=${e.image}></td>`
     }).join().split("").filter(e => {
@@ -310,23 +446,33 @@ module.exports.BannedAccount = async ( name, lastname, email, role ) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title></title>
           <style>
-              h4{
-                  font-size: 20px;
-                  color: white
-              }
-              p{
-                  font-size: 20px;
-                  font: bold;
-              }
-              i{
-                  font-size: 20px;
-              }
-              div > a{
-                  font-size: 20px;
-              }
-              a{
-                  text-decoration: none;   
-              }
+          h4{
+            font-size: 20px;
+            color: white
+        }
+        p{
+            font-size: 20px;
+            font: bold;
+        }
+        i{
+            font-size: 20px;
+        }
+        div > a{
+            font-size: 20px;
+        }
+        a{
+            text-decoration: none; 
+            font-size:20px;  
+        }
+        img{
+            height: 300px;
+        }
+        td{
+            font-size: 20px;
+            font: bold;
+        }
+        div > a {
+      }
           </style>
       </head>
       <body>
@@ -348,10 +494,11 @@ module.exports.BannedAccount = async ( name, lastname, email, role ) => {
                   <hr>
                   <a href="https://localhost:3000/home">Go to website</a>
               </div>
-              <div style=" padding: 20px 10px 20px ; color: black; text-align: center" >
-                  <!-- Services -->
-                  <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
-              </div>
+              
+              <!-- Services -->
+              <div style="padding: 20px 10px 20px ; color: black; text-align: center">
+                <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
+            </div>
           </div>
       </div>
       </body>
@@ -359,11 +506,12 @@ module.exports.BannedAccount = async ( name, lastname, email, role ) => {
       `,
       attachments:[
         {
-            filename:"carrete.png",
-            path:"./src/config/imageEmail/carrete.png",
-            cid:"logo"
+          filename:"carrete.png",
+          path:"./src/config/imageEmail/carrete.png",
+          cid:"logo"
         }
       ]
+      
   }).catch(error => console.log(error))
 }
 
@@ -411,24 +559,33 @@ module.exports.PromotionAccount = async ( name, lastname, email , role ) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title></title>
           <style>
-              h4{
-                  font-size: 20px;
-                  color: white
-              }
-              p{
-                  font-size: 20px;
-                  font: bold;
-              }
-              i{
-                  font-size: 20px;
-              }
-              div > a{
-                  font-size: 20px;
-              }
-              a{
-                  text-decoration: none;   
-              }
-              
+          h4{
+            font-size: 20px;
+            color: white
+        }
+        p{
+            font-size: 20px;
+            font: bold;
+        }
+        i{
+            font-size: 20px;
+        }
+        div > a{
+            font-size: 20px;
+        }
+        a{
+            text-decoration: none; 
+            font-size:20px;  
+        }
+        img{
+            height: 300px;
+        }
+        td{
+            font-size: 20px;
+            font: bold;
+        }
+        div > a {
+      }
           </style>
       </head>
       <body>
@@ -449,12 +606,12 @@ module.exports.PromotionAccount = async ( name, lastname, email , role ) => {
                   <p>For more information on the matter, contact:</p>
                   <p>pruebaDatos89@gmail.com</p>
                   <hr>
-                  <a href="https://localhost:3000/home"Go to website</a>
+                  <a href="https://localhost:3000/home">Go to website</a>
               </div>
-              <div style=" padding: 20px 10px 20px ; color: black; text-align: center" >
-                  <!-- Services -->
-                  <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
-              </div>
+              <!-- Services -->
+              <div style="padding: 20px 10px 20px ; color: black; text-align: center">
+                <i>Customer service: pruebaDatos89@gmail.com || © 2022 MoviesFilms. All Rights Reserved.</i>
+            </div>
           </div>
       </div>
       </body>
