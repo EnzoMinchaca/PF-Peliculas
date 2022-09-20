@@ -13,15 +13,12 @@ export default function Confirm() {
     const navigate = useNavigate()
     const {search} = useLocation()
     const query = new URLSearchParams(search)
-    // console.log(query)
 
     const dispatch = useDispatch()
     const status = query.get('status')
     const collectionStatus = query.get('collection_status')
     const collectionId = query.get('collection_id')
     const paymentId = query.get('payment_id')
-    // console.log(status)
-    // console.log(typeof status)
 
     useEffect(() => {
         const movies = JSON.parse(localStorage.getItem('cart'))
@@ -33,12 +30,6 @@ export default function Confirm() {
             dispatch(putBuy(movies, idUser))
             dispatch(oneUser(idUser))
             dispatch(sendMailAfterBuy(user.email, movies))
-            // console.log(user.buy)
-            // const send = user
-            // console.log(movies)
-            // send.buy = user.buy.concat(movies)
-            // console.log(send.buy)
-            // console.log(send)
             localStorage.setItem('user', JSON.stringify(user))
             dispatch(clearCart())
             navigate("/success")
@@ -63,17 +54,13 @@ export default function Confirm() {
             {
                 status === "approved" ?
                 <div>
-                    <h1>Aproved</h1>
-                    <Link to={"/home"}>
-                        <button>Go to home</button>
-                    </Link>
                 </div> 
                 : status === "rejected" ?
-                <h1>Rejected</h1>
+                <div></div>
                 : status === "in_process" ?
-                <h1>In Process</h1>
+                <div></div>
                 :
-                <h1>Null</h1>
+                <div></div>
             }
         </div>
     )

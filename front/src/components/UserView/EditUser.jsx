@@ -70,6 +70,9 @@ export default function EditUser(){
 
     useEffect(()=>{
       const user = JSON.parse(localStorage.getItem('user'))
+      if(!user) {
+        navigate("/home")
+      }
       dispatch(oneUser(user._id))
       setIdUser(user._id)
       if(user){
@@ -356,12 +359,12 @@ export default function EditUser(){
         viewImageSelect && <div><img src={viewImageSelect} alt="Img Select" height="200px"/></div>
       }
       {/* SUBIR IMAGEN DEL PC */}
-            <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />} />
+            {/* <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg")} value="Img2" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg")}  value="Img3" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault4_eqxjar.jpg" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg")} value="Img4" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault3_qghdxi.jpg" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png")} value="Img5" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault2_pzh0bn.png" />} />
-          </RadioGroup>
+          </RadioGroup> */}
 
             <div className={css.withRadio}>
               <label>

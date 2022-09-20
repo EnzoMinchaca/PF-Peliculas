@@ -32,6 +32,7 @@ export default function Details() {
 
     const [isUser, setisUser] = useState(false)
     const [hasMovie, sethasMovie] = useState(false)
+    const [isAdmin, setisAdmin] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -54,6 +55,9 @@ export default function Details() {
             const us = login.buy.filter(m => m._id === id)
             if (us.length > 0) {
                 sethasMovie(true)
+            }
+            if(login.isAdmin) {
+                setisAdmin(true)
             }
         }
         dispatch(getMovieById(id))
@@ -135,7 +139,7 @@ export default function Details() {
                                             : null}
                                         <div className={Style.cartFav}>
                                             {
-                                                hasMovie ?
+                                                hasMovie || isAdmin?
                                                     // < href={details.trailer} target={"_blank"}>
                                                     <button className={buton.btn} onClick={handleClick} ><FiPlay /> Play</button>
                                                     // </a>
@@ -143,7 +147,10 @@ export default function Details() {
                                                     :
                                                     <button onClick={() => addToCartAndStorage(id)} className={styles.btnBuy} ><BsFillCartFill />Buy</button>
                                             }
-                                            <button onClick={() => addToFavList(id)} className={Style.button}><FavoriteIcon /></button>
+                                            {
+                                                isAdmin?null :
+                                                <button onClick={() => addToFavList(id)} className={Style.button}><FavoriteIcon /></button>
+                                            }
                                         </div>
                                         <div><h5>{details.price}$USD</h5></div>
                                     </div>
