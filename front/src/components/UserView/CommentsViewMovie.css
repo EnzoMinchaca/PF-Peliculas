@@ -1,11 +1,10 @@
 scroll-container {
-    display: block;
-    margin: 0;
-    text-align: center;
+    margin: 0;   
   }
 
   scroll-container {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 80vw;
     height: 50vh;
     overflow-y: scroll;
@@ -16,8 +15,11 @@ scroll-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* 36vh */
     height: 50vh;
     font-size: 5em;
+    width: 74rem;
+    margin-top: 8px;
 }
 /* Tamaño del scroll */
 scroll-container::-webkit-scrollbar{
