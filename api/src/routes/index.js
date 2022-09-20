@@ -187,7 +187,7 @@ router.delete("/movies/:id", async ( req, res ) => {
 });
 
 router.post("/registerUser", async ( req, res ) => {
-    const { name, lastname, password, email } = req.body;
+    const { name, lastname, password, email,image} = req.body;
     
     try {
 
@@ -204,7 +204,7 @@ router.post("/registerUser", async ( req, res ) => {
                 email,
                 confirmationCode: token,
                 token: "0",
-                image:"https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png"
+                image
             }
         )
 

@@ -50,11 +50,13 @@ export default function Login({closeModal}){
         console.log(response.profileObj.familyName)
         console.log(response.profileObj.givenName)
         console.log(response.profileObj.googleId)
+        console.log(response.profileObj.imageUrl)
         closeModal()
         dispatch(postCreateUser({email: response.profileObj.email,
             password: response.profileObj.googleId,
             name:response.profileObj.givenName,
-            lastname:response.profileObj.familyName}))
+            lastname:response.profileObj.familyName,
+            image : response.profileObj.imageUrl }))
     }
     function googleLogin(response){
         console.log(response)
