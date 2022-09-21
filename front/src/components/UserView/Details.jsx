@@ -124,7 +124,7 @@ export default function Details() {
                     <div>
                         <div className={styles.title}>
                             <p className={styles.span}>Exclusive of "{details.platform}"</p></div>
-                        <div className={styles.ubButton}><div><ButtonHome /></div><div><button className={Style.seeButton} ><ShoppingCart cart={cart}/></button></div></div>
+                        <div className={styles.ubButton}><div><ButtonHome /></div><div ><ShoppingCart cart={cart}/></div></div>
                         <div className={Style.generalContainer}>
                             <div className={Style.container}>
                                 <div className={Style.cont}>
