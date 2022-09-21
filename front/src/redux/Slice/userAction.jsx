@@ -219,8 +219,6 @@ export const getUser=()=>(dispatch)=>{
                     showConfirmButton: false,
                     timer: 5000
                 })
-                window.location.assign("http://localhost:3000/Home")
-                
             })
             .catch((e) => {
                 console.log(e)
