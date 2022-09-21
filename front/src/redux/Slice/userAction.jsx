@@ -464,7 +464,7 @@ export const getUser=()=>(dispatch)=>{
 
         export const deleteUsers=(id)=>(dispatch)=>{
             axios.delete(`http://localhost:3001/deletUsers/${id}`)
-            .then(resp=>console.log(resp.data))
+            .then(resp=>dispatch(deleteUserById(resp.data)))
             return Swal.fire({
                 icon: "success",
                 title: "Delete...",
@@ -479,7 +479,6 @@ export const getUser=()=>(dispatch)=>{
                 text: "Something went wrong! -- deleteUsers",
                   });
               });  
-           dispatch(deleteUserById(id))
         }
 
         export const filterBStatus = (status) => (dispatch) => {

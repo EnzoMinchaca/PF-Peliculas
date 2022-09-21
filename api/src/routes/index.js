@@ -584,12 +584,13 @@ router.delete('/deletUsers/:id', async(req, res) => {  //ruta para la eliminar u
     try {
         const {id} = req.params;
         let userDelete = await userSchema.findByIdAndDelete(id)
+        let allUser = await userSchema.find()
         if(!id){res.status(404).send('Error')}
         if(userDelete){
-          res.send('Your username was successfully deleted')
+          res.send(allUser)
         }
         else{
-          res.send('An error occurred when deleting the user')
+          res.status(404).send('An error occurred when deleting the user')
         }
     }
     catch(error) {
