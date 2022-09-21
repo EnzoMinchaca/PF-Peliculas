@@ -23,21 +23,23 @@ scroll-containerd {
 }
 /* Tamaño del scroll */
 scroll-containerd::-webkit-scrollbar{
-  width: 8px;
+  width: 10px;
 }
 
  /* Estilos barra (thumb) de scroll */
 scroll-containerd::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
+  background: black;
+  border-radius: 7px;
+  border-right: #ffffff;
+  border-style:groove;
 }
 
 scroll-containerd::-webkit-scrollbar-thumb:active {
-  background-color: #999999;
+  background-color: green;
 }
 
 scroll-containerd::-webkit-scrollbar-thumb:hover {
-  background: #b3b3b3;
+  background: blue;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 

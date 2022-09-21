@@ -7,11 +7,12 @@
 }
 ::-webkit-scrollbar{
     background-color: whitesmoke;
-    width: 10px;
+    width: 15px;
 }
 ::-webkit-scrollbar-thumb{
     background: green;
     border-radius: 10px;
+    border-style:ridge;
 }
 .container {
     margin-top: 142px;

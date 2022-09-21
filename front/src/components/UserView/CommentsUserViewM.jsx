@@ -6,16 +6,20 @@ import './CommentsUserViewM.css'
 import Swal from "sweetalert2";
 
 
-export default function CommentsUserVM ({username, rating, created_at, content, avatar_path, titleMovies}) {
- 
+export default function CommentsUserVM({ username, rating, created_at, content, avatar_path, titleMovies }) {
+
     const [show, setShow] = React.useState(false)
     const dispatch = useDispatch()
     // console.log(titleMovies)
     React.useEffect(() => {
         const theuser = JSON.parse(localStorage.getItem('user'))
-        if(theuser.name === username) {
+        if (theuser.name === username) {
             setShow(true)
         }
+        if (theuser.isAdmin) {
+            setisAdmin(true)
+        }
+
     }, [])
 
     const handleClick = (e) => {
@@ -48,10 +52,11 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
         })
     }
 
-    let date= created_at.slice(0, -14);
+    let date = created_at.slice(0, -14);
     let stars;
     let image;
     // console.log(user)
+
     if(avatar_path !== null){
         if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3]+avatar_path[4] ==='/http'){
             image=avatar_path.slice(1);
@@ -78,39 +83,38 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
         stars=5
     }
 
-    return(
-       
+        return (
+            <div class="wrapper">
+                <ul>
+                    {/* <!-- una vez que se responde a un mensaje --> */}
+                    <li>
+                        <div class="responde">
+                            <div class="box">
 
-          <div class="wrapper">
-          <ul>
-              {/* <!-- una vez que se responde a un mensaje --> */}
-             <li>
-                 <div class="responde">
-                   <div class="box">
-                                                        
-                      <img src={image}/>
-                
-                      <article>
-                      <div class="head">
-                        <h6>User {username} <Rating  name="read-only" size="small" value={stars} readOnly ></Rating></h6>
-                        <a>{date}</a>
-                        
-                      </div>
-                      <p>{content}.</p>
-                      <div>
-                        {
-                            show?
-                                <button onClick={(e) => handleClick(e)} class="butn">Delete</button>
-                            :
-                            null
-                        }
-                      </div>
-                      </article>
-                   </div>
-                 </div>
-             </li>
-          </ul>
+                                <img src={image} />
+
+                                <article>
+                                    <div class="head">
+                                        <h6>User {username} <Rating name="read-only" size="small" value={stars} readOnly ></Rating></h6>
+                                        <a>{date}</a>
+
+                                    </div>
+                                    <p class="cont">{content}.</p>
+                                    <div class="bt">
+                                        {
+                                            show || isAdmin ?
+                                                <button onClick={(e) => handleClick(e)} class="butn">Delete</button>
+                                                :
+                                                null
+                                        }
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-     
-    )
-};
+
+        )
+    }
+}
