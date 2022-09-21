@@ -9,16 +9,12 @@ import Swal from "sweetalert2";
 export default function CommentsUserVM ({username, rating, created_at, content, avatar_path, titleMovies}) {
  
     const [show, setShow] = React.useState(false)
-    const [isAdmin, setisAdmin] = React.useState(false)
     const dispatch = useDispatch()
     // console.log(titleMovies)
     React.useEffect(() => {
         const theuser = JSON.parse(localStorage.getItem('user'))
         if(theuser.name === username) {
             setShow(true)
-        }
-        if(theuser.isAdmin) {
-            setisAdmin(true)
         }
     }, [])
 
@@ -60,14 +56,14 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
         if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3]+avatar_path[4] ==='/http'){
             image=avatar_path.slice(1);
            
-
-        }else if(avatar_path[0]+ avatar_path[1]+ avatar_path[2]+avatar_path[3] ==='http'){
-            image=avatar_path;
-        } 
-        else{
-            image='https://us.123rf.com/450wm/alekseyvanin/alekseyvanin1705/alekseyvanin170500978/77418653-usuario-icono-de-cuenta-plana-bot%C3%B3n-redondo-simple-signo-circular-vector-dise%C3%B1o-de-estilo-plano.jpg';
-
+         }else{
+             image='https://us.123rf.com/450wm/alekseyvanin/alekseyvanin1705/alekseyvanin170500978/77418653-usuario-icono-de-cuenta-plana-bot%C3%B3n-redondo-simple-signo-circular-vector-dise%C3%B1o-de-estilo-plano.jpg';
+     
          }
+    }else{
+        image='https://us.123rf.com/450wm/alekseyvanin/alekseyvanin1705/alekseyvanin170500978/77418653-usuario-icono-de-cuenta-plana-bot%C3%B3n-redondo-simple-signo-circular-vector-dise%C3%B1o-de-estilo-plano.jpg';
+    }
+   
     if(rating===0){
        stars=0
     }else if(rating===1 || rating===2){
@@ -100,10 +96,10 @@ export default function CommentsUserVM ({username, rating, created_at, content, 
                         <a>{date}</a>
                         
                       </div>
-                      <p class="cont">{content}.</p>
-                      <div class="bt">
+                      <p>{content}.</p>
+                      <div>
                         {
-                            show || isAdmin?
+                            show?
                                 <button onClick={(e) => handleClick(e)} class="butn">Delete</button>
                             :
                             null

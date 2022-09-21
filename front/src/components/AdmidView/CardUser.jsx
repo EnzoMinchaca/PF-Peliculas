@@ -4,7 +4,6 @@ import { allUsers, deleteUsers, editUsersStatus } from "../../redux/Slice/userAc
 import "./CardAdmin.css"
 import styles from "../../styles/Admin.module.css"
 import { BsFillTrashFill } from "react-icons/bs";
-import { BsFillPencilFill } from "react-icons/bs";
 import { useState } from "react";
 
 
@@ -13,6 +12,7 @@ export default function CardUse(props) {
   const dispatch= useDispatch();
   const handleDelete = ()=>{
     dispatch(deleteUsers(props.id))
+    
   };
   const [roleUser, setRoleUser] = useState({id: props.id, role: ''})
 

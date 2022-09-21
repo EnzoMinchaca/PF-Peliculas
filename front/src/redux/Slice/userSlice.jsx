@@ -120,8 +120,8 @@ export const userSlice = createSlice({
         },
 
         deleteUserById: (state,action)=>{         
-            state.users = state.users.filter(user=> user._id !== action.payload);    
-            state.users = state.users.filter(user=> user._id !== action.payload);
+            state.allUsers = action.payload    
+            state.users = action.payload 
         
           },
 
