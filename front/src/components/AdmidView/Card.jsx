@@ -6,12 +6,22 @@ import "./CardAdmin.css";
 import { FaTrash } from 'react-icons/fa';
 import { BsFillPencilFill } from "react-icons/bs";
 import styles from "../../styles/Admin.module.css"
+import Swal from "sweetalert2";
 
 
 export default function CardAdmin(props) {
   const dispatch= useDispatch();
   const handleDelete = ()=>{
-    dispatch(deleteMovies(props.id))
+    Swal.fire({
+      title: 'Do you really want to delete this movie?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      confirmButtonColor: "#0b132b"
+  }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteMovies(props.id))
+      }
+  })
   };
     return (
 

@@ -5,13 +5,23 @@ import "./CardAdmin.css"
 import styles from "../../styles/Admin.module.css"
 import { BsFillTrashFill } from "react-icons/bs";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 
 export default function CardUse(props) {
   const dispatch= useDispatch();
   const handleDelete = ()=>{
-    dispatch(deleteUsers(props.id))
+    Swal.fire({
+      title: 'Do you really want to delete this user?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      confirmButtonColor: "#0b132b"
+  }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteUsers(props.id))
+      }
+  })
     
   };
   const [roleUser, setRoleUser] = useState({id: props.id, role: ''})

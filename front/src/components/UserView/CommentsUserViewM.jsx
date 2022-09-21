@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 export default function CommentsUserVM({ username, rating, created_at, content, avatar_path, titleMovies }) {
 
     const [show, setShow] = React.useState(false)
+    const [isAdmin, setisAdmin] = React.useState(false)
     const dispatch = useDispatch()
     // console.log(titleMovies)
     React.useEffect(() => {
@@ -117,4 +118,3 @@ export default function CommentsUserVM({ username, rating, created_at, content, 
 
         )
     }
-}
