@@ -126,7 +126,8 @@ export default function Login({closeModal}){
                 dispatch(postCreateUser({email: input.email,
                 password: input.password,
                 name:input.name,
-                lastname:input.lastname}))
+                lastname:input.lastname, 
+                image: "https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png"}))
                 console.log(input)
                 setInput({
                     email: "",
