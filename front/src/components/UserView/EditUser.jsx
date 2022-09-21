@@ -356,7 +356,7 @@ export default function EditUser(){
         <div className={css.withRadio}>
         <form encType="multipart/form-data" style={{color:"black" }}>
         <label htmlFor="inputimg">Select img <br /> <ArchiveIcon style={{fontSize:"70px"}} /><input id='inputimg' type="file" name='image' style={{display:"none"}}onChange={(e)=>handleChangeLocal(e)} ></input></label>
-        <input type="submit" onClick={(e)=> handleSubmitImageLocal(e) } style={{borderRadius:"5px", display:"block" ,margin:"auto"}} ></input>
+        <input type="submit" onClick={(e)=> handleSubmitImageLocal(e) } style={{borderRadius:"5px", display:"block" ,margin:"auto", padding:"5px"}} value="Send"></input>
         </form>
       {
         viewImageSelect && <div><img  style={{borderRadius:"20px" , marginTop:"5px"}} src={viewImageSelect} alt="Img Select" height="200px"/></div>
