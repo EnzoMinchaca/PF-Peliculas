@@ -1,18 +1,49 @@
-.classContainer {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  width: 85%;
+.favoriteBanner {
+  display: flex;
+  width: 100vw;
+  height: 10vh;
+}
+
+.generalContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.marginB {
+  width: 100vw;
+  height: 85vh;
+  display:flex;
+}
+
+.ggs {
+  width: 100vw;
+  display:flex;
+  height: 85vh;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.ggInside {
+  width: 80%;
   height: 100%;
-  flex-direction:row;
-  gap: 50px;
+  justify-content: start;
+  display: grid;
+  gap: 30px ;
+  grid-template-columns: auto auto auto auto auto;
 }
 
 .container {
   position: relative;
-  display: flex;
-  width: 55%;
-  height: 100%;
+  width: 100vw;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: auto  auto auto auto auto;
   justify-content: center;
+  gap: 40px;
+  overflow-y: auto;
   align-items: center;
 
 }
@@ -38,6 +69,7 @@
   appearance: none;
   position: relative;
   width: 100vw  ;
+  height: 10vh;
   justify-content: center;
   align-items: center;
   align-items: center;
@@ -90,18 +122,6 @@
   box-sizing: border-box;
 }
 
-.favContainer {
-  display: flex;
-  height: 20%;
-  height: 80%;
-}
-
-
-.favContainer {
-  display: flex;
-  height: 20%;
-  height: 80%;
-}
 
 /* From uiverse.io by @Tiagoadag */
 .card {

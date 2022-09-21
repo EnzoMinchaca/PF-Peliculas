@@ -202,7 +202,7 @@
   }
   
   .seeButton:active {
-    transform: translateY(-1px);
+    transform: translateY(.5px);
   }
   .cartFav {
     display: flex;
