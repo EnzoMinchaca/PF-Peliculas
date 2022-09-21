@@ -31,6 +31,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import ArchiveIcon from '@mui/icons-material/Archive';
+
 
 
 
@@ -239,12 +241,12 @@ export default function EditUser(){
 
         const handleSubmitImageLocal=(e)=>{
           e.preventDefault()
-          if(imageLocal===""){
+          if(imageLocal===""|| imageLocal === null || imageLocal === undefined || String(imageLocal).length === 0){
 
             Swal.fire({
                 icon: "error",
                 title: "Ohhh!",
-                text: "Plis check and complete the fields",
+                text: "Please select an image.",
                 confirmButtonText: "Ok",
                 confirmButtonColor: "#0b132b"
             });
@@ -351,13 +353,16 @@ export default function EditUser(){
           >
 
             {/* SUBIR IMAGEN DEL PC */}
-        <form encType="multipart/form-data">
-        <input id='inputimg' type="file" name='image' onChange={(e)=>handleChangeLocal(e)}></input>
-        <input type="submit" onClick={(e)=> handleSubmitImageLocal(e) } ></input>
+        <div className={css.withRadio}>
+        <form encType="multipart/form-data" style={{color:"black" }}>
+        <label htmlFor="inputimg">Select img <br /> <ArchiveIcon style={{fontSize:"70px"}} /><input id='inputimg' type="file" name='image' style={{display:"none"}}onChange={(e)=>handleChangeLocal(e)} ></input></label>
+        <input type="submit" onClick={(e)=> handleSubmitImageLocal(e) } style={{borderRadius:"5px", display:"block" ,margin:"auto"}} ></input>
         </form>
       {
-        viewImageSelect && <div><img src={viewImageSelect} alt="Img Select" height="200px"/></div>
+        viewImageSelect && <div><img  style={{borderRadius:"20px" , marginTop:"5px"}} src={viewImageSelect} alt="Img Select" height="200px"/></div>
+        
       }
+      </div>
       {/* SUBIR IMAGEN DEL PC */}
             {/* <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png")} value="Img1" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356626/user_c6frby.png" />} />
             <FormControlLabel onClick={()=> handleImage("https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg")} value="Img2" control={<Radio />} label={<img src="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" alt="https://res.cloudinary.com/pruebadatos/image/upload/v1663356225/userDefault_eqk2uh.jpg" />} />
