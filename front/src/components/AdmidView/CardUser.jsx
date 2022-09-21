@@ -54,7 +54,7 @@ export default function CardUse(props) {
         
         <div className={styles.U} key={props.key}>  
            <p>Name: {props.name}</p> 
-           <p>LastName: {props.name}</p>
+           <p>LastName: {props.lastname}</p>
            <p>Email: {props.email}</p>
            <p>Status: {props.status}</p>
            <p>Current role: {role}</p>
