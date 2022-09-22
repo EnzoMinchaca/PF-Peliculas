@@ -21,7 +21,7 @@
   width: 100vw;
   display:flex;
   height: 85vh;
-  overflow-y: auto;
+ 
   justify-content: center;
   align-items: center;
 }
@@ -174,4 +174,7 @@
   box-shadow: 0px 15px 20px rgba(150, 80, 150, 0.4);
   color: rgb(255, 255, 255);
   transform: translateY(-7px);
+}
+.favoriteMargin{
+  margin-top: 60px;
 }

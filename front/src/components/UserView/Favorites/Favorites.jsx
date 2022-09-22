@@ -37,7 +37,10 @@ const Favorites = (props) => {
                 :
                 <div className={Style.ggs}><h2>No Movies added</h2></div>
             }
+            <div className={Style.favoriteMargin} >
             <Footer />
+            </div>
+            
         </div>
     )
 
