@@ -9,6 +9,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .marginB {
@@ -20,8 +21,7 @@
 .ggs {
   width: 100vw;
   display:flex;
-  height: 85vh;
- 
+  margin-bottom: 1%;
   justify-content: center;
   align-items: center;
 }
@@ -176,5 +176,8 @@
   transform: translateY(-7px);
 }
 .favoriteMargin{
-  margin-top: 60px;
+  border: 1px solid transparent;
+}
+.margin{
+  border: 1px solid transparent;
 }

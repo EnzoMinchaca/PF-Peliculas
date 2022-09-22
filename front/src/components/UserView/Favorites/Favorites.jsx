@@ -32,8 +32,9 @@ const Favorites = (props) => {
                 <Link to="/Home"> <button className={Style.favs}><FavoriteIcon />Favorites</button></Link>
             </div>
             {fav.length > 0 ?
-
-                <FavoritesCards />
+                <div className={Style.margin}>
+                     <FavoritesCards />
+                </div>
                 :
                 <div className={Style.ggs}><h2>No Movies added</h2></div>
             }
