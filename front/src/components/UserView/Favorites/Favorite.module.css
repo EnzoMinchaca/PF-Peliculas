@@ -17,8 +17,9 @@
   display:flex;
 }
 
-.ggs {
+.ggss {
   width: 100vw;
+  height: 80%;
   display:flex;
   margin-bottom: 1%;
   justify-content: center;
