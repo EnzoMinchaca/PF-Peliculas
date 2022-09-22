@@ -21,11 +21,11 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 22vw;
-    height: 40vh;
+    width: 30vh;
+    height: 30vh;
     position: absolute;
-    left: 60%;
-    top: 15%;
+    left: 120vh;
+    top: 15vh;
     transition: transform 0.7s ease-in-out;
   }
     
@@ -33,11 +33,11 @@
   .home_span {
     font-family: sans-serif;
     position: absolute;
-    left: 55%;
-    top: 60%;
+    left: 120vh;
+    top: 50vh;
     text-decoration: none;
     color: #5aa01c;
-    font-size: 100px;
+    font-size: 60px;
     letter-spacing: 2px;
     -webkit-animation-name: slideInLeft;
     animation-name: slideInLeft;
@@ -51,10 +51,10 @@
     font-family: sans-serif;
     position: absolute;
     left: 55%;
-    top: 80%;
+    top: 75%;
     text-decoration: none;
     color: #8fbfec;
-    font-size: 60px;
+    font-size: 40px;
     letter-spacing: 2px;
     -webkit-animation-name: slideInLeft;
     animation-name: slideInLeft;
@@ -76,10 +76,9 @@
 	  content: '';
 	  animation: changingTxt 5s linear infinite;
     color: white;
-    left: 60%;
-    text-decoration: none;
-    top: 90%;
-    font-size: 100%;
+    left: 115vh;
+    top: 65vh;
+    font-size: 5vh;
 
 }
 
@@ -183,7 +182,7 @@
   .containerImg{
     position: relative;
     width: 40vw;
-    height: 90vh;
+    height: 85vh;
     margin-top: 0px;
     left: 3%;
     box-shadow: #393838 0px 2px 10px;
@@ -202,7 +201,7 @@
     top: 0;
     left: 0;
     width: 40vw;
-    height: 90vh;
+    height: 85vh;
     background-image: url("../img/02.png");
   }
 
@@ -212,7 +211,7 @@
     top: 0;
     left: 0;
     width: 40vw;
-    height: 90vh;
+    height: 85vh;
     transition: .5s;
     background-image: url("../img/01.png");
   }
